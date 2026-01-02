@@ -1,0 +1,45 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-logo">Luna Co. Audio</span>
+        <p>Free, high-quality audio plugins for everyone.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Plugins</h4>
+          <ul>
+            {% for plugin in site.data.plugins %}
+            {% if plugin.status == "released" or plugin.status == "coming-soon" %}
+            <li><a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}">{{ plugin.name }}</a></li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="{{ '/plugins/' | relative_url }}">All Plugins</a></li>
+            <li><a href="{{ site.releases_url }}">GitHub Releases</a></li>
+            <li><a href="{{ site.github_repo }}">Source Code</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="{{ site.patreon_url }}">Patreon</a></li>
+            <li><a href="{{ '/support/' | relative_url }}">How to Help</a></li>
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} Luna Co. Audio. All plugins are free and open source.</p>
+    </div>
+  </div>
+</footer>

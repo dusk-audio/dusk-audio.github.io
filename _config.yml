@@ -1,0 +1,40 @@
+# Luna Co. Audio - Jekyll Configuration
+title: Luna Co. Audio
+description: Free, high-quality audio plugins for Linux, Windows, and macOS
+url: "https://luna-co-software.github.io"
+baseurl: "/lunacoaudio.github.io"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Sass/SCSS
+sass:
+  style: compressed
+
+# Collections
+collections:
+  plugins:
+    output: true
+    permalink: /plugins/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "plugins"
+    values:
+      layout: "plugin"
+
+# Site links
+github_repo: https://github.com/luna-co-software/plugins
+releases_url: https://github.com/luna-co-software/plugins/releases
+patreon_url: https://www.patreon.com/cw/LunaCoAudio
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

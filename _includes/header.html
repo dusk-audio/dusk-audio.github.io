@@ -1,0 +1,31 @@
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="{{ '/' | relative_url }}" class="logo">
+        <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Luna Co. Audio" class="logo-img">
+        <span class="logo-text">Luna Co. Audio</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ '/plugins/' | relative_url }}" {% if page.url contains '/plugins' %}class="active"{% endif %}>Plugins</a></li>
+        <li><a href="{{ '/support/' | relative_url }}" {% if page.url == '/support/' %}class="active"{% endif %}>Support</a></li>
+        <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
+        <li><a href="{{ site.patreon_url }}" class="btn btn-nav">Support Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', function() {
+    const nav = document.querySelector('.nav-links');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    nav.classList.toggle('open');
+  });
+</script>

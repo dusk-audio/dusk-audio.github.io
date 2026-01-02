@@ -1,0 +1,119 @@
+---
+layout: default
+---
+{% assign plugin_data = site.data.plugins | where: "slug", page.slug | first %}
+
+<article class="plugin-page">
+  <header class="plugin-header">
+    <div class="container">
+      <div class="plugin-header-content">
+        <h1>{{ page.title }}</h1>
+        <p class="plugin-tagline">{{ page.tagline }}</p>
+        {% if plugin_data.status == "released" %}
+        <span class="status-badge released">Available Now</span>
+        {% elsif plugin_data.status == "coming-soon" %}
+        <span class="status-badge coming-soon">Coming Soon</span>
+        {% else %}
+        <span class="status-badge in-dev">In Development</span>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="container plugin-content">
+    <div class="plugin-main">
+      {% if page.screenshot %}
+      <div class="plugin-screenshot">
+        <img src="{{ page.screenshot | relative_url }}" alt="{{ page.title }} screenshot">
+      </div>
+      {% endif %}
+
+      <section class="plugin-description">
+        {{ content }}
+      </section>
+
+      {% if page.features %}
+      <section class="plugin-features">
+        <h2>Features</h2>
+        <ul>
+          {% for feature in page.features %}
+          <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if page.changelog %}
+      <section class="plugin-changelog">
+        <h2>Changelog</h2>
+        {% for entry in page.changelog %}
+        <div class="changelog-entry">
+          <h3>v{{ entry.version }} <span class="changelog-date">{{ entry.date }}</span></h3>
+          <ul>
+            {% for change in entry.changes %}
+            <li>{{ change }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+    </div>
+
+    <aside class="plugin-sidebar">
+      {% if plugin_data.status == "released" %}
+      <div class="download-box">
+        <h3>Download</h3>
+        <p class="version">Version {{ page.version }}</p>
+
+        <div class="download-section">
+          <h4>Linux</h4>
+          <a href="{{ site.releases_url }}" class="btn btn-download">VST3</a>
+          <a href="{{ site.releases_url }}" class="btn btn-download">LV2</a>
+        </div>
+
+        <div class="download-section">
+          <h4>Windows</h4>
+          <a href="{{ site.releases_url }}" class="btn btn-download">VST3</a>
+        </div>
+
+        <div class="download-section">
+          <h4>macOS</h4>
+          <a href="{{ site.releases_url }}" class="btn btn-download">VST3</a>
+          <a href="{{ site.releases_url }}" class="btn btn-download">AU</a>
+        </div>
+
+        <a href="{{ site.releases_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>
+      </div>
+      {% else %}
+      <div class="download-box coming-soon-box">
+        <h3>Coming Soon</h3>
+        <p>This plugin is currently in development. Follow us for updates!</p>
+        <a href="{{ site.patreon_url }}" class="btn btn-primary btn-full">Follow on Patreon</a>
+      </div>
+      {% endif %}
+
+      {% if page.requirements %}
+      <div class="info-box">
+        <h3>System Requirements</h3>
+        <ul>
+          {% for req in page.requirements %}
+          <li>{{ req }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="info-box">
+        <h3>Formats</h3>
+        <ul>
+          <li>Linux: VST3, LV2</li>
+          <li>Windows: VST3</li>
+          <li>macOS: VST3, AU</li>
+        </ul>
+      </div>
+
+      {% include support-cta.html %}
+    </aside>
+  </div>
+</article>

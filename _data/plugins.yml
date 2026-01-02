@@ -1,0 +1,93 @@
+# Luna Co. Audio Plugin Database
+# Status options: released, coming-soon, in-dev
+# Update this file to add/modify plugins - the site will automatically update
+
+# ============================================
+# RELEASED
+# ============================================
+- name: "4K-EQ"
+  slug: "4k-eq"
+  tagline: "SSL 4000 Series Console EQ Emulation"
+  description: "Professional SSL-style 4-band parametric EQ with Brown/Black modes, analog saturation modeling, and real-time spectrum analyzer. The legendary console sound, completely free."
+  status: "released"
+  featured: true
+  version: "1.0.2"
+
+# ============================================
+# COMING SOON (Finalizing)
+# ============================================
+- name: "Multi-Comp"
+  slug: "multi-comp"
+  tagline: "Multi-band dynamics compressor"
+  description: "Powerful multi-band compression for detailed dynamics control. Perfect for mastering and complex mixing tasks."
+  status: "coming-soon"
+  featured: false
+
+# ============================================
+# NEAR PRODUCTION
+# ============================================
+- name: "Spectrum Analyzer"
+  slug: "spectrum-analyzer"
+  tagline: "Real-time FFT spectrum visualization"
+  description: "See your sound with crystal clarity. Real-time FFT analysis with multiple display modes and customizable visuals."
+  status: "in-dev"
+  featured: false
+
+- name: "Chord Analyzer"
+  slug: "chord-analyzer"
+  tagline: "Intelligent chord detection and display"
+  description: "Identify chords in real-time as you play. Perfect for learning, transcription, and music theory exploration."
+  status: "in-dev"
+  featured: false
+
+- name: "TapeMachine"
+  slug: "tapemachine"
+  tagline: "Analog tape saturation with wow/flutter"
+  description: "Authentic tape warmth and character. Add subtle saturation, wow, flutter, and that classic analog vibe."
+  status: "in-dev"
+  featured: false
+
+# ============================================
+# IN DEVELOPMENT
+# ============================================
+- name: "Groovemind"
+  slug: "groovemind"
+  tagline: "AI-assisted groove generator"
+  description: "Intelligent rhythm and groove generation powered by machine learning."
+  status: "in-dev"
+  featured: false
+
+- name: "Multi-Q"
+  slug: "multi-q"
+  tagline: "Multi-band dynamic EQ"
+  description: "Dynamic equalization that responds to your audio in real-time."
+  status: "in-dev"
+  featured: false
+
+- name: "Neural Amp"
+  slug: "neural-amp"
+  tagline: "Neural network amp modeling"
+  description: "Guitar and bass amp tones powered by neural network technology."
+  status: "in-dev"
+  featured: false
+
+- name: "SilkVerb"
+  slug: "silkverb"
+  tagline: "Smooth algorithmic reverb"
+  description: "Lush, silky reverb tails with extensive control over decay and character."
+  status: "in-dev"
+  featured: false
+
+- name: "Convolution Reverb"
+  slug: "convolution-reverb"
+  tagline: "IR-based reverb"
+  description: "Load your own impulse responses for realistic space simulation."
+  status: "in-dev"
+  featured: false
+
+- name: "Tape Echo"
+  slug: "tape-echo"
+  tagline: "Vintage tape delay emulation"
+  description: "Classic tape delay sound with modulation, degradation, and vintage character."
+  status: "in-dev"
+  featured: false
