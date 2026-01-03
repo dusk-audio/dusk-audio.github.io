@@ -4,7 +4,7 @@ title: 4K-EQ
 slug: 4k-eq
 tagline: SSL 4000 Series Console EQ Emulation
 description: Professional SSL-style 4-band parametric equalizer with analog modeling. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.2"
+version: "1.0.0"
 screenshot: /assets/images/plugins/4k-eq-screenshot.png
 
 features:
@@ -29,33 +29,15 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
-  - version: "1.0.2"
-    date: "2025-10-21"
-    changes:
-      - Fixed frequency ranges to match SSL hardware specs
-      - Limited Q ranges to realistic SSL values (0.4–4.0)
-      - Set default saturation to 0% (SSL is clean unless driven)
-      - Fixed tick mark positioning
-      - Added auto-gain compensation toggle with UI button
-      - Enhanced UI readability with larger labels
-      - Added 5 new factory presets (total 15)
-  - version: "1.0.1"
-    date: "2025-10-02"
-    changes:
-      - Removed LV2 inline display (JUCE compatibility)
-      - Added mouse wheel support for knobs
-      - Added double-click reset to defaults
-      - Added professional SSL-style tick markings
-      - Added pre/post spectrum toggle
-      - SIMD-optimized spectrum analyzer (~5% CPU reduction)
   - version: "1.0.0"
-    date: "2025-09"
+    date: "2026-01-03"
     changes:
       - Initial release with VST3/LV2/AU support
-      - SSL Brown/Black modes
-      - 2x/4x oversampling
+      - SSL Brown/Black modes (E-series vs G-series)
+      - 2x/4x oversampling for anti-aliased processing
       - Real-time spectrum analyzer
-      - 10 factory presets
+      - Factory presets
+      - Available for Linux, Windows, and macOS
 ---
 
 4K-EQ is a professional SSL 4000 series console EQ emulation, bringing the legendary sound of classic British mixing consoles to your DAW — completely free.
