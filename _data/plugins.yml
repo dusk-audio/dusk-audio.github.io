@@ -14,14 +14,15 @@
   version: "1.0.0"
 
 # ============================================
-# COMING SOON (Finalizing)
+# RELEASED
 # ============================================
 - name: "Multi-Comp"
   slug: "multi-comp"
-  tagline: "Multi-band dynamics compressor"
-  description: "Powerful multi-band compression for detailed dynamics control. Perfect for mastering and complex mixing tasks."
-  status: "coming-soon"
-  featured: false
+  tagline: "Multi-mode dynamics compressor"
+  description: "7 compression modes (1176 FET, LA-2A Opto, SSL Bus, VCA, Studio FET/VCA, Digital) plus 4-band multiband compression. 14 factory presets. Professional dynamics control, completely free."
+  status: "released"
+  featured: true
+  version: "1.0.0"
 
 # ============================================
 # NEAR PRODUCTION
