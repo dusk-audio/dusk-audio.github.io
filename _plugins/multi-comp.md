@@ -8,12 +8,14 @@ version: "1.0.0"
 screenshot: /assets/images/plugins/multi-comp-screenshot.png
 
 features:
-  - 7 single-band compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital)
+  - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
   - 4-band multiband compression with adjustable crossovers
   - LA-2A style optical compression with program-dependent release
   - 1176 FET compression with All-Buttons mode
   - SSL Bus compressor emulation with Auto Release
   - DBX 160 VCA with OverEasy soft knee
+  - Hardware-accurate transformer emulation with authentic HF rolloff
+  - Analog noise toggle (-80dB floor for authentic character)
   - Per-band solo buttons and gain reduction meters (Multiband mode)
   - Global sidechain HP filter (20-500Hz)
   - External sidechain input support
@@ -98,6 +100,28 @@ Multi-Comp provides 8 distinct compression modes, each modeled after legendary h
 - Per-band threshold, ratio, attack, release, makeup
 - Per-band solo buttons
 - LED-style gain reduction meters per band
+
+## Analog Emulation
+
+Multi-Comp features hardware-accurate analog emulation that captures the authentic character of classic compressors:
+
+### Transformer Emulation
+Each vintage mode includes input and output transformer modeling with authentic high-frequency characteristics:
+
+| Mode | Input Transformer | Output Transformer |
+|------|-------------------|-------------------|
+| Vintage Opto (LA-2A) | 18kHz rolloff | 16kHz rolloff |
+| Vintage FET (1176) | 20kHz rolloff | 22kHz rolloff |
+| Bus (SSL) | 22kHz rolloff | 24kHz rolloff |
+| VCA/Digital | None (transparent) | None (transparent) |
+
+### Analog Noise
+Toggle the "Analog Noise" button to add subtle -80dB analog noise floor, matching the authentic character of hardware units. Disable for completely silent digital behavior.
+
+### Tube and Saturation
+- LA-2A mode includes tube stage modeling (12AX7/12BH7)
+- FET mode captures the characteristic transistor saturation
+- All analog modes include harmonic generation based on hardware measurements
 
 ## Factory Presets
 
