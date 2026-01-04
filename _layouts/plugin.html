@@ -62,28 +62,30 @@ layout: default
 
     <aside class="plugin-sidebar">
       {% if plugin_data.status == "released" %}
+      {% assign release_tag = page.slug | append: "-v" | append: page.version %}
+      {% assign plugin_release_url = site.releases_url | append: "/tag/" | append: release_tag %}
       <div class="download-box">
         <h3>Download</h3>
         <p class="version">Version {{ page.version }}</p>
 
         <div class="download-section">
           <h4>Linux</h4>
-          <a href="{{ site.releases_url }}" class="btn btn-download">VST3</a>
-          <a href="{{ site.releases_url }}" class="btn btn-download">LV2</a>
+          <a href="{{ plugin_release_url }}" class="btn btn-download">VST3</a>
+          <a href="{{ plugin_release_url }}" class="btn btn-download">LV2</a>
         </div>
 
         <div class="download-section">
           <h4>Windows</h4>
-          <a href="{{ site.releases_url }}" class="btn btn-download">VST3</a>
+          <a href="{{ plugin_release_url }}" class="btn btn-download">VST3</a>
         </div>
 
         <div class="download-section">
           <h4>macOS</h4>
-          <a href="{{ site.releases_url }}" class="btn btn-download">VST3</a>
-          <a href="{{ site.releases_url }}" class="btn btn-download">AU</a>
+          <a href="{{ plugin_release_url }}" class="btn btn-download">VST3</a>
+          <a href="{{ plugin_release_url }}" class="btn btn-download">AU</a>
         </div>
 
-        <a href="{{ site.releases_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>
+        <a href="{{ plugin_release_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>
       </div>
       {% else %}
       <div class="download-box coming-soon-box">
