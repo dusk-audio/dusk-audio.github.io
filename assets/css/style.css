@@ -364,6 +364,14 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--spacing-xl);
+  justify-content: center;
+}
+
+/* Center plugin cards when there are only 2 */
+.plugin-grid.centered,
+.section .plugin-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 400px));
+  justify-content: center;
 }
 
 .plugin-card {
