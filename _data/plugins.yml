@@ -19,7 +19,7 @@
 - name: "Multi-Comp"
   slug: "multi-comp"
   tagline: "Multi-mode dynamics compressor"
-  description: "8 compression modes including 1176 FET, LA-2A Opto, SSL Bus, VCA, Studio FET/VCA, Digital, and 4-band Multiband. Hardware-accurate transformer emulation, analog noise modeling, sidechain HP filter, 2x/4x oversampling. Professional dynamics control, completely free."
+  description: "8 compression modes including Vintage FET, Vintage Opto, Bus Compressor, Classic VCA, Studio FET/VCA, Digital, and 4-band Multiband. Hardware-accurate transformer emulation, analog noise modeling, sidechain HP filter, 2x/4x oversampling. Professional dynamics control, completely free."
   status: "released"
   featured: true
   version: "1.0.0"
