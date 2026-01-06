@@ -53,7 +53,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Vintage Opto
 
-![Vintage Opto mode](/assets/images/plugins/multi-comp/vintage-opto.png)
+![Vintage Opto mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/vintage-opto.png)
 
 - Smooth, program-dependent optical compression
 - Photocell-style attack/release characteristics
@@ -63,7 +63,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Vintage FET
 
-![Vintage FET mode](/assets/images/plugins/multi-comp/vintage-fet.png)
+![Vintage FET mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/vintage-fet.png)
 
 - Aggressive, punchy FET compression
 - Classic ratio buttons: 4:1, 8:1, 12:1, 20:1
@@ -73,7 +73,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Classic VCA
 
-![Classic VCA mode](/assets/images/plugins/multi-comp/classic-vca.png)
+![Classic VCA mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/classic-vca.png)
 
 - Fast, precise VCA compression
 - Soft knee option for gentle compression
@@ -82,7 +82,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Bus Compressor
 
-![Bus Compressor mode](/assets/images/plugins/multi-comp/bus-compressor.png)
+![Bus Compressor mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/bus-compressor.png)
 
 - Stepped attack times (0.1 to 30ms)
 - Stepped release with Auto mode
@@ -91,7 +91,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Studio FET
 
-![Studio FET mode](/assets/images/plugins/multi-comp/studio-fet.png)
+![Studio FET mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/studio-fet.png)
 
 - Cleaner FET with 30% of Vintage harmonics
 - Modern FET sound with less coloration
@@ -99,7 +99,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Studio VCA
 
-![Studio VCA mode](/assets/images/plugins/multi-comp/studio-vca.png)
+![Studio VCA mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/studio-vca.png)
 
 - Modern VCA with RMS detection
 - Soft knee option
@@ -108,7 +108,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Digital
 
-![Digital mode](/assets/images/plugins/multi-comp/digital.png)
+![Digital mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/digital.png)
 
 - Transparent, precise compression
 - No coloration or saturation
@@ -117,7 +117,7 @@ Multi-Comp provides 8 distinct compression modes, each inspired by legendary har
 
 ### Multiband
 
-![Multiband mode](/assets/images/plugins/multi-comp/multiband.png)
+![Multiband mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/multiband.png)
 
 - **4 frequency bands** (Low, Lo-Mid, Hi-Mid, High)
 - Adjustable crossover frequencies
