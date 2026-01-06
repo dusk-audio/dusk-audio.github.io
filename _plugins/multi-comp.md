@@ -22,7 +22,7 @@ features:
   - Output distortion (Soft/Hard/Clip)
   - Mix control for parallel compression
   - 2x/4x oversampling for anti-aliased processing
-  - 14 factory presets
+  - 13 factory presets
   - Full automation support
 
 requirements:
@@ -38,7 +38,7 @@ changelog:
     changes:
       - Initial release with VST3/LV2/AU support
       - 7 compression modes plus multiband
-      - 14 factory presets
+      - 13 factory presets
       - Available for Linux, Windows, and macOS
 ---
 
@@ -132,7 +132,7 @@ Multi-Comp features hardware-accurate analog emulation that captures the authent
 Each vintage mode includes input and output transformer modeling with authentic high-frequency characteristics:
 
 | Mode | Input Transformer | Output Transformer |
-|------|-------------------|-------------------|
+|:-----|:------------------|:-------------------|
 | Vintage Opto | 18kHz rolloff | 16kHz rolloff |
 | Vintage FET | 20kHz rolloff | 22kHz rolloff |
 | Bus | 22kHz rolloff | 24kHz rolloff |
@@ -148,23 +148,44 @@ Toggle the "Analog Noise" button to add subtle -80dB analog noise floor, matchin
 
 ## Factory Presets
 
-Multi-Comp includes 14 professionally crafted presets:
+Multi-Comp includes 13 professionally crafted presets:
 
+### Vocals
 | Preset | Mode | Description |
-|--------|------|-------------|
-| Smooth Opto Vocal | Opto | Classic optical vocal sound |
-| Vocal Presence | FET | Punchy vocal presence |
-| Modern Pop Control | Studio FET | Fast, modern vocal control |
-| Classic Drum Glue | Bus | Drum bus glue |
-| Room Nuke (FET All) | FET | All-buttons room destruction |
-| Snare Snap | VCA | Punchy snare enhancement |
-| Rock Bass Anchor | FET | Solid bass foundation |
-| Vintage Pinned Bass | Opto | Classic bass compression |
-| Acoustic Strum Tamer | Studio VCA | Clean acoustic control |
-| Funk Rhythm Guitar | FET | Funky rhythm pumping |
-| Bus Glue | Bus | Classic mix bus glue |
-| Gentle Master | Studio VCA | Transparent mastering |
-| EDM Pump (115-130 BPM) | FET | Sidechain-style pumping |
+|:-------|:-----|:------------|
+| Smooth Opto Vocal | Opto | Classic optical style, Peak Reduction 50%, Compress mode |
+| Vocal Presence | Vintage FET | 4:1, Attack 0.5ms, Release 60ms — punchy presence |
+| Modern Pop Control | Studio FET | 8:1, Attack 0.3ms, Auto-makeup — fast modern control |
+
+### Drums
+| Preset | Mode | Description |
+|:-------|:-----|:------------|
+| Classic Drum Glue | Bus | Attack 30ms, Release Auto, 4:1 — classic bus sound |
+| Room Nuke (FET All) | Vintage FET | All-buttons-in, Attack 0.8ms, Release 50ms — room destruction |
+| Snare Snap | Classic VCA | Attack 15ms, Release 50ms, 4:1 — punchy snare |
+
+### Bass
+| Preset | Mode | Description |
+|:-------|:-----|:------------|
+| Rock Bass Anchor | Vintage FET | 4:1, Attack 0.8ms, Release 250ms — solid foundation |
+| Vintage Pinned Bass | Opto | Peak Reduction 65% — classic Motown style |
+
+### Guitars
+| Preset | Mode | Description |
+|:-------|:-----|:------------|
+| Acoustic Strum Tamer | Studio VCA | 3:1, Attack 2ms, Pristine saturation — pick spike control |
+| Funk Rhythm Guitar | Vintage FET | 4:1, Attack 0.3ms, Release 50ms — funky pumping |
+
+### Mix Bus
+| Preset | Mode | Description |
+|:-------|:-----|:------------|
+| Console-Style Glue | Bus | Attack 10ms, Release Auto, 4:1 — classic mix bus glue |
+| Gentle Master | Studio VCA | 1.5:1, Attack 30ms, Pristine — transparent mastering |
+
+### Creative
+| Preset | Mode | Description |
+|:-------|:-----|:------------|
+| EDM Pump (115-130 BPM) | Vintage FET | 20:1, Attack 0.1ms, Release 250ms — sidechain pumping |
 
 ## Technical Specifications
 
