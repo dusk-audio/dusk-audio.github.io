@@ -215,7 +215,9 @@ main {
    Buttons
    ======================================== */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 0.9375rem;
   font-weight: 600;
