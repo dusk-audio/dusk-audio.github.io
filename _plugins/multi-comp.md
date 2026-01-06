@@ -5,7 +5,33 @@ slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.0.0"
-screenshot: /assets/images/plugins/multi-comp-screenshot.png
+screenshot: /assets/images/plugins/multi-comp/vintage-opto.png
+
+gallery:
+  - src: /assets/images/plugins/multi-comp/vintage-opto.png
+    alt: Vintage Opto mode - LA-2A style compression
+    caption: "Vintage Opto – LA-2A style optical compression"
+  - src: /assets/images/plugins/multi-comp/vintage-fet.png
+    alt: Vintage FET mode - 1176 style compression
+    caption: "Vintage FET – 1176 Bluestripe style FET compression"
+  - src: /assets/images/plugins/multi-comp/classic-vca.png
+    alt: Classic VCA mode - DBX 160 style compression
+    caption: "Classic VCA – DBX 160 style with OverEasy knee"
+  - src: /assets/images/plugins/multi-comp/bus-compressor.png
+    alt: Bus Compressor mode - SSL style mix bus compression
+    caption: "Bus Compressor – SSL style mix bus glue"
+  - src: /assets/images/plugins/multi-comp/studio-fet.png
+    alt: Studio FET mode - Modern FET compression
+    caption: "Studio FET – Modern FET with reduced harmonics"
+  - src: /assets/images/plugins/multi-comp/studio-vca.png
+    alt: Studio VCA mode - Modern VCA compression
+    caption: "Studio VCA – Modern VCA with RMS detection"
+  - src: /assets/images/plugins/multi-comp/digital.png
+    alt: Digital mode - Transparent compression
+    caption: "Digital – Transparent, precise compression"
+  - src: /assets/images/plugins/multi-comp/multiband.png
+    alt: Multiband mode - 4-band multiband compression
+    caption: "Multiband – 4-band multiband compression"
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)

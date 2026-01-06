@@ -28,6 +28,20 @@ layout: default
       </div>
       {% endif %}
 
+      {% if page.gallery %}
+      <div class="plugin-gallery">
+        <h2>Screenshots</h2>
+        <div class="gallery-grid">
+          {% for image in page.gallery %}
+          <div class="gallery-item">
+            <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy">
+            <p class="gallery-caption">{{ image.caption }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
       <section class="plugin-description">
         {{ content }}
       </section>
