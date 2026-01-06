@@ -7,39 +7,13 @@ description: Professional multi-mode compressor with 7 compression styles plus 4
 version: "1.0.0"
 screenshot: /assets/images/plugins/multi-comp/vintage-opto.png
 
-gallery:
-  - src: /assets/images/plugins/multi-comp/vintage-opto.png
-    alt: Vintage Opto mode - LA-2A style compression
-    caption: "Vintage Opto – LA-2A style optical compression"
-  - src: /assets/images/plugins/multi-comp/vintage-fet.png
-    alt: Vintage FET mode - 1176 style compression
-    caption: "Vintage FET – 1176 Bluestripe style FET compression"
-  - src: /assets/images/plugins/multi-comp/classic-vca.png
-    alt: Classic VCA mode - DBX 160 style compression
-    caption: "Classic VCA – DBX 160 style with OverEasy knee"
-  - src: /assets/images/plugins/multi-comp/bus-compressor.png
-    alt: Bus Compressor mode - SSL style mix bus compression
-    caption: "Bus Compressor – SSL style mix bus glue"
-  - src: /assets/images/plugins/multi-comp/studio-fet.png
-    alt: Studio FET mode - Modern FET compression
-    caption: "Studio FET – Modern FET with reduced harmonics"
-  - src: /assets/images/plugins/multi-comp/studio-vca.png
-    alt: Studio VCA mode - Modern VCA compression
-    caption: "Studio VCA – Modern VCA with RMS detection"
-  - src: /assets/images/plugins/multi-comp/digital.png
-    alt: Digital mode - Transparent compression
-    caption: "Digital – Transparent, precise compression"
-  - src: /assets/images/plugins/multi-comp/multiband.png
-    alt: Multiband mode - 4-band multiband compression
-    caption: "Multiband – 4-band multiband compression"
-
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
   - 4-band multiband compression with adjustable crossovers
-  - LA-2A style optical compression with program-dependent release
-  - 1176 FET compression with All-Buttons mode
-  - SSL Bus compressor emulation with Auto Release
-  - DBX 160 VCA with OverEasy soft knee
+  - Smooth optical compression with program-dependent release
+  - FET compression with All-Buttons mode
+  - Bus compressor emulation with Auto Release
+  - VCA compression with soft knee option
   - Hardware-accurate transformer emulation with authentic HF rolloff
   - Analog noise toggle (-80dB floor for authentic character)
   - Per-band solo buttons and gain reduction meters (Multiband mode)
@@ -73,54 +47,78 @@ Multi-Comp is a professional multi-mode dynamics compressor that brings classic 
 
 ## Overview
 
-Multi-Comp provides 8 distinct compression modes, each modeled after legendary hardware units. From smooth optical compression to aggressive FET limiting, and from precise digital control to powerful multiband processing — Multi-Comp covers every dynamics need.
+Multi-Comp provides 8 distinct compression modes, each inspired by legendary hardware units. From smooth optical compression to aggressive FET limiting, and from precise digital control to powerful multiband processing — Multi-Comp covers every dynamics need.
 
 ## Compression Modes
 
-### Vintage Opto (LA-2A Style)
+### Vintage Opto
+
+![Vintage Opto mode](/assets/images/plugins/multi-comp/vintage-opto.png)
+
 - Smooth, program-dependent optical compression
 - Photocell-style attack/release characteristics
-- Peak Reduction control for authentic LA-2A workflow
+- Peak Reduction control for classic opto workflow
 - Compress/Limit modes
 - Perfect for vocals, bass, and mix bus
 
-### Vintage FET (1176 Bluestripe Style)
+### Vintage FET
+
+![Vintage FET mode](/assets/images/plugins/multi-comp/vintage-fet.png)
+
 - Aggressive, punchy FET compression
 - Classic ratio buttons: 4:1, 8:1, 12:1, 20:1
 - **All-Buttons mode** for the famous "British Mode" distortion
 - Ultra-fast attack times (20μs minimum)
 - Authentic transistor saturation
 
-### Classic VCA (DBX 160 Style)
+### Classic VCA
+
+![Classic VCA mode](/assets/images/plugins/multi-comp/classic-vca.png)
+
 - Fast, precise VCA compression
-- OverEasy™-style soft knee
+- Soft knee option for gentle compression
 - Clean, transparent compression
 - Excellent for drums and percussion
 
-### Bus Compressor (SSL Style)
+### Bus Compressor
+
+![Bus Compressor mode](/assets/images/plugins/multi-comp/bus-compressor.png)
+
 - Stepped attack times (0.1 to 30ms)
 - Stepped release with Auto mode
 - Classic mix bus "glue"
 - 2:1 to 10:1 ratio range
 
-### Studio FET (1176 Blackface Style)
+### Studio FET
+
+![Studio FET mode](/assets/images/plugins/multi-comp/studio-fet.png)
+
 - Cleaner FET with 30% of Vintage harmonics
 - Modern FET sound with less coloration
 - Same fast attack characteristics
 
-### Studio VCA (Modern Style)
+### Studio VCA
+
+![Studio VCA mode](/assets/images/plugins/multi-comp/studio-vca.png)
+
 - Modern VCA with RMS detection
 - Soft knee option
 - Ultra-clean compression
 - Great for mastering
 
 ### Digital
+
+![Digital mode](/assets/images/plugins/multi-comp/digital.png)
+
 - Transparent, precise compression
 - No coloration or saturation
 - Perfect for surgical dynamics control
 - Ideal for reference monitoring
 
 ### Multiband
+
+![Multiband mode](/assets/images/plugins/multi-comp/multiband.png)
+
 - **4 frequency bands** (Low, Lo-Mid, Hi-Mid, High)
 - Adjustable crossover frequencies
 - Per-band threshold, ratio, attack, release, makeup
@@ -136,16 +134,16 @@ Each vintage mode includes input and output transformer modeling with authentic 
 
 | Mode | Input Transformer | Output Transformer |
 |------|-------------------|-------------------|
-| Vintage Opto (LA-2A) | 18kHz rolloff | 16kHz rolloff |
-| Vintage FET (1176) | 20kHz rolloff | 22kHz rolloff |
-| Bus (SSL) | 22kHz rolloff | 24kHz rolloff |
+| Vintage Opto | 18kHz rolloff | 16kHz rolloff |
+| Vintage FET | 20kHz rolloff | 22kHz rolloff |
+| Bus | 22kHz rolloff | 24kHz rolloff |
 | VCA/Digital | None (transparent) | None (transparent) |
 
 ### Analog Noise
 Toggle the "Analog Noise" button to add subtle -80dB analog noise floor, matching the authentic character of hardware units. Disable for completely silent digital behavior.
 
 ### Tube and Saturation
-- LA-2A mode includes tube stage modeling (12AX7/12BH7)
+- Opto mode includes tube stage modeling
 - FET mode captures the characteristic transistor saturation
 - All analog modes include harmonic generation based on hardware measurements
 
@@ -155,17 +153,17 @@ Multi-Comp includes 14 professionally crafted presets:
 
 | Preset | Mode | Description |
 |--------|------|-------------|
-| Smooth Opto Vocal | Opto | Classic LA-2A vocal sound |
-| Vocal Presence (1176) | FET | "Dr. Pepper" 10-2-4 setting |
+| Smooth Opto Vocal | Opto | Classic optical vocal sound |
+| Vocal Presence | FET | Punchy vocal presence |
 | Modern Pop Control | Studio FET | Fast, modern vocal control |
-| Classic Drum Glue | Bus | London SSL drum bus |
+| Classic Drum Glue | Bus | Drum bus glue |
 | Room Nuke (FET All) | FET | All-buttons room destruction |
 | Snare Snap | VCA | Punchy snare enhancement |
 | Rock Bass Anchor | FET | Solid bass foundation |
-| Vintage Pinned Bass | Opto | James Jamerson style |
+| Vintage Pinned Bass | Opto | Classic bass compression |
 | Acoustic Strum Tamer | Studio VCA | Clean acoustic control |
 | Funk Rhythm Guitar | FET | Funky rhythm pumping |
-| SSL-Style Glue | Bus | Classic mix bus glue |
+| Bus Glue | Bus | Classic mix bus glue |
 | Gentle Master | Studio VCA | Transparent mastering |
 | EDM Pump (115-130 BPM) | FET | Sidechain-style pumping |
 
@@ -228,7 +226,3 @@ AU:   ~/Library/Audio/Plug-Ins/Components/Multi-Comp.component
 ## Open Source
 
 Multi-Comp is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/luna-co-software/plugins).
-
----
-
-*Disclaimer: This is an independent emulation inspired by classic hardware compressors. Product names are trademarks of their respective owners. This project is not affiliated with or endorsed by any hardware manufacturer.*
