@@ -19,29 +19,42 @@ description: Free, high-quality audio plugins for Linux, Windows, and macOS. Pro
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Featured Plugin</h2>
-      <p>Our flagship release, ready for your next project</p>
+      <h2>Available Now</h2>
+      <p>Professional plugins ready for your next project</p>
     </div>
 
-    {% assign featured = site.data.plugins | where: "featured", true | first %}
-    <div class="featured-plugin">
-      <div class="featured-plugin-image">
-        <img src="{{ '/assets/images/plugins/4k-eq-screenshot.png' | relative_url }}" alt="{{ featured.name }} screenshot">
+    <div class="plugin-grid">
+      <div class="plugin-card">
+        <div class="plugin-card-image">
+          <img src="{{ '/assets/images/plugins/4k-eq-screenshot.png' | relative_url }}" alt="4K-EQ screenshot">
+        </div>
+        <div class="plugin-card-content">
+          <div class="plugin-card-header">
+            <h3>4K-EQ</h3>
+            <span class="status-badge released">Released</span>
+          </div>
+          <p>Professional 4-band parametric EQ with Brown/Black console modes, analog saturation modeling, and real-time spectrum analyzer.</p>
+          <div class="plugin-card-footer">
+            <a href="{{ '/plugins/4k-eq/' | relative_url }}" class="btn btn-primary">Details</a>
+            <a href="{{ site.releases_url }}/tag/4k-eq-v1.0.0" class="btn btn-download">Download</a>
+          </div>
+        </div>
       </div>
-      <div class="featured-plugin-content">
-        <span class="status-badge released">Available Now</span>
-        <h3>{{ featured.name }}</h3>
-        <p class="tagline">{{ featured.tagline }}</p>
-        <p>{{ featured.description }}</p>
-        <ul>
-          <li>Brown/Black modes — E-series vs G-series characteristics</li>
-          <li>SSL-accurate saturation modeling with per-band harmonics</li>
-          <li>2x/4x oversampling and real-time spectrum analyzer</li>
-          <li>15 factory presets, M/S processing, auto-gain</li>
-        </ul>
-        <div class="hero-buttons" style="justify-content: flex-start;">
-          <a href="{{ '/plugins/4k-eq/' | relative_url }}" class="btn btn-primary">Learn More</a>
-          <a href="{{ site.releases_url }}" class="btn btn-secondary">Download</a>
+
+      <div class="plugin-card">
+        <div class="plugin-card-image">
+          <img src="{{ '/assets/images/plugins/multi-comp-screenshot.png' | relative_url }}" alt="Multi-Comp screenshot">
+        </div>
+        <div class="plugin-card-content">
+          <div class="plugin-card-header">
+            <h3>Multi-Comp</h3>
+            <span class="status-badge released">Released</span>
+          </div>
+          <p>8 compression modes including Vintage Opto, Vintage FET, Bus Compressor, Classic VCA, and 4-band Multiband. Hardware-accurate dynamics control.</p>
+          <div class="plugin-card-footer">
+            <a href="{{ '/plugins/multi-comp/' | relative_url }}" class="btn btn-primary">Details</a>
+            <a href="{{ site.releases_url }}/tag/multi-comp-v1.0.0" class="btn btn-download">Download</a>
+          </div>
         </div>
       </div>
     </div>
