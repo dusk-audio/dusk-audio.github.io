@@ -274,7 +274,7 @@ main {
 .btn-nav {
   background: var(--color-primary);
   color: white !important;
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-xl);
   border: none;
 }
 
