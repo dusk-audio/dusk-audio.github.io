@@ -151,6 +151,7 @@ Toggle the "Analog Noise" button to add subtle -80dB analog noise floor, matchin
 Multi-Comp includes 13 professionally crafted presets:
 
 ### Vocals
+
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | Smooth Opto Vocal | Opto | Classic optical style, Peak Reduction 50%, Compress mode |
@@ -158,6 +159,7 @@ Multi-Comp includes 13 professionally crafted presets:
 | Modern Pop Control | Studio FET | 8:1, Attack 0.3ms, Auto-makeup — fast modern control |
 
 ### Drums
+
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | Classic Drum Glue | Bus | Attack 30ms, Release Auto, 4:1 — classic bus sound |
@@ -165,24 +167,28 @@ Multi-Comp includes 13 professionally crafted presets:
 | Snare Snap | Classic VCA | Attack 15ms, Release 50ms, 4:1 — punchy snare |
 
 ### Bass
+
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | Rock Bass Anchor | Vintage FET | 4:1, Attack 0.8ms, Release 250ms — solid foundation |
 | Vintage Pinned Bass | Opto | Peak Reduction 65% — classic Motown style |
 
 ### Guitars
+
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | Acoustic Strum Tamer | Studio VCA | 3:1, Attack 2ms, Pristine saturation — pick spike control |
 | Funk Rhythm Guitar | Vintage FET | 4:1, Attack 0.3ms, Release 50ms — funky pumping |
 
 ### Mix Bus
+
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | Console-Style Glue | Bus | Attack 10ms, Release Auto, 4:1 — classic mix bus glue |
 | Gentle Master | Studio VCA | 1.5:1, Attack 30ms, Pristine — transparent mastering |
 
 ### Creative
+
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | EDM Pump (115-130 BPM) | Vintage FET | 20:1, Attack 0.1ms, Release 250ms — sidechain pumping |
