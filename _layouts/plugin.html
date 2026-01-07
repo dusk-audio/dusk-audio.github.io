@@ -78,25 +78,26 @@ layout: default
       {% if plugin_data.status == "released" %}
       {% assign release_tag = page.slug | append: "-v" | append: page.version %}
       {% assign plugin_release_url = site.releases_url | append: "/tag/" | append: release_tag %}
+      {% assign linux_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-linux.zip" %}
+      {% assign windows_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-windows.zip" %}
+      {% assign macos_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-macos.zip" %}
       <div class="download-box">
         <h3>Download</h3>
         <p class="version">Version {{ page.version }}</p>
 
         <div class="download-section">
           <h4>Linux</h4>
-          <a href="{{ plugin_release_url }}" class="btn btn-download">VST3</a>
-          <a href="{{ plugin_release_url }}" class="btn btn-download">LV2</a>
+          <a href="{{ linux_download }}" class="btn btn-download">VST3 + LV2</a>
         </div>
 
         <div class="download-section">
           <h4>Windows</h4>
-          <a href="{{ plugin_release_url }}" class="btn btn-download">VST3</a>
+          <a href="{{ windows_download }}" class="btn btn-download">VST3</a>
         </div>
 
         <div class="download-section">
           <h4>macOS</h4>
-          <a href="{{ plugin_release_url }}" class="btn btn-download">VST3</a>
-          <a href="{{ plugin_release_url }}" class="btn btn-download">AU</a>
+          <a href="{{ macos_download }}" class="btn btn-download">VST3 + AU</a>
         </div>
 
         <a href="{{ plugin_release_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>
