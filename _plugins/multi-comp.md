@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.0"
+version: "1.0.1"
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
@@ -33,6 +33,12 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "1.0.1"
+    date: "2026-01-07"
+    changes:
+      - Fixed Linux release packaging (proper VST3/LV2 bundle structure)
+      - Added missing AU component for macOS
+      - Improved installation instructions
   - version: "1.0.0"
     date: "2026-01-03"
     changes:
