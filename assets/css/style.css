@@ -747,6 +747,49 @@ main {
 /* ========================================
    Plugins List Page
    ======================================== */
+/* Generic Tables (from markdown) */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: var(--spacing-xl);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+table th,
+table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+table th {
+  background: var(--color-bg-dark);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tbody tr:hover {
+  background: var(--color-bg-alt);
+}
+
+table td:not(:last-child),
+table th:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
+
+/* Plugins Table (specific page) */
 .plugins-table {
   width: 100%;
   border-collapse: collapse;
