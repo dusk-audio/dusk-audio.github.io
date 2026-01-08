@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.1"
+version: "1.1.0"
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
@@ -21,7 +21,7 @@ features:
   - Auto-makeup gain compensation
   - Output distortion (Soft/Hard/Clip)
   - Mix control for parallel compression
-  - 2x/4x oversampling for anti-aliased processing
+  - Off/2x/4x oversampling for anti-aliased processing (or bypass for CPU savings)
   - 13 factory presets
   - Full automation support
 
@@ -33,6 +33,12 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "1.1.0"
+    date: "2026-01-08"
+    changes:
+      - Added "Off" option to oversampling (Off/2x/4x) for CPU savings when oversampling is not needed
+      - Fixed preset mode bug where some presets loaded the wrong compressor mode after reopening plugin window
+      - Presets like "Gentle Master" now correctly load as Studio VCA instead of Digital
   - version: "1.0.1"
     date: "2026-01-07"
     changes:
@@ -203,7 +209,7 @@ Multi-Comp includes 13 professionally crafted presets:
 
 ### DSP Details
 - **Topology:** Mode-specific analog modeling
-- **Oversampling:** 2x/4x for alias-free saturation
+- **Oversampling:** Off/2x/4x for alias-free saturation (or bypass for CPU savings)
 - **Sidechain:** Internal HP filter + external input support
 - **Lookahead:** 0-10ms global lookahead buffer
 - **Stereo linking:** Full stereo processing with linked GR
