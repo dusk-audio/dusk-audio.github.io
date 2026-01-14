@@ -24,39 +24,25 @@ description: Free, high-quality audio plugins for Linux, Windows, and macOS. Pro
     </div>
 
     <div class="plugin-grid">
+      {% assign released_plugins = site.data.plugins | where: "status", "released" %}
+      {% for plugin in released_plugins %}
       <div class="plugin-card">
         <div class="plugin-card-image">
-          <img src="{{ '/assets/images/plugins/4k-eq-screenshot.png' | relative_url }}" alt="4K-EQ screenshot">
+          <img src="{{ '/assets/images/plugins/' | append: plugin.slug | append: '-screenshot.png' | relative_url }}" alt="{{ plugin.name }} screenshot">
         </div>
         <div class="plugin-card-content">
           <div class="plugin-card-header">
-            <h3>4K-EQ</h3>
+            <h3>{{ plugin.name }}</h3>
             <span class="status-badge released">Released</span>
           </div>
-          <p>Professional 4-band parametric EQ with Brown/Black console modes, analog saturation modeling, and real-time spectrum analyzer.</p>
+          <p>{{ plugin.description | truncate: 150 }}</p>
           <div class="plugin-card-footer">
-            <a href="{{ '/plugins/4k-eq/' | relative_url }}" class="btn btn-primary">Details</a>
-            <a href="{{ site.releases_url }}/tag/4k-eq-v1.0.0" class="btn btn-download">Download</a>
+            <a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}" class="btn btn-primary">Details</a>
+            <a href="{{ site.releases_url }}/tag/{{ plugin.slug }}-v{{ plugin.version }}" class="btn btn-download">Download</a>
           </div>
         </div>
       </div>
-
-      <div class="plugin-card">
-        <div class="plugin-card-image">
-          <img src="{{ '/assets/images/plugins/multi-comp-screenshot.png' | relative_url }}" alt="Multi-Comp screenshot">
-        </div>
-        <div class="plugin-card-content">
-          <div class="plugin-card-header">
-            <h3>Multi-Comp</h3>
-            <span class="status-badge released">Released</span>
-          </div>
-          <p>8 compression modes including Vintage Opto, Vintage FET, Bus Compressor, Classic VCA, and 4-band Multiband. Hardware-accurate dynamics control.</p>
-          <div class="plugin-card-footer">
-            <a href="{{ '/plugins/multi-comp/' | relative_url }}" class="btn btn-primary">Details</a>
-            <a href="{{ site.releases_url }}/tag/multi-comp-v1.0.0" class="btn btn-download">Download</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
