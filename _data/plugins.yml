@@ -7,8 +7,8 @@
 # ============================================
 - name: "4K-EQ"
   slug: "4k-eq"
-  tagline: "SSL 4000 Series Console EQ Emulation"
-  description: "Professional SSL-style 4-band parametric EQ with Brown/Black modes, analog saturation modeling, and real-time spectrum analyzer. The legendary console sound, completely free."
+  tagline: "Classic British Console EQ Emulation"
+  description: "Professional 4-band parametric EQ with Brown/Black modes, analog saturation modeling, and real-time spectrum analyzer. The legendary console sound, completely free."
   status: "released"
   featured: true
   version: "1.0.0"
@@ -44,9 +44,10 @@
 - name: "TapeMachine"
   slug: "tapemachine"
   tagline: "Analog tape saturation with wow/flutter"
-  description: "Authentic tape warmth and character. Add subtle saturation, wow, flutter, and that classic analog vibe."
-  status: "in-dev"
-  featured: false
+  description: "Professional tape emulation with Swiss800 and Classic102 models, authentic saturation, wow/flutter, and premium vintage UI. Completely free."
+  status: "released"
+  featured: true
+  version: "1.0.0"
 
 # ============================================
 # IN DEVELOPMENT
