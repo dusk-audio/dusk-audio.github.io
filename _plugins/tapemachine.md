@@ -123,40 +123,30 @@ Both effects share coherent stereo processing for a natural, phase-aligned sound
 
 TapeMachine includes 15 professionally crafted presets across 5 categories:
 
-### Subtle
-| Preset | Description |
-|--------|-------------|
-| Gentle Warmth | Transparent analog glue |
-| Transparent Glue | Subtle cohesion |
-| Mastering Touch | Delicate tape character |
+**Subtle**
+- **Gentle Warmth** — Transparent analog glue
+- **Transparent Glue** — Subtle cohesion
+- **Mastering Touch** — Delicate tape character
 
-### Warm
-| Preset | Description |
-|--------|-------------|
-| Classic Analog | Traditional tape sound |
-| Vintage Warmth | Rich, full-bodied tone |
-| Tube Console | Console-style coloration |
+**Warm**
+- **Classic Analog** — Traditional tape sound
+- **Vintage Warmth** — Rich, full-bodied tone
+- **Tube Console** — Console-style coloration
 
-### Character
-| Preset | Description |
-|--------|-------------|
-| 70s Rock | That classic rock sound |
-| Tape Saturation | Obvious tape drive |
-| Cassette Deck | 4-track character |
+**Character**
+- **70s Rock** — That classic rock sound
+- **Tape Saturation** — Obvious tape drive
+- **Cassette Deck** — 4-track character
 
-### Lo-Fi
-| Preset | Description |
-|--------|-------------|
-| Lo-Fi Warble | Wobbly vintage vibes |
-| Worn Tape | Aged tape artifacts |
-| Dusty Reel | Nostalgic degradation |
+**Lo-Fi**
+- **Lo-Fi Warble** — Wobbly vintage vibes
+- **Worn Tape** — Aged tape artifacts
+- **Dusty Reel** — Nostalgic degradation
 
-### Mastering
-| Preset | Description |
-|--------|-------------|
-| Master Bus Glue | Subtle mix cohesion |
-| Analog Sheen | High-end polish |
-| Vintage Master | Classic mastering chain |
+**Mastering**
+- **Master Bus Glue** — Subtle mix cohesion
+- **Analog Sheen** — High-end polish
+- **Vintage Master** — Classic mastering chain
 
 ## Vintage Interface
 
