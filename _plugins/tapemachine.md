@@ -2,28 +2,29 @@
 layout: plugin
 title: TapeMachine
 slug: tapemachine
-tagline: Analog Tape Emulation with Wow & Flutter
-description: Professional tape machine emulation with authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
+tagline: Professional Analog Tape Emulation
+description: Professional tape machine emulation calibrated against real Studer A800 and Ampex ATR-102 measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.0.0"
 screenshot: /assets/images/plugins/tapemachine-screenshot.png
 
 features:
   - Two tape machine models — Swiss800 (Studer A800) and Classic102 (Ampex ATR-102)
   - Four tape formulations — Type 456, GP9, Type 911, Type 250
-  - Three tape speeds — 7.5, 15, 30 IPS
-  - Authentic hysteresis-based saturation modeling
+  - Four signal path modes — Repro, Sync, Input, Thru
+  - Three tape speeds — 7.5, 15, 30 IPS with NAB/CCIR/AES EQ curves
+  - Physically-modeled Langevin saturation calibrated to real hardware
   - Separate Wow & Flutter controls with coherent stereo processing
   - Bias and calibration controls for fine-tuning tape response
-  - Auto-compensation mode (VTM-style output gain lock)
+  - Auto-compensation mode for unity gain across input levels
   - Auto-calibration for automatic bias optimization
   - Dual stereo VU meters with vintage analog styling
-  - Premium photorealistic vintage UI
+  - Premium vintage UI with animated tape reels
   - 15 factory presets across 5 categories
   - 2x/4x oversampling for alias-free saturation
   - Full automation support
 
 requirements:
-  - "Linux: GLIBC 2.35+ (Ubuntu 22.04+, Fedora 36+)"
+  - "Linux: glibc 2.36+ (Ubuntu 22.04+, Debian 12+, Fedora 36+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
@@ -31,12 +32,15 @@ requirements:
 
 changelog:
   - version: "1.0.0"
-    date: "2026-01-20"
+    date: "2026-01-25"
     changes:
       - Initial release with VST3/LV2/AU support
-      - Swiss800 and Classic102 tape machine models
+      - Swiss800 (Studer A800) and Classic102 (Ampex ATR-102) models
       - Four tape formulations with distinct characteristics
-      - Premium vintage UI with photorealistic VU meters
+      - Signal path modes (Repro, Sync, Input, Thru)
+      - NAB, CCIR, and AES EQ standards
+      - Langevin saturation model calibrated to real hardware THD
+      - Premium vintage UI with animated reels and VU meters
       - 15 factory presets across 5 categories
       - Available for Linux, Windows, and macOS
 ---
@@ -45,7 +49,7 @@ TapeMachine is a professional analog tape emulation, bringing the warmth and cha
 
 ## Overview
 
-Analog tape has shaped the sound of recorded music for decades. TapeMachine captures the magic of classic studio tape machines with accurate modeling of saturation, frequency response, and mechanical artifacts like wow and flutter.
+Analog tape has shaped the sound of recorded music for decades. TapeMachine captures the magic of classic studio tape machines with physically-modeled saturation calibrated against real Studer A800 and Ampex ATR-102 measurements.
 
 Whether you want subtle warmth on your mix bus, obvious lo-fi character, or anything in between, TapeMachine delivers authentic tape sound.
 
@@ -53,18 +57,18 @@ Whether you want subtle warmth on your mix bus, obvious lo-fi character, or anyt
 
 TapeMachine faithfully recreates two legendary machines:
 
-**Swiss800 (Studer A800)**
+**Swiss800 (Studer A800 MkIII)**
 - Clean, punchy, and precise
-- Odd-harmonic dominant saturation
+- Odd-harmonic dominant saturation (H3 at -51dB)
 - Transformerless signal path
-- Tight low-end, extended highs
+- Tight low-end, extended highs (22kHz)
 - The modern studio workhorse
 
 **Classic102 (Ampex ATR-102)**
 - Warm, rich, and musical
-- Even and odd harmonic blend
-- Transformer-colored character
-- Smooth high-frequency rolloff
+- Even and odd harmonic blend (transformer coloration)
+- Pronounced head bump at 62Hz
+- Smooth high-frequency rolloff (18kHz)
 - The mastering room classic
 
 ## Tape Formulations
@@ -73,10 +77,31 @@ Choose from four tape types, each with distinct sonic characteristics:
 
 | Type | Character | Best For |
 |------|-----------|----------|
-| **Type 456** | Warm, musical saturation | Drums, vocals, mix bus |
-| **GP9** | Modern, extended headroom | Clean recordings, mastering |
-| **Type 911** | German precision, tight | Classical, acoustic music |
-| **Type 250** | Professional studio standard | All-purpose recording |
+| **Type 456** | Warm, punchy saturation | Rock, pop, mix bus |
+| **GP9** | Clean, extended headroom | Mastering, classical |
+| **Type 911** | European precision | Warmth, character |
+| **Type 250** | Vintage, early saturation | Lo-fi, creative effects |
+
+## Signal Path Modes
+
+Like a real tape machine, TapeMachine offers multiple signal paths:
+
+| Mode | Description |
+|------|-------------|
+| **Repro** | Full tape processing — the classic sound |
+| **Sync** | Record head playback with extra HF rolloff (for overdub workflows) |
+| **Input** | Electronics only — hear just transformers and EQ coloration |
+| **Thru** | Clean bypass for A/B comparison |
+
+## EQ Standards
+
+Three professional equalization standards:
+
+| Standard | Character |
+|----------|-----------|
+| **NAB** | American — most HF pre-emphasis, warmest saturation |
+| **CCIR** | European — moderate emphasis, balanced response |
+| **AES** | Modern — minimal emphasis, most transparent |
 
 ## Wow & Flutter
 
@@ -133,36 +158,36 @@ TapeMachine includes 15 professionally crafted presets across 5 categories:
 | Analog Sheen | High-end polish |
 | Vintage Master | Classic mastering chain |
 
-## Premium Vintage UI
+## Vintage Interface
 
-TapeMachine features a photorealistic vintage interface inspired by classic studio equipment:
+TapeMachine features a premium vintage interface inspired by classic studio equipment:
 
-- **Authentic VU Meters** — IEC 60268-17 compliant ballistics with spring overshoot
-- **Animated Tape Reels** — 3D metallic appearance with rotating reflections
-- **Chicken-Head Knobs** — Classic Bakelite-style controls
+- **Authentic VU Meters** — IEC 60268-17 compliant ballistics
+- **Animated Tape Reels** — Metallic appearance with rotating reflections
+- **Vintage Knobs** — Classic Bakelite-style controls
 - **Brushed Metal Panels** — Premium studio equipment aesthetic
-- **LED Indicators** — Illuminated status feedback
 
 ## Technical Specifications
 
 ### DSP Details
-- **Saturation model:** Hysteresis-based magnetic tape emulation
-- **Frequency response:** Machine and tape-type specific EQ curves
-- **Wow/Flutter:** Multi-oscillator modulation with random component
-- **Anti-aliasing:** 2x/4x oversampling options
+- **Saturation model:** Langevin function (Jiles-Atherton magnetic theory)
+- **Harmonic calibration:** Matched to published Studer/Ampex THD measurements
+- **3-band processing:** Separate drive ratios for bass, mid, and treble
+- **Anti-aliasing:** 8th-order Chebyshev Type I filter with 2x/4x oversampling
 
 ### Parameter Ranges
 - **Input Gain:** ±12dB
 - **Output Gain:** ±12dB
-- **Bias:** Fine-tune tape magnetization
-- **Wow:** 0–100% modulation depth
-- **Flutter:** 0–100% modulation depth
-- **Mix:** 0–100% wet/dry blend
+- **Saturation:** 0–100%
+- **Bias:** 0–100%
+- **Wow:** 0–100%
+- **Flutter:** 0–100%
+- **Mix:** 0–100%
 - **HP Filter:** 20–500Hz
-- **LP Filter:** 1kHz–20kHz
+- **LP Filter:** 3kHz–20kHz
 
 ### Performance
-- **CPU usage:** ~2–4% per instance (2x oversampling, 48kHz)
+- **CPU usage:** ~2–4% per instance (4x oversampling, 48kHz)
 - **Memory:** ~15MB per instance
 - **Latency:** ~64 samples (2x) / ~128 samples (4x)
 
