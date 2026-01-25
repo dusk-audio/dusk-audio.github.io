@@ -24,7 +24,7 @@ features:
   - Full automation support
 
 requirements:
-  - "Linux: glibc 2.36+ (Ubuntu 22.04+, Debian 12+, Fedora 36+)"
+  - "Linux: glibc 2.36+ (Ubuntu 24.04+, Debian 12+, Fedora 38+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
