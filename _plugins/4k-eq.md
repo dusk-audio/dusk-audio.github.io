@@ -2,18 +2,18 @@
 layout: plugin
 title: 4K-EQ
 slug: 4k-eq
-tagline: SSL 4000 Series Console EQ Emulation
-description: Professional SSL-style 4-band parametric equalizer with analog modeling. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
+tagline: Classic British Console EQ Emulation
+description: Professional 4-band parametric equalizer with analog modeling. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.0.0"
 screenshot: /assets/images/plugins/4k-eq-screenshot.png
 
 features:
   - 4-band parametric EQ (Low, Low-Mid, High-Mid, High)
-  - Brown/Black modes — SSL E-series vs G-series characteristics
+  - Brown/Black modes — E-series vs G-series characteristics
   - High-pass filter (18dB/oct) and low-pass filter (12dB/oct)
   - Bell/Shelf switching on LF and HF bands (Black mode)
   - 2x/4x oversampling for anti-aliased processing
-  - SSL-accurate saturation modeling with per-band harmonics
+  - Analog saturation modeling with per-band harmonics
   - Auto-gain compensation toggle
   - M/S processing mode for stereo width control
   - Real-time FFT spectrum analyzer
@@ -33,24 +33,24 @@ changelog:
     date: "2026-01-03"
     changes:
       - Initial release with VST3/LV2/AU support
-      - SSL Brown/Black modes (E-series vs G-series)
+      - Brown/Black modes (E-series vs G-series)
       - 2x/4x oversampling for anti-aliased processing
       - Real-time spectrum analyzer
       - Factory presets
       - Available for Linux, Windows, and macOS
 ---
 
-4K-EQ is a professional SSL 4000 series console EQ emulation, bringing the legendary sound of classic British mixing consoles to your DAW — completely free.
+4K-EQ is a professional console EQ emulation, bringing the legendary sound of classic British mixing consoles to your DAW — completely free.
 
 ## Overview
 
-The SSL 4000 series consoles are renowned for their musical, punchy EQ character. 4K-EQ captures that sound with accurate analog modeling, including the distinct characteristics of both E-series and G-series consoles.
+Classic British consoles are renowned for their musical, punchy EQ character. 4K-EQ captures that sound with accurate analog modeling, including the distinct characteristics of both E-series and G-series console designs.
 
-Whether you're tracking, mixing, or mastering, 4K-EQ delivers the SSL sound that has shaped countless hit records.
+Whether you're tracking, mixing, or mastering, 4K-EQ delivers the console sound that has shaped countless hit records.
 
 ## Brown vs Black Modes
 
-4K-EQ faithfully recreates both SSL console variants:
+4K-EQ faithfully recreates both console variants:
 
 **Brown (E-Series)**
 - Musical, broader curves
@@ -66,14 +66,14 @@ Whether you're tracking, mixing, or mastering, 4K-EQ delivers the SSL sound that
 
 ## Saturation Modeling
 
-4K-EQ includes multi-stage SSL-accurate saturation:
+4K-EQ includes multi-stage analog saturation:
 
 - **Input transformer** coloration
 - **NE5534 op-amp** characteristics
 - **Output transformer** harmonics (E-Series only)
 - **Per-band saturation** when boosting
 
-Clean by default (0% saturation) — SSL consoles are transparent unless driven. Push the Drive control to add warmth and glue.
+Clean by default (0% saturation) — transparent unless driven. Push the Drive control to add warmth and glue.
 
 ## Factory Presets
 
@@ -100,11 +100,11 @@ Clean by default (0% saturation) — SSL consoles are transparent unless driven.
 ## Technical Specifications
 
 ### DSP Details
-- **Filter topology:** Biquad IIR with SSL-specific coefficient shaping
+- **Filter topology:** Biquad IIR with console-style coefficient shaping
 - **Frequency warping:** Pre-warped for HF accuracy (prevents digital cramping)
 - **Saturation model:** Asymmetric soft-clipping (NE5534 op-amp characteristic)
 
-### Parameter Ranges (SSL Hardware-Accurate)
+### Parameter Ranges (Console Hardware-Accurate)
 - **LF Gain:** ±20dB | **LF Freq:** 30–480Hz
 - **LMF Gain:** ±20dB | **LMF Freq:** 200–2500Hz
 - **HMF Gain:** ±20dB | **HMF Freq:** 600–7000Hz
@@ -159,4 +159,4 @@ AU:   ~/Library/Audio/Plug-Ins/Components/4K EQ.component
 
 ---
 
-*Disclaimer: This is an independent emulation inspired by SSL 4000 series consoles. SSL and Solid State Logic are trademarks of Solid State Logic Ltd. This project is not affiliated with or endorsed by SSL.*
+*Disclaimer: This is an independent emulation inspired by classic British console EQs. This project is not affiliated with or endorsed by any hardware manufacturer.*
