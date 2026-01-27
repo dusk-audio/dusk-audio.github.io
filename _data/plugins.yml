@@ -22,7 +22,7 @@
   description: "8 compression modes including Vintage FET, Vintage Opto, Bus Compressor, Classic VCA, Studio FET/VCA, Digital, and 4-band Multiband. Hardware-accurate transformer emulation, analog noise modeling, sidechain HP filter, Off/2x/4x oversampling. Professional dynamics control, completely free."
   status: "released"
   featured: true
-  version: "1.1.0"
+  version: "1.2.0"
 
 # ============================================
 # NEAR PRODUCTION
