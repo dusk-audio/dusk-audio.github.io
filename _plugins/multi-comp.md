@@ -58,77 +58,110 @@ Multi-Comp is a professional multi-mode dynamics compressor that brings classic 
 
 ## Overview
 
-Multi-Comp provides 8 distinct compression modes, each inspired by legendary hardware units. From smooth optical compression to aggressive FET limiting, and from precise digital control to powerful multiband processing — Multi-Comp covers every dynamics need.
+Multi-Comp provides 8 distinct compression modes, each inspired by legendary hardware units:
+
+- **Vintage Opto** — LA-2A style optical leveling amplifier
+- **Vintage FET** — 1176 "Bluestripe" style FET limiter with All-Buttons mode
+- **Classic VCA** — dbx 160 style VCA with OverEasy soft knee
+- **Bus Compressor** — SSL G-Series style mix bus glue
+- **Studio FET** — 1176 "Blackface" style cleaner FET
+- **Studio VCA** — Focusrite Red 3 style modern VCA
+- **Digital** — Transparent, precise digital compression
+- **Multiband** — 4-band with Linkwitz-Riley crossovers
+
+From smooth optical compression to aggressive FET limiting, and from precise digital control to powerful multiband processing — Multi-Comp covers every dynamics need.
 
 ## Compression Modes
 
 ### Vintage Opto
+*Inspired by the Teletronix LA-2A*
 
 ![Vintage Opto mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/vintage-opto.png)
 
-- Smooth, program-dependent optical compression
-- Photocell-style attack/release characteristics
+Classic 1960s tube optical leveling amplifier. The LA-2A defined the sound of smooth, musical compression and remains a studio standard for vocals and bass.
+
+- Program-dependent attack/release via T4 optical cell emulation
 - Peak Reduction control for classic opto workflow
 - Compress/Limit modes
+- Tube stage modeling with authentic harmonic character
 - Perfect for vocals, bass, and mix bus
 
 ### Vintage FET
+*Inspired by the UREI 1176 "Bluestripe" (Rev A)*
 
 ![Vintage FET mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/vintage-fet.png)
 
-- Aggressive, punchy FET compression
+The legendary 1967 Rev A "Bluestripe" FET limiting amplifier. All-discrete Class A design known for its aggressive, punchy character and ultra-fast response.
+
 - Classic ratio buttons: 4:1, 8:1, 12:1, 20:1
-- **All-Buttons mode** for the famous "British Mode" distortion
+- **All-Buttons mode** for the famous extreme compression/distortion
 - Ultra-fast attack times (20μs minimum)
-- Authentic transistor saturation
+- Authentic transistor saturation with input/output transformer modeling
 
 ### Classic VCA
+*Inspired by the dbx 160*
 
 ![Classic VCA mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/classic-vca.png)
 
+The punchy, aggressive 1970s VCA compressor known for its "OverEasy" soft-knee compression. A studio workhorse for drums and percussive sources.
+
 - Fast, precise VCA compression
-- Soft knee option for gentle compression
-- Clean, transparent compression
+- OverEasy soft knee option for gentle compression
+- Clean, transparent compression with punch
 - Excellent for drums and percussion
 
 ### Bus Compressor
+*Inspired by the SSL G-Series Bus Compressor*
 
 ![Bus Compressor mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/bus-compressor.png)
 
-- Stepped attack times (0.1 to 30ms)
+The quintessential British console bus compressor. Found on virtually every major mixing console, it's the secret weapon for mix bus "glue."
+
+- Stepped attack times (0.1 to 30ms) matching the original detents
 - Stepped release with Auto mode
-- Classic mix bus "glue"
-- 2:1 to 10:1 ratio range
+- Classic mix bus "glue" character
+- 2:1, 4:1, and 10:1 ratio settings
 
 ### Studio FET
+*Inspired by the UREI 1176 "Blackface" (Rev E/F)*
 
 ![Studio FET mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/studio-fet.png)
 
-- Cleaner FET with 30% of Vintage harmonics
-- Modern FET sound with less coloration
-- Same fast attack characteristics
+The later revision "Blackface" FET limiter, offering a cleaner, more refined sound while retaining the fast FET response.
+
+- Cleaner character with ~30% of Vintage harmonics
+- More controlled transient response
+- Same ultra-fast attack characteristics
+- Better suited for modern, cleaner productions
 
 ### Studio VCA
+*Inspired by the Focusrite Red 3*
 
 ![Studio VCA mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/studio-vca.png)
 
-- Modern VCA with RMS detection
+Modern British dual VCA compressor known for its clean, musical compression. A favorite for vocals and mix bus applications where transparency is key.
+
+- RMS detection for musical response
 - Soft knee option
-- Ultra-clean compression
-- Great for mastering
+- Ultra-clean compression with minimal coloration
+- Excellent for vocals and mastering
 
 ### Digital
 
 ![Digital mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/digital.png)
 
-- Transparent, precise compression
+Transparent, mathematically precise digital compression with zero coloration. When you need surgical dynamics control without any hardware character.
+
+- Accurate peak/RMS detection
 - No coloration or saturation
 - Perfect for surgical dynamics control
-- Ideal for reference monitoring
+- Ideal when transparency is paramount
 
 ### Multiband
 
 ![Multiband mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/multiband.png)
+
+Professional 4-band multiband compressor with Linkwitz-Riley crossovers for phase-coherent band splitting.
 
 - **4 frequency bands** (Low, Lo-Mid, Hi-Mid, High)
 - Adjustable crossover frequencies
@@ -143,19 +176,20 @@ Multi-Comp features hardware-accurate analog emulation that captures the authent
 ### Transformer Emulation
 Each vintage mode includes input and output transformer modeling with authentic high-frequency characteristics:
 
-| Mode | Input Transformer | Output Transformer |
-|:-----|:------------------|:-------------------|
-| Vintage Opto | 18kHz rolloff | 16kHz rolloff |
-| Vintage FET | 20kHz rolloff | 22kHz rolloff |
-| Bus | 22kHz rolloff | 24kHz rolloff |
-| VCA/Digital | None (transparent) | None (transparent) |
+| Mode | Hardware Inspiration | Input Transformer | Output Transformer |
+|:-----|:---------------------|:------------------|:-------------------|
+| Vintage Opto | LA-2A | 18kHz rolloff | 16kHz rolloff |
+| Vintage FET | 1176 | 20kHz rolloff | 22kHz rolloff |
+| Bus | SSL G-Series | 22kHz rolloff | 24kHz rolloff |
+| VCA/Digital | — | None (transparent) | None (transparent) |
 
 ### Analog Noise
 Toggle the "Analog Noise" button to add subtle -80dB analog noise floor, matching the authentic character of hardware units. Disable for completely silent digital behavior.
 
 ### Tube and Saturation
-- Opto mode includes tube stage modeling
-- FET mode captures the characteristic transistor saturation
+- Opto mode includes T4 optical cell and tube stage modeling (LA-2A style)
+- FET mode captures the characteristic Class A transistor saturation (1176 style)
+- Bus mode includes the distinctive VCA coloration (SSL style)
 - All analog modes include harmonic generation based on hardware measurements
 
 ## Factory Presets
