@@ -4,7 +4,7 @@ title: 4K-EQ
 slug: 4k-eq
 tagline: Classic British Console EQ Emulation
 description: Professional 4-band parametric equalizer with analog modeling. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.0"
+version: "1.0.4"
 screenshot: /assets/images/plugins/4k-eq-screenshot.png
 
 features:
@@ -29,6 +29,11 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "1.0.4"
+    date: "2026-01-27"
+    changes:
+      - Add Cmd/Ctrl+drag fine control for knobs (matches Multi-Comp/TapeMachine)
+      - LED meters auto-detect mono/stereo from DAW channel count
   - version: "1.0.0"
     date: "2026-01-03"
     changes:
