@@ -24,7 +24,7 @@ All Luna Co. Audio plugins are **100% free** — no trials, no feature locks, no
     <p>{{ plugin.description }}</p>
     <div class="plugin-card-footer">
       <a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}" class="btn btn-primary">Details</a>
-      <a href="{{ site.releases_url }}" class="btn btn-download">Download</a>
+      <a href="{{ site.releases_url }}/tag/{{ plugin.slug }}-v{{ plugin.version }}" class="btn btn-download">Download</a>
     </div>
   </div>
 </div>
