@@ -6,7 +6,7 @@
     free.
   status: released
   featured: true
-  version: 1.0.5
+  version: 1.0.6
 - name: Multi-Comp
   slug: multi-comp
   tagline: Multi-mode dynamics compressor
