@@ -6,7 +6,7 @@
     free.
   status: released
   featured: true
-  version: 1.0.6
+  version: 1.0.7
 - name: Multi-Comp
   slug: multi-comp
   tagline: Multi-mode dynamics compressor
@@ -16,7 +16,7 @@
     Professional dynamics control, completely free.
   status: released
   featured: true
-  version: 1.2.1
+  version: 1.2.2
 - name: Spectrum Analyzer
   slug: spectrum-analyzer
   tagline: Real-time FFT spectrum visualization
@@ -38,7 +38,7 @@
     saturation, wow/flutter, and premium vintage UI. Completely free.
   status: released
   featured: true
-  version: 1.0.1
+  version: 1.0.2
 - name: Groovemind
   slug: groovemind
   tagline: AI-assisted groove generator
