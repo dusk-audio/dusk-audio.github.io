@@ -6,6 +6,13 @@ tagline: Universal EQ — Digital, British Console, and Tube
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage tube Pultec-style. Free VST3, LV2, and AU plugin.
 version: "0.9.0"
 screenshot: /assets/images/plugins/multi-q-digital.png
+screenshots:
+  - image: /assets/images/plugins/multi-q-digital.png
+    caption: "Digital Mode — Modern parametric EQ with per-band dynamics"
+  - image: /assets/images/plugins/multi-q-british.png
+    caption: "British Mode — Classic console EQ with Brown/Black modes"
+  - image: /assets/images/plugins/multi-q-tube.png
+    caption: "Tube Mode — Pultec-style passive EQ with tube saturation"
 
 features:
   - Three distinct EQ modes in one plugin
