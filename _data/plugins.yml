@@ -47,10 +47,12 @@
   featured: false
 - name: Multi-Q
   slug: multi-q
-  tagline: Multi-band dynamic EQ
-  description: Dynamic equalization that responds to your audio in real-time.
-  status: in-dev
-  featured: false
+  tagline: Universal EQ — Digital, British Console, and Tube
+  description: Three professional EQs in one plugin. Modern parametric with dynamics,
+    classic British console emulation, and vintage Pultec-style tube EQ. Completely free.
+  status: released
+  featured: true
+  version: 0.9.0
 - name: Neural Amp
   slug: neural-amp
   tagline: Neural network amp modeling
