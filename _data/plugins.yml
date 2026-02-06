@@ -16,7 +16,7 @@
     Professional dynamics control, completely free.
   status: released
   featured: true
-  version: 1.2.4
+  version: 1.2.5
 - name: Spectrum Analyzer
   slug: spectrum-analyzer
   tagline: Real-time FFT spectrum visualization
