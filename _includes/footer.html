@@ -11,7 +11,7 @@
           <h4>Plugins</h4>
           <ul>
             {% for plugin in site.data.plugins %}
-            {% if plugin.status == "released" or plugin.status == "coming-soon" %}
+            {% if plugin.status == "released" or plugin.status == "pre-release" or plugin.status == "coming-soon" %}
             <li><a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}">{{ plugin.name }}</a></li>
             {% endif %}
             {% endfor %}

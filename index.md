@@ -25,7 +25,9 @@ description: Free, high-quality audio plugins for Linux, Windows, and macOS. Pro
 
     <div class="plugin-grid">
       {% assign released_plugins = site.data.plugins | where: "status", "released" %}
-      {% for plugin in released_plugins %}
+      {% assign prerelease_plugins = site.data.plugins | where: "status", "pre-release" %}
+      {% assign available_plugins = released_plugins | concat: prerelease_plugins %}
+      {% for plugin in available_plugins %}
       <div class="plugin-card">
         <div class="plugin-card-image">
           <img src="{{ '/assets/images/plugins/' | append: plugin.slug | append: '-screenshot.png' | relative_url }}" alt="{{ plugin.name }} screenshot">
@@ -33,7 +35,11 @@ description: Free, high-quality audio plugins for Linux, Windows, and macOS. Pro
         <div class="plugin-card-content">
           <div class="plugin-card-header">
             <h3>{{ plugin.name }}</h3>
+            {% if plugin.status == "released" %}
             <span class="status-badge released">Released</span>
+            {% else %}
+            <span class="status-badge pre-release">Pre-release</span>
+            {% endif %}
           </div>
           <p>{{ plugin.description | truncate: 150 }}</p>
           <div class="plugin-card-footer">

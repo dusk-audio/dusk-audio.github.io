@@ -459,6 +459,11 @@ main {
   color: #276749;
 }
 
+.status-badge.pre-release {
+  background: rgba(237, 137, 54, 0.15);
+  color: #c05621;
+}
+
 .status-badge.coming-soon {
   background: rgba(237, 137, 54, 0.15);
   color: #c05621;

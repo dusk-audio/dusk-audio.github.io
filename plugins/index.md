@@ -11,7 +11,9 @@ All Luna Co. Audio plugins are **100% free** — no trials, no feature locks, no
 
 <div class="plugin-grid">
 {% assign released = site.data.plugins | where: "status", "released" %}
-{% for plugin in released %}
+{% assign prerelease = site.data.plugins | where: "status", "pre-release" %}
+{% assign available = released | concat: prerelease %}
+{% for plugin in available %}
 <div class="plugin-card">
   <div class="plugin-card-image">
     <img src="{{ '/assets/images/plugins/' | append: plugin.slug | append: '-screenshot.png' | relative_url }}" alt="{{ plugin.name }} screenshot">
@@ -19,7 +21,11 @@ All Luna Co. Audio plugins are **100% free** — no trials, no feature locks, no
   <div class="plugin-card-content">
     <div class="plugin-card-header">
       <h3>{{ plugin.name }}</h3>
+      {% if plugin.status == "released" %}
       <span class="status-badge released">Released</span>
+      {% else %}
+      <span class="status-badge pre-release">Pre-release</span>
+      {% endif %}
     </div>
     <p>{{ plugin.description }}</p>
     <div class="plugin-card-footer">
