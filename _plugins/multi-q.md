@@ -6,16 +6,6 @@ tagline: Universal EQ — Digital, British Console, and Tube
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage tube Pultec-style. Free VST3, LV2, and AU plugin.
 version: "0.9.0"
 screenshot: /assets/images/plugins/multi-q-digital.png
-gallery:
-  - src: /assets/images/plugins/multi-q-digital.png
-    alt: "Multi-Q Digital Mode screenshot"
-    caption: "Digital Mode — Modern parametric EQ with per-band dynamics"
-  - src: /assets/images/plugins/multi-q-british.png
-    alt: "Multi-Q British Mode screenshot"
-    caption: "British Mode — Classic console EQ with Brown/Black modes"
-  - src: /assets/images/plugins/multi-q-tube.png
-    alt: "Multi-Q Tube Mode screenshot"
-    caption: "Tube Mode — Pultec-style passive EQ with tube saturation"
 
 features:
   - Three distinct EQ modes in one plugin
@@ -63,6 +53,8 @@ Switch between modes instantly while keeping your session settings. Each mode ha
 
 ## Digital Mode
 
+![Multi-Q Digital Mode](/assets/images/plugins/multi-q-digital.png)
+
 Modern parametric EQ with per-band dynamics — similar to FabFilter Pro-Q but with dynamic processing built in.
 
 **Features:**
@@ -77,6 +69,8 @@ Modern parametric EQ with per-band dynamics — similar to FabFilter Pro-Q but w
 Each band can respond dynamically to the input signal. Set a threshold, and the band will boost or cut based on the audio level — perfect for de-essing, dynamic resonance control, or frequency-dependent compression.
 
 ## British Mode
+
+![Multi-Q British Mode](/assets/images/plugins/multi-q-british.png)
 
 Classic console EQ emulation — the same engine as our 4K-EQ, integrated into Multi-Q.
 
@@ -93,6 +87,8 @@ Classic console EQ emulation — the same engine as our 4K-EQ, integrated into M
 - **Black** — Surgical, tight response with proportional Q
 
 ## Tube Mode
+
+![Multi-Q Tube Mode](/assets/images/plugins/multi-q-tube.png)
 
 Pultec-style passive EQ with tube saturation — the legendary "boost and cut at the same frequency" trick.
 
