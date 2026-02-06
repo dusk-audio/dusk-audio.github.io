@@ -11,6 +11,8 @@ layout: default
         <p class="plugin-tagline">{{ page.tagline }}</p>
         {% if plugin_data.status == "released" %}
         <span class="status-badge released">Available Now</span>
+        {% elsif plugin_data.status == "pre-release" %}
+        <span class="status-badge pre-release">Pre-release</span>
         {% elsif plugin_data.status == "coming-soon" %}
         <span class="status-badge coming-soon">Coming Soon</span>
         {% else %}
@@ -75,7 +77,7 @@ layout: default
     </div>
 
     <aside class="plugin-sidebar">
-      {% if plugin_data.status == "released" %}
+      {% if plugin_data.status == "released" or plugin_data.status == "pre-release" %}
       {% assign release_tag = page.slug | append: "-v" | append: page.version %}
       {% assign plugin_release_url = site.releases_url | append: "/tag/" | append: release_tag %}
       {% assign linux_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-linux.zip" %}
