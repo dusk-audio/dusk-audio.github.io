@@ -24,23 +24,28 @@ layout: default
 
   <div class="container plugin-content">
     <div class="plugin-main">
-      {% if page.screenshot %}
-      <div class="plugin-screenshot">
-        <img src="{{ page.screenshot | relative_url }}" alt="{{ page.title }} screenshot">
-      </div>
-      {% endif %}
-
       {% if page.gallery %}
       <div class="plugin-gallery">
-        <h2>Screenshots</h2>
+        <div class="gallery-hero">
+          <div class="gallery-item">
+            <img src="{{ page.gallery[0].src | relative_url }}" alt="{{ page.gallery[0].alt }}">
+            <p class="gallery-caption">{{ page.gallery[0].caption }}</p>
+          </div>
+        </div>
+        {% if page.gallery.size > 1 %}
         <div class="gallery-grid">
-          {% for image in page.gallery %}
+          {% for image in page.gallery offset:1 %}
           <div class="gallery-item">
             <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy">
             <p class="gallery-caption">{{ image.caption }}</p>
           </div>
           {% endfor %}
         </div>
+        {% endif %}
+      </div>
+      {% elsif page.screenshot %}
+      <div class="plugin-screenshot">
+        <img src="{{ page.screenshot | relative_url }}" alt="{{ page.title }} screenshot">
       </div>
       {% endif %}
 
