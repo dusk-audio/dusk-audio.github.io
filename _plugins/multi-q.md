@@ -4,7 +4,7 @@ title: Multi-Q
 slug: multi-q
 tagline: Universal EQ — Digital, British Console, and Tube
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage tube Pultec-style. Free VST3, LV2, and AU plugin.
-version: "0.9.1"
+version: "0.9.0"
 screenshot: /assets/images/plugins/multi-q-digital.png
 
 features:
