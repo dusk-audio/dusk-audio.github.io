@@ -301,4 +301,4 @@ AU:   ~/Library/Audio/Plug-Ins/Components/Multi-Comp.component
 
 ## Open Source
 
-Multi-Comp is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).
+Multi-Comp is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins).

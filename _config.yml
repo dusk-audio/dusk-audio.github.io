@@ -27,8 +27,8 @@ defaults:
       layout: "plugin"
 
 # Site links
-github_repo: https://github.com/dusk-audio/plugins
-releases_url: https://github.com/dusk-audio/plugins/releases
+github_repo: https://github.com/dusk-audio/dusk-audio-plugins
+releases_url: https://github.com/dusk-audio/dusk-audio-plugins/releases
 patreon_url: https://www.patreon.com/cw/DuskAudio
 
 # Exclude from build

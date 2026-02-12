@@ -215,7 +215,7 @@ AU:   ~/Library/Audio/Plug-Ins/Components/TapeMachine.component
 
 ## Open Source
 
-TapeMachine is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).
+TapeMachine is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins).
 
 ---
 

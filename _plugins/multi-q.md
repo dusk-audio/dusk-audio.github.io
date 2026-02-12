@@ -160,11 +160,11 @@ Multi-Q is currently in beta (v0.9.0). Core functionality is stable, but we're s
 - UI polish and responsiveness
 - Documentation and tooltips
 
-Please report any issues on [GitHub](https://github.com/dusk-audio/plugins/issues).
+Please report any issues on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins/issues).
 
 ## Open Source
 
-Multi-Q is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).
+Multi-Q is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins).
 
 ---
 
