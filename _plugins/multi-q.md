@@ -60,13 +60,9 @@ Switch between modes instantly while keeping your session settings. Each mode ha
 
 ## Digital Mode
 
-<<<<<<< HEAD
 <img src="{{ '/assets/images/plugins/multi-q-digital.png' | relative_url }}" alt="Multi-Q Digital Mode">
 
-Modern parametric EQ with per-band dynamics — similar to FabFilter Pro-Q but with dynamic processing built in.
-=======
 Modern parametric EQ with per-band dynamics and dynamic processing built in.
->>>>>>> 35898b1 (Legal safeguards and rebranding)
 
 **Features:**
 - 8 fully parametric bands
@@ -99,13 +95,9 @@ Classic console EQ emulation — the same engine as our 4K-EQ, integrated into M
 
 ## Tube Mode
 
-<<<<<<< HEAD
 <img src="{{ '/assets/images/plugins/multi-q-tube.png' | relative_url }}" alt="Multi-Q Tube Mode">
 
-Pultec-style passive EQ with tube saturation — the legendary "boost and cut at the same frequency" trick.
-=======
 Vintage passive tube EQ with tube saturation — the legendary "boost and cut at the same frequency" trick.
->>>>>>> 35898b1 (Legal safeguards and rebranding)
 
 **Features:**
 - LF Boost and Attenuation with selectable frequency
