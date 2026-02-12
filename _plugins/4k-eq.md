@@ -160,7 +160,7 @@ AU:   ~/Library/Audio/Plug-Ins/Components/4K EQ.component
 
 ## Open Source
 
-4K-EQ is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).
+4K-EQ is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins).
 
 ---
 
