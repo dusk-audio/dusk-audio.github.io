@@ -2,7 +2,7 @@
 title: Dusk Audio
 description: Free, high-quality audio plugins for Linux, Windows, and macOS
 url: "https://dusk-audio.github.io"
-baseurl: "/dusk-audio.github.io"
+baseurl: ""
 
 # Build settings
 markdown: kramdown

@@ -2,7 +2,7 @@
 
 Official website for Dusk Audio — free, high-quality audio plugins.
 
-**Live site:** https://dusk-audio.github.io/dusk-audio.github.io/
+**Live site:** https://dusk-audio.github.io/
 
 ## Local Development
 
@@ -20,7 +20,7 @@ bundle install
 # Run local server
 bundle exec jekyll serve
 
-# Visit http://localhost:4000/dusk-audio.github.io/
+# Visit http://localhost:4000/
 ```
 
 ## Structure
