@@ -3,15 +3,22 @@ layout: plugin
 title: Multi-Q
 slug: multi-q
 tagline: Universal EQ — Digital, British Console, and Tube
-description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage tube Pultec-style. Free VST3, LV2, and AU plugin.
+description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
 version: "0.9.0"
 screenshot: /assets/images/plugins/multi-q-digital.png
+screenshots:
+  - image: /assets/images/plugins/multi-q-digital.png
+    caption: "Digital Mode — Modern parametric EQ with per-band dynamics"
+  - image: /assets/images/plugins/multi-q-british.png
+    caption: "British Mode — Classic console EQ with Brown/Black modes"
+  - image: /assets/images/plugins/multi-q-tube.png
+    caption: "Tube Mode — Vintage passive tube EQ with tube saturation"
 
 features:
   - Three distinct EQ modes in one plugin
   - "Digital: 8-band parametric with per-band dynamics"
   - "British: Classic console EQ (Brown/Black modes)"
-  - "Tube: Pultec-style passive EQ with tube saturation"
+  - "Tube: Vintage passive tube EQ with tube saturation"
   - Linear phase processing option (Digital mode)
   - Per-band dynamic EQ with threshold, attack, release, range
   - Real-time spectrum analyzer
@@ -34,7 +41,7 @@ changelog:
       - Beta release with all three EQ modes
       - Digital mode with 8-band dynamic EQ
       - British mode with Brown/Black console emulation
-      - Tube mode with Pultec-style curves
+      - Tube mode with Vintage passive curves
       - Linear phase processing
       - Real-time spectrum analyzer
 ---
@@ -46,16 +53,20 @@ Multi-Q is a universal equalizer that combines three legendary EQ designs into o
 Instead of buying separate plugins for different EQ tasks, Multi-Q gives you everything in one place:
 
 - **Digital** — Modern surgical precision with dynamic EQ
-- **British** — Classic SSL-style console character
-- **Tube** — Vintage Pultec warmth and musicality
+- **British** — Classic console character
+- **Tube** — Vintage vintage passive tube warmth and musicality
 
 Switch between modes instantly while keeping your session settings. Each mode has been carefully crafted to capture the essence of the original hardware.
 
 ## Digital Mode
 
+<<<<<<< HEAD
 <img src="{{ '/assets/images/plugins/multi-q-digital.png' | relative_url }}" alt="Multi-Q Digital Mode">
 
 Modern parametric EQ with per-band dynamics — similar to FabFilter Pro-Q but with dynamic processing built in.
+=======
+Modern parametric EQ with per-band dynamics and dynamic processing built in.
+>>>>>>> 35898b1 (Legal safeguards and rebranding)
 
 **Features:**
 - 8 fully parametric bands
@@ -88,9 +99,13 @@ Classic console EQ emulation — the same engine as our 4K-EQ, integrated into M
 
 ## Tube Mode
 
+<<<<<<< HEAD
 <img src="{{ '/assets/images/plugins/multi-q-tube.png' | relative_url }}" alt="Multi-Q Tube Mode">
 
 Pultec-style passive EQ with tube saturation — the legendary "boost and cut at the same frequency" trick.
+=======
+Vintage passive tube EQ with tube saturation — the legendary "boost and cut at the same frequency" trick.
+>>>>>>> 35898b1 (Legal safeguards and rebranding)
 
 **Features:**
 - LF Boost and Attenuation with selectable frequency
@@ -100,7 +115,7 @@ Pultec-style passive EQ with tube saturation — the legendary "boost and cut at
 - Passive EQ curves that interact musically
 - Vintage teal panel aesthetic
 
-**The Pultec Trick:**
+**The vintage passive tube Trick:**
 Boosting and cutting at the same low frequency creates a unique curve that adds punch without mud — a technique used on countless classic records.
 
 ## Technical Specifications
@@ -153,11 +168,11 @@ Multi-Q is currently in beta (v0.9.0). Core functionality is stable, but we're s
 - UI polish and responsiveness
 - Documentation and tooltips
 
-Please report any issues on [GitHub](https://github.com/luna-co-software/plugins/issues).
+Please report any issues on [GitHub](https://github.com/dusk-audio/plugins/issues).
 
 ## Open Source
 
-Multi-Q is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/luna-co-software/plugins).
+Multi-Q is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).
 
 ---
 

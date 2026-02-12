@@ -47,11 +47,10 @@
   featured: false
 - name: Multi-Q
   slug: multi-q
-  tagline: Universal EQ with multiple modes
-  description: 8-band parametric EQ with Digital and British console modes. Color-coded
-    bands, real-time FFT analyzer, Q-coupling, and Mid/Side processing. Professional
-    equalization, completely free.
-  status: pre-release
+  tagline: Universal EQ — Digital, British Console, and Tube
+  description: Three professional EQs in one plugin. Modern parametric with dynamics,
+    classic British console emulation, and vintage passive tube EQ. Completely free.
+  status: released
   featured: true
   version: 0.9.1
 - name: Neural Amp
@@ -60,10 +59,10 @@
   description: Guitar and bass amp tones powered by neural network technology.
   status: in-dev
   featured: false
-- name: SilkVerb
-  slug: silkverb
-  tagline: Smooth algorithmic reverb
-  description: Lush, silky reverb tails with extensive control over decay and character.
+- name: Velvet 90
+  slug: velvet-90
+  tagline: Algorithmic reverb
+  description: Algorithmic reverb with Plate, Room, Hall, Chamber, Cathedral, and Ambience modes.
   status: in-dev
   featured: false
 - name: Convolution Reverb

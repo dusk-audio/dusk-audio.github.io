@@ -1,8 +1,8 @@
-# Luna Co. Audio - Jekyll Configuration
-title: Luna Co. Audio
+# Dusk Audio - Jekyll Configuration
+title: Dusk Audio
 description: Free, high-quality audio plugins for Linux, Windows, and macOS
-url: "https://luna-co-software.github.io"
-baseurl: "/lunacoaudio.github.io"
+url: "https://dusk-audio.github.io"
+baseurl: "/dusk-audio.github.io"
 
 # Build settings
 markdown: kramdown
@@ -27,9 +27,9 @@ defaults:
       layout: "plugin"
 
 # Site links
-github_repo: https://github.com/luna-co-software/plugins
-releases_url: https://github.com/luna-co-software/plugins/releases
-patreon_url: https://www.patreon.com/cw/LunaCoAudio
+github_repo: https://github.com/dusk-audio/plugins
+releases_url: https://github.com/dusk-audio/plugins/releases
+patreon_url: https://www.patreon.com/cw/DuskAudio
 
 # Exclude from build
 exclude:

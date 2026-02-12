@@ -1,8 +1,8 @@
-# Luna Co. Audio Website
+# Dusk Audio Website
 
-Official website for Luna Co. Audio — free, high-quality audio plugins.
+Official website for Dusk Audio — free, high-quality audio plugins.
 
-**Live site:** https://luna-co-software.github.io/lunacoaudio.github.io/
+**Live site:** https://dusk-audio.github.io/dusk-audio.github.io/
 
 ## Local Development
 
@@ -20,7 +20,7 @@ bundle install
 # Run local server
 bundle exec jekyll serve
 
-# Visit http://localhost:4000/lunacoaudio.github.io/
+# Visit http://localhost:4000/dusk-audio.github.io/
 ```
 
 ## Structure
@@ -57,4 +57,4 @@ Place these files in `assets/images/`:
 
 ## License
 
-Website content © Luna Co. Audio. All rights reserved.
+Website content © Dusk Audio. All rights reserved.

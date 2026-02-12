@@ -2,10 +2,10 @@
 layout: page
 title: Plugins
 subtitle: Free audio plugins for Linux, Windows, and macOS
-description: Download free VST3, LV2, and AU audio plugins from Luna Co. Audio. EQ, compression, analysis tools and more.
+description: Download free VST3, LV2, and AU audio plugins from Dusk Audio. EQ, compression, analysis tools and more.
 ---
 
-All Luna Co. Audio plugins are **100% free** — no trials, no feature locks, no accounts. Just download and create.
+All Dusk Audio plugins are **100% free** — no trials, no feature locks, no accounts. Just download and create.
 
 ## Available Now
 
