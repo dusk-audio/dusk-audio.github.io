@@ -24,7 +24,7 @@ While all plugins are cross-platform, Dusk Audio is built with the **Linux audio
 
 Linux users have long been underserved by plugin developers. Many commercial plugins don't support Linux at all, and even some free plugins skip the platform. Every Dusk Audio plugin ships with Linux builds (VST3 and LV2) alongside Windows and macOS versions.
 
-## AI Disclosure
+## AI Disclosure {#ai-disclosure}
 
 These plugins are developed with the assistance of AI tools. If that bothers you, these aren't for you.
 
