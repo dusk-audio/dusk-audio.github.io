@@ -155,8 +155,9 @@ main {
 }
 
 .logo-img {
-  height: 40px;
+  height: 36px;
   width: auto;
+  border-radius: 4px;
 }
 
 .nav-links {
@@ -330,8 +331,9 @@ main {
 }
 
 .hero-logo {
-  max-width: 200px;
+  max-width: 400px;
   margin: 0 auto var(--spacing-xl);
+  border-radius: 8px;
 }
 
 /* ========================================
