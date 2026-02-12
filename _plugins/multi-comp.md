@@ -85,7 +85,7 @@ From smooth optical compression to aggressive FET limiting, and from precise dig
 
 ### Vintage Opto
 
-![Vintage Opto mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/vintage-opto.png)
+![Vintage Opto mode](/assets/images/plugins/multi-comp/vintage-opto.png)
 
 Classic 1960s tube optical leveling amplifier. This design defined the sound of smooth, musical compression and remains a studio standard for vocals and bass.
 
@@ -97,7 +97,7 @@ Classic 1960s tube optical leveling amplifier. This design defined the sound of 
 
 ### Vintage FET
 
-![Vintage FET mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/vintage-fet.png)
+![Vintage FET mode](/assets/images/plugins/multi-comp/vintage-fet.png)
 
 Classic late-1960s FET limiting amplifier. All-discrete Class A design known for its aggressive, punchy character and ultra-fast response.
 
@@ -108,7 +108,7 @@ Classic late-1960s FET limiting amplifier. All-discrete Class A design known for
 
 ### Classic VCA
 
-![Classic VCA mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/classic-vca.png)
+![Classic VCA mode](/assets/images/plugins/multi-comp/classic-vca.png)
 
 Punchy, aggressive 1970s VCA compressor with soft-knee compression. A studio workhorse for drums and percussive sources.
 
@@ -119,7 +119,7 @@ Punchy, aggressive 1970s VCA compressor with soft-knee compression. A studio wor
 
 ### Bus Compressor
 
-![Bus Compressor mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/bus-compressor.png)
+![Bus Compressor mode](/assets/images/plugins/multi-comp/bus-compressor.png)
 
 The quintessential British console bus compressor. Found on virtually every major mixing console, it's the secret weapon for mix bus "glue."
 
@@ -130,7 +130,7 @@ The quintessential British console bus compressor. Found on virtually every majo
 
 ### Studio FET
 
-![Studio FET mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/studio-fet.png)
+![Studio FET mode](/assets/images/plugins/multi-comp/studio-fet.png)
 
 Later revision FET limiter, offering a cleaner, more refined sound while retaining the fast FET response.
 
@@ -141,7 +141,7 @@ Later revision FET limiter, offering a cleaner, more refined sound while retaini
 
 ### Studio VCA
 
-![Studio VCA mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/studio-vca.png)
+![Studio VCA mode](/assets/images/plugins/multi-comp/studio-vca.png)
 
 Modern British dual VCA compressor known for its clean, musical compression. A favorite for vocals and mix bus applications where transparency is key.
 
@@ -152,7 +152,7 @@ Modern British dual VCA compressor known for its clean, musical compression. A f
 
 ### Digital
 
-![Digital mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/digital.png)
+![Digital mode](/assets/images/plugins/multi-comp/digital.png)
 
 Transparent, mathematically precise digital compression with zero coloration. When you need surgical dynamics control without any hardware character.
 
@@ -163,7 +163,7 @@ Transparent, mathematically precise digital compression with zero coloration. Wh
 
 ### Multiband
 
-![Multiband mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/multiband.png)
+![Multiband mode](/assets/images/plugins/multi-comp/multiband.png)
 
 Professional 4-band multiband compressor with Linkwitz-Riley crossovers for phase-coherent band splitting.
 
