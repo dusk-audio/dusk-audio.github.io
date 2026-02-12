@@ -3,12 +3,12 @@ layout: plugin
 title: TapeMachine
 slug: tapemachine
 tagline: Professional Analog Tape Emulation
-description: Professional tape machine emulation calibrated against real Studer A800 and Ampex ATR-102 measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
+description: Professional tape machine emulation calibrated against real vintage hardware measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.0.4"
 screenshot: /assets/images/plugins/tapemachine-screenshot.png
 
 features:
-  - Two tape machine models — Swiss800 (Studer A800) and Classic102 (Ampex ATR-102)
+  - Two tape machine models — Swiss800 and Classic102
   - Four tape formulations — Type 456, GP9, Type 911, Type 250
   - Four signal path modes — Repro, Sync, Input, Thru
   - Three tape speeds — 7.5, 15, 30 IPS with NAB/CCIR/AES EQ curves
@@ -35,7 +35,7 @@ changelog:
     date: "2026-01-25"
     changes:
       - Initial release with VST3/LV2/AU support
-      - Swiss800 (Studer A800) and Classic102 (Ampex ATR-102) models
+      - Swiss800 and Classic102 models
       - Four tape formulations with distinct characteristics
       - Signal path modes (Repro, Sync, Input, Thru)
       - NAB, CCIR, and AES EQ standards
@@ -49,7 +49,7 @@ TapeMachine is a professional analog tape emulation, bringing the warmth and cha
 
 ## Overview
 
-Analog tape has shaped the sound of recorded music for decades. TapeMachine captures the magic of classic studio tape machines with physically-modeled saturation calibrated against real Studer A800 and Ampex ATR-102 measurements.
+Analog tape has shaped the sound of recorded music for decades. TapeMachine captures the magic of classic studio tape machines with physically-modeled saturation calibrated against real vintage hardware measurements.
 
 Whether you want subtle warmth on your mix bus, obvious lo-fi character, or anything in between, TapeMachine delivers authentic tape sound.
 
@@ -57,14 +57,14 @@ Whether you want subtle warmth on your mix bus, obvious lo-fi character, or anyt
 
 TapeMachine faithfully recreates two legendary machines:
 
-**Swiss800 (Studer A800 MkIII)**
+**Swiss800**
 - Clean, punchy, and precise
 - Odd-harmonic dominant saturation (H3 at -51dB)
 - Transformerless signal path
 - Tight low-end, extended highs (22kHz)
 - The modern studio workhorse
 
-**Classic102 (Ampex ATR-102)**
+**Classic102**
 - Warm, rich, and musical
 - Even and odd harmonic blend (transformer coloration)
 - Pronounced head bump at 62Hz
@@ -161,7 +161,7 @@ TapeMachine features a premium vintage interface inspired by classic studio equi
 
 ### DSP Details
 - **Saturation model:** Langevin function (Jiles-Atherton magnetic theory)
-- **Harmonic calibration:** Matched to published Studer/Ampex THD measurements
+- **Harmonic calibration:** Matched to published vintage hardware THD measurements
 - **3-band processing:** Separate drive ratios for bass, mid, and treble
 - **Anti-aliasing:** 8th-order Chebyshev Type I filter with 2x/4x oversampling
 
@@ -215,8 +215,8 @@ AU:   ~/Library/Audio/Plug-Ins/Components/TapeMachine.component
 
 ## Open Source
 
-TapeMachine is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/luna-co-software/plugins).
+TapeMachine is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).
 
 ---
 
-*Disclaimer: This is an independent emulation inspired by classic tape machines. This project is not affiliated with or endorsed by Studer, Ampex, or any hardware manufacturer.*
+*Disclaimer: This is an independent emulation inspired by classic tape machines. This project is not affiliated with or endorsed by any hardware manufacturer.*

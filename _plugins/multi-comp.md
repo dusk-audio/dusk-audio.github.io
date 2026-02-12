@@ -68,14 +68,14 @@ Multi-Comp is a professional multi-mode dynamics compressor that brings classic 
 
 ## Overview
 
-Multi-Comp provides 8 distinct compression modes, each inspired by legendary hardware units:
+Multi-Comp provides 8 distinct compression modes, each capturing the character of classic hardware designs:
 
-- **Vintage Opto** — LA-2A style optical leveling amplifier
-- **Vintage FET** — 1176 "Bluestripe" style FET limiter with All-Buttons mode
-- **Classic VCA** — dbx 160 style VCA with OverEasy soft knee
-- **Bus Compressor** — SSL G-Series style mix bus glue
-- **Studio FET** — 1176 "Blackface" style cleaner FET
-- **Studio VCA** — Focusrite Red 3 style modern VCA
+- **Vintage Opto** — Classic tube optical leveling amplifier
+- **Vintage FET** — Vintage FET limiter with All-Buttons mode
+- **Classic VCA** — Punchy 1970s VCA with soft knee
+- **Bus Compressor** — British console bus compressor
+- **Studio FET** — Cleaner, modern FET limiter
+- **Studio VCA** — Modern British dual VCA compressor
 - **Digital** — Transparent, precise digital compression
 - **Multiband** — 4-band with Linkwitz-Riley crossovers
 
@@ -84,11 +84,10 @@ From smooth optical compression to aggressive FET limiting, and from precise dig
 ## Compression Modes
 
 ### Vintage Opto
-*Inspired by the Teletronix LA-2A*
 
-![Vintage Opto mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/vintage-opto.png)
+![Vintage Opto mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/vintage-opto.png)
 
-Classic 1960s tube optical leveling amplifier. The LA-2A defined the sound of smooth, musical compression and remains a studio standard for vocals and bass.
+Classic 1960s tube optical leveling amplifier. This design defined the sound of smooth, musical compression and remains a studio standard for vocals and bass.
 
 - Program-dependent attack/release via T4 optical cell emulation
 - Peak Reduction control for classic opto workflow
@@ -97,11 +96,10 @@ Classic 1960s tube optical leveling amplifier. The LA-2A defined the sound of sm
 - Perfect for vocals, bass, and mix bus
 
 ### Vintage FET
-*Inspired by the UREI 1176 "Bluestripe" (Rev A)*
 
-![Vintage FET mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/vintage-fet.png)
+![Vintage FET mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/vintage-fet.png)
 
-The legendary 1967 Rev A "Bluestripe" FET limiting amplifier. All-discrete Class A design known for its aggressive, punchy character and ultra-fast response.
+Classic late-1960s FET limiting amplifier. All-discrete Class A design known for its aggressive, punchy character and ultra-fast response.
 
 - Classic ratio buttons: 4:1, 8:1, 12:1, 20:1
 - **All-Buttons mode** for the famous extreme compression/distortion
@@ -109,11 +107,10 @@ The legendary 1967 Rev A "Bluestripe" FET limiting amplifier. All-discrete Class
 - Authentic transistor saturation with input/output transformer modeling
 
 ### Classic VCA
-*Inspired by the dbx 160*
 
-![Classic VCA mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/classic-vca.png)
+![Classic VCA mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/classic-vca.png)
 
-The punchy, aggressive 1970s VCA compressor known for its "OverEasy" soft-knee compression. A studio workhorse for drums and percussive sources.
+Punchy, aggressive 1970s VCA compressor with soft-knee compression. A studio workhorse for drums and percussive sources.
 
 - Fast, precise VCA compression
 - OverEasy soft knee option for gentle compression
@@ -121,9 +118,8 @@ The punchy, aggressive 1970s VCA compressor known for its "OverEasy" soft-knee c
 - Excellent for drums and percussion
 
 ### Bus Compressor
-*Inspired by the SSL G-Series Bus Compressor*
 
-![Bus Compressor mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/bus-compressor.png)
+![Bus Compressor mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/bus-compressor.png)
 
 The quintessential British console bus compressor. Found on virtually every major mixing console, it's the secret weapon for mix bus "glue."
 
@@ -133,11 +129,10 @@ The quintessential British console bus compressor. Found on virtually every majo
 - 2:1, 4:1, and 10:1 ratio settings
 
 ### Studio FET
-*Inspired by the UREI 1176 "Blackface" (Rev E/F)*
 
-![Studio FET mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/studio-fet.png)
+![Studio FET mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/studio-fet.png)
 
-The later revision "Blackface" FET limiter, offering a cleaner, more refined sound while retaining the fast FET response.
+Later revision FET limiter, offering a cleaner, more refined sound while retaining the fast FET response.
 
 - Cleaner character with ~30% of Vintage harmonics
 - More controlled transient response
@@ -145,9 +140,8 @@ The later revision "Blackface" FET limiter, offering a cleaner, more refined sou
 - Better suited for modern, cleaner productions
 
 ### Studio VCA
-*Inspired by the Focusrite Red 3*
 
-![Studio VCA mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/studio-vca.png)
+![Studio VCA mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/studio-vca.png)
 
 Modern British dual VCA compressor known for its clean, musical compression. A favorite for vocals and mix bus applications where transparency is key.
 
@@ -158,7 +152,7 @@ Modern British dual VCA compressor known for its clean, musical compression. A f
 
 ### Digital
 
-![Digital mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/digital.png)
+![Digital mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/digital.png)
 
 Transparent, mathematically precise digital compression with zero coloration. When you need surgical dynamics control without any hardware character.
 
@@ -169,7 +163,7 @@ Transparent, mathematically precise digital compression with zero coloration. Wh
 
 ### Multiband
 
-![Multiband mode](/lunacoaudio.github.io/assets/images/plugins/multi-comp/multiband.png)
+![Multiband mode](/dusk-audio.github.io/assets/images/plugins/multi-comp/multiband.png)
 
 Professional 4-band multiband compressor with Linkwitz-Riley crossovers for phase-coherent band splitting.
 
@@ -186,20 +180,20 @@ Multi-Comp features hardware-accurate analog emulation that captures the authent
 ### Transformer Emulation
 Each vintage mode includes input and output transformer modeling with authentic high-frequency characteristics:
 
-| Mode | Hardware Inspiration | Input Transformer | Output Transformer |
-|:-----|:---------------------|:------------------|:-------------------|
-| Vintage Opto | LA-2A | 18kHz rolloff | 16kHz rolloff |
-| Vintage FET | 1176 | 20kHz rolloff | 22kHz rolloff |
-| Bus | SSL G-Series | 22kHz rolloff | 24kHz rolloff |
-| VCA/Digital | — | None (transparent) | None (transparent) |
+| Mode | Input Transformer | Output Transformer |
+|:-----|:------------------|:-------------------|
+| Vintage Opto | 18kHz rolloff | 16kHz rolloff |
+| Vintage FET | 20kHz rolloff | 22kHz rolloff |
+| Bus | 22kHz rolloff | 24kHz rolloff |
+| VCA/Digital | None (transparent) | None (transparent) |
 
 ### Analog Noise
 Toggle the "Analog Noise" button to add subtle -80dB analog noise floor, matching the authentic character of hardware units. Disable for completely silent digital behavior.
 
 ### Tube and Saturation
-- Opto mode includes T4 optical cell and tube stage modeling (LA-2A style)
-- FET mode captures the characteristic Class A transistor saturation (1176 style)
-- Bus mode includes the distinctive VCA coloration (SSL style)
+- Opto mode includes T4 optical cell and tube stage modeling
+- FET mode captures the characteristic Class A transistor saturation
+- Bus mode includes the distinctive VCA coloration of classic British consoles
 - All analog modes include harmonic generation based on hardware measurements
 
 ## Factory Presets
@@ -307,4 +301,4 @@ AU:   ~/Library/Audio/Plug-Ins/Components/Multi-Comp.component
 
 ## Open Source
 
-Multi-Comp is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/luna-co-software/plugins).
+Multi-Comp is open source under GPL-2.0. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/plugins).

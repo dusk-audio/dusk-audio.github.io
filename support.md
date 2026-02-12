@@ -1,12 +1,12 @@
 ---
 layout: page
 title: Support
-subtitle: Help keep Luna Co. Audio plugins free for everyone
+subtitle: Help keep Dusk Audio plugins free for everyone
 description: Support the development of free audio plugins through Patreon, donations, or by spreading the word.
 permalink: /support/
 ---
 
-All Luna Co. Audio plugins are **100% free** — no trials, no feature locks, no nag screens. Development is funded entirely by optional support from users who find value in these tools.
+All Dusk Audio plugins are **100% free** — no trials, no feature locks, no nag screens. Development is funded entirely by optional support from users who find value in these tools.
 
 If these plugins help your music, consider giving back!
 

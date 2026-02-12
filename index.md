@@ -6,7 +6,7 @@ description: Free, high-quality audio plugins for Linux, Windows, and macOS. Pro
 
 <section class="hero">
   <div class="container">
-    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Luna Co. Audio" class="hero-logo">
+    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Dusk Audio" class="hero-logo">
     <h1>Professional Audio Plugins. <span class="highlight">100% Free.</span></h1>
     <p class="tagline">High-quality VST3, LV2, and AU plugins for music producers and audio engineers. No trials, no feature locks, no nag screens. Just great tools.</p>
     <div class="hero-buttons">
@@ -131,7 +131,7 @@ description: Free, high-quality audio plugins for Linux, Windows, and macOS. Pro
     </div>
 
     <div style="text-align: center; margin-top: var(--spacing-xl);">
-      <a href="{{ '/support/' | relative_url }}" class="btn btn-primary btn-lg">Support Luna Co. Audio</a>
+      <a href="{{ '/support/' | relative_url }}" class="btn btn-primary btn-lg">Support Dusk Audio</a>
     </div>
   </div>
 </section>
