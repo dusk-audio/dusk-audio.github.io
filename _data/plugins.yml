@@ -52,7 +52,7 @@
     classic British console emulation, and vintage passive tube EQ. Completely free.
   status: released
   featured: true
-  version: 0.9.1
+  version: 0.10.0
 - name: Neural Amp
   slug: neural-amp
   tagline: Neural network amp modeling
