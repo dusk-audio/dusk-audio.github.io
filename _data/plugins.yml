@@ -53,18 +53,15 @@
   status: released
   featured: true
   version: 0.10.0
-- name: Neural Amp
-  slug: neural-amp
-  tagline: Neural network amp modeling
-  description: Guitar and bass amp tones powered by neural network technology.
-  status: in-dev
-  featured: false
-- name: Velvet 90
-  slug: velvet-90
-  tagline: Algorithmic reverb
-  description: Algorithmic reverb with Plate, Room, Hall, Chamber, Cathedral, and Ambience modes.
-  status: in-dev
-  featured: false
+- name: DuskVerb
+  slug: duskverb
+  tagline: Professional Algorithmic Reverb
+  description: Professional algorithmic reverb with 5 algorithms, 16-channel Hadamard
+    FDN, early reflections, modulation, and freeze mode. 25 factory presets calibrated
+    to studio standards. Completely free.
+  status: released
+  featured: true
+  version: 0.2.0
 - name: Convolution Reverb
   slug: convolution-reverb
   tagline: IR-based reverb
