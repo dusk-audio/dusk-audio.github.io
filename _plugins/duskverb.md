@@ -8,7 +8,7 @@ version: "0.3.0"
 screenshot: /assets/images/plugins/duskverb-screenshot.png
 
 features:
-  - Five algorithms — Plate, Hall, Chamber, Room, Ambient
+  - Five algorithms - Plate, Hall, Chamber, Room, Ambient
   - 16-channel Hadamard Feedback Delay Network for dense, natural tails
   - Dattorro-inspired input diffusion with 4 cascaded allpass stages
   - Early reflections with 16 multi-tap delays and air absorption modeling
@@ -48,7 +48,7 @@ changelog:
       - Available for Linux, Windows, and macOS
 ---
 
-DuskVerb is a professional algorithmic reverb, delivering lush spaces from tight rooms to infinite ambient washes — completely free.
+DuskVerb is a professional algorithmic reverb, delivering lush spaces from tight rooms to infinite ambient washes - completely free.
 
 ## Overview
 
@@ -60,7 +60,7 @@ DuskVerb includes five carefully designed algorithms, each with distinct delay l
 
 **Plate**
 - Dense, smooth, and bright
-- No early reflections — pure diffuse tail
+- No early reflections - pure diffuse tail
 - Classic studio reverb sound
 - Ideal for vocals, snare, and mix bus
 
@@ -85,46 +85,46 @@ DuskVerb includes five carefully designed algorithms, each with distinct delay l
 **Ambient**
 - Ethereal, expansive washes
 - Long decay times with lush modulation
-- No early reflections — pure atmosphere
+- No early reflections - pure atmosphere
 - Perfect for pads, drones, and cinematic effects
 
 ## Key Controls
 
 ### Time
-- **Decay** — Reverb tail length (0.2s to 30s)
-- **Pre-Delay** — Gap before reverb onset (0-250ms, with tempo sync)
-- **Size** — Room size scaling (affects delay line lengths)
-- **Freeze** — Sustain the current reverb tail indefinitely
+- **Decay** - Reverb tail length (0.2s to 30s)
+- **Pre-Delay** - Gap before reverb onset (0-250ms, with tempo sync)
+- **Size** - Room size scaling (affects delay line lengths)
+- **Freeze** - Sustain the current reverb tail indefinitely
 
 ### Character
-- **Diffusion** — Density of the reverb tail
-- **Bass Multiply** — Low-frequency decay time relative to overall decay
-- **Damping** — High-frequency decay (treble absorption)
-- **Crossover** — Frequency split between bass and treble damping (200-4000 Hz)
+- **Diffusion** - Density of the reverb tail
+- **Bass Multiply** - Low-frequency decay time relative to overall decay
+- **Damping** - High-frequency decay (treble absorption)
+- **Crossover** - Frequency split between bass and treble damping (200-4000 Hz)
 
 ### Modulation
-- **Mod Depth** — Chorus-like movement in the reverb tail
-- **Mod Rate** — Speed of modulation (0.1-3 Hz)
+- **Mod Depth** - Chorus-like movement in the reverb tail
+- **Mod Rate** - Speed of modulation (0.1-3 Hz)
 
 ### Output
-- **Mix** — Dry/wet balance
-- **Width** — Stereo spread (0-200%)
-- **Lo Cut / Hi Cut** — Shape the reverb frequency range
-- **Bus Mode** — 100% wet for send/return configurations
+- **Mix** - Dry/wet balance
+- **Width** - Stereo spread (0-200%)
+- **Lo Cut / Hi Cut** - Shape the reverb frequency range
+- **Bus Mode** - 100% wet for send/return configurations
 
 ## Factory Presets
 
 DuskVerb includes 25 professionally calibrated presets across 9 categories:
 
-**Vocals** — Vocal Plate, Vocal Hall, Vocal Room
-**Drums** — Drum Room, Drum Plate, Drum Ambient
-**Guitar** — Guitar Spring, Guitar Hall
-**Keys** — Keys Chamber, Synth Pad
-**Mix** — Mix Glue, Mix Space
-**Rooms** — Small Room, Medium Room, Large Hall
-**Plates** — Short Plate, Long Plate
-**Ambient** — Infinite Pad, Dark Cloud, Shimmer Space, Cathedral
-**Special** — Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo
+**Vocals** - Vocal Plate, Vocal Hall, Vocal Room
+**Drums** - Drum Room, Drum Plate, Drum Ambient
+**Guitar** - Guitar Spring, Guitar Hall
+**Keys** - Keys Chamber, Synth Pad
+**Mix** - Mix Glue, Mix Space
+**Rooms** - Small Room, Medium Room, Large Hall
+**Plates** - Short Plate, Long Plate
+**Ambient** - Infinite Pad, Dark Cloud, Shimmer Space, Cathedral
+**Special** - Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo
 
 ## Technical Specifications
 
@@ -156,10 +156,10 @@ DuskVerb includes 25 professionally calibrated presets across 9 categories:
 ## DAW Compatibility
 
 ### Fully Tested
-- **Logic Pro** — AU with full GUI
-- **Reaper** — VST3/LV2, all features working
-- **Ardour** — LV2 with full GUI
-- **Standalone** — JUCE standalone application
+- **Logic Pro** - AU with full GUI
+- **Reaper** - VST3/LV2, all features working
+- **Ardour** - LV2 with full GUI
+- **Standalone** - JUCE standalone application
 
 ### Expected to Work
 - Bitwig Studio, Studio One, FL Studio
