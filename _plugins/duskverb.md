@@ -9,20 +9,17 @@ screenshot: /assets/images/plugins/duskverb-screenshot.png
 
 features:
   - Five algorithms - Plate, Hall, Chamber, Room, Ambient
-  - 16-channel Hadamard Feedback Delay Network for dense, natural tails
-  - Dattorro-inspired input diffusion with 4 cascaded allpass stages
-  - Early reflections with 16 multi-tap delays and air absorption modeling
-  - Pre-delay with tempo sync (1/32 to 1/1 note divisions)
-  - Two-band damping with adjustable crossover (200-4000 Hz)
-  - Independent bass and treble decay multipliers
-  - LFO modulation with adjustable depth and rate
+  - Dense, natural tails from a 16-channel feedback delay network
+  - Dattorro-inspired input diffusion for smooth buildup
+  - Physically-modeled early reflections with air absorption
+  - Pre-delay with tempo sync
+  - Two-band damping with adjustable crossover
+  - Independent bass and treble decay control
+  - LFO modulation for movement in the tail
   - Freeze mode for infinite sustain
-  - Output EQ with lo-cut and hi-cut filters
-  - Stereo width control (0-200%)
-  - Bus mode for send/return workflows
+  - Output EQ, stereo width, and bus mode
   - 25 factory presets across 9 categories
-  - User preset save/load/delete system
-  - Per-sample parameter smoothing for artifact-free automation
+  - User preset save/load/delete
   - Full automation support
 
 requirements:
@@ -33,8 +30,17 @@ requirements:
   - "Sample rates: 44.1kHz - 192kHz"
 
 changelog:
+  - version: "0.3.0"
+    date: "2026-02-26"
+    changes:
+      - Replaced FDN output soft-clipping with linear output for better transient dynamics
+      - Redesigned Room algorithm with geometric delay spacing and increased modulation
+      - Moved DC blocker before output diffusion to prevent allpass DC accumulation
+      - Fixed algorithm selector picking the wrong algorithm
+      - Fixed dropdown overlapping knob labels
+      - Consistent decimal formatting across all displays
   - version: "0.2.0"
-    date: "2026-02-28"
+    date: "2026-02-25"
     changes:
       - Initial release with VST3/LV2/AU support
       - Five algorithms (Plate, Hall, Chamber, Room, Ambient)
@@ -48,123 +54,61 @@ changelog:
       - Available for Linux, Windows, and macOS
 ---
 
-DuskVerb is a professional algorithmic reverb, delivering lush spaces from tight rooms to infinite ambient washes - completely free.
+DuskVerb is a free algorithmic reverb that covers everything from tight rooms to infinite ambient washes. Five algorithms, 25 presets, and enough control to dial in exactly the space you need.
 
 ## Overview
 
-DuskVerb uses a 16-channel Hadamard Feedback Delay Network to create dense, natural-sounding reverb tails. Combined with Dattorro-inspired diffusion stages and physically-modeled early reflections, it covers everything from subtle room ambience to expansive cinematic spaces.
+At its core, DuskVerb uses a 16-channel Hadamard feedback delay network to build dense, natural-sounding reverb tails. Each algorithm has its own carefully tuned delay structure, and the Dattorro-inspired diffusion stages smooth everything into a lush, coherent wash. The early reflections are physically modeled with air absorption, so small spaces actually sound like small spaces.
 
 ## Algorithms
 
-DuskVerb includes five carefully designed algorithms, each with distinct delay line configurations and scaling:
+Each algorithm has its own delay line configuration and default character. They're not just preset tweaks - the underlying topology changes.
 
-**Plate**
-- Dense, smooth, and bright
-- No early reflections - pure diffuse tail
-- Classic studio reverb sound
-- Ideal for vocals, snare, and mix bus
+**Plate** is dense, smooth, and bright. No early reflections, just pure diffuse tail. The classic studio vocal reverb. Works great on snare and mix bus too.
 
-**Hall**
-- Natural concert hall with spacious depth
-- Strong early reflections with gradual buildup
-- Balanced frequency response
-- The go-to all-purpose reverb
+**Hall** is the all-purpose workhorse. Natural concert hall sound with spacious depth, strong early reflections, and balanced frequency response. If you only use one algorithm, this is probably it.
 
-**Chamber**
-- Warm, intimate reflections
-- Enhanced treble response for clarity
-- Moderate early reflections
-- Perfect for strings, piano, and acoustic instruments
+**Chamber** sits between Hall and Room. Warm and intimate, with a slightly brighter treble response that helps things cut through. Good for strings, piano, and acoustic instruments.
 
-**Room**
-- Tight, realistic small-space simulation
-- Prominent early reflections for a sense of space
-- Reduced late decay for clarity
-- Great for drums, dialog, and natural ambience
+**Room** is tight and realistic. The early reflections are prominent, giving you a clear sense of physical space, while the late decay stays short and clean. Great for drums, dialog, and anything that needs natural ambience without a long tail.
 
-**Ambient**
-- Ethereal, expansive washes
-- Long decay times with lush modulation
-- No early reflections - pure atmosphere
-- Perfect for pads, drones, and cinematic effects
+**Ambient** goes big. Ethereal washes, long decay times, heavy modulation, and no early reflections. This is your pad reverb, your drone reverb, your cinematic effects reverb.
 
-## Key Controls
+## Controls
 
-### Time
-- **Decay** - Reverb tail length (0.2s to 30s)
-- **Pre-Delay** - Gap before reverb onset (0-250ms, with tempo sync)
-- **Size** - Room size scaling (affects delay line lengths)
-- **Freeze** - Sustain the current reverb tail indefinitely
+The top row handles the big picture: **Decay** sets the tail length (0.2s up to 30s), **Pre-Delay** adds a gap before the reverb starts (with optional tempo sync), and **Size** scales the virtual room dimensions. Hit **Freeze** to sustain the current tail indefinitely while muting new input.
 
-### Character
-- **Diffusion** - Density of the reverb tail
-- **Bass Multiply** - Low-frequency decay time relative to overall decay
-- **Damping** - High-frequency decay (treble absorption)
-- **Crossover** - Frequency split between bass and treble damping (200-4000 Hz)
+The **Character** section shapes the tone. **Diffusion** controls how dense the tail is. **Bass Multiply** and **Treble Multiply** let you independently adjust how long the lows and highs sustain relative to the overall decay time. **Crossover** sets the frequency split between the two bands.
 
-### Modulation
-- **Mod Depth** - Chorus-like movement in the reverb tail
-- **Mod Rate** - Speed of modulation (0.1-3 Hz)
+**Modulation** adds movement to the tail. A little goes a long way for keeping things sounding natural and avoiding metallic artifacts. Crank it for chorus-like shimmer effects.
 
-### Output
-- **Mix** - Dry/wet balance
-- **Width** - Stereo spread (0-200%)
-- **Lo Cut / Hi Cut** - Shape the reverb frequency range
-- **Bus Mode** - 100% wet for send/return configurations
+The **Output** section has your **Mix** knob, **Width** control (0-200%), and **Lo Cut / Hi Cut** filters for shaping the reverb's frequency range. **Bus Mode** sets the mix to 100% wet for send/return setups.
 
 ## Factory Presets
 
-DuskVerb includes 25 professionally calibrated presets across 9 categories:
+DuskVerb ships with 25 presets across 9 categories:
 
-**Vocals** - Vocal Plate, Vocal Hall, Vocal Room
-**Drums** - Drum Room, Drum Plate, Drum Ambient
-**Guitar** - Guitar Spring, Guitar Hall
-**Keys** - Keys Chamber, Synth Pad
-**Mix** - Mix Glue, Mix Space
-**Rooms** - Small Room, Medium Room, Large Hall
-**Plates** - Short Plate, Long Plate
-**Ambient** - Infinite Pad, Dark Cloud, Shimmer Space, Cathedral
-**Special** - Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo
+| Category | Presets |
+|----------|---------|
+| **Vocals** | Vocal Plate, Vocal Hall, Vocal Room |
+| **Drums** | Drum Room, Drum Plate, Drum Ambient |
+| **Guitar** | Guitar Spring, Guitar Hall |
+| **Keys** | Keys Chamber, Synth Pad |
+| **Mix** | Mix Glue, Mix Space |
+| **Rooms** | Small Room, Medium Room, Large Hall |
+| **Plates** | Short Plate, Long Plate |
+| **Ambient** | Infinite Pad, Dark Cloud, Shimmer Space, Cathedral |
+| **Special** | Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo |
 
-## Technical Specifications
+You can also save, load, and delete your own presets from the menu.
 
-### DSP Details
-- **Architecture:** 16-channel Hadamard Feedback Delay Network
-- **Diffusion:** 4-stage Dattorro allpass cascade (stereo) + 2-stage output diffusion
-- **Early reflections:** 16 multi-tap delays per channel with exponential distribution
-- **Damping:** Two-band (bass/treble) with adjustable crossover
-- **Interpolation:** Cubic Hermite for fractional delay reads
-- **Soft clipping:** Fast rational tanh approximation for feedback limiting
-- **Denormal prevention:** Tiny DC bias injection throughout signal path
-- **Smoothing:** Per-sample exponential parameter smoothing (5ms time constant)
+## Under the Hood
 
-### Parameter Ranges
-- **Decay:** 0.2-30 seconds
-- **Pre-Delay:** 0-250ms (free) or 1/32 to 1/1 (tempo synced)
-- **Size:** 0-100%
-- **Diffusion:** 0-100%
-- **Bass Multiply:** 0.5x-2.0x
-- **Damping:** 10-100%
-- **Crossover:** 200-4000 Hz
-- **Mod Depth:** 0-100%
-- **Mod Rate:** 0.1-3.0 Hz
-- **Mix:** 0-100%
-- **Width:** 0-200%
-- **Lo Cut:** 20-500 Hz
-- **Hi Cut:** 1000-20000 Hz
+For the curious: the FDN uses a 16x16 Hadamard mixing matrix with per-channel two-band damping filters. Input diffusion is a 4-stage Dattorro allpass cascade, and there's an additional 2-stage modulated output diffuser. Early reflections use 16 multi-tap delays per channel with exponential time distribution and air absorption modeling. Delay reads use cubic Hermite interpolation, and all parameters are smoothed per-sample to avoid automation artifacts.
 
 ## DAW Compatibility
 
-### Fully Tested
-- **Logic Pro** - AU with full GUI
-- **Reaper** - VST3/LV2, all features working
-- **Ardour** - LV2 with full GUI
-- **Standalone** - JUCE standalone application
-
-### Expected to Work
-- Bitwig Studio, Studio One, FL Studio
-- Ableton Live, Cubase/Nuendo
-- GarageBand (AU on macOS)
+Tested in Logic Pro (AU), Reaper (VST3/LV2), and Ardour (LV2). Should also work in Bitwig, Studio One, FL Studio, Ableton Live, Cubase, and GarageBand.
 
 ## Installation
 
