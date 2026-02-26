@@ -4,7 +4,7 @@ title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
 description: Professional algorithmic reverb with 5 algorithms, 16-channel Hadamard FDN, early reflections, modulation, and freeze mode. 25 factory presets calibrated to studio standards. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "0.2.0"
+version: "0.3.0"
 screenshot: /assets/images/plugins/duskverb-screenshot.png
 
 features:

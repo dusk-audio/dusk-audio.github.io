@@ -61,7 +61,7 @@
     to studio standards. Completely free.
   status: released
   featured: true
-  version: 0.2.0
+  version: 0.3.0
 - name: Convolution Reverb
   slug: convolution-reverb
   tagline: IR-based reverb
