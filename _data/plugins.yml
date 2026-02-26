@@ -50,7 +50,7 @@
   tagline: Universal EQ — Digital, British Console, and Tube
   description: Three professional EQs in one plugin. Modern parametric with dynamics,
     classic British console emulation, and vintage passive tube EQ. Completely free.
-  status: released
+  status: pre-release
   featured: true
   version: 0.10.0
 - name: DuskVerb
@@ -59,7 +59,7 @@
   description: Professional algorithmic reverb with 5 algorithms, 16-channel Hadamard
     FDN, early reflections, modulation, and freeze mode. 25 factory presets calibrated
     to studio standards. Completely free.
-  status: released
+  status: pre-release
   featured: true
   version: 0.3.0
 - name: Convolution Reverb
