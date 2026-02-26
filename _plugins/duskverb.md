@@ -86,21 +86,17 @@ The **Output** section has your **Mix** knob, **Width** control (0-200%), and **
 
 ## Factory Presets
 
-DuskVerb ships with 25 presets across 9 categories:
+DuskVerb ships with 25 presets across 9 categories. You can also save, load, and delete your own presets from the menu.
 
-| Category | Presets |
-|----------|---------|
-| **Vocals** | Vocal Plate, Vocal Hall, Vocal Room |
-| **Drums** | Drum Room, Drum Plate, Drum Ambient |
-| **Guitar** | Guitar Spring, Guitar Hall |
-| **Keys** | Keys Chamber, Synth Pad |
-| **Mix** | Mix Glue, Mix Space |
-| **Rooms** | Small Room, Medium Room, Large Hall |
-| **Plates** | Short Plate, Long Plate |
-| **Ambient** | Infinite Pad, Dark Cloud, Shimmer Space, Cathedral |
-| **Special** | Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo |
-
-You can also save, load, and delete your own presets from the menu.
+- **Vocals:** Vocal Plate, Vocal Hall, Vocal Room
+- **Drums:** Drum Room, Drum Plate, Drum Ambient
+- **Guitar:** Guitar Spring, Guitar Hall
+- **Keys:** Keys Chamber, Synth Pad
+- **Mix:** Mix Glue, Mix Space
+- **Rooms:** Small Room, Medium Room, Large Hall
+- **Plates:** Short Plate, Long Plate
+- **Ambient:** Infinite Pad, Dark Cloud, Shimmer Space, Cathedral
+- **Special:** Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo
 
 ## Under the Hood
 
