@@ -50,7 +50,7 @@
   tagline: Universal EQ — Digital, British Console, and Tube
   description: Three professional EQs in one plugin. Modern parametric with dynamics,
     classic British console emulation, and vintage passive tube EQ. Completely free.
-  status: pre-release
+  status: released
   featured: true
   version: 0.10.1
 - name: DuskVerb
