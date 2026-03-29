@@ -52,7 +52,7 @@
     classic British console emulation, and vintage passive tube EQ. Completely free.
   status: released
   featured: true
-  version: 0.10.2
+  version: 0.10.3
 - name: DuskVerb
   slug: duskverb
   tagline: Professional Algorithmic Reverb
