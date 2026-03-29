@@ -29,8 +29,9 @@
   tagline: Intelligent chord detection and display
   description: Identify chords in real-time as you play. Perfect for learning, transcription,
     and music theory exploration.
-  status: in-dev
-  featured: false
+  status: released
+  featured: true
+  version: 1.0.0
 - name: TapeMachine
   slug: tapemachine
   tagline: Analog tape saturation with wow/flutter
