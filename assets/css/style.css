@@ -262,6 +262,18 @@ main {
   color: white;
 }
 
+.btn-secondary-download {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  font-size: 0.8rem;
+}
+
+.btn-secondary-download:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
 .btn-support {
   background: var(--color-accent);
   color: white;

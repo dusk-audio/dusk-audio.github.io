@@ -86,6 +86,7 @@ layout: default
       {% assign release_tag = page.slug | append: "-v" | append: page.version %}
       {% assign plugin_release_url = site.releases_url | append: "/tag/" | append: release_tag %}
       {% assign linux_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-linux.zip" %}
+      {% assign linux_arm64_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-linux-arm64.zip" %}
       {% assign windows_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-windows.zip" %}
       {% assign macos_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-macos.zip" %}
       <div class="download-box">
@@ -95,6 +96,7 @@ layout: default
         <div class="download-section">
           <h4>Linux</h4>
           <a href="{{ linux_download }}" class="btn btn-download">VST3 + LV2</a>
+          <a href="{{ linux_arm64_download }}" class="btn btn-download btn-secondary-download">ARM64 (RPi)</a>
         </div>
 
         <div class="download-section">
