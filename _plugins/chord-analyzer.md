@@ -64,6 +64,73 @@ Record your chord progressions with timing data and export as JSON for analysis,
 ### Educational Tooltips
 Hover over any element to learn about chord qualities, harmonic functions, and why certain progressions work.
 
+## Two Versions
+
+Chord Analyzer ships in two versions to ensure compatibility across all DAWs:
+
+| Version | Plugin Type | Use In |
+|---------|------------|--------|
+| **Chord Analyzer** | Instrument | FL Studio, Ableton Live |
+| **Chord Analyzer FX** | Audio Effect (with MIDI) | Reaper, Bitwig, Logic Pro, Cubase, LV2 hosts |
+
+Both versions are identical in functionality. The difference is how your DAW classifies and routes MIDI to them. **If in doubt, try Chord Analyzer FX first** — it's the simpler workflow in most DAWs.
+
+## DAW Setup Guide
+
+### Bitwig Studio
+
+1. Add your synth to a MIDI track as normal
+2. In the device chain, click **+** before your synth
+3. Search for **"Chord Analyzer FX"** and add it
+4. MIDI passes through automatically — your synth still receives all notes
+
+### Reaper
+
+1. Open the FX chain on your MIDI/instrument track
+2. Click **Add** and search for **"Chord Analyzer FX"** (VST3)
+3. Drag it above your synth in the chain
+4. MIDI passes through to your synth automatically
+
+### Logic Pro
+
+1. On your instrument track, click an empty **Audio FX** slot
+2. Search for **"Chord Analyzer FX"** under AU > Dusk Audio
+3. Insert it — the plugin receives MIDI from the track and passes audio through
+4. Your instrument plugin remains in the Instrument slot as normal
+
+### Cubase / Nuendo
+
+1. On your instrument track, add **"Chord Analyzer FX"** as an insert effect
+2. The plugin receives MIDI from the track automatically
+3. Your instrument remains unchanged
+
+### Ableton Live
+
+Ableton doesn't route MIDI to effect plugins, so use the **instrument version** with an Instrument Rack:
+
+1. Load your synth on a MIDI track as normal
+2. Select your synth and press **Cmd+G** (Mac) or **Ctrl+G** (Windows) to group it into an **Instrument Rack**
+3. Click the **Show Chain List** button (three horizontal lines on the left side of the rack)
+4. Right-click in the empty space below your synth's chain and choose **Create Chain**
+5. Drag **"Chord Analyzer"** (the instrument version, not FX) from the browser into the new empty chain
+6. Both chains receive the same MIDI — your synth produces sound, the Chord Analyzer shows chords
+
+### FL Studio
+
+Use the **instrument version** with Patcher:
+
+1. Add a **Patcher** instance to your channel rack
+2. Inside Patcher, add both **"Chord Analyzer"** and your synth as nodes
+3. Route the MIDI input to both plugins in parallel
+4. Route only your synth's audio output to the Patcher output
+5. Both plugins receive MIDI — your synth produces sound, the Chord Analyzer shows chords
+
+### LV2 Hosts (Zynthian, Ardour, Carla)
+
+1. Insert **"Chord Analyzer FX"** in your plugin chain before your synth
+2. MIDI passes through to the next plugin in the chain
+3. Audio passes through unchanged
+
 ## Installation
 
 | Platform | Format | Location |
@@ -73,6 +140,8 @@ Hover over any element to learn about chord qualities, harmonic functions, and w
 | macOS | AU | `~/Library/Audio/Plug-Ins/Components/` |
 | macOS | VST3 | `~/Library/Audio/Plug-Ins/VST3/` |
 | Windows | VST3 | `C:\Program Files\Common Files\VST3\` |
+
+Both "Chord Analyzer" and "Chord Analyzer FX" are included in the download. Install both — use whichever version works best in your DAW.
 
 ## Open Source
 
