@@ -22,8 +22,9 @@
   tagline: Real-time FFT spectrum visualization
   description: See your sound with crystal clarity. Real-time FFT analysis with multiple
     display modes and customizable visuals.
-  status: in-dev
-  featured: false
+  status: released
+  featured: true
+  version: 1.0.0
 - name: Chord Analyzer
   slug: chord-analyzer
   tagline: Intelligent chord detection and display
