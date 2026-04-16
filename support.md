@@ -16,18 +16,6 @@ If these plugins help your music, consider giving back!
     <p>Monthly support helps fund ongoing development and new plugins. Get updates on what's coming next!</p>
     <a href="{{ site.patreon_url }}" class="btn btn-primary btn-lg">Support on Patreon</a>
   </div>
-
-  <div class="support-option coming-soon">
-    <h3>Gumroad</h3>
-    <p>Pay-what-you-want downloads. Coming soon!</p>
-    <span class="btn btn-secondary" style="opacity: 0.5;">Coming Soon</span>
-  </div>
-
-  <div class="support-option coming-soon">
-    <h3>itch.io</h3>
-    <p>Pay-what-you-want downloads with community features. Coming soon!</p>
-    <span class="btn btn-secondary" style="opacity: 0.5;">Coming Soon</span>
-  </div>
 </div>
 
 ---
