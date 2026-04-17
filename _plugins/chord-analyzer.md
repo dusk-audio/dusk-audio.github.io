@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.1.0"
+version: "1.1.1"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -26,6 +26,11 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.1.1"
+    date: "2026-04-17"
+    changes:
+      - "Added Respect Sustain parameter (default on) — when MIDI CC 64 is held, the detected chord persists until the pedal is released. Useful for piano transcription workflows."
+      - "Native LV2 (Headless): added respect_sustain ControlPort at index 10 (existing detection-port indices unchanged)"
   - version: "1.1.0"
     date: "2026-04-17"
     changes:
