@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.0.2"
+version: "1.1.0"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -26,6 +26,14 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.1.0"
+    date: "2026-04-17"
+    changes:
+      - "Added Chord Analyzer MIDI variant: pure MIDI effect with full UI for Logic, Reaper, Bitwig, Cubase, Ardour, Carla"
+      - "Added Chord Analyzer Headless variant: native LV2 with output ControlPorts for headless LV2 hosts (Zynthian)"
+      - "Added Detected Root / Quality / Bass / Inversion output parameters for generic host UIs"
+      - Replaced short-lived Chord Analyzer FX variant with Chord Analyzer MIDI
+      - "Disabled JUCE phantom MIDI CC parameters in VST3 (cleaner Reaper UI)"
   - version: "1.0.0"
     date: "2026-03-29"
     changes:
@@ -64,16 +72,22 @@ Record your chord progressions with timing data and export as JSON for analysis,
 ### Educational Tooltips
 Hover over any element to learn about chord qualities, harmonic functions, and why certain progressions work.
 
-## Two Versions
+## Three Versions
 
-Chord Analyzer ships in two versions to ensure compatibility across all DAWs:
+Chord Analyzer ships in three versions to cover every plugin host:
 
 | Version | Plugin Type | Use In |
 |---------|------------|--------|
-| **Chord Analyzer** | Instrument | FL Studio, Ableton Live |
-| **Chord Analyzer FX** | Audio Effect (with MIDI) | Reaper, Bitwig, Logic Pro, Cubase, LV2 hosts |
+| **Chord Analyzer** | Instrument (with UI) | FL Studio, Ableton Live |
+| **Chord Analyzer MIDI** | MIDI Effect (with UI) | Reaper, Bitwig, Logic Pro, Cubase, Ardour, Carla |
+| **Chord Analyzer Headless** | Native LV2, no UI (host renders detected chord) | Zynthian and other headless LV2 hosts |
 
-Both versions are identical in functionality. The difference is how your DAW classifies and routes MIDI to them. **If in doubt, try Chord Analyzer FX first** — it's the simpler workflow in most DAWs.
+All three share the same chord-detection engine. The difference is how your host classifies and renders the plugin:
+
+- **MIDI variant** sits in the dedicated MIDI / Note FX slot of modern DAWs and brings the full visualizer with it.
+- **Headless variant** declares native LV2 output control ports so headless LV2 hosts (Zynthian, etc.) can display the detected chord in their own UI without ever loading our visualizer.
+
+If you're on a desktop DAW, use the **MIDI** variant. If you're on Zynthian or any LV2 host that doesn't run a plugin GUI, use the **Headless** variant.
 
 ## DAW Setup Guide
 
@@ -81,38 +95,37 @@ Both versions are identical in functionality. The difference is how your DAW cla
 
 1. Add your synth to a MIDI track as normal
 2. In the device chain, click **+** before your synth
-3. Search for **"Chord Analyzer FX"** and add it
+3. Search for **"Chord Analyzer MIDI"** in the **Note FX** category and add it
 4. MIDI passes through automatically — your synth still receives all notes
 
 ### Reaper
 
 1. Open the FX chain on your MIDI/instrument track
-2. Click **Add** and search for **"Chord Analyzer FX"** (VST3)
+2. Click **Add** and search for **"Chord Analyzer MIDI"** (VST3)
 3. Drag it above your synth in the chain
 4. MIDI passes through to your synth automatically
 
 ### Logic Pro
 
-1. On your instrument track, click an empty **Audio FX** slot
-2. Search for **"Chord Analyzer FX"** under AU > Dusk Audio
-3. Insert it — the plugin receives MIDI from the track and passes audio through
-4. Your instrument plugin remains in the Instrument slot as normal
+1. On your instrument track, click the **MIDI FX** slot (above the Instrument slot)
+2. Choose **Chord Analyzer MIDI** under Dusk Audio
+3. The plugin receives MIDI from the track and passes it through to your instrument
 
 ### Cubase / Nuendo
 
-1. On your instrument track, add **"Chord Analyzer FX"** as an insert effect
+1. On your instrument track, add **"Chord Analyzer MIDI"** as a MIDI insert
 2. The plugin receives MIDI from the track automatically
 3. Your instrument remains unchanged
 
 ### Ableton Live
 
-Ableton doesn't route MIDI to effect plugins, so use the **instrument version** with an Instrument Rack:
+Ableton doesn't list MIDI-only plugins in MIDI tracks the same way other DAWs do, so use the **instrument version** with an Instrument Rack:
 
 1. Load your synth on a MIDI track as normal
 2. Select your synth and press **Cmd+G** (Mac) or **Ctrl+G** (Windows) to group it into an **Instrument Rack**
 3. Click the **Show Chain List** button (three horizontal lines on the left side of the rack)
 4. Right-click in the empty space below your synth's chain and choose **Create Chain**
-5. Drag **"Chord Analyzer"** (the instrument version, not FX) from the browser into the new empty chain
+5. Drag **"Chord Analyzer"** (the instrument version, not MIDI) from the browser into the new empty chain
 6. Both chains receive the same MIDI — your synth produces sound, the Chord Analyzer shows chords
 
 ### FL Studio
@@ -125,11 +138,21 @@ Use the **instrument version** with Patcher:
 4. Route only your synth's audio output to the Patcher output
 5. Both plugins receive MIDI — your synth produces sound, the Chord Analyzer shows chords
 
-### LV2 Hosts (Zynthian, Ardour, Carla)
+### Desktop LV2 Hosts (Ardour, Carla)
 
-1. Insert **"Chord Analyzer FX"** in your plugin chain before your synth
+Use **Chord Analyzer MIDI** — declares no audio ports, full custom visualizer in the host plugin window.
+
+1. Add **"Chord Analyzer MIDI"** to the MIDI chain before your synth
 2. MIDI passes through to the next plugin in the chain
-3. Audio passes through unchanged
+3. Open the plugin to see the full chord display
+
+### Headless LV2 Hosts (Zynthian)
+
+Use **Chord Analyzer Headless** — it exposes the detected chord through native LV2 output control ports so the host can render it in its own UI.
+
+1. Install the bundle from the `chord-analyzer-headless-*.zip` (separate download)
+2. Add **"Chord Analyzer Headless"** to your MIDI chain before your synth
+3. The detected root, quality, bass and inversion appear as live values in your host's plugin parameter view
 
 ## Installation
 
@@ -141,7 +164,7 @@ Use the **instrument version** with Patcher:
 | macOS | VST3 | `~/Library/Audio/Plug-Ins/VST3/` |
 | Windows | VST3 | `C:\Program Files\Common Files\VST3\` |
 
-Both "Chord Analyzer" and "Chord Analyzer FX" are included in the download. Install both — use whichever version works best in your DAW.
+The main download includes "Chord Analyzer" and "Chord Analyzer MIDI" — install whichever your DAW uses. The "Chord Analyzer Headless" variant ships in a separate `-headless-` zip aimed at Zynthian and other headless LV2 hosts; download it only if you need it.
 
 ## Open Source
 
