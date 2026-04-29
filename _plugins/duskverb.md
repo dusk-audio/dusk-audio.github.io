@@ -4,7 +4,7 @@ title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
 description: Algorithmic reverb with seven distinct DSP engines — Dattorro vintage plate, 6-AP high-density tank, Quad Room, 16-channel Hadamard FDN, Spring Tank, Non-Linear gated, and Eno-style Shimmer. 35+ hardware-anchored factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS.
-version: "0.5.2"
+version: "0.5.3"
 screenshot: /assets/images/plugins/DuskVerb-Eno-FDN.png
 
 screenshots:
@@ -54,6 +54,13 @@ requirements:
   - "Sample rates: 44.1 kHz – 192 kHz (sample-rate independent)"
 
 changelog:
+  - version: "0.5.3"
+    date: "2026-04-29"
+    changes:
+      - "Dattorro modulation rewrite — replaced the per-sample white-noise jitter on the delay1 and delay2 read taps with smoothstep-interpolated random-walk LFOs, one per tap. White noise on a delay-line read is audio-rate phase modulation, which generates broadband FM sidebands audible as tape-style hiss. The new LFOs wander the read positions enough to break modal resonances (the original purpose of the jitter) but are band-limited by smoothstep interpolation and produce no HF artifacts. Three modulators per tank now run at slightly detuned rates (×0.83, ×1.0, ×1.27) so they don't beat against each other periodically — proper 'spin and wander' behaviour."
+      - "Preset-swap state cleanup — extended DuskVerbEngine::clearAllBuffers() to reset the input diffuser's allpass buffers and the early-reflection multi-tap delay lines / per-tap LP states. Previously these retained signal-carrying state across preset switches, leaking stale audio into the new preset's tail (heard as hiss on plate and hall presets after switching presets a few times). With dual-engine crossfade in place, idle engines now come back online fully silent."
+      - "Patreon supporters overlay now shows the plugin version. Was passing an empty version string at construction; now reads JucePlugin_VersionString."
+      - "Preset retunings — Cascading Heaven (mix 70 → 36.1%, feedback 60 → 25%), Deep Blue Day (mix 80 → 38%, feedback 45 → 22%), Gold Plate (mix 100 → 30%), 1981 Gated Snare (release 50 → 210 ms)."
   - version: "0.5.2"
     date: "2026-04-29"
     changes:
