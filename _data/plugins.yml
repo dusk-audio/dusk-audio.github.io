@@ -64,7 +64,7 @@
     free.
   status: pre-release
   featured: true
-  version: 0.5.1
+  version: 0.5.2
 - name: Convolution Reverb
   slug: convolution-reverb
   tagline: IR-based reverb
