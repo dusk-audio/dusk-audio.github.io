@@ -58,12 +58,13 @@
 - name: DuskVerb
   slug: duskverb
   tagline: Professional Algorithmic Reverb
-  description: Professional algorithmic reverb with 5 algorithms, 16-channel Hadamard
-    FDN, early reflections, modulation, and freeze mode. 25 factory presets calibrated
-    to studio standards. Completely free.
+  description: Professional algorithmic reverb with 4 distinct DSP engines (Dattorro
+    plate, 6-AP density tank, Quad Room, 16-channel Hadamard FDN), early reflections,
+    random-walk modulation, freeze, and 16 hardware-anchored factory presets. Completely
+    free.
   status: pre-release
   featured: true
-  version: 0.3.1
+  version: 0.5.0
 - name: Convolution Reverb
   slug: convolution-reverb
   tagline: IR-based reverb

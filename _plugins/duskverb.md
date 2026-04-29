@@ -3,23 +3,28 @@ layout: plugin
 title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
-description: Professional algorithmic reverb with 5 algorithms, 16-channel Hadamard FDN, early reflections, modulation, and freeze mode. 25 factory presets calibrated to studio standards. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "0.3.1"
+description: Algorithmic reverb with four distinct DSP engines — Dattorro vintage plate, 6-AP high-density tank, Quad Room, and 16-channel Hadamard FDN. 16 hardware-anchored factory presets, random-walk modulation, freeze. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
+version: "0.5.0"
 screenshot: /assets/images/plugins/duskverb-screenshot.png
 
 features:
-  - Five algorithms - Plate, Hall, Chamber, Room, Ambient
-  - Dense, natural tails from a 16-channel feedback delay network
-  - Dattorro-inspired input diffusion for smooth buildup
-  - Physically-modeled early reflections with air absorption
-  - Pre-delay with tempo sync
-  - Two-band damping with adjustable crossover
-  - Independent bass and treble decay control
-  - LFO modulation for movement in the tail
-  - Freeze mode for infinite sustain
-  - Output EQ, stereo width, and bus mode
-  - 25 factory presets across 9 categories
-  - User preset save/load/delete
+  - Four distinct DSP engines — switch architecture, not just preset values
+  - Dattorro 2-AP cross-coupled vintage plate
+  - 6-AP density cascade tank for lush halls and dense ambience
+  - 4-tank cross-coupled Quad Room with 48 taps
+  - 16-channel Hadamard feedback delay network for realistic spaces
+  - Hardware-anchored factory presets (Lexicon 224, EMT 140, AMS RMX16, Bricasti M7, Eventide Blackhole)
+  - Random-walk LFO modulation — aperiodic shimmer with no audible warble
+  - Three-band damping with adjustable low/high crossovers
+  - Independent bass and treble decay multipliers
+  - Pre-delay with tempo sync (1/32 — 1/1)
+  - Early reflections with adjustable level and size
+  - Freeze for infinite sustain
+  - Mono-maker for tight low-end on busy mixes
+  - Bus mode for send/return setups
+  - Hero DECAY visualisation + live tail meter
+  - Engine-aware accent colour
+  - Resizable UI with persistence
   - Full automation support
 
 requirements:
@@ -27,9 +32,22 @@ requirements:
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
-  - "Sample rates: 44.1kHz - 192kHz"
+  - "Sample rates: 44.1 kHz – 192 kHz (sample-rate independent)"
 
 changelog:
+  - version: "0.4.0"
+    date: "2026-04-25"
+    changes:
+      - Soft-reset architecture — four distinct DSP engines replace the previous five-algorithm preset-tweak model
+      - New engines — Dattorro 2-AP, 6-AP density cascade, Quad Room (4 cross-coupled tanks), 16-channel Hadamard FDN
+      - Random-walk LFO modulation across all engines (replaces sine modulation) for aperiodic shimmer
+      - 16 hardware-anchored factory presets calibrated to Lexicon 224, EMT 140, AMS RMX16, Bricasti M7, Eventide Blackhole references
+      - Three-band damping (low + mid + high shelving biquads) with adjustable crossovers
+      - New UI — hero DECAY visualisation, live tail meter, engine-aware accent colour, resizable, mono-maker, save dialog now centres on plugin
+      - Mono-maker control for tight low-end on busy mixes
+      - State versioning for forward-compatible session save/load
+      - Sample-rate independence verified — all delay lengths and modulation excursions scale linearly from a 44.1 kHz calibration anchor
+      - Real-time-safe engine switching — all engines pre-allocated, no allocations in setAlgorithm()
   - version: "0.3.0"
     date: "2026-02-26"
     changes:
@@ -43,64 +61,71 @@ changelog:
     date: "2026-02-25"
     changes:
       - Initial release with VST3/LV2/AU support
-      - Five algorithms (Plate, Hall, Chamber, Room, Ambient)
-      - 16-channel Hadamard FDN with two-band damping
-      - Dattorro-style input diffusion and output diffusion
-      - Early reflections with air absorption modeling
-      - Pre-delay with tempo sync
-      - Freeze mode, bus mode, stereo width control
-      - 25 factory presets across 9 categories
-      - User preset system with save/load/delete
-      - Available for Linux, Windows, and macOS
 ---
 
-DuskVerb is a free algorithmic reverb that covers everything from tight rooms to infinite ambient washes. Five algorithms, 25 presets, and enough control to dial in exactly the space you need.
+DuskVerb is a free algorithmic reverb that gives you four genuinely different DSP engines under the same UI — not five flavours of the same algorithm, but four separate topologies you can audition like swapping hardware boxes. 16 factory presets anchored to real studio gear, a hero DECAY visualisation, and the controls you need to shape anything from a tight slap to an infinite ambient wash.
 
 ## Overview
 
-At its core, DuskVerb uses a 16-channel Hadamard feedback delay network to build dense, natural-sounding reverb tails. Each algorithm has its own carefully tuned delay structure, and the Dattorro-inspired diffusion stages smooth everything into a lush, coherent wash. The early reflections are physically modeled with air absorption, so small spaces actually sound like small spaces.
+The starting point is the engine selector. Each engine is a distinct DSP architecture with its own delay structure, feedback topology, and modulation character. Pick one, then dial in size, decay, modulation, damping, early reflections, and a few output filters. The factory presets are tuned per-engine to match recognisable hardware references, but you're free to switch engines on any preset and get a meaningfully different sound.
 
-## Algorithms
+Every engine pre-allocates at construction so changing engines is real-time safe — no clicks, no dropouts, no buffer underruns. Modulation across all four engines uses a smoothstep-interpolated random-walk LFO, which gives the aperiodic shimmer of high-end hardware random reverbs (Lexicon 480L, Eventide ModFactor) without the audible cyclic warble of sine modulation.
 
-Each algorithm has its own delay line configuration and default character. They're not just preset tweaks - the underlying topology changes.
+## Engines
 
-**Plate** is dense, smooth, and bright. No early reflections, just pure diffuse tail. The classic studio vocal reverb. Works great on snare and mix bus too.
+**Vintage Plate (Dattorro)** — A 2-allpass cross-coupled tank built on the Dattorro 1997 plate topology. Bright, dense, smooth. The classic studio vocal plate sound. Use it on snares, vocals, the mix bus.
 
-**Hall** is the all-purpose workhorse. Natural concert hall sound with spacious depth, strong early reflections, and balanced frequency response. If you only use one algorithm, this is probably it.
+**High Density (6-AP)** — A 6-allpass density cascade tank. Diffuses the input fast and produces lush, dense halls and ambient pads. Lower size knob settings give you intimate chambers; higher settings open up to cathedral-scale spaces.
 
-**Chamber** sits between Hall and Room. Warm and intimate, with a slightly brighter treble response that helps things cut through. Good for strings, piano, and acoustic instruments.
+**Quad Room (QuadTank)** — Four cross-coupled tanks with 48 total taps. Designed for realistic rooms with strong early reflections and clean late decay. Great for drums, dialog, and anything where you want a sense of physical space without a long tail.
 
-**Room** is tight and realistic. The early reflections are prominent, giving you a clear sense of physical space, while the late decay stays short and clean. Great for drums, dialog, and anything that needs natural ambience without a long tail.
-
-**Ambient** goes big. Ethereal washes, long decay times, heavy modulation, and no early reflections. This is your pad reverb, your drone reverb, your cinematic effects reverb.
+**Realistic Space (FDN)** — A 16-channel Hadamard feedback delay network. The biggest, most spacious-sounding engine. Use it for halls, ambient washes, and effects that need real breadth. The Hadamard mixing matrix gives natural-sounding mode density.
 
 ## Controls
 
-The top row handles the big picture: **Decay** sets the tail length (0.2s up to 30s), **Pre-Delay** adds a gap before the reverb starts (with optional tempo sync), and **Size** scales the virtual room dimensions. Hit **Freeze** to sustain the current tail indefinitely while muting new input.
+**Hero DECAY** — large concentric-ring readout. Drag vertically. Sets RT60 from 0.2 s to 30 s.
 
-The **Character** section shapes the tone. **Diffusion** controls how dense the tail is. **Bass Multiply** and **Treble Multiply** let you independently adjust how long the lows and highs sustain relative to the overall decay time. **Crossover** sets the frequency split between the two bands.
+**Pre-Delay** — gap before the reverb starts (with tempo sync). Use STEED-style 18 ms for vintage vocals, longer for modern pop spaces.
 
-**Modulation** adds movement to the tail. A little goes a long way for keeping things sounding natural and avoiding metallic artifacts. Crank it for chorus-like shimmer effects.
+**Size** — virtual room dimensions. Affects echo density and spacing.
 
-The **Output** section has your **Mix** knob, **Width** control (0-200%), and **Lo Cut / Hi Cut** filters for shaping the reverb's frequency range. **Bus Mode** sets the mix to 100% wet for send/return setups.
+**Depth / Rate** — modulation amount and speed. A little goes a long way for keeping the tail sounding natural and avoiding metallic resonances.
 
-## Factory Presets
+**Treble Mult / Bass Mult / Crossover** — independent decay multipliers for the highs and lows, with an adjustable crossover frequency. <1× treble = natural air absorption; >1× bass = bass rings longer than mids.
 
-DuskVerb ships with 25 presets across 9 categories. You can also save, load, and delete your own presets from the menu.
+**Diffusion** — input smearing. Low = grainy slap-back echoes; high = smooth wash.
 
-- **Vocals:** Vocal Plate, Vocal Hall, Vocal Room
-- **Drums:** Drum Room, Drum Plate, Drum Ambient
-- **Guitar:** Guitar Spring, Guitar Hall
-- **Keys:** Keys Chamber, Synth Pad
-- **Mix:** Mix Glue, Mix Space
-- **Rooms:** Small Room, Medium Room, Large Hall
-- **Plates:** Short Plate, Long Plate
-- **Ambient:** Infinite Pad, Dark Cloud, Shimmer Space, Cathedral
-- **Special:** Slap Back, Gated Verb, Lo-Fi Verb, Wide Stereo
+**ER Level / ER Size** — early reflection level and spacing. The early reflections define the perceived room shape.
+
+**Lo Cut / Hi Cut** — wet-signal filters.
+
+**Width** — stereo width 0–200%.
+
+**Mono <** — sums the wet signal to mono below the cutoff. Use 80–150 Hz to keep low-end tight on busy mixes; 20 Hz = bypass.
+
+**Trim** — output gain offset.
+
+**Freeze** — mutes input, loops the existing tail indefinitely. Useful for ambient pads, risers, and effects.
+
+**Bus Mode** — outputs 100% wet regardless of DRY/WET. Use on a send/return aux.
+
+## Factory Presets (16)
+
+**Plates** — Vintage Vocal Plate, Bright Drum Plate, Modulated Plate, Fat Pop Plate
+**Halls** — Lush Dark Hall, Cathedral, Blade Runner 224, Smooth Concert Hall, Vocal Hall
+**Chambers** — Wood Chamber, Realistic Chamber
+**Rooms** — Tight Drum Room, Studio Room, 80s Non-Lin Drum
+**Ambient** — Ambient Swell, Infinite Blackhole
+
+Each preset is anchored to a recognisable hardware reference (Lexicon 224 Blade Runner, EMT 140 plate, AMS RMX16 non-lin drum, Bricasti M7 cathedral, Eventide Blackhole infinite). The UI's accent colour shifts to match the active engine, so you always know which architecture you're hearing.
+
+You can also save, load, and delete your own presets from the menu — they live in `~/Library/Application Support/Dusk Audio/DuskVerb/Presets/` (macOS) and the equivalent locations on Linux/Windows.
 
 ## Under the Hood
 
-For the curious: the FDN uses a 16x16 Hadamard mixing matrix with per-channel two-band damping filters. Input diffusion is a 4-stage Dattorro allpass cascade, and there's an additional 2-stage modulated output diffuser. Early reflections use 16 multi-tap delays per channel with exponential time distribution and air absorption modeling. Delay reads use cubic Hermite interpolation, and all parameters are smoothed per-sample to avoid automation artifacts.
+Every engine ships with three-band damping (low-shelf + high-shelf 2nd-order RBJ biquads in a Lexicon-style serial cascade). All delay reads use cubic Hermite interpolation. Parameters smooth per-sample to avoid automation zipper noise. Modulation is generated by a smoothstep-interpolated random-walk LFO, normalised to a consistent ±16-sample excursion across all four engines. The FDN uses a 16×16 Hadamard mixing matrix; QuadTank cross-couples four allpass tanks with prime-spaced delay lines; the 6-AP density cascade follows a ModernSpace-style topology. Audio thread is allocation-free and lock-free; engine switching only flips a pointer.
+
+DuskVerb is sample-rate independent. All base delay lengths and modulation excursions are tuned at 44.1 kHz and scale linearly with the host sample rate. Tested at 44.1 / 48 / 96 / 192 kHz.
 
 ## DAW Compatibility
 
