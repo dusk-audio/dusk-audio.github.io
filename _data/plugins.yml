@@ -32,7 +32,7 @@
     and music theory exploration.
   status: released
   featured: true
-  version: 1.1.1
+  version: 1.1.2
 - name: TapeMachine
   slug: tapemachine
   tagline: Analog tape saturation with wow/flutter
