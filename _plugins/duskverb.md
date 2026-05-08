@@ -4,7 +4,7 @@ title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
 description: Algorithmic reverb with seven distinct DSP engines — Dattorro vintage plate, 6-AP high-density tank, Quad Room, 16-channel Hadamard FDN, Spring Tank, Non-Linear gated, and Eno-style Shimmer. 35+ hardware-anchored factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS.
-version: "0.5.3"
+version: "0.5.4"
 screenshot: /assets/images/plugins/DuskVerb-Eno-FDN.png
 
 screenshots:
@@ -54,6 +54,12 @@ requirements:
   - "Sample rates: 44.1 kHz – 192 kHz (sample-rate independent)"
 
 changelog:
+  - version: "0.5.4"
+    date: "2026-05-08"
+    changes:
+      - Unified double-click-to-edit value entry across all knobs
+      - Add CLAP plugin format support
+      - Misc shared LookAndFeel polish
   - version: "0.5.3"
     date: "2026-04-29"
     changes:
