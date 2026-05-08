@@ -4,7 +4,7 @@ title: TapeMachine
 slug: tapemachine
 tagline: Professional Analog Tape Emulation
 description: Professional tape machine emulation calibrated against real vintage hardware measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.6"
+version: "1.0.7"
 screenshot: /assets/images/plugins/tapemachine-screenshot.png
 
 features:
@@ -31,6 +31,13 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "1.0.7"
+    date: "2026-05-08"
+    changes:
+      - Unified double-click-to-edit value entry across all knobs
+      - Add CLAP plugin format support
+      - Drop Standalone build (use the VST3/AU/LV2 in your DAW)
+      - Misc shared LookAndFeel polish
   - version: "1.0.0"
     date: "2026-01-25"
     changes:
