@@ -4,7 +4,7 @@ title: Multi-Q
 slug: multi-q
 tagline: Universal EQ — Digital, British Console, and Tube
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
-version: "0.10.4"
+version: "0.10.5"
 screenshot: /assets/images/plugins/multi-q-digital.png
 screenshots:
   - image: /assets/images/plugins/multi-q-digital.png
@@ -35,6 +35,14 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "0.10.5"
+    date: "2026-05-08"
+    changes:
+      - Fix orange-spike artifacts on dynamic EQ overlay after toggling DYN
+      - Hide disabled bands entirely in Digital mode (issue #78)
+      - New band-strip component for per-band enable and selection
+      - Unified double-click-to-edit value entry across all knobs
+      - Renamed parametric bands to Low / Low Mid / Mid / High Mid
   - version: "0.9.0"
     date: "2026-02-05"
     changes:
