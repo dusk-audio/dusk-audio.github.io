@@ -24,7 +24,7 @@
     display modes and customizable visuals.
   status: released
   featured: true
-  version: 1.0.0
+  version: 1.0.1
 - name: Chord Analyzer
   slug: chord-analyzer
   tagline: Intelligent chord detection and display
