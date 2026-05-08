@@ -111,6 +111,19 @@ layout: default
 
         <a href="{{ plugin_release_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>
       </div>
+
+      {% comment %}
+        Documentation box. Per-plugin PDF lives at /assets/manuals/<slug>-manual.pdf;
+        the generator (manuals/build_manuals.py in the plugins repo) writes it
+        there on every release. Combined manual link goes to dusk-audio-manual.pdf.
+      {% endcomment %}
+      <div class="info-box">
+        <h3>Documentation</h3>
+        <a href="{{ '/assets/manuals/' | append: page.slug | append: '-manual.pdf' | relative_url }}"
+           class="btn btn-download btn-full">User Manual (PDF)</a>
+        <a href="{{ '/assets/manuals/dusk-audio-manual.pdf' | relative_url }}"
+           class="btn btn-secondary btn-full">All Plugins Manual</a>
+      </div>
       {% else %}
       <div class="download-box coming-soon-box">
         <h3>Coming Soon</h3>
