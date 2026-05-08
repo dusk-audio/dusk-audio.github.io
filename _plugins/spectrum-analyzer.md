@@ -4,7 +4,7 @@ title: Spectrum Analyzer
 slug: spectrum-analyzer
 tagline: Professional FFT spectrum analyzer with LUFS metering
 description: Real-time FFT spectrum analyzer with LUFS loudness metering, true peak detection, stereo correlation, and K-System support. Free VST3, LV2, and AU plugin.
-version: "1.0.0"
+version: "1.0.1"
 screenshot: /assets/images/plugins/spectrum-analyzer-screenshot.png
 
 features:
@@ -25,6 +25,12 @@ requirements:
   - "64-bit DAW with VST3, LV2, or AU support"
 
 changelog:
+  - version: "1.0.1"
+    date: "2026-05-08"
+    changes:
+      - Unified double-click-to-edit value entry across all knobs
+      - Add CLAP plugin format support
+      - Misc shared LookAndFeel polish
   - version: "1.0.0"
     date: "2026-04-15"
     changes:
