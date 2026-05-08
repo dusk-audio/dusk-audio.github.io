@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.1.2"
+version: "1.1.3"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -26,6 +26,12 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.1.3"
+    date: "2026-05-08"
+    changes:
+      - Unified double-click-to-edit value entry across all knobs
+      - Add CLAP plugin format support
+      - Misc shared LookAndFeel polish
   - version: "1.1.1"
     date: "2026-04-17"
     changes:
