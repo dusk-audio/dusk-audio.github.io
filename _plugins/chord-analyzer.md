@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.1.3"
+version: "1.1.4"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -26,6 +26,10 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.1.4"
+    date: "2026-05-13"
+    changes:
+      - "Cubase: Chord Analyzer MIDI now appears in MIDI Inserts slot (VST3 subcategory Fx|Instrument) — fixes #89"
   - version: "1.1.3"
     date: "2026-05-08"
     changes:
