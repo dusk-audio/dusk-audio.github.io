@@ -12,11 +12,10 @@
 
       <ul class="nav-links">
         <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ '/#dusk-studio' | relative_url }}">Dusk Studio</a></li>
         <li><a href="{{ '/plugins/' | relative_url }}" {% if page.url contains '/plugins' %}class="active"{% endif %}>Plugins</a></li>
-        <li><a href="{{ '/assets/manuals/dusk-audio-manual.pdf' | relative_url }}">User Manual</a></li>
         <li><a href="{{ '/support/' | relative_url }}" {% if page.url == '/support/' %}class="active"{% endif %}>Support</a></li>
         <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
-        <li><a href="{{ site.patreon_url }}" class="btn btn-nav">Support Us</a></li>
       </ul>
     </nav>
   </div>

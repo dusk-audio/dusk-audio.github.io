@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "updated": "2026-05-29",
+  "_note": "Seed manifest for the in-app Soundfont Downloader (served from GitHub Pages at https://duskaudio.com/soundfonts/manifest.json). Every entry is public-domain or permissively licensed. size_bytes and sha256 are PLACEHOLDERS — compute real values (stat / sha256sum) and confirm each download_url resolves to the file before launch; the app verifies sha256 on download. Cards with non-permissive licenses must never be added.",
+  "categories": ["Pianos", "Strings", "Drums", "Synths", "SFX", "General", "Chiptune", "Founders Picks"],
+  "soundfonts": [
+    {
+      "name": "MuseScore General",
+      "category": "General",
+      "license": "MIT",
+      "size_bytes": 0,
+      "sha256": "",
+      "download_url": "https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General.sf3",
+      "preview_url": null,
+      "tags": ["general-midi", "multi", "orchestral", "default"]
+    },
+    {
+      "name": "FluidR3 GM",
+      "category": "General",
+      "license": "MIT",
+      "size_bytes": 0,
+      "sha256": "",
+      "download_url": "https://archive.org/download/fluidr3-gm-gs/FluidR3_GM.sf2",
+      "preview_url": null,
+      "tags": ["general-midi", "multi", "classic"]
+    },
+    {
+      "name": "GeneralUser GS",
+      "category": "General",
+      "license": "GeneralUser GS License v2.0 (permissive, free for commercial use)",
+      "size_bytes": 0,
+      "sha256": "",
+      "download_url": "https://www.schristiancollins.com/soundfonts/GeneralUser_GS_1.471.zip",
+      "preview_url": null,
+      "founders_pick": true,
+      "tags": ["general-midi", "multi", "compact", "founders-pick", "needs-extraction"]
+    },
+    {
+      "name": "FreePats Yamaha Grand Piano (YDP)",
+      "category": "Pianos",
+      "license": "CC-BY-3.0",
+      "size_bytes": 0,
+      "sha256": "",
+      "download_url": "https://freepats.zenvoid.org/Piano/YDP-GrandPiano/YDP-GrandPiano-SF2-20160804.tar.bz2",
+      "preview_url": null,
+      "tags": ["piano", "acoustic", "grand", "needs-extraction"]
+    },
+    {
+      "name": "VintageDreams Waves v2",
+      "category": "Synths",
+      "license": "Freeware (Ian Wilson — free for any use)",
+      "size_bytes": 0,
+      "sha256": "",
+      "download_url": "https://freepats.zenvoid.org/SoundSets/VintageDreamsWaves-v2.sf2",
+      "preview_url": null,
+      "tags": ["synth", "vintage", "pads", "lo-fi"]
+    },
+    {
+      "name": "8-bit / Famicom (NES)",
+      "category": "Chiptune",
+      "license": "CC0-1.0",
+      "size_bytes": 0,
+      "sha256": "",
+      "download_url": "https://archive.org/download/free-soundfonts-sf2-2019-04/nintendo_nes.sf2",
+      "preview_url": null,
+      "tags": ["chiptune", "8-bit", "nes", "retro", "sfx"]
+    }
+  ]
+}
