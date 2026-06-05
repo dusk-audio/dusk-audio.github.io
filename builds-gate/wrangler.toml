@@ -1,0 +1,15 @@
+name = "dusk-builds-gate"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Non-secret config.
+[vars]
+RELEASES_REPO    = "dusk-audio/dusk-studio-releases"        # private repo holding the binaries
+PATREON_JOIN_URL = "https://www.patreon.com/cw/DuskAudio/membership"
+
+# Secrets — set with `wrangler secret put NAME`, NEVER put values here:
+#   wrangler secret put DL_TOKEN   # the access token; goes in the patron link ?t=...; rotate if leaked
+#   wrangler secret put GH_PAT     # fine-grained, read-only Contents on RELEASES_REPO
+
+# Custom domain (uncomment if duskaudio.com's DNS is on Cloudflare — it is):
+# routes = [{ pattern = "builds.duskaudio.com", custom_domain = true }]

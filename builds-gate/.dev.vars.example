@@ -1,0 +1,4 @@
+# Copy to `.dev.vars` for local `wrangler dev`. NEVER commit the real file.
+# In production these are set with `wrangler secret put NAME` instead.
+DL_TOKEN="a-long-random-string-rotate-if-it-leaks"
+GH_PAT="github_pat_... (fine-grained, read-only Contents on dusk-studio-releases)"

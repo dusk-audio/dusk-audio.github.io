@@ -7,11 +7,14 @@
   <meta name="keywords" content="audio plugins, VST3, LV2, AU, Linux audio, free plugins, EQ, compressor">
   <meta name="author" content="Dusk Audio">
 
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
   <!-- Open Graph -->
-  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:title" content="{{ page.og_title | default: page.title | default: site.title }}">
   <meta property="og:description" content="{{ page.description | default: site.description }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
 
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 
@@ -20,7 +23,7 @@
   <!-- Favicon placeholder -->
   <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
 </head>
-<body>
+<body class="{{ page.body_class | default: 'theme-dark' }}">
   {% include header.html %}
 
   <main>
@@ -28,5 +31,21 @@
   </main>
 
   {% include footer.html %}
+
+  <script>
+    // Normalize external links sitewide: open in a new tab + rel="noopener noreferrer".
+    (function () {
+      var links = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
+      for (var i = 0; i < links.length; i++) {
+        var a = links[i];
+        if (!a.hostname || a.hostname === location.hostname) continue;
+        a.setAttribute('target', '_blank');
+        var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+        if (rel.indexOf('noopener') < 0) rel.push('noopener');
+        if (rel.indexOf('noreferrer') < 0) rel.push('noreferrer');
+        a.setAttribute('rel', rel.join(' '));
+      }
+    })();
+  </script>
 </body>
 </html>

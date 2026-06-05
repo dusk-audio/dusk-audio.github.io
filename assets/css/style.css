@@ -1109,3 +1109,246 @@ table th:not(:last-child) {
     max-width: 280px;
   }
 }
+
+/* ========================================
+   Homepage: Dusk Studio restructure (appended)
+   Reuses existing tokens / .hero / .section / .btn classes.
+   ======================================== */
+
+/* Hero (DAW-led) */
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+.hero-studio h1 { margin-bottom: var(--spacing-md); }
+.hero-badge {
+  display: inline-block;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--color-accent);
+  background: rgba(224, 123, 83, 0.08);
+  color: var(--color-accent-dark);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.hero-studio .hero-buttons { margin-top: var(--spacing-lg); }
+.hero-shot {
+  max-width: 960px;
+  width: 100%;
+  margin: var(--spacing-2xl) auto 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Story strip */
+.story-strip .container { max-width: 760px; }
+.story {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+  border-left: 3px solid var(--color-accent);
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--color-text-light);
+}
+.story p { margin: 0; }
+.story-link { margin-top: var(--spacing-lg); }
+
+/* Get Dusk Studio: dual-path */
+.dual-path {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+.path-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+}
+.path-card--primary {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+.path-card h3 { font-size: 1.25rem; }
+.path-card p { margin: 0; color: var(--color-text-light); }
+.path-card .btn { margin-top: var(--spacing-sm); }
+.path-fineprint { font-size: 0.85rem; color: var(--color-text-muted); }
+.path-fineprint a { color: var(--color-primary); }
+.path-centerline {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.path-honesty {
+  text-align: center;
+  margin-top: var(--spacing-sm);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+.path-honesty a { color: var(--color-primary); }
+
+/* Email capture band */
+.email-band { background: var(--color-bg-alt); }
+.email-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  max-width: 520px;
+  margin: 0 auto;
+}
+.email-form-input {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--border-radius);
+}
+.email-form-input::placeholder { color: var(--color-text-muted); }
+.email-success { text-align: center; }
+.email-success p { color: var(--color-text); font-weight: 600; margin: 0; }
+
+/* Philosophy strip */
+.philosophy-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+}
+.philosophy-item h3 { font-size: 1.15rem; margin-bottom: var(--spacing-xs); }
+.philosophy-item p { color: var(--color-text-light); }
+.philosophy-tagline {
+  text-align: center;
+  margin-top: var(--spacing-2xl);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.philosophy-row--promise {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+  margin: var(--spacing-2xl) auto 0;
+}
+
+@media (max-width: 768px) {
+  .dual-path,
+  .philosophy-row,
+  .philosophy-row--promise {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Dusk dark theme (scoped to body.theme-dark — the homepage)
+   Redefines the palette; token-based components flip automatically.
+   Other pages stay on the light :root palette.
+   ======================================== */
+body.theme-dark {
+  /* warm dusk amber for CTAs/highlights */
+  --color-primary: #e8945f;
+  --color-primary-dark: #d97f48;
+  --color-primary-light: #f3ad84;
+  /* twilight violet, used sparingly */
+  --color-accent: #c9a6ff;
+  --color-accent-dark: #b189f0;
+
+  --color-text: #f3f2f5;
+  --color-text-light: #c4c3cf;
+  --color-text-muted: #8b8a99;
+
+  --color-bg: #0e0e13;        /* near-black, faint blue */
+  --color-bg-alt: #15151c;
+  --color-bg-dark: #1d1d26;
+
+  --color-border: #2a2a36;
+  --color-border-dark: #3a3a48;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.6);
+
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* amber buttons need dark text, not white */
+body.theme-dark .btn-primary,
+body.theme-dark .btn-primary:hover,
+body.theme-dark .btn-nav,
+body.theme-dark .btn-nav:hover,
+body.theme-dark .btn-download,
+body.theme-dark .btn-download:hover { color: #160a04 !important; }
+
+/* warm "dusk" glow behind the hero */
+body.theme-dark .hero {
+  background:
+    radial-gradient(1200px 520px at 50% -12%, rgba(232, 148, 95, 0.12), transparent 60%),
+    var(--color-bg);
+}
+
+/* alpha badge: amber pill on dark */
+body.theme-dark .hero-badge {
+  color: var(--color-primary-light);
+  background: rgba(232, 148, 95, 0.10);
+  border-color: var(--color-primary);
+}
+
+/* featured "official build" card: amber edge */
+body.theme-dark .path-card--primary {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-md);
+}
+
+/* keep the dusk-amber accent on the story quote bar */
+body.theme-dark .story { border-left-color: var(--color-primary); }
+
+/* dark-theme contrast fixes for warm-bg elements (primary is amber in dark) */
+body.theme-dark .support-cta,
+body.theme-dark .support-cta h4 { color: #160a04; }
+body.theme-dark .support-cta .btn-support { background: #160a04; color: var(--color-primary-light); }
+body.theme-dark .support-cta .btn-support:hover { background: #261206; }
+body.theme-dark .btn-secondary-download:hover { color: #160a04; }
+
+/* ARM64 outline download button: keep amber text on dark (it has .btn-download too,
+   which gets the dark-text override; this beats it so the button stays visible). */
+body.theme-dark .btn-secondary-download {
+  background: transparent;
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary);
+}
+body.theme-dark .btn-secondary-download:hover {
+  background: var(--color-primary);
+  color: #160a04 !important;
+}
+
+/* Hero screenshot: larger + click-to-zoom lightbox */
+.hero-shot { max-width: 1100px; cursor: zoom-in; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.92); padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 100%; max-height: 100%;
+  border-radius: var(--border-radius); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+.lightbox-close {
+  position: absolute; top: 14px; right: 20px;
+  background: none; border: none; color: #fff;
+  font-size: 2.2rem; line-height: 1; cursor: pointer; padding: 4px 10px;
+}
