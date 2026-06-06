@@ -17,7 +17,7 @@ description: "Dusk Studio is a portastudio-style DAW: 24 tracks, a fixed signal 
       <!-- Conversion CTA -> Patreon membership (tiers/join). Swap to https://builds.duskaudio.com/ only if you ever make the gate the public entry; patrons get the build link inside gated posts. -->
       <a href="{{ site.patreon_membership_url }}" class="btn btn-primary btn-lg">Get the alpha build</a>
       <a href="https://github.com/dusk-audio/dusk-studio" class="btn btn-secondary btn-lg">Build from source</a>
-      <a href="{{ '/assets/manuals/dusk-studio-manual.pdf' | relative_url }}" class="btn btn-secondary btn-lg">Manual</a>
+      <a href="https://builds.duskaudio.com/manual" class="btn btn-secondary btn-lg">Manual</a>
     </div>
     <!-- TODO: Dusk Studio console screenshot. Suggested path: assets/images/dusk-studio-hero.png -->
     <img src="{{ '/assets/images/dusk-studio-hero.png' | relative_url }}" alt="The Dusk Studio console: 24 tracks in three banks of eight with a fixed channel signal chain, shown on one screen." class="hero-shot" width="2560" height="1048" decoding="async">

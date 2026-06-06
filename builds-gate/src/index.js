@@ -18,6 +18,7 @@ export default {
     const t = url.searchParams.get("t") || "";
     try {
       if (p === "/") return htmlResp(landing(env));
+      if (p === "/manual") return manual(env); // public: the manual is free to read
       if (p === "/latest") return latestPage(env, t);
       if (p.startsWith("/dl/")) return download(env, decodeURIComponent(p.slice(4)), t);
       return new Response("Not found", { status: 404 });
@@ -76,6 +77,27 @@ async function download(env, id, t) {
 
 // Newest non-draft release, INCLUDING prereleases (alpha builds are tagged prerelease,
 // so GitHub's /releases/latest — which skips prereleases — would miss them).
+// Public: serve the latest release's MANUAL.pdf (the manual is free to read; no token).
+async function manual(env) {
+  var rel = await latestRelease(env);
+  if (!rel) return new Response("Not available", { status: 404 });
+  var asset = (rel.assets || []).find(function (a) {
+    return /manual/i.test(a.name) && /\.pdf$/i.test(a.name);
+  });
+  if (!asset) return new Response("Manual not found", { status: 404 });
+  var r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases/assets/${asset.id}`, {
+    headers: {
+      Authorization: `Bearer ${env.GH_PAT}`,
+      Accept: "application/octet-stream",
+      "User-Agent": "dusk-builds-gate",
+    },
+    redirect: "manual",
+  });
+  var loc = r.headers.get("Location");
+  if (!loc) return new Response("Not available", { status: 404 });
+  return new Response(null, { status: 302, headers: { Location: loc, "Cache-Control": "no-store" } });
+}
+
 async function latestRelease(env) {
   const r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases?per_page=10`, {
     headers: {
