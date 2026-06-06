@@ -77,7 +77,9 @@ async function download(env, id, t) {
 
 // Newest non-draft release, INCLUDING prereleases (alpha builds are tagged prerelease,
 // so GitHub's /releases/latest — which skips prereleases — would miss them).
-// Public: serve the latest release's MANUAL.pdf (the manual is free to read; no token).
+// Public: serve the latest release's MANUAL.pdf (free to read; no token).
+// Proxies the bytes and serves them INLINE so the browser opens the PDF in a
+// tab instead of prompting a download. (Small file, ~1-2 MB.)
 async function manual(env) {
   var rel = await latestRelease(env);
   if (!rel) return new Response("Not available", { status: 404 });
@@ -85,17 +87,24 @@ async function manual(env) {
     return /manual/i.test(a.name) && /\.pdf$/i.test(a.name);
   });
   if (!asset) return new Response("Manual not found", { status: 404 });
+  // redirect: 'follow' (default) -> fetch follows GitHub's signed-URL redirect
+  // and returns the actual PDF body, which we re-serve with inline headers.
   var r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases/assets/${asset.id}`, {
     headers: {
       Authorization: `Bearer ${env.GH_PAT}`,
       Accept: "application/octet-stream",
       "User-Agent": "dusk-builds-gate",
     },
-    redirect: "manual",
   });
-  var loc = r.headers.get("Location");
-  if (!loc) return new Response("Not available", { status: 404 });
-  return new Response(null, { status: 302, headers: { Location: loc, "Cache-Control": "no-store" } });
+  if (!r.ok) return new Response("Not available", { status: 404 });
+  return new Response(r.body, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/pdf",
+      "Content-Disposition": 'inline; filename="dusk-studio-manual.pdf"',
+      "Cache-Control": "public, max-age=300",
+    },
+  });
 }
 
 async function latestRelease(env) {
