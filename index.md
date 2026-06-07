@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Dusk Studio"
-body_class: theme-dark
 og_title: "Dusk Studio, by Dusk Audio"
 description: "Dusk Studio is a portastudio-style DAW: 24 tracks, a fixed signal chain, everything on one screen. Open source, GPL-3.0. Plus the free Dusk Audio plugin suite."
 ---
@@ -19,8 +18,36 @@ description: "Dusk Studio is a portastudio-style DAW: 24 tracks, a fixed signal 
       <a href="https://github.com/dusk-audio/dusk-studio" class="btn btn-secondary btn-lg">Build from source</a>
       <a href="https://builds.duskaudio.com/manual" class="btn btn-secondary btn-lg">Manual</a>
     </div>
-    <!-- TODO: Dusk Studio console screenshot. Suggested path: assets/images/dusk-studio-hero.png -->
+    <ul class="spec-strip" aria-label="At a glance">
+      <li>24 tracks</li>
+      <li>3 banks of 8</li>
+      <li>Fixed signal chain</li>
+      <li>BS.1770 metering</li>
+      <li>VST3 / LV2</li>
+    </ul>
     <img src="{{ '/assets/images/dusk-studio-hero.png' | relative_url }}" alt="The Dusk Studio console: 24 tracks in three banks of eight with a fixed channel signal chain, shown on one screen." class="hero-shot" width="2560" height="1048" decoding="async">
+  </div>
+</section>
+
+<!-- 1b. VIEWS (record / mix / master) -->
+<section class="section views">
+  <div class="container">
+    <div class="section-header">
+      <h2>Record, mix, and master in one place.</h2>
+      <p>No exporting to a second app. The signal chain, the mix, and the master all live in the same window.</p>
+    </div>
+    <div class="views-grid">
+      <figure class="view">
+        <!-- TODO: drop in assets/images/dusk-studio-mixing.png (a mixing-view screenshot) -->
+        <img src="{{ '/assets/images/dusk-studio-mixing.png' | relative_url }}" alt="Dusk Studio mixing view: 24 channels across three banks, one insert per channel." loading="lazy">
+        <figcaption>Mixing — 24 channels, one insert each</figcaption>
+      </figure>
+      <figure class="view">
+        <!-- TODO: drop in assets/images/dusk-studio-mastering.png (the mastering view) -->
+        <img src="{{ '/assets/images/dusk-studio-mastering.png' | relative_url }}" alt="Dusk Studio mastering view: 5-band Pultec EQ, multiband compressor, brick-wall limiter, BS.1770 metering." loading="lazy">
+        <figcaption>Mastering — Pultec EQ, multiband, limiter, BS.1770</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
