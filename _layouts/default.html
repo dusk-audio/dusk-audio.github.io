@@ -15,15 +15,22 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
   <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:image" content="{{ page.og_image | default: '/assets/images/dusk-studio-hero.png' | absolute_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ page.og_image | default: '/assets/images/dusk-studio-hero.png' | absolute_url }}">
 
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap">
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <!-- Favicon placeholder -->
   <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
 </head>
-<body class="{{ page.body_class | default: 'theme-dark' }}">
+<body class="{{ page.body_class }}">
   {% include header.html %}
 
   <main>
