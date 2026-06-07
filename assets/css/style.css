@@ -1613,3 +1613,36 @@ body { counter-reset: section; }
 
 /* ---- Flush-left the stray centered lines ---- */
 .path-centerline, .path-honesty { text-align: left; }
+
+/* Home hub: Dusk Studio teaser */
+.studio-teaser-shot { display: block; }
+.studio-teaser-shot img {
+  width: 100%;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+.studio-teaser-shot:hover img { border-color: var(--color-primary); }
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--spacing-md); margin-top: var(--spacing-lg); }
+
+/* Views: stack each (mix, master) as its own full-width row, matching the hero shot */
+.views-grid { grid-template-columns: 1fr; gap: var(--spacing-2xl); }
+.view img { max-width: 100%; }
+
+/* Home hub: two route cards */
+.hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
+.hub-card {
+  display: block;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.hub-card:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+.hub-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-bottom: 1px solid var(--color-border); }
+.hub-card h3 { margin: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm); font-size: 1.5rem; }
+.hub-card p { margin: 0 var(--spacing-lg) var(--spacing-md); color: var(--color-text-light); }
+.hub-cta { display: inline-block; margin: 0 var(--spacing-lg) var(--spacing-lg); color: var(--color-primary); font-weight: 600; }
+@media (max-width: 768px) { .hub-grid { grid-template-columns: 1fr; } }
