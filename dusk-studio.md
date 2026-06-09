@@ -14,7 +14,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
     <p class="tagline">24 tracks. A fixed signal chain. Everything on one screen. Dusk Studio is a deliberately constrained DAW built to make you stop tweaking and finish music.</p>
     <p class="hero-badge">v0.9.0 alpha</p>
     <div class="hero-buttons">
-      <a href="{{ site.patreon_membership_url }}" class="btn btn-primary btn-lg">Get the alpha build</a>
+      <a href="https://builds.duskaudio.com/latest" class="btn btn-primary btn-lg">Get the alpha build</a>
       <a href="https://github.com/dusk-audio/dusk-studio" class="btn btn-secondary btn-lg">Build from source</a>
       <a href="https://builds.duskaudio.com/manual" class="btn btn-secondary btn-lg">Manual</a>
     </div>
