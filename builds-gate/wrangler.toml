@@ -6,6 +6,7 @@ compatibility_date = "2024-11-01"
 [vars]
 RELEASES_REPO    = "dusk-audio/dusk-studio-releases"        # private repo holding the binaries
 PATREON_JOIN_URL = "https://www.patreon.com/cw/DuskAudio/membership"
+FREE_DOWNLOADS   = "1"                                      # "1" = public alpha (no token); "0" = members-only beta
 
 # Secrets — set with `wrangler secret put NAME`, NEVER put values here:
 #   wrangler secret put DL_TOKEN   # the access token; goes in the patron link ?t=...; rotate if leaked

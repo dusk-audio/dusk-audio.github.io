@@ -28,12 +28,18 @@ export default {
   },
 };
 
-function tokenOk(env, t) {
-  return !!env.DL_TOKEN && safeEqual(t, env.DL_TOKEN);
+// Free alpha: when FREE_DOWNLOADS=1, builds are public (no token needed).
+// Flip to 0 for the members-only beta — access then requires the patron DL_TOKEN.
+function freeMode(env) {
+  return env.FREE_DOWNLOADS === "1";
+}
+
+function accessOk(env, t) {
+  return freeMode(env) || (!!env.DL_TOKEN && safeEqual(t, env.DL_TOKEN));
 }
 
 async function latestPage(env, t) {
-  if (!tokenOk(env, t)) return htmlResp(forbidden(env), 403);
+  if (!accessOk(env, t)) return htmlResp(forbidden(env), 403);
   const rel = await latestRelease(env);
   if (!rel) return htmlResp(page("Builds", "<p>No build published yet. Check back soon.</p>"));
 
@@ -48,16 +54,20 @@ async function latestPage(env, t) {
         .join("")
     : "<li>No files attached to this release.</li>";
 
+  const note = freeMode(env)
+    ? `Free alpha build. Unsigned — see the <a href="/manual">first-launch steps</a> if macOS or Windows warns you.`
+    : `Patrons-only link. Please don't share it.`;
+  const heading = freeMode(env) ? "Download Dusk Studio" : "Your Dusk Studio build";
   const body = `
     <h1>${escapeHtml(rel.name || rel.tag_name || "Latest build")}</h1>
     <p class="tag">${escapeHtml(rel.tag_name || "")}</p>
     <ul class="files">${items}</ul>
-    <p class="muted">Patrons-only link. Please don't share it.</p>`;
-  return htmlResp(page("Your Dusk Studio build", body), 200, { "Cache-Control": "no-store" });
+    <p class="muted">${note}</p>`;
+  return htmlResp(page(heading, body), 200, { "Cache-Control": "no-store" });
 }
 
 async function download(env, id, t) {
-  if (!tokenOk(env, t)) return htmlResp(forbidden(env), 403);
+  if (!accessOk(env, t)) return htmlResp(forbidden(env), 403);
   // numeric asset id only — prevents path/SSRF injection into the GitHub API
   if (!/^\d+$/.test(id)) return new Response("Bad request", { status: 400 });
 
@@ -114,10 +124,19 @@ async function latestRelease(env) {
       Accept: "application/vnd.github+json",
       "User-Agent": "dusk-builds-gate",
     },
+    // Don't serve a stale list from the edge cache after a new release is published.
+    cf: { cacheTtl: 0, cacheEverything: false },
   });
   if (!r.ok) return null;
   const list = await r.json();
-  return Array.isArray(list) ? list.find((x) => !x.draft) || null : null;
+  if (!Array.isArray(list)) return null;
+  // The API does NOT guarantee newest-first (these releases share a created_at),
+  // so pick the most recently PUBLISHED non-draft release explicitly.
+  return (
+    list
+      .filter((x) => !x.draft)
+      .sort((a, b) => Date.parse(b.published_at || 0) - Date.parse(a.published_at || 0))[0] || null
+  );
 }
 
 /* ---------- helpers ---------- */
@@ -142,6 +161,14 @@ function forbidden(env) {
 }
 
 function landing(env) {
+  if (freeMode(env)) {
+    return page(
+      "Dusk Studio builds",
+      `<h1>Dusk Studio builds</h1>
+       <p>The alpha is free. Grab the latest build for macOS, Windows, or Linux:</p>
+       <p><a class="cta" href="/latest">Download the latest build</a></p>`
+    );
+  }
   return page(
     "Dusk Studio builds",
     `<h1>Dusk Studio builds</h1>
@@ -156,17 +183,20 @@ function page(title, body) {
 <meta name="robots" content="noindex">
 <title>${escapeHtml(title)} — Dusk Studio</title>
 <style>
-  :root{color-scheme:dark}
-  body{margin:0;background:#0b0b0c;color:#f4f4f3;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  /* Matches the site's studio-paper LIGHT theme (assets/css/style.css). */
+  :root{color-scheme:light}
+  body{margin:0;background:#faf8f3;color:#211e1a;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
   main{max-width:640px;margin:0 auto;padding:56px 20px}
-  h1{font-size:1.6rem;margin:0 0 8px}
-  a{color:#f2935f}
-  .tag{color:#7c7c84;margin-top:0}
-  .muted{color:#7c7c84;font-size:.9rem}
+  h1{font-size:1.6rem;margin:0 0 8px;color:#211e1a}
+  a{color:#2c6e8f}
+  a:hover{color:#225773}
+  .tag{color:#847c70;margin-top:0}
+  .muted{color:#847c70;font-size:.9rem}
   ul.files{list-style:none;padding:0}
-  ul.files li{padding:12px 0;border-bottom:1px solid #2a2a30}
-  .sz{color:#7c7c84;font-size:.85rem;margin-left:8px}
-  .cta{display:inline-block;margin:8px 0;padding:12px 20px;background:#e8794a;color:#160a04;border-radius:10px;font-weight:600;text-decoration:none}
+  ul.files li{padding:12px 0;border-bottom:1px solid #e2dacb}
+  .sz{color:#847c70;font-size:.85rem;margin-left:8px}
+  .cta{display:inline-block;margin:8px 0;padding:12px 20px;background:#2c6e8f;color:#fff;border-radius:8px;font-weight:600;text-decoration:none}
+  .cta:hover{background:#225773;color:#fff}
 </style></head><body><main>${body}</main></body></html>`;
 }
 
