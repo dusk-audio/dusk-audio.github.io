@@ -1204,10 +1204,10 @@ table th:not(:last-child) {
 .email-form {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
   max-width: 520px;
-  margin: 0 auto;
+  margin: 0;
 }
 .email-form-input {
   flex: 1 1 260px;
