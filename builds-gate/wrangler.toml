@@ -4,13 +4,19 @@ compatibility_date = "2024-11-01"
 
 # Non-secret config.
 [vars]
-RELEASES_REPO    = "dusk-audio/dusk-studio-releases"        # private repo holding the binaries
-PATREON_JOIN_URL = "https://www.patreon.com/cw/DuskAudio/membership"
-FREE_DOWNLOADS   = "1"                                      # "1" = public alpha (no token); "0" = members-only beta
+RELEASES_REPO     = "dusk-audio/dusk-studio-releases"       # private repo holding the binaries
+PATREON_JOIN_URL  = "https://www.patreon.com/cw/DuskAudio/membership"
+DUSK_CAMPAIGN_ID  = "14880404"                              # Dusk Audio's Patreon campaign id — only this campaign's $1+ members pass
+OAUTH_REDIRECT_URI = "https://builds.duskaudio.com/auth/callback"  # must match the Patreon OAuth client's redirect URI exactly
+SESSION_TTL_HOURS = "6"                                     # how long a login lasts before re-verifying membership
+FREE_DOWNLOADS    = "0"                                     # "1" = emergency public override (no login); "0" = members-only
 
 # Secrets — set with `wrangler secret put NAME`, NEVER put values here:
-#   wrangler secret put DL_TOKEN   # the access token; goes in the patron link ?t=...; rotate if leaked
-#   wrangler secret put GH_PAT     # fine-grained, read-only Contents on RELEASES_REPO
+#   wrangler secret put PATREON_CLIENT_ID      # from the Patreon OAuth client
+#   wrangler secret put PATREON_CLIENT_SECRET  # from the Patreon OAuth client
+#   wrangler secret put SESSION_SECRET         # random 32+ bytes, signs the session cookie (e.g. `openssl rand -hex 32`)
+#   wrangler secret put GH_PAT                 # fine-grained, read-only Contents on RELEASES_REPO
+# (DL_TOKEN is retired — the token model is replaced by Patreon OAuth. `wrangler secret delete DL_TOKEN` after cutover.)
 
 # Custom domain (uncomment if duskaudio.com's DNS is on Cloudflare — it is):
 # routes = [{ pattern = "builds.duskaudio.com", custom_domain = true }]

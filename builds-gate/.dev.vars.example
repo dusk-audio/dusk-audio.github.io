@@ -1,4 +1,6 @@
 # Copy to `.dev.vars` for local `wrangler dev`. NEVER commit the real file.
 # In production these are set with `wrangler secret put NAME` instead.
-DL_TOKEN="a-long-random-string-rotate-if-it-leaks"
+PATREON_CLIENT_ID="from the Patreon OAuth client"
+PATREON_CLIENT_SECRET="from the Patreon OAuth client"
+SESSION_SECRET="random 32+ bytes, e.g. openssl rand -hex 32"
 GH_PAT="github_pat_... (fine-grained, read-only Contents on dusk-studio-releases)"
