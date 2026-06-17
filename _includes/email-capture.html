@@ -1,0 +1,34 @@
+<!-- EMAIL CAPTURE -->
+<section class="section email-band">
+  <div class="container">
+    <div class="section-header">
+      <h2>Get notified when new builds drop</h2>
+      <p>New Dusk Studio builds and plugins. No spam, a couple of emails a month, tops.</p>
+    </div>
+    <!-- MailerLite form 189284465127720015 (account 2404218), themed to match the site.
+         webforms.min.js upgrades submit to inline AJAX success; without it the form falls
+         back to a plain POST (opens MailerLite's confirmation in a new tab). No tracking pixel. -->
+    <div id="mlb2-42165633" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42165633">
+      <div class="row-form">
+        <form class="ml-block-form email-form" action="https://assets.mailerlite.com/jsonp/2404218/forms/189284465127720015/subscribe" method="post" target="_blank" rel="noopener">
+          <input class="email-form-input" type="email" name="fields[email]" placeholder="you@email.com" autocomplete="email" aria-label="Email address" required>
+          <input type="hidden" name="ml-submit" value="1">
+          <input type="hidden" name="anticsrf" value="true">
+          <button class="btn btn-primary" type="submit">Notify me</button>
+        </form>
+      </div>
+      <div class="row-success email-success" style="display: none;">
+        <p>Thanks. You are on the list. Check your inbox to confirm your address.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function ml_webform_success_42165633() {
+    var $ = ml_jQuery || jQuery;
+    $('.ml-subscribe-form-42165633 .row-success').show();
+    $('.ml-subscribe-form-42165633 .row-form').hide();
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
