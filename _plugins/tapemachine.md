@@ -4,7 +4,7 @@ title: TapeMachine
 slug: tapemachine
 tagline: Professional Analog Tape Emulation
 description: Professional tape machine emulation calibrated against real vintage hardware measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.8"
+version: "1.0.9"
 screenshot: /assets/images/plugins/tapemachine-screenshot.png
 
 features:
@@ -31,6 +31,11 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "1.0.9"
+    date: "2026-07-01"
+    changes:
+      - Fixed Bitwig CLAP offline audio export freezing when TapeMachine was in the project
+      - Fixed the preset dropdown not reopening after selecting a preset
   - version: "1.0.7"
     date: "2026-05-08"
     changes:
