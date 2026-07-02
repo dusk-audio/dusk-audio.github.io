@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!--
+  Dusk Audio — landing page (duskaudio.com)
+  Static HTML + CSS + minimal vanilla JS. No build step. Deploys to GitHub Pages.
+
+  ============================================================================
+  IMAGES THE USER MUST PROVIDE  (drop into ./images/)
+  ============================================================================
+  images/dusk-logo.svg            ~200x40    optional wordmark (text is used by default)
+  images/hero-daw.png             2400x1400  main Dusk Studio UI screenshot (hero)
+  images/feature-mixer.png        1200x800   24-channel mixer crop
+  images/feature-signal-chain.png 1200x800   fixed signal-chain crop
+  images/feature-mastering.png    1200x800   mastering view crop
+  images/session-loop.png         2400x1400  full mix-session screenshot (or swap for a video — see the VIDEO note in the showpiece figure)
+  images/plugin-4k-eq.png             800x600
+  images/plugin-multi-comp.png        800x600
+  images/plugin-multi-q.png           800x600
+  images/plugin-tape-machine.png      800x600
+  images/plugin-dusk-amp.png          800x600
+  images/plugin-dusk-verb.png         800x600
+  images/plugin-convolution-reverb.png 800x600
+  images/plugin-tape-echo.png         800x600
+  images/plugin-multi-synth.png       800x600
+  images/plugin-groovemind.png        800x600
+  images/plugin-spectrum-analyzer.png 800x600
+  images/plugin-chord-analyzer.png    800x600
+  images/og-card.png              1200x630  social share card (referenced in <head>)
+
+  PLACEHOLDER URLS TO REPLACE BEFORE SHIPPING  (all marked inline with TODO comments)
+  - duskaudio.lemonsqueezy.com/checkout/buy/REPLACE-WITH-27-UUID  -> Lemon Squeezy $27 checkout
+  - duskaudio.lemonsqueezy.com/checkout/buy/REPLACE-WITH-79-UUID  -> Lemon Squeezy $79 Founders checkout
+  - your-list-provider.example/subscribe  -> Buttondown or MailerLite subscribe endpoint (demo email capture)
+  - #founders-count                  -> JS hook to LS purchase count ("X / 200 founders"); placeholder for now
+  - patreon.com/duskaudio            -> confirm Patreon URL
+  - github.com/dusk-audio/...        -> confirm org + repo names
+  - MANUAL.md links                  -> hosted manual URL if not serving the raw .md
+  - thanks.html                      -> Cal.com booking URL + Founders Discord invite (post-purchase, marked TODO there)
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dusk Studio — a portastudio-style DAW, deliberately constrained</title>
+  <meta name="description" content="Dusk Studio is a portastudio-style DAW: 24 channels, a fixed signal chain, mastering built in. Plus a free, open-source plugin suite (VST3 / LV2, GPL-3.0).">
+
+  <!-- Open Graph / share card -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dusk Studio — a portastudio-style DAW, deliberately constrained">
+  <meta property="og:description" content="24 channels, fixed signal chain, no plugin paralysis. Plus a free, open-source plugin suite.">
+  <meta property="og:url" content="https://duskaudio.com/">
+  <meta property="og:image" content="https://duskaudio.com/images/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Privacy-friendly analytics. Uncomment + set domain to enable. No GA, no Hotjar.
+  <script defer data-domain="duskaudio.com" src="https://plausible.io/js/script.js"></script>
+  -->
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- ===================== STICKY NAV ===================== -->
+  <header class="site-header" id="top">
+    <div class="wrap nav-wrap">
+      <a class="wordmark" href="#top" aria-label="Dusk Audio — home">DUSK&nbsp;AUDIO</a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="nav" id="nav-menu" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="#studio">Dusk Studio</a></li>
+          <li><a href="#plugins">Plugins</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md">Manual</a></li>
+          <li><a href="https://github.com/dusk-audio/dusk-studio">Source</a></li>
+        </ul>
+        <a class="btn btn-primary nav-cta" href="#pricing">Get Dusk Studio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="wrap hero-grid">
+        <div class="hero-media">
+          <img src="images/hero-daw.png"
+               alt="Dusk Studio main window: a 24-channel mixer with three banks of eight, transport controls, and the fixed channel signal chain visible on a single dark screen."
+               width="2400" height="1400" loading="eager">
+        </div>
+        <div class="hero-copy">
+          <h1 id="hero-heading">Finish songs without decision paralysis.</h1>
+          <p class="lede">Dusk Studio is a deliberately constrained, portastudio-style DAW. 24 channels, fixed signal chain, every control on screen — so you can record, mix, and master without leaving the application or losing the thread of the song.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#pricing">Get the Founders Edition — $79</a>
+            <a class="btn btn-ghost" href="#pricing">Or the one-time licence — $27</a>
+            <a class="btn-link" href="https://github.com/dusk-audio/dusk-studio">Build from source&nbsp;→</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE DAW ===================== -->
+    <section class="section" id="studio" aria-labelledby="studio-heading">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="studio-heading">The DAW</h2>
+        </header>
+
+        <div class="feature-row">
+          <article class="feature">
+            <img class="feature-img" src="images/feature-mixer.png"
+                 alt="Dusk Studio mixer view showing three banks of eight channel strips side by side." width="1200" height="800" loading="lazy">
+            <h3>24-channel mixer</h3>
+            <p>Three banks of eight to match any standard control surface. All visible on one screen.</p>
+          </article>
+
+          <article class="feature">
+            <img class="feature-img" src="images/feature-signal-chain.png"
+                 alt="A single channel strip with its fixed processing order: high-pass filter, four-band EQ, compressor, sends, pan, bus, and fader." width="1200" height="800" loading="lazy">
+            <h3>Fixed signal chain</h3>
+            <p>HPF → 4-band EQ → FET/Opto/VCA comp → sends → pan → bus → fader. No reordering. No surprises.</p>
+          </article>
+
+          <article class="feature">
+            <img class="feature-img" src="images/feature-mastering.png"
+                 alt="Dusk Studio mastering view with a five-band Pultec EQ, multiband compressor, brick-wall limiter, and loudness metering." width="1200" height="800" loading="lazy">
+            <h3>Mastering view built in</h3>
+            <p>5-band Pultec EQ + multiband comp + brick-wall limiter + BS.1770 metering. No exporting to a second app.</p>
+          </article>
+        </div>
+
+        <figure class="showpiece">
+          <!-- VIDEO: to use a 30s loop instead of a still, replace this <img> with:
+               <video autoplay muted loop playsinline poster="images/session-loop.png" width="2400" height="1400">
+                 <source src="images/session-loop.mp4" type="video/mp4"></video> -->
+          <img src="images/session-loop.png"
+               alt="A full Dusk Studio mix session in progress: meters moving across all 24 channels with the master bus and mastering chain active." width="2400" height="1400" loading="lazy">
+        </figure>
+
+        <div class="cta-row">
+          <a class="btn-link" href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md">See the manual&nbsp;→</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FREE PLUGINS ===================== -->
+    <section class="section section-alt" id="plugins" aria-labelledby="plugins-heading">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="plugins-heading">Free plugins</h2>
+          <p class="section-lede">The DSP that powers Dusk Studio is shared with our standalone plugin suite — open source, GPL-3.0, free forever. Use them in any DAW that supports VST3 / LV2.</p>
+        </header>
+
+        <ul class="plugin-grid">
+          <!-- Released (production) -->
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-4k-eq.png" alt="4K EQ plugin interface." width="800" height="600" loading="lazy">
+            <h3>4K EQ</h3>
+            <p>British-console 4-band parametric with HPF / LPF + console saturation.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/4k-eq/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-multi-comp.png" alt="Multi-Comp plugin interface." width="800" height="600" loading="lazy">
+            <h3>Multi-Comp</h3>
+            <p>FET, Opto, VCA, and Bus compressors in one plugin. Three classic detectors, modern UX.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/multi-comp/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-multi-q.png" alt="Multi-Q plugin interface." width="800" height="600" loading="lazy">
+            <h3>Multi-Q</h3>
+            <p>Pultec-style passive EQ with three tone-shaping bands + tube drive.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/multi-q/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-tape-machine.png" alt="TapeMachine plugin interface." width="800" height="600" loading="lazy">
+            <h3>TapeMachine</h3>
+            <p>Multi-format tape saturation: VU meters, wow + flutter, head bump.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/tape-machine/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-spectrum-analyzer.png" alt="Spectrum Analyzer plugin interface." width="800" height="600" loading="lazy">
+            <h3>Spectrum Analyzer</h3>
+            <p>Real-time FFT + waterfall display.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/spectrum-analyzer/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-chord-analyzer.png" alt="Chord Analyzer plugin interface." width="800" height="600" loading="lazy">
+            <h3>Chord Analyzer</h3>
+            <p>Live chord detection from MIDI input.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/chord-analyzer/releases">Download&nbsp;→</a>
+          </li>
+
+          <!-- Pre-release -->
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-dusk-verb.png" alt="Dusk Verb plugin interface." width="800" height="600" loading="lazy">
+            <h3>Dusk Verb</h3>
+            <p>Algorithmic reverb (plate / hall / room).</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/dusk-verb/releases">Download&nbsp;→</a>
+          </li>
+
+          <!-- In development / not yet released -->
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-convolution-reverb.png" alt="Convolution Reverb plugin interface." width="800" height="600" loading="lazy">
+            <h3>Convolution Reverb</h3>
+            <p>Impulse-response convolution with low-latency partition.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/convolution-reverb/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-tape-echo.png" alt="Tape Echo plugin interface." width="800" height="600" loading="lazy">
+            <h3>Tape Echo</h3>
+            <p>Wow-and-flutter analog delay with feedback saturation.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/tape-echo/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-groovemind.png" alt="Groovemind plugin interface." width="800" height="600" loading="lazy">
+            <h3>Groovemind</h3>
+            <p>Step sequencer / drum pattern editor.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/groovemind/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-multi-synth.png" alt="Multi-Synth plugin interface." width="800" height="600" loading="lazy">
+            <h3>Multi-Synth</h3>
+            <p>Polyphonic subtractive synth.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/multi-synth/releases">Download&nbsp;→</a>
+          </li>
+          <li class="plugin-card">
+            <img class="plugin-img" src="images/plugin-dusk-amp.png" alt="Dusk Amp plugin interface." width="800" height="600" loading="lazy">
+            <h3>Dusk Amp</h3>
+            <p>Guitar amp + cabinet IR loader.</p>
+            <a class="btn-link" href="https://github.com/dusk-audio/dusk-amp/releases">Download&nbsp;→</a>
+          </li>
+        </ul>
+
+        <div class="cta-row">
+          <a class="btn-link" href="https://github.com/dusk-audio">All plugins on GitHub&nbsp;→</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FREE DEMO (lead magnet) ===================== -->
+    <section class="section" id="free-demo" aria-labelledby="free-demo-heading">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="free-demo-heading">Free demo — every feature, with the Soundfont Downloader built in.</h2>
+          <p class="section-lede">Record, mix, master, browse and download thousands of free soundfonts from inside the app. No time limit. No watermark. Export is the only thing locked, and unlocks with any paid tier.</p>
+        </header>
+        <!-- TODO: set form action to the mailing-list provider's subscribe endpoint (Buttondown or MailerLite — user picks). -->
+        <!-- TODO: demo binary download URLs (Linux/Mac/Win) are delivered by the provider's double-opt-in welcome automation; the demo build ships under a separate DuskStudio-repo plan. -->
+        <form action="https://your-list-provider.example/subscribe" method="POST" class="cta-row email-form">
+          <label class="visually-hidden" for="demo-email">Email address</label>
+          <input id="demo-email" class="email-input" type="email" name="email" placeholder="you@email.com" autocomplete="email" required>
+          <button class="btn btn-primary" type="submit">Email me the demo (Linux / Mac / Win)</button>
+        </form>
+        <p class="small">Download links arrive by email within 60 seconds. One launch email when 1.0 ships. Unsubscribe in one click. We never share addresses.</p>
+      </div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section class="section" id="pricing" aria-labelledby="pricing-heading">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="pricing-heading">Get Dusk Studio</h2>
+        </header>
+
+        <div class="price-row">
+
+          <article class="price-card">
+            <h3 class="tier">Source</h3>
+            <p class="price">Free</p>
+            <ul class="price-feats">
+              <li>GPL-3.0 source</li>
+              <li>Always free</li>
+              <li>Build for any platform</li>
+              <li>Audit every line</li>
+            </ul>
+            <a class="btn btn-ghost" href="https://github.com/dusk-audio/dusk-studio">View on GitHub</a>
+          </article>
+
+          <article class="price-card">
+            <h3 class="tier">Patreon Supporter</h3>
+            <p class="price">From $3<span class="price-per"> / month</span></p>
+            <ul class="price-feats">
+              <li>Latest release binaries (Linux / Windows / macOS when available)</li>
+              <li>Name in plugin credits</li>
+              <li>Development updates</li>
+            </ul>
+            <a class="btn btn-ghost" href="https://patreon.com/duskaudio">Become a Supporter</a>
+          </article>
+
+          <article class="price-card price-card--featured">
+            <p class="price-flag">Most popular</p>
+            <h3 class="tier">One-time licence</h3>
+            <p class="price">$27</p>
+            <p class="price-sub">Buys you the current major version (1.x). All 1.x minor + patch updates included.</p>
+            <ul class="price-feats">
+              <li>Forever-yours binary</li>
+              <li>All 1.x updates</li>
+              <li>No subscription</li>
+              <li>Next major (2.0) bumps to $27 again, or upgrade for $15</li>
+            </ul>
+            <!-- TODO: Lemon Squeezy checkout URL — one-time licence ($27). Replace placeholder UUID with the real LS checkout link. -->
+            <a class="btn btn-primary" href="https://duskaudio.lemonsqueezy.com/checkout/buy/REPLACE-WITH-27-UUID">Buy for $27</a>
+          </article>
+
+          <article class="price-card price-card--founders">
+            <p class="price-flag price-flag--founders">Limited · 200 slots</p>
+            <h3 class="tier">Founders Edition</h3>
+            <p class="price"><span class="price-strike">$149</span> $79</p>
+            <p class="price-sub">After Aug 31, 2026 (or 200 buyers, whichever first) → permanent price $149.</p>
+            <ul class="price-feats">
+              <li>All 1.x updates</li>
+              <li>All 2.x updates (skip the upgrade)</li>
+              <li>Priority email support (24h reply)</li>
+              <li>15-min "Zero-to-Export" 1:1 call OR weekly group session — buyer picks</li>
+              <li>Name in About panel under "Founders"</li>
+              <li>Founders-only Discord</li>
+              <li>Founders-curated soundfont collection (quarterly-refreshed flag in manifest)</li>
+              <li>30-day "Finish your song or it's free" guarantee badge</li>
+            </ul>
+            <!-- TODO: wire #founders-count to the Lemon Squeezy purchase count (no backend yet — static JS placeholder). -->
+            <p class="founders-counter"><span id="founders-count" data-cap="200">—</span> / 200 founders claimed</p>
+            <!-- TODO: Lemon Squeezy checkout URL — Founders Edition ($79). Replace placeholder UUID with the real LS checkout link. -->
+            <a class="btn btn-primary" href="https://duskaudio.lemonsqueezy.com/checkout/buy/REPLACE-WITH-79-UUID">Claim a founders slot — $79</a>
+          </article>
+
+        </div>
+
+        <p class="price-note"><em>Founders Edition is a one-time cohort. Once filled, the next tier above the $27 one-time licence is the standard upgrade path ($15 per major). We won't reopen Founders Edition or run launch discounts after the cohort closes — the price you pay today is the price.</em></p>
+      </div>
+    </section>
+
+    <!-- ===================== GUARANTEE ===================== -->
+    <section class="section section-alt" id="guarantee" aria-labelledby="guarantee-heading">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="guarantee-heading">Finish your song — or it's free.</h2>
+          <p class="section-lede">Try Dusk Studio for 30 days. Use the template, drop in a chord progression, record, mix, master, export. If you don't finish a track, we refund every cent. No forms. No "are you sure?" emails.</p>
+        </header>
+
+        <div class="guarantee-grid">
+          <div class="guarantee-item">
+            <h3>30-day no-questions refund</h3>
+            <p>Email <a href="mailto:support@duskaudio.com">support@duskaudio.com</a>. Full refund within 24 hours. The only thing we ask is one sentence on what didn't work, so we can fix it for the next person.</p>
+          </div>
+          <div class="guarantee-item">
+            <h3>Keep the demo + downloader</h3>
+            <p>The demo build and the Soundfont Downloader are free regardless of whether you refund. Yours forever — keep using them, keep your soundfonts, no claw-back.</p>
+          </div>
+          <div class="guarantee-item">
+            <h3>We'll help you finish</h3>
+            <p>Founders Edition buyers also get a 15-minute "Zero-to-Export" onboarding call (or a weekly live group session). If you can't get a track exported, we'll sit on a call until you can.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FIRST-LAUNCH NOTICE ===================== -->
+    <section class="section notice" id="first-launch" aria-labelledby="first-launch-heading">
+      <div class="wrap notice-wrap">
+        <h2 id="first-launch-heading">First launch on Mac &amp; Windows</h2>
+        <p>Dusk Studio's installers are unsigned — Apple Developer ($99/yr) and Windows code signing ($120–400/yr) cost more than this product is currently making. Ardour ships unsigned for the same reason. On first launch, macOS asks you to right-click → Open; Windows asks you to click "More info" → "Run anyway." 30 seconds. Walkthrough below.</p>
+        <div class="cta-row">
+          <a class="btn-link" href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md#first-time-launch">First-time launch guide&nbsp;→</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="visually-hidden">Site footer</h2>
+    <div class="wrap footer-grid">
+
+      <nav class="footer-col" aria-label="Products">
+        <h3>Products</h3>
+        <ul>
+          <li><a href="#studio">Dusk Studio</a></li>
+          <li><a href="#plugins">Plugins</a></li>
+          <li><a href="https://github.com/dusk-audio">Source on GitHub</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Resources">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md">Manual</a></li>
+          <li><a href="#first-launch">First-time launch</a></li>
+          <li><a href="https://github.com/dusk-audio/dusk-studio/blob/main/CHANGELOG.md">Changelog</a></li>
+          <li><a href="mailto:support@duskaudio.com">Support</a></li>
+          <li><a href="https://patreon.com/duskaudio">Patreon</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="https://github.com/dusk-audio">About</a></li>
+          <li><a href="mailto:hello@duskaudio.com">Contact</a></li>
+          <li><a href="https://www.gnu.org/licenses/gpl-3.0.html">License (GPL-3.0)</a></li>
+        </ul>
+      </nav>
+
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© <span id="year">2026</span> Marc Korte / Dusk Audio. Built with open-source tools. GPL-3.0.</p>
+    </div>
+  </footer>
+
+  <script src="nav.js" defer></script>
+</body>
+</html>

@@ -79,7 +79,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
         <p>Back Dusk Studio on Patreon from $1/month and get every build, alpha and beta, for as long as you're subscribed. New builds land in the patrons-only feed as they ship.</p>
         <p>Early backers are credited as Founding Patrons, with your name in the app's About panel.</p>
         <a href="{{ site.patreon_membership_url }}" class="btn btn-primary btn-full">Get builds on Patreon</a>
-        <p class="path-fineprint">One-time and lifetime licences arrive at 1.0. During the alpha it's Patreon only.</p>
+        <p class="path-fineprint">One-time and lifetime licenses arrive at 1.0. During the alpha it's Patreon only.</p>
       </div>
     </div>
 

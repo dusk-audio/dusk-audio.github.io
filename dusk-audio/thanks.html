@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+  Dusk Audio — post-purchase landing (Lemon Squeezy redirects here after checkout).
+  Static. Reuses styles.css.
+  PLACEHOLDERS (marked <!-- TODO -->):
+  - Cal.com booking URL (Founders 1:1 "Zero-to-Export" onboarding)
+  - Founders Discord invite
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thank you — Dusk Studio</title>
+  <meta name="description" content="Your Dusk Studio purchase is complete. Download links are in your email; Founders, pick your onboarding.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="wrap nav-wrap">
+      <a class="wordmark" href="index.html" aria-label="Dusk Audio — home">DUSK&nbsp;AUDIO</a>
+      <a class="btn btn-ghost nav-cta" href="index.html">Back to site</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="section" aria-labelledby="thanks-heading">
+      <div class="wrap notice-wrap">
+        <header class="section-head">
+          <h2 id="thanks-heading">Thank you — you're in.</h2>
+          <p class="section-lede">Your purchase is complete. Lemon Squeezy has emailed your licence key and the download links for Linux, macOS, and Windows. If it's not in your inbox in a couple of minutes, check spam — it sends from Lemon Squeezy, not us.</p>
+        </header>
+
+        <div class="guarantee-grid">
+          <div class="guarantee-item">
+            <h3>1 — Download &amp; install</h3>
+            <p>Grab the build for your OS from the Lemon Squeezy email. First launch on Mac/Windows needs one extra click — the <a href="index.html#first-launch">first-launch guide</a> walks it in 30 seconds.</p>
+          </div>
+          <div class="guarantee-item">
+            <h3>2 — Founders: pick your onboarding</h3>
+            <p>Founders Edition includes a 15-minute "Zero-to-Export" session — your pick:</p>
+            <p>
+              <!-- TODO: add href (Cal.com booking URL) and remove btn-disabled/aria-disabled once the URL exists. -->
+              <a class="btn-link btn-disabled" aria-disabled="true">Book a 1:1 call → (link added at launch)</a><br>
+              <!-- TODO: add href (Founders Discord invite) and remove btn-disabled/aria-disabled once the invite exists. -->
+              <a class="btn-link btn-disabled" aria-disabled="true">Join the Founders Discord → (link added at launch)</a>
+            </p>
+          </div>
+          <div class="guarantee-item">
+            <h3>3 — The guarantee runs 30 days</h3>
+            <p>"Finish your song or it's free" starts today. If you can't export a track in 30 days, email <a href="mailto:support@duskaudio.com">support@duskaudio.com</a> for a full refund — and keep the demo + Soundfont Downloader either way.</p>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md">Open the manual</a>
+          <a class="btn btn-ghost" href="index.html">Back to duskaudio.com</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <p>© <span id="year"></span> Marc Korte / Dusk Audio. Built with open-source tools. GPL-3.0.</p>
+    </div>
+  </footer>
+
+  <script src="nav.js" defer></script>
+</body>
+</html>
