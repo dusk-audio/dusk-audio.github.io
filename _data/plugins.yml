@@ -58,10 +58,10 @@
 - name: DuskVerb
   slug: duskverb
   tagline: Professional Algorithmic Reverb
-  description: Professional algorithmic reverb with 4 distinct DSP engines (Dattorro
-    plate, 6-AP density tank, Quad Room, 16-channel Hadamard FDN), early reflections,
-    random-walk modulation, freeze, and 16 hardware-anchored factory presets. Completely
-    free.
+  description: Professional algorithmic reverb with 11 distinct DSP engines (plate,
+    chamber, spring, gated, shimmer, reverse, hall, and more), Tone/Character/Duck
+    macros, early reflections, random-walk modulation, freeze, and 20 hardware-inspired
+    factory presets. Completely free.
   status: pre-release
   featured: true
   version: 0.6.0
