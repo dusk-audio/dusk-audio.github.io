@@ -4,7 +4,7 @@ title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
 description: Algorithmic reverb with seven distinct DSP engines — Dattorro vintage plate, 6-AP high-density tank, Quad Room, 16-channel Hadamard FDN, Spring Tank, Non-Linear gated, and Eno-style Shimmer. 35+ hardware-anchored factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS.
-version: "0.5.5"
+version: "0.6.0"
 screenshot: /assets/images/plugins/DuskVerb-Eno-FDN.png
 
 screenshots:
@@ -54,6 +54,17 @@ requirements:
   - "Sample rates: 44.1 kHz – 192 kHz (sample-rate independent)"
 
 changelog:
+  - version: "0.6.0"
+    date: "2026-07-02"
+    changes:
+      - "New Accurate Hall engine (FDN plus per-octave GEQ) and Dense Hall engine; hall presets migrated for honest RT60 and smoother, less metallic tails."
+      - "New Diffused Early Reflections and Reverse Room engines."
+      - "Macro row added: Tone, Character, and Duck global shapers."
+      - "Shimmer overhaul: post-loop HF air voice plus down-octave lows (Deep Blue Day, Black Hole)."
+      - "Honest Decay knob recalibrated across all factory presets."
+      - "Two-column preset menu, brighter labels, and in-window dropdowns (fixes the Wayland/XWayland popup glitch)."
+      - "Extensive factory-preset retuning against Lexicon, Valhalla, and EMT hardware anchors."
+      - "State-restore and pluginval robustness fixes."
   - version: "0.5.4"
     date: "2026-05-08"
     changes:
