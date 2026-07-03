@@ -4,7 +4,7 @@ title: Multi-Q
 slug: multi-q
 tagline: Universal EQ — Digital, British Console, and Tube
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
-version: "0.10.6"
+version: "0.10.7"
 screenshot: /assets/images/plugins/multi-q-digital.png
 screenshots:
   - image: /assets/images/plugins/multi-q-digital.png
@@ -35,6 +35,12 @@ requirements:
   - "Sample rates: 44.1kHz – 192kHz"
 
 changelog:
+  - version: "0.10.7"
+    date: "2026-07-03"
+    changes:
+      - "Fix British and Tube presets resetting to Default when loaded from the host preset menu (e.g. Bitwig)"
+      - "Keep the plugin's own preset dropdowns in sync across Digital, British, and Tube modes"
+      - "Eliminate the click when switching EQ modes"
   - version: "0.10.5"
     date: "2026-05-08"
     changes:
