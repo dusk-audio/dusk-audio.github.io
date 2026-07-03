@@ -2,17 +2,18 @@
   slug: 4k-eq
   tagline: Classic British Console EQ Emulation
   description: Professional 4-band parametric EQ with Brown/Black modes, analog saturation
-    modeling, and real-time spectrum analyzer. The legendary console sound, completely
-    free.
+    modeling, and real-time spectrum analyzer. VST3/AU/LV2/CLAP. The legendary console
+    sound, completely free.
   status: released
   featured: true
   version: 1.0.10
 - name: Multi-Comp
   slug: multi-comp
   tagline: Multi-mode dynamics compressor
-  description: 8 compression modes including Vintage FET, Vintage Opto, Bus Compressor,
-    Classic VCA, Studio FET/VCA, Digital, and 4-band Multiband. Hardware-accurate
-    transformer emulation, analog noise modeling, sidechain HP filter, Off/2x/4x oversampling.
+  description: 8 compression modes including Vintage FET, Vintage Opto, a stereo-linked
+    SSL-style Bus Compressor, Classic VCA, Studio FET/VCA, Digital, and 4-band Multiband.
+    Measured 1176 ratios, T4B opto afterglow, adjustable FET threshold, gain-scaled
+    harmonics, transformer emulation, sidechain HP filter, and Off/2x/4x oversampling.
     Professional dynamics control, completely free.
   status: released
   featured: true
@@ -20,8 +21,9 @@
 - name: Spectrum Analyzer
   slug: spectrum-analyzer
   tagline: Real-time FFT spectrum visualization
-  description: See your sound with crystal clarity. Real-time FFT analysis with multiple
-    display modes and customizable visuals.
+  description: See your sound with crystal clarity. Real-time FFT analysis with LUFS
+    metering, true-peak detection, K-System scales, and stereo correlation. Multiple
+    display modes, Mid/Side routing, and VST3/AU/LV2/CLAP support.
   status: released
   featured: true
   version: 1.0.1
@@ -29,7 +31,8 @@
   slug: chord-analyzer
   tagline: Intelligent chord detection and display
   description: Identify chords in real-time as you play. Perfect for learning, transcription,
-    and music theory exploration.
+    and music theory exploration. Works as a MIDI insert in Cubase, plus instrument
+    and FX versions for every major DAW.
   status: released
   featured: true
   version: 1.1.4
@@ -51,7 +54,8 @@
   slug: multi-q
   tagline: Universal EQ — Digital, British Console, and Tube
   description: Three professional EQs in one plugin. Modern parametric with dynamics,
-    classic British console emulation, and vintage passive tube EQ. Completely free.
+    classic British console emulation with E-series transformer-core low-end saturation,
+    and vintage passive tube EQ. Completely free.
   status: released
   featured: true
   version: 0.10.7
