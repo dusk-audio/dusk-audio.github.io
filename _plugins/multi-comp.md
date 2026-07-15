@@ -30,7 +30,7 @@ requirements:
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
-  - "Sample rates: 44.1kHz – 192kHz"
+  - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
   - version: "1.3.1"
@@ -75,22 +75,22 @@ changelog:
       - Available for Linux, Windows, and macOS
 ---
 
-Multi-Comp is a professional multi-mode dynamics compressor that brings classic hardware compression styles to your DAW — completely free.
+Multi-Comp is a professional multi-mode dynamics compressor that brings classic hardware compression styles to your DAW, completely free.
 
 ## Overview
 
 Multi-Comp provides 8 distinct compression modes, each capturing the character of classic hardware designs:
 
-- **Vintage Opto** — Classic tube optical leveling amplifier
-- **Vintage FET** — Vintage FET limiter with All-Buttons mode
-- **Classic VCA** — Punchy 1970s VCA with soft knee
-- **Bus Compressor** — British console bus compressor
-- **Studio FET** — Cleaner, modern FET limiter
-- **Studio VCA** — Modern British dual VCA compressor
-- **Digital** — Transparent, precise digital compression
-- **Multiband** — 4-band with Linkwitz-Riley crossovers
+- **Vintage Opto**: Classic tube optical leveling amplifier
+- **Vintage FET**: Vintage FET limiter with All-Buttons mode
+- **Classic VCA**: Punchy 1970s VCA with soft knee
+- **Bus Compressor**: British console bus compressor
+- **Studio FET**: Cleaner, modern FET limiter
+- **Studio VCA**: Modern British dual VCA compressor
+- **Digital**: Transparent, precise digital compression
+- **Multiband**: 4-band with Linkwitz-Riley crossovers
 
-From smooth optical compression to aggressive FET limiting, and from precise digital control to powerful multiband processing — Multi-Comp covers every dynamics need.
+From smooth optical compression to aggressive FET limiting, and from precise digital control to powerful multiband processing, Multi-Comp covers every dynamics need.
 
 ## Compression Modes
 
@@ -216,43 +216,43 @@ Multi-Comp includes 13 professionally crafted presets:
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
 | Smooth Opto Vocal | Opto | Classic optical style, Peak Reduction 50%, Compress mode |
-| Vocal Presence | Vintage FET | 4:1, Attack 0.5ms, Release 60ms — punchy presence |
-| Modern Pop Control | Studio FET | 8:1, Attack 0.3ms, Auto-makeup — fast modern control |
+| Vocal Presence | Vintage FET | 4:1, Attack 0.5ms, Release 60ms, punchy presence |
+| Modern Pop Control | Studio FET | 8:1, Attack 0.3ms, Auto-makeup, fast modern control |
 
 ### Drums
 
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
-| Classic Drum Glue | Bus | Attack 30ms, Release Auto, 4:1 — classic bus sound |
-| Room Nuke (FET All) | Vintage FET | All-buttons-in, Attack 0.8ms, Release 50ms — room destruction |
-| Snare Snap | Classic VCA | Attack 15ms, Release 50ms, 4:1 — punchy snare |
+| Classic Drum Glue | Bus | Attack 30ms, Release Auto, 4:1, classic bus sound |
+| Room Nuke (FET All) | Vintage FET | All-buttons-in, Attack 0.8ms, Release 50ms, room destruction |
+| Snare Snap | Classic VCA | Attack 15ms, Release 50ms, 4:1, punchy snare |
 
 ### Bass
 
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
-| Rock Bass Anchor | Vintage FET | 4:1, Attack 0.8ms, Release 250ms — solid foundation |
-| Vintage Pinned Bass | Opto | Peak Reduction 65% — classic Motown style |
+| Rock Bass Anchor | Vintage FET | 4:1, Attack 0.8ms, Release 250ms, solid foundation |
+| Vintage Pinned Bass | Opto | Peak Reduction 65%, classic Motown style |
 
 ### Guitars
 
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
-| Acoustic Strum Tamer | Studio VCA | 3:1, Attack 2ms, Pristine saturation — pick spike control |
-| Funk Rhythm Guitar | Vintage FET | 4:1, Attack 0.3ms, Release 50ms — funky pumping |
+| Acoustic Strum Tamer | Studio VCA | 3:1, Attack 2ms, Pristine saturation, pick spike control |
+| Funk Rhythm Guitar | Vintage FET | 4:1, Attack 0.3ms, Release 50ms, funky pumping |
 
 ### Mix Bus
 
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
-| Console-Style Glue | Bus | Attack 10ms, Release Auto, 4:1 — classic mix bus glue |
-| Gentle Master | Studio VCA | 1.5:1, Attack 30ms, Pristine — transparent mastering |
+| Console-Style Glue | Bus | Attack 10ms, Release Auto, 4:1, classic mix bus glue |
+| Gentle Master | Studio VCA | 1.5:1, Attack 30ms, Pristine, transparent mastering |
 
 ### Creative
 
 | Preset | Mode | Description |
 |:-------|:-----|:------------|
-| EDM Pump (115-130 BPM) | Vintage FET | 20:1, Attack 0.1ms, Release 250ms — sidechain pumping |
+| EDM Pump (115-130 BPM) | Vintage FET | 20:1, Attack 0.1ms, Release 250ms, sidechain pumping |
 
 ## Technical Specifications
 
@@ -264,13 +264,13 @@ Multi-Comp includes 13 professionally crafted presets:
 - **Stereo linking:** Full stereo processing with linked GR
 
 ### Parameter Ranges
-- **Opto Peak Reduction:** 0–100%
+- **Opto Peak Reduction:** 0 to 100%
 - **FET Input/Output:** Various per mode
-- **Attack:** 0.02ms – 100ms (mode dependent)
-- **Release:** 50ms – 3s (mode dependent)
-- **Ratio:** 1:1 – ∞:1 (mode dependent)
-- **Sidechain HP:** 20–500Hz
-- **Mix:** 0–100% (parallel compression)
+- **Attack:** 0.02ms to 100ms (mode dependent)
+- **Release:** 50ms to 3s (mode dependent)
+- **Ratio:** 1:1 to ∞:1 (mode dependent)
+- **Sidechain HP:** 20 to 500Hz
+- **Mix:** 0 to 100% (parallel compression)
 
 ### Performance
 - **CPU usage:** ~2-4% per instance (2x oversampling, 48kHz)
@@ -280,11 +280,11 @@ Multi-Comp includes 13 professionally crafted presets:
 ## DAW Compatibility
 
 ### Fully Tested
-- **Reaper** — VST3/LV2, all features working
-- **Ardour** — LV2 with full GUI
-- **Bitwig Studio** — VST3, presets working
-- **Carla** — VST3/LV2, standalone host
-- **Standalone** — JUCE standalone application
+- **Reaper**: VST3/LV2, all features working
+- **Ardour**: LV2 with full GUI
+- **Bitwig Studio**: VST3, presets working
+- **Carla**: VST3/LV2, standalone host
+- **Standalone**: JUCE standalone application
 
 ### Expected to Work
 - Studio One, FL Studio

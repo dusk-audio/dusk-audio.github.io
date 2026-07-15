@@ -47,8 +47,8 @@
 - name: TapeMachine 2
   slug: tapemachine-2
   tagline: Two-machine analog tape emulation
-  description: The next-generation tape engine. Two modeled machines — Swiss 800
-    (Studer A800-style) and Classic 102 (Ampex ATR-102-style) — with anti-aliased
+  description: The next-generation tape engine with two modeled machines, Swiss 800
+    (Studer A800-style) and Classic 102 (Ampex ATR-102-style), featuring anti-aliased
     tape saturation, per-speed head bump and HF response, four tape speeds, four
     formulations, calibration levels, adjustable head width, wow & flutter, repro
     EQ, and machine-authentic front-panel toggles. 20 factory presets modeled on
@@ -64,7 +64,7 @@
   featured: false
 - name: Multi-Q
   slug: multi-q
-  tagline: Universal EQ — Digital, British Console, and Tube
+  tagline: "Universal EQ: Digital, British Console, and Tube"
   description: Three professional EQs in one plugin. Modern parametric with dynamics,
     classic British console emulation with E-series transformer-core low-end saturation,
     and vintage passive tube EQ. Completely free.

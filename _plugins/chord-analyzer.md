@@ -29,7 +29,7 @@ changelog:
   - version: "1.1.4"
     date: "2026-05-13"
     changes:
-      - "Cubase: Chord Analyzer MIDI now appears in MIDI Inserts slot (VST3 subcategory Fx|Instrument) — fixes #89"
+      - "Cubase: Chord Analyzer MIDI now appears in MIDI Inserts slot (VST3 subcategory Fx|Instrument). Fixes #89"
   - version: "1.1.3"
     date: "2026-05-08"
     changes:
@@ -39,7 +39,7 @@ changelog:
   - version: "1.1.1"
     date: "2026-04-17"
     changes:
-      - "Added Respect Sustain parameter (default on) — when MIDI CC 64 is held, the detected chord persists until the pedal is released. Useful for piano transcription workflows."
+      - "Added Respect Sustain parameter (default on): when MIDI CC 64 is held, the detected chord persists until the pedal is released. Useful for piano transcription workflows."
       - "Native LV2 (Headless): added respect_sustain ControlPort at index 10 (existing detection-port indices unchanged)"
   - version: "1.1.0"
     date: "2026-04-17"
@@ -61,7 +61,7 @@ changelog:
       - Resizable UI
 ---
 
-Chord Analyzer is a real-time MIDI chord detection and music theory analysis plugin — completely free.
+Chord Analyzer is a real-time MIDI chord detection and music theory analysis plugin, completely free.
 
 ## Overview
 
@@ -77,9 +77,9 @@ Set your key (any root, major or minor) and see Roman numeral analysis for every
 
 ### Chord Suggestions
 Three tiers of suggestions based on your current chord:
-- **Basic** — Common progressions (I-IV-V, ii-V-I, vi-IV)
-- **Intermediate** — Secondary dominants, borrowed chords, tritone substitutions
-- **Advanced** — Chromatic mediants, Neapolitan chords, augmented 6th approaches
+- **Basic**: Common progressions (I-IV-V, ii-V-I, vi-IV)
+- **Intermediate**: Secondary dominants, borrowed chords, tritone substitutions
+- **Advanced**: Chromatic mediants, Neapolitan chords, augmented 6th approaches
 
 ### Session Recording
 Record your chord progressions with timing data and export as JSON for analysis, notation software, or further processing.
@@ -111,7 +111,7 @@ If you're on a desktop DAW, use the **MIDI** variant. If you're on Zynthian or a
 1. Add your synth to a MIDI track as normal
 2. In the device chain, click **+** before your synth
 3. Search for **"Chord Analyzer MIDI"** in the **Note FX** category and add it
-4. MIDI passes through automatically — your synth still receives all notes
+4. MIDI passes through automatically, so your synth still receives all notes
 
 ### Reaper
 
@@ -141,7 +141,7 @@ Ableton doesn't list MIDI-only plugins in MIDI tracks the same way other DAWs do
 3. Click the **Show Chain List** button (three horizontal lines on the left side of the rack)
 4. Right-click in the empty space below your synth's chain and choose **Create Chain**
 5. Drag **"Chord Analyzer"** (the instrument version, not MIDI) from the browser into the new empty chain
-6. Both chains receive the same MIDI — your synth produces sound, the Chord Analyzer shows chords
+6. Both chains receive the same MIDI, so your synth produces sound and the Chord Analyzer shows chords
 
 ### FL Studio
 
@@ -151,11 +151,11 @@ Use the **instrument version** with Patcher:
 2. Inside Patcher, add both **"Chord Analyzer"** and your synth as nodes
 3. Route the MIDI input to both plugins in parallel
 4. Route only your synth's audio output to the Patcher output
-5. Both plugins receive MIDI — your synth produces sound, the Chord Analyzer shows chords
+5. Both plugins receive MIDI, so your synth produces sound and the Chord Analyzer shows chords
 
 ### Desktop LV2 Hosts (Ardour, Carla)
 
-Use **Chord Analyzer MIDI** — declares no audio ports, full custom visualizer in the host plugin window.
+Use **Chord Analyzer MIDI**: it declares no audio ports and provides a full custom visualizer in the host plugin window.
 
 1. Add **"Chord Analyzer MIDI"** to the MIDI chain before your synth
 2. MIDI passes through to the next plugin in the chain
@@ -163,7 +163,7 @@ Use **Chord Analyzer MIDI** — declares no audio ports, full custom visualizer 
 
 ### Headless LV2 Hosts (Zynthian)
 
-Use **Chord Analyzer Headless** — it exposes the detected chord through native LV2 output control ports so the host can render it in its own UI.
+Use **Chord Analyzer Headless**: it exposes the detected chord through native LV2 output control ports so the host can render it in its own UI.
 
 1. Install the bundle from the `chord-analyzer-headless-*.zip` (separate download)
 2. Add **"Chord Analyzer Headless"** to your MIDI chain before your synth
@@ -179,7 +179,7 @@ Use **Chord Analyzer Headless** — it exposes the detected chord through native
 | macOS | VST3 | `~/Library/Audio/Plug-Ins/VST3/` |
 | Windows | VST3 | `C:\Program Files\Common Files\VST3\` |
 
-The main download includes "Chord Analyzer" and "Chord Analyzer MIDI" — install whichever your DAW uses. The "Chord Analyzer Headless" variant ships in a separate `-headless-` zip aimed at Zynthian and other headless LV2 hosts; download it only if you need it.
+The main download includes "Chord Analyzer" and "Chord Analyzer MIDI"; install whichever your DAW uses. The "Chord Analyzer Headless" variant ships in a separate `-headless-` zip aimed at Zynthian and other headless LV2 hosts; download it only if you need it.
 
 ## Open Source
 
