@@ -8,10 +8,10 @@ version: "1.0.9"
 screenshot: /assets/images/plugins/tapemachine-screenshot.png
 
 features:
-  - Two tape machine models — Swiss800 and Classic102
-  - Four tape formulations — Type 456, GP9, Type 911, Type 250
-  - Four signal path modes — Repro, Sync, Input, Thru
-  - Three tape speeds — 7.5, 15, 30 IPS with NAB/CCIR/AES EQ curves
+  - "Two tape machine models: Swiss800 and Classic102"
+  - "Four tape formulations: Type 456, GP9, Type 911, Type 250"
+  - "Four signal path modes: Repro, Sync, Input, Thru"
+  - "Three tape speeds: 7.5, 15, 30 IPS with NAB/CCIR/AES EQ curves"
   - Physically-modeled Langevin saturation calibrated to real hardware
   - Separate Wow & Flutter controls with coherent stereo processing
   - Bias and calibration controls for fine-tuning tape response
@@ -28,7 +28,7 @@ requirements:
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
-  - "Sample rates: 44.1kHz – 192kHz"
+  - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
   - version: "1.0.9"
@@ -57,7 +57,7 @@ changelog:
       - Available for Linux, Windows, and macOS
 ---
 
-TapeMachine is a professional analog tape emulation, bringing the warmth and character of legendary reel-to-reel machines to your DAW — completely free.
+TapeMachine is a professional analog tape emulation, bringing the warmth and character of legendary reel-to-reel machines to your DAW, completely free.
 
 ## Overview
 
@@ -100,9 +100,9 @@ Like a real tape machine, TapeMachine offers multiple signal paths:
 
 | Mode | Description |
 |------|-------------|
-| **Repro** | Full tape processing — the classic sound |
+| **Repro** | Full tape processing, the classic sound |
 | **Sync** | Record head playback with extra HF rolloff (for overdub workflows) |
-| **Input** | Electronics only — hear just transformers and EQ coloration |
+| **Input** | Electronics only, hear just transformers and EQ coloration |
 | **Thru** | Clean bypass for A/B comparison |
 
 ## EQ Standards
@@ -111,20 +111,20 @@ Three professional equalization standards:
 
 | Standard | Character |
 |----------|-----------|
-| **NAB** | American — most HF pre-emphasis, warmest saturation |
-| **CCIR** | European — moderate emphasis, balanced response |
-| **AES** | Modern — minimal emphasis, most transparent |
+| **NAB** | American: most HF pre-emphasis, warmest saturation |
+| **CCIR** | European: moderate emphasis, balanced response |
+| **AES** | Modern: minimal emphasis, most transparent |
 
 ## Wow & Flutter
 
 TapeMachine features separate controls for wow and flutter effects:
 
-**Wow** — Slow pitch drift (0.3–0.8 Hz)
+**Wow:** Slow pitch drift (0.3 to 0.8 Hz)
 - Creates subtle vinyl-like wobble
 - Adds organic movement to sustained notes
 - Perfect for lo-fi and vintage vibes
 
-**Flutter** — Faster modulation (3–7 Hz)
+**Flutter:** Faster modulation (3 to 7 Hz)
 - Adds tape machine character
 - Creates subtle chorus-like effects
 - Includes random modulation for natural feel
@@ -136,38 +136,38 @@ Both effects share coherent stereo processing for a natural, phase-aligned sound
 TapeMachine includes 15 professionally crafted presets across 5 categories:
 
 **Subtle**
-- **Gentle Warmth** — Transparent analog glue
-- **Transparent Glue** — Subtle cohesion
-- **Mastering Touch** — Delicate tape character
+- **Gentle Warmth:** Transparent analog glue
+- **Transparent Glue:** Subtle cohesion
+- **Mastering Touch:** Delicate tape character
 
 **Warm**
-- **Classic Analog** — Traditional tape sound
-- **Vintage Warmth** — Rich, full-bodied tone
-- **Tube Console** — Console-style coloration
+- **Classic Analog:** Traditional tape sound
+- **Vintage Warmth:** Rich, full-bodied tone
+- **Tube Console:** Console-style coloration
 
 **Character**
-- **70s Rock** — That classic rock sound
-- **Tape Saturation** — Obvious tape drive
-- **Cassette Deck** — 4-track character
+- **70s Rock:** That classic rock sound
+- **Tape Saturation:** Obvious tape drive
+- **Cassette Deck:** 4-track character
 
 **Lo-Fi**
-- **Lo-Fi Warble** — Wobbly vintage vibes
-- **Worn Tape** — Aged tape artifacts
-- **Dusty Reel** — Nostalgic degradation
+- **Lo-Fi Warble:** Wobbly vintage vibes
+- **Worn Tape:** Aged tape artifacts
+- **Dusty Reel:** Nostalgic degradation
 
 **Mastering**
-- **Master Bus Glue** — Subtle mix cohesion
-- **Analog Sheen** — High-end polish
-- **Vintage Master** — Classic mastering chain
+- **Master Bus Glue:** Subtle mix cohesion
+- **Analog Sheen:** High-end polish
+- **Vintage Master:** Classic mastering chain
 
 ## Vintage Interface
 
 TapeMachine features a premium vintage interface inspired by classic studio equipment:
 
-- **Authentic VU Meters** — IEC 60268-17 compliant ballistics
-- **Animated Tape Reels** — Metallic appearance with rotating reflections
-- **Vintage Knobs** — Classic Bakelite-style controls
-- **Brushed Metal Panels** — Premium studio equipment aesthetic
+- **Authentic VU Meters:** IEC 60268-17 compliant ballistics
+- **Animated Tape Reels:** Metallic appearance with rotating reflections
+- **Vintage Knobs:** Classic Bakelite-style controls
+- **Brushed Metal Panels:** Premium studio equipment aesthetic
 
 ## Technical Specifications
 
@@ -180,26 +180,26 @@ TapeMachine features a premium vintage interface inspired by classic studio equi
 ### Parameter Ranges
 - **Input Gain:** ±12dB
 - **Output Gain:** ±12dB
-- **Saturation:** 0–100%
-- **Bias:** 0–100%
-- **Wow:** 0–100%
-- **Flutter:** 0–100%
-- **Mix:** 0–100%
-- **HP Filter:** 20–500Hz
-- **LP Filter:** 3kHz–20kHz
+- **Saturation:** 0 to 100%
+- **Bias:** 0 to 100%
+- **Wow:** 0 to 100%
+- **Flutter:** 0 to 100%
+- **Mix:** 0 to 100%
+- **HP Filter:** 20 to 500Hz
+- **LP Filter:** 3kHz to 20kHz
 
 ### Performance
-- **CPU usage:** ~2–4% per instance (4x oversampling, 48kHz)
+- **CPU usage:** ~2 to 4% per instance (4x oversampling, 48kHz)
 - **Memory:** ~15MB per instance
 - **Latency:** ~64 samples (2x) / ~128 samples (4x)
 
 ## DAW Compatibility
 
 ### Fully Tested
-- **Reaper** — VST3/LV2, all features working
-- **Ardour** — LV2 with full GUI
-- **Carla** — VST3/LV2, standalone host
-- **Standalone** — JUCE standalone application
+- **Reaper:** VST3/LV2, all features working
+- **Ardour:** LV2 with full GUI
+- **Carla:** VST3/LV2, standalone host
+- **Standalone:** JUCE standalone application
 
 ### Expected to Work
 - Bitwig Studio, Studio One, FL Studio

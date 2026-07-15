@@ -9,7 +9,7 @@ screenshot: /assets/images/plugins/4k-eq-screenshot.png
 
 features:
   - 4-band parametric EQ (Low, Low-Mid, High-Mid, High)
-  - Brown/Black modes — E-series vs G-series characteristics
+  - "Brown/Black modes: E-series vs G-series characteristics"
   - High-pass filter (18dB/oct) and low-pass filter (12dB/oct)
   - Bell/Shelf switching on LF and HF bands (Black mode)
   - 2x/4x oversampling for anti-aliased processing
@@ -26,7 +26,7 @@ requirements:
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
-  - "Sample rates: 44.1kHz – 192kHz"
+  - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
   - version: "1.0.10"
@@ -51,7 +51,7 @@ changelog:
       - Available for Linux, Windows, and macOS
 ---
 
-4K-EQ is a professional console EQ emulation, bringing the legendary sound of classic British mixing consoles to your DAW — completely free.
+4K-EQ is a professional console EQ emulation, bringing the legendary sound of classic British mixing consoles to your DAW. Completely free.
 
 ## Overview
 
@@ -84,7 +84,7 @@ Whether you're tracking, mixing, or mastering, 4K-EQ delivers the console sound 
 - **Output transformer** harmonics (E-Series only)
 - **Per-band saturation** when boosting
 
-Clean by default (0% saturation) — transparent unless driven. Push the Drive control to add warmth and glue.
+Clean by default (0% saturation), and transparent unless driven. Push the Drive control to add warmth and glue.
 
 ## Factory Presets
 
@@ -116,29 +116,29 @@ Clean by default (0% saturation) — transparent unless driven. Push the Drive c
 - **Saturation model:** Asymmetric soft-clipping (NE5534 op-amp characteristic)
 
 ### Parameter Ranges (Console Hardware-Accurate)
-- **LF Gain:** ±20dB | **LF Freq:** 30–480Hz
-- **LMF Gain:** ±20dB | **LMF Freq:** 200–2500Hz
-- **HMF Gain:** ±20dB | **HMF Freq:** 600–7000Hz
-- **HF Gain:** ±20dB | **HF Freq:** 1.5kHz–16kHz
-- **Q Range:** 0.4–4.0 (proportional in Black mode)
-- **HPF:** 16–350Hz (18dB/oct)
-- **LPF:** 3kHz–22kHz (12dB/oct)
-- **Saturation:** 0–100%
+- **LF Gain:** ±20dB | **LF Freq:** 30 to 480Hz
+- **LMF Gain:** ±20dB | **LMF Freq:** 200 to 2500Hz
+- **HMF Gain:** ±20dB | **HMF Freq:** 600 to 7000Hz
+- **HF Gain:** ±20dB | **HF Freq:** 1.5kHz to 16kHz
+- **Q Range:** 0.4 to 4.0 (proportional in Black mode)
+- **HPF:** 16 to 350Hz (18dB/oct)
+- **LPF:** 3kHz to 22kHz (12dB/oct)
+- **Saturation:** 0 to 100%
 - **Output Gain:** ±12dB
 
 ### Performance
-- **CPU usage:** ~1–2% per instance (2x oversampling, 48kHz)
+- **CPU usage:** ~1 to 2% per instance (2x oversampling, 48kHz)
 - **Memory:** ~10MB per instance
 - **Latency:** ~32 samples (2x) / ~96 samples (4x)
-- Highly optimized — use on every channel without CPU issues
+- Highly optimized: use on every channel without CPU issues
 
 ## DAW Compatibility
 
 ### Fully Tested
-- **Reaper** — VST3/LV2, all features working
-- **Ardour** — LV2 with full GUI
-- **Carla** — VST3/LV2, standalone host
-- **Standalone** — JUCE standalone application
+- **Reaper:** VST3/LV2, all features working
+- **Ardour:** LV2 with full GUI
+- **Carla:** VST3/LV2, standalone host
+- **Standalone:** JUCE standalone application
 
 ### Expected to Work
 - Bitwig Studio, Studio One, FL Studio

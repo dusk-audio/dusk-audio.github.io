@@ -6,7 +6,7 @@ description: Support the development of free audio plugins through Patreon, dona
 permalink: /support/
 ---
 
-All Dusk Audio plugins are **100% free** — no trials, no feature locks, no nag screens. Development is funded entirely by optional support from users who find value in these tools.
+All Dusk Audio plugins are **100% free**: no trials, no feature locks, no nag screens. Development is funded entirely by optional support from users who find value in these tools.
 
 If these plugins help your music, consider giving back!
 
@@ -38,7 +38,7 @@ Not in a position to donate? No problem! There are other valuable ways to suppor
 
 ### Contribute
 
-- The plugins are open source — contributions are welcome!
+- The plugins are open source, and contributions are welcome!
 - Help with documentation, translations, or testing
 - Visit the [GitHub repository]({{ site.github_repo }}) to get involved
 
@@ -48,7 +48,7 @@ Not in a position to donate? No problem! There are other valuable ways to suppor
 
 I believe great audio tools should be accessible to everyone, regardless of budget. The Linux audio community especially deserves quality plugins, and making them free removes barriers for hobbyists, students, and creators worldwide.
 
-Your support — whether financial or through spreading the word — makes this possible. Thank you!
+Your support, whether financial or through spreading the word, makes this possible. Thank you!
 
 <div style="text-align: center; margin-top: var(--spacing-2xl);">
   <a href="{{ site.patreon_url }}" class="btn btn-primary btn-lg">Support on Patreon</a>

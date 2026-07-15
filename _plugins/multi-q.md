@@ -2,17 +2,17 @@
 layout: plugin
 title: Multi-Q
 slug: multi-q
-tagline: Universal EQ — Digital, British Console, and Tube
+tagline: "Universal EQ: Digital, British Console, and Tube"
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
 version: "0.10.7"
 screenshot: /assets/images/plugins/multi-q-digital.png
 screenshots:
   - image: /assets/images/plugins/multi-q-digital.png
-    caption: "Digital Mode — Modern parametric EQ with per-band dynamics"
+    caption: "Digital Mode: Modern parametric EQ with per-band dynamics"
   - image: /assets/images/plugins/multi-q-british.png
-    caption: "British Mode — Classic console EQ with Brown/Black modes"
+    caption: "British Mode: Classic console EQ with Brown/Black modes"
   - image: /assets/images/plugins/multi-q-tube.png
-    caption: "Tube Mode — Vintage passive tube EQ with tube saturation"
+    caption: "Tube Mode: Vintage passive tube EQ with tube saturation"
 
 features:
   - Three distinct EQ modes in one plugin
@@ -32,7 +32,7 @@ requirements:
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "64-bit DAW with VST3, LV2, or AU support"
-  - "Sample rates: 44.1kHz – 192kHz"
+  - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
   - version: "0.10.7"
@@ -60,15 +60,15 @@ changelog:
       - Real-time spectrum analyzer
 ---
 
-Multi-Q is a universal equalizer that combines three legendary EQ designs into one powerful plugin — completely free.
+Multi-Q is a universal equalizer that combines three legendary EQ designs into one powerful plugin. Completely free.
 
 ## Overview
 
 Instead of buying separate plugins for different EQ tasks, Multi-Q gives you everything in one place:
 
-- **Digital** — Modern surgical precision with dynamic EQ
-- **British** — Classic console character
-- **Tube** — Vintage vintage passive tube warmth and musicality
+- **Digital:** Modern surgical precision with dynamic EQ
+- **British:** Classic console character
+- **Tube:** Vintage vintage passive tube warmth and musicality
 
 Switch between modes instantly while keeping your session settings. Each mode has been carefully crafted to capture the essence of the original hardware.
 
@@ -87,13 +87,13 @@ Modern parametric EQ with per-band dynamics and dynamic processing built in.
 - Real-time spectrum analyzer with pre/post display
 
 **Dynamic EQ:**
-Each band can respond dynamically to the input signal. Set a threshold, and the band will boost or cut based on the audio level — perfect for de-essing, dynamic resonance control, or frequency-dependent compression.
+Each band can respond dynamically to the input signal. Set a threshold, and the band will boost or cut based on the audio level: perfect for de-essing, dynamic resonance control, or frequency-dependent compression.
 
 ## British Mode
 
 <img src="{{ '/assets/images/plugins/multi-q-british.png' | relative_url }}" alt="Multi-Q British Mode">
 
-Classic console EQ emulation — the same engine as our 4K-EQ, integrated into Multi-Q.
+Classic console EQ emulation using the same engine as our 4K-EQ, integrated into Multi-Q.
 
 **Features:**
 - 4-band parametric (LF, LMF, HMF, HF)
@@ -104,14 +104,14 @@ Classic console EQ emulation — the same engine as our 4K-EQ, integrated into M
 - Per-band harmonic modeling
 
 **Brown vs Black:**
-- **Brown** — Musical, broad curves with transformer warmth
-- **Black** — Surgical, tight response with proportional Q
+- **Brown:** Musical, broad curves with transformer warmth
+- **Black:** Surgical, tight response with proportional Q
 
 ## Tube Mode
 
 <img src="{{ '/assets/images/plugins/multi-q-tube.png' | relative_url }}" alt="Multi-Q Tube Mode">
 
-Vintage passive tube EQ with tube saturation — the legendary "boost and cut at the same frequency" trick.
+Vintage passive tube EQ with tube saturation, home of the legendary "boost and cut at the same frequency" trick.
 
 **Features:**
 - LF Boost and Attenuation with selectable frequency
@@ -122,7 +122,7 @@ Vintage passive tube EQ with tube saturation — the legendary "boost and cut at
 - Vintage teal panel aesthetic
 
 **The vintage passive tube Trick:**
-Boosting and cutting at the same low frequency creates a unique curve that adds punch without mud — a technique used on countless classic records.
+Boosting and cutting at the same low frequency creates a unique curve that adds punch without mud, a technique used on countless classic records.
 
 ## Technical Specifications
 
