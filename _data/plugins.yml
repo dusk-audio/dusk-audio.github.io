@@ -47,10 +47,10 @@
 - name: TapeMachine 2
   slug: tapemachine-2
   tagline: Two-machine analog tape emulation
-  description: The next-generation tape engine with two modeled machines, Swiss 800
-    (Studer A800-style) and Classic 102 (Ampex ATR-102-style), featuring anti-aliased
+  description: The next-generation tape engine with two modeled machines, Swiss
+    (Studer A800-style) and American (Ampex ATR-102-style), featuring anti-aliased
     tape saturation, per-speed head bump and HF response, four tape speeds, four
-    formulations, calibration levels, adjustable head width, wow & flutter, repro
+    formulations, adjustable head width, wow & flutter, repro
     EQ, and machine-authentic front-panel toggles. 20 factory presets modeled on
     the hardware units' classic settings. Completely free.
   status: released
