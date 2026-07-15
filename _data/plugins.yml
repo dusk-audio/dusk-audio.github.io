@@ -44,6 +44,18 @@
   status: released
   featured: true
   version: 1.0.9
+- name: TapeMachine 2
+  slug: tapemachine-2
+  tagline: Two-machine analog tape emulation
+  description: The next-generation tape engine. Two modeled machines — Swiss 800
+    (Studer A800-style) and Classic 102 (Ampex ATR-102-style) — with anti-aliased
+    tape saturation, per-speed head bump and HF response, four tape speeds, four
+    formulations, calibration levels, adjustable head width, wow & flutter, repro
+    EQ, and machine-authentic front-panel toggles. 20 factory presets modeled on
+    the hardware units' classic settings. Completely free.
+  status: released
+  featured: true
+  version: 1.0.0
 - name: Groovemind
   slug: groovemind
   tagline: AI-assisted groove generator
