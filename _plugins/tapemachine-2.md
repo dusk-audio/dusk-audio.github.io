@@ -3,24 +3,23 @@ layout: plugin
 title: TapeMachine 2
 slug: tapemachine-2
 tagline: Two-Machine Analog Tape Emulation
-description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss 800 and Classic 102, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for macOS and Linux.
+description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for macOS and Linux.
 version: "1.0.0"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
 
 features:
-  - "Two modeled machines: Swiss 800 (Studer A800-style) and Classic 102 (Ampex ATR-102-style)"
+  - "Two modeled machines: Swiss (Studer A800-style) and American (Ampex ATR-102-style)"
   - Anti-aliased waveshaping saturation (ADAA with internal oversampling)
   - Per-speed head bump and high-frequency response modeling
   - "Four tape speeds: 3.75, 7.5, 15, and 30 IPS"
-  - "Four tape formulations: Type 456, GP9, Type 900, Type 250"
-  - "Four calibration levels: +3, +6, +7.5, +9 dB"
-  - 'Adjustable head width on Classic 102: 1/4", 1/2", 1"'
+  - "Four tape formulations: 456, GP9, 900, 250"
+  - 'Adjustable head width (American machine): 1/4", 1/2", 1"'
   - "Machine-authentic front-panel toggles: Crosstalk, Wow & Flutter, Transformer"
   - "Four signal path modes: Repro, Sync, Input, Thru"
   - NAB and CCIR EQ standards
   - Separate Wow & Flutter controls with coherent stereo processing
   - Four-band advanced Repro EQ (LF / LMF / HMF / HF)
-  - Bias and auto-calibration controls for fine-tuning tape response
+  - Bias and Auto Bias controls for fine-tuning tape response
   - Auto Compensation mode for unity gain across drive levels
   - Dual stereo VU meters with vintage analog styling
   - 20 factory presets modeled on the hardware units' classic settings
@@ -39,10 +38,10 @@ changelog:
     date: "2026-07-15"
     changes:
       - Ground-up DPF rebuild of TapeMachine with AU, VST3, CLAP, and LV2 support
-      - Swiss 800 (Studer A800-style) and Classic 102 (Ampex ATR-102-style) machines
+      - Swiss (Studer A800-style) and American (Ampex ATR-102-style) machines
       - Anti-aliased waveshaping saturation with per-speed head bump and HF response
-      - Four tape speeds (3.75 to 30 IPS), four formulations, and four calibration levels
-      - Adjustable head width and ATR-style front-panel toggles on Classic 102
+      - Four tape speeds (3.75 to 30 IPS) and four tape formulations
+      - Adjustable head width and ATR-style front-panel toggles on American
       - Four-band advanced Repro EQ modeled on the hardware repro path
       - 20 factory presets modeled on the hardware units' classic settings
 ---
@@ -59,13 +58,13 @@ Whether you want subtle glue on your mix bus, punchy tracking color, or heavy lo
 
 TapeMachine 2 recreates two iconic decks, each with its own saturation character and head response:
 
-**Swiss 800** (Studer A800-style)
+**Swiss** (Studer A800-style)
 - Clean, punchy, and precise
 - Transformerless signal path
 - Tight low end with extended highs
 - The modern studio workhorse
 
-**Classic 102** (Ampex ATR-102-style)
+**American** (Ampex ATR-102-style)
 - Warm, rich, and musical
 - Transformer coloration with adjustable head width
 - Pronounced head bump and smooth top end
@@ -78,10 +77,10 @@ Choose from four tape types, each with distinct sonic characteristics:
 
 | Type | Character | Best For |
 |------|-----------|----------|
-| **Type 456** | Warm, punchy saturation | Rock, pop, mix bus |
+| **456** | Warm, punchy saturation | Rock, pop, mix bus |
 | **GP9** | Clean, extended headroom | Mastering, classical |
-| **Type 900** | European precision | Warmth, character |
-| **Type 250** | Vintage, early saturation | Lo-fi, creative effects |
+| **900** | European precision | Warmth, character |
+| **250** | Vintage, early saturation | Lo-fi, creative effects |
 
 ## Tape Speeds
 
@@ -92,7 +91,7 @@ Four selectable speeds, each with its own head bump and high-frequency response:
 | **30 IPS** | Tightest low end, most extended highs |
 | **15 IPS** | The studio standard, balanced head bump |
 | **7.5 IPS** | Warmer, more pronounced low-frequency bump |
-| **3.75 IPS** | Lo-fi character (Classic 102) |
+| **3.75 IPS** | Lo-fi character (American) |
 
 ## Signal Path Modes
 
@@ -114,11 +113,10 @@ Two professional equalization standards on both machines:
 | **NAB** | American: more HF pre-emphasis, warmer saturation |
 | **CCIR** | European: balanced, precise response |
 
-## Calibration & Head Width
+## Head Width & Bias
 
-- **Calibration levels:** +3, +6, +7.5, and +9 dB reference fluxivity. Higher calibration drives the tape harder for more saturation.
-- **Head width** (Classic 102): 1/4", 1/2", or 1" head stack for different weight and low-end behavior.
-- **Bias & Auto Calibration:** dial in bias manually, or let auto-calibration find the optimal operating point.
+- **Head width** (American machine only): 1/4", 1/2", or 1" head stack for different weight and low-end behavior.
+- **Bias & Auto Bias:** dial in bias manually, or let Auto Bias find the optimal operating point.
 - **Auto Compensation:** holds unity output while driving the tape for color, so louder saturation never means a louder mix.
 
 ## Repro EQ
@@ -143,22 +141,22 @@ TapeMachine 2 features separate controls for wow and flutter:
 - Adds tape machine character
 - Creates subtle chorus-like effects
 
-Both effects share coherent stereo processing for a natural, phase-aligned sound, and can be disabled together from the Classic 102 front panel.
+Both effects share coherent stereo processing for a natural, phase-aligned sound, and can be disabled together from the American front panel.
 
 ## Factory Presets
 
 TapeMachine 2 ships with 20 factory presets, each modeled on the hardware units' classic settings, across five categories:
 
-**Classic 102: Master**
+**American: Master**
 - Big 456 Master, Nice 456 Master, Jazz Vision Master, Clean 900 Master
 
-**Classic 102: Color**
+**American: Color**
 - Fat 456 Master, GP9 Drum Bus, Massive Bass, Bright & Sizzly
 
-**Swiss 800: Mix**
+**Swiss: Mix**
 - Classic Rock Crisp, Modern Rock, Drum Bus, Hi-Fi Shine, Lush Film, Jazz Warmth
 
-**Swiss 800: Color**
+**Swiss: Color**
 - Thick Saturation, Hip-Hop Punch, Vocal Presence
 
 **Lo-Fi**
