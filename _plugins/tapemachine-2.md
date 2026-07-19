@@ -151,7 +151,7 @@ TapeMachine 2 ships with 20 factory presets, each modeled on the hardware units'
 - Big 456 Master, Nice 456 Master, Jazz Vision Master, Clean 900 Master
 
 **American: Color**
-- Fat 456 Master, GP9 Drum Bus, Massive Bass, Bright & Sizzly
+- Fat 456 Master, GP9 Drum Bus, Bass Bump, Bright & Sizzly
 
 **Swiss: Mix**
 - Classic Rock Crisp, Modern Rock, Drum Bus, Hi-Fi Shine, Lush Film, Jazz Warmth
