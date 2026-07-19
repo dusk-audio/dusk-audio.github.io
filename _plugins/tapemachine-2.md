@@ -4,7 +4,7 @@ title: TapeMachine 2
 slug: tapemachine-2
 tagline: Two-Machine Analog Tape Emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for macOS and Linux.
-version: "1.0.0"
+version: "1.0.1"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
 
 features:
@@ -34,6 +34,16 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.1"
+    date: "2026-07-19"
+    changes:
+      - Program-band tone matching: new correction bands keyed to a 500 Hz program envelope, neutral at the calibration anchor
+      - Deep-sub program bloom restores the reference decks' low-end thickening on hot material
+      - Per-preset repro sub-bell and lowpass resonance for closer factory-preset matching
+      - Crosstalk retuned to the reference; presets now honor their own Crosstalk switch
+      - Preset "Massive Bass" renamed "Bass Bump"
+      - Click the title nameplate to view Patreon supporters
+      - Fixed presets resetting when closing the DAW, and a gain-linking issue
   - version: "1.0.0"
     date: "2026-07-15"
     changes:
