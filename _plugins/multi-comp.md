@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.3.1"
+version: "1.3.2"
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
@@ -33,6 +33,13 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.3.2"
+    date: "2026-07-22"
+    changes:
+      - "Fix comb filtering when the multiband Mix knob is below 100% (issue #114) - the dry blend now uses the phase-matched sum of the split bands instead of the raw input"
+      - "Fix Mid-Side stereo link in multiband mode outputting undecoded M/S audio"
+      - "Fix a per-block allocation in the double-precision processing path (audio-thread safety)"
+      - "Linux: keep UI settings in ~/.config/DuskAudio instead of creating a stray ~/DuskAudio folder, migrating any existing settings on first run"
   - version: "1.3.1"
     date: "2026-07-03"
     changes:
