@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.3.3"
+version: "1.3.4"
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
@@ -33,6 +33,10 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.3.4"
+    date: "2026-07-23"
+    changes:
+      - "Bus Mix parallel compression now applies correctly with stereo link engaged (previously ignored on the stereo-linked path)"
   - version: "1.3.3"
     date: "2026-07-23"
     changes:
