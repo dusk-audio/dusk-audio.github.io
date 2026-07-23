@@ -55,7 +55,7 @@
     the hardware units' classic settings. Completely free.
   status: released
   featured: true
-  version: 1.0.1
+  version: 1.0.2
 - name: Groovemind
   slug: groovemind
   tagline: AI-assisted groove generator
