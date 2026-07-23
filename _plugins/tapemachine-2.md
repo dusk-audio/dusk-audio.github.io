@@ -8,7 +8,7 @@ version: "1.0.3"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
 
 features:
-  - "Two modeled machines: Swiss (Studer A800-style) and American (Ampex ATR-102-style)"
+  - "Two modeled machines: Swiss (A800-style) and American (ATR-102-style)"
   - Anti-aliased waveshaping saturation (ADAA with internal oversampling)
   - Per-speed head bump and high-frequency response modeling
   - "Four tape speeds: 3.75, 7.5, 15, and 30 IPS"
@@ -56,7 +56,7 @@ changelog:
     date: "2026-07-15"
     changes:
       - Ground-up DPF rebuild of TapeMachine with AU, VST3, CLAP, and LV2 support
-      - Swiss (Studer A800-style) and American (Ampex ATR-102-style) machines
+      - Swiss (A800-style) and American (ATR-102-style) machines
       - Anti-aliased waveshaping saturation with per-speed head bump and HF response
       - Four tape speeds (3.75 to 30 IPS) and four tape formulations
       - Adjustable head width and ATR-style front-panel toggles on American
@@ -76,13 +76,13 @@ Whether you want subtle glue on your mix bus, punchy tracking color, or heavy lo
 
 TapeMachine 2 recreates two iconic decks, each with its own saturation character and head response:
 
-**Swiss** (Studer A800-style)
+**Swiss** (A800-style)
 - Clean, punchy, and precise
 - Transformerless signal path
 - Tight low end with extended highs
 - The modern studio workhorse
 
-**American** (Ampex ATR-102-style)
+**American** (ATR-102-style)
 - Warm, rich, and musical
 - Transformer coloration with adjustable head width
 - Pronounced head bump and smooth top end
