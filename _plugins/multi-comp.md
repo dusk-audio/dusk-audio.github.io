@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.3.2"
+version: "1.3.3"
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
@@ -33,6 +33,16 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.3.3"
+    date: "2026-07-23"
+    changes:
+      - "Fix Opto presets and the Default program applying about -36 dB of gain, which made Vintage Opto near-silent at 100% Mix (Smooth Opto Vocal, Vintage Pinned Bass)"
+      - "Fix clicks when moving the Mix knob: the blend is now ramped per sample and both endpoints keep the processing chain warm"
+      - "Rebuild Auto-Gain as slow input/output level matching, so it no longer pumps with the compression or jump on preset and mode changes"
+      - "Level-compensate three FET presets that ran up to 21 dB hot (Vocal Presence, Room Nuke, Rock Bass Anchor)"
+      - "Fix bool parameters (Limit Mode, Over Easy, band Solo/Bypass/Enable) reading back wrong after a session or preset reload"
+      - "Fix a memory error that could corrupt audio or crash the host after a sample rate change with lookahead active"
+      - "Smooth the Bus and Digital per-mode mix controls when automated"
   - version: "1.3.2"
     date: "2026-07-22"
     changes:
