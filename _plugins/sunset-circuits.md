@@ -30,16 +30,17 @@ requirements:
 
 changelog:
   - version: "1.0.0"
-    date: "upcoming"
+    date: "2026-07-26"
     changes:
       - "Initial release"
       - "Six synth engines: Cosmos, Oracle, Mono, Modular, Prism, and Acid"
       - "Four-operator FM (Prism) with eight routing algorithms and per-operator envelopes"
-      - "Acid bass box with a three-lane pitch/accent/slide step sequencer"
-      - "Tempo-synced arpeggiator with host beat-grid phase-lock"
+      - "Acid bass box with a four-lane gate/pitch/accent/slide step sequencer"
+      - "Tempo-synced arpeggiator with host beat-grid phase-lock, swing, and accent patterns"
       - "Eight-slot modulation matrix"
       - "Drive, chorus, delay, and reverb, with a spring reverb in Modular mode"
-      - "54 factory presets and a user preset library"
+      - "54 factory presets, a user preset library, and a searchable preset browser"
+      - "Full MIDI implementation: sustain pedal, program change, poly aftertouch, pitch and mod wheels"
       - "1x / 2x / 4x oversampling"
 ---
 
