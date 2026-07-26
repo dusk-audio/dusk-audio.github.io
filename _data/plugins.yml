@@ -90,8 +90,9 @@
     semi-modular with spring reverb, a four-operator FM engine with eight
     algorithms, and a screaming acid bass box with a step sequencer. 54 factory
     presets and a user preset library. Completely free.
-  status: pre-release
-  featured: false
+  status: released
+  featured: true
+  version: 1.0.0
 - name: Convolution Reverb
   slug: convolution-reverb
   tagline: IR-based reverb
