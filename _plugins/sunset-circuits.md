@@ -1,0 +1,82 @@
+---
+layout: plugin
+title: Sunset Circuits
+slug: sunset-circuits
+tagline: Six vintage synth circuits in one instrument
+description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
+version: "1.0.0"
+
+features:
+  - Six synth engines under one roof, switch personality with one click
+  - "Cosmos: six-voice DCO poly with a built-in bucket-brigade chorus"
+  - "Oracle: five-voice analog poly with a self-oscillating filter and poly-mod"
+  - "Mono: aggressive monophonic with ring mod, hard sync, and a sub"
+  - "Modular: semi-modular with three oscillators, sample and hold, and a spring reverb"
+  - "Prism: four-operator FM with eight algorithms and per-operator envelopes"
+  - "Acid: diode-ladder bass box with accent, slide, and a 16-step pitch sequencer"
+  - Tempo-synced arpeggiator and step sequencer with host beat-grid phase-lock
+  - Eight-slot modulation matrix
+  - Built-in drive, chorus, delay, and reverb
+  - 1x / 2x / 4x oversampling
+  - 54 factory presets plus a user preset library
+  - Full automation support
+
+requirements:
+  - "Linux: Debian 12+, Ubuntu 22.04+, Fedora 36+ (glibc 2.31+)"
+  - "Windows: Windows 10 or later"
+  - "macOS: macOS 10.13 (High Sierra) or later"
+  - "64-bit DAW with VST3, CLAP, LV2, or AU support"
+  - "Sample rates: 44.1kHz to 192kHz"
+
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-26"
+    changes:
+      - "Initial release"
+      - "Six synth engines: Cosmos, Oracle, Mono, Modular, Prism, and Acid"
+      - "Four-operator FM (Prism) with eight routing algorithms and per-operator envelopes"
+      - "Acid bass box with a four-lane gate/pitch/accent/slide step sequencer"
+      - "Tempo-synced arpeggiator with host beat-grid phase-lock, swing, and accent patterns"
+      - "Eight-slot modulation matrix"
+      - "Drive, chorus, delay, and reverb, with a spring reverb in Modular mode"
+      - "54 factory presets, a user preset library, and a searchable preset browser"
+      - "Full MIDI implementation: sustain pedal, program change, poly aftertouch, pitch and mod wheels"
+      - "1x / 2x / 4x oversampling"
+---
+
+Sunset Circuits is six vintage synthesizers in one instrument, completely free. A row of six mode rockers picks the engine, and each mode is a different classic circuit with its own voice, its own signature controls, and its own panel color.
+
+## Six circuits, one instrument
+
+The layout stays the same in every mode, so you always know where things are. Only the color, the mode sub-panel, and a few mode-specific controls change when you switch circuits.
+
+- **Cosmos** is an early-80s six-voice poly built on digitally controlled oscillators, with rock-steady tuning, a clean filter, and a built-in bucket-brigade chorus for that lush warm pad sound.
+- **Oracle** is a late-70s five-voice analog poly with two true oscillators, a self-oscillating filter, and poly-modulation routing for pitched attacks and inharmonic bells.
+- **Mono** is an aggressive monophonic voice with two oscillators plus a sub, a fat driven filter, ring modulation, and hard sync, built for basses and leads with weight.
+- **Modular** is a 70s semi-modular voice with three oscillators, a transistor-ladder filter, linear FM, a sample and hold, and a real dispersive spring reverb, at its best on drones and sequences.
+- **Prism** is a mid-80s four-operator FM engine with eight algorithms, per-operator envelopes, and operator feedback: glassy electric pianos, chiming bells, punchy basses, and metallic brass.
+- **Acid** is the silver bass box: one oscillator through a screaming diode-ladder filter, with accent, slide, and a sixteen-step pitch pattern sequencer.
+
+## FM done right (Prism)
+
+Prism gives you four sine-wave operators, eight classic routing algorithms, a full envelope on every operator, and operator feedback. The mode panel draws the active algorithm live and highlights the carriers, so the wiring is never a mystery. Build tine electric pianos, inharmonic bells, growling basses, and formant leads from scratch.
+
+## Acid with a real sequencer
+
+Acid mode expands the sequencer into three lanes: pitch, accent, and slide. Hold one note and the sixteen-step pattern transposes with it. The diode-ladder filter screams near self-oscillation, and the accent circuit makes accented steps jump. It is a complete acid bassline machine.
+
+## Modulation and effects
+
+An eight-slot modulation matrix routes LFOs, envelopes, velocity, aftertouch, key tracking, sample and hold, and more into pitch, filter, amplitude, pan, and effects. The built-in effects chain gives you drive, chorus, a tempo-syncable delay, and a reverb that becomes a spring reverb in Modular mode.
+
+## Presets
+
+Sunset Circuits ships with 54 factory presets across all six modes, from warm poly pads and FM electric pianos to acid basslines and evolving modular drones. Save your own patches to a personal user preset library that follows you between projects and hosts.
+
+## Open Source
+
+Sunset Circuits is open source under the GPL. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins).
+
+---
+
+*Sunset Circuits emulates the character of several classic vintage synthesizers. This project is not affiliated with or endorsed by any hardware manufacturer.*
