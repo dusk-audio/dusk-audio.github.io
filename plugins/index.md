@@ -2,7 +2,8 @@
 layout: page
 title: Plugins
 subtitle: Free audio plugins for Linux, Windows, and macOS
-description: Download free VST3, LV2, and AU audio plugins from Dusk Audio. EQ, compression, analysis tools and more.
+description: Download free VST3, LV2, AU, and CLAP audio plugins from Dusk Audio. EQ, compression, analysis tools and more.
+body_class: page-wide
 ---
 
 All Dusk Audio plugins are **100% free**: no trials, no feature locks, no accounts. Just download and create.
@@ -12,7 +13,7 @@ All Dusk Audio plugins are **100% free**: no trials, no feature locks, no accoun
 <div class="plugin-grid">
 {% assign released = site.data.plugins | where: "status", "released" %}
 {% assign prerelease = site.data.plugins | where: "status", "pre-release" %}
-{% assign available = released | concat: prerelease %}
+{% assign available = released | concat: prerelease | sort: "released" | reverse %}
 {% for plugin in available %}
 <div class="plugin-card">
   <div class="plugin-card-image">
@@ -37,12 +38,14 @@ All Dusk Audio plugins are **100% free**: no trials, no feature locks, no accoun
 {% endfor %}
 </div>
 
+{% assign coming_soon = site.data.plugins | where: "status", "coming-soon" %}
+{% if coming_soon.size > 0 %}
+
 ## Coming Soon
 
 Plugins that are nearly finished and will be released shortly.
 
 <div class="plugin-grid">
-{% assign coming_soon = site.data.plugins | where: "status", "coming-soon" %}
 {% for plugin in coming_soon %}
 <div class="plugin-card">
   <div class="plugin-card-image">
@@ -58,6 +61,7 @@ Plugins that are nearly finished and will be released shortly.
 </div>
 {% endfor %}
 </div>
+{% endif %}
 
 ## In Development
 
@@ -91,9 +95,11 @@ All released plugins are available for:
 
 | Platform | Formats |
 |----------|---------|
-| **Linux** | VST3, LV2 |
-| **Windows** | VST3 |
-| **macOS** | VST3, AU |
+| **Linux** (x86_64 and arm64) | VST3, LV2, CLAP |
+| **Windows** | VST3, CLAP |
+| **macOS** | VST3, AU, CLAP |
+
+CLAP ships with every plugin except Spectrum Analyzer, and TapeMachine 2 and Sunset Circuits also ship LV2 on macOS. See each plugin's page for its exact formats.
 
 ## Installation
 
@@ -113,11 +119,22 @@ All released plugins are available for:
 /usr/local/lib/lv2/
 ```
 
+**CLAP:**
+```
+~/.clap/
+/usr/lib/clap/
+```
+
 ### Windows
 
 **VST3:**
 ```
 C:\Program Files\Common Files\VST3\
+```
+
+**CLAP:**
+```
+C:\Program Files\Common Files\CLAP\
 ```
 
 ### macOS
@@ -132,6 +149,12 @@ C:\Program Files\Common Files\VST3\
 ```
 ~/Library/Audio/Plug-Ins/Components/
 /Library/Audio/Plug-Ins/Components/
+```
+
+**CLAP:**
+```
+~/Library/Audio/Plug-Ins/CLAP/
+/Library/Audio/Plug-Ins/CLAP/
 ```
 
 ---

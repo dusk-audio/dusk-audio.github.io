@@ -23,11 +23,16 @@ features:
   - 2x/4x oversampling for alias-free saturation
   - Full automation support
 
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, CLAP"
+
 requirements:
   - "Linux: glibc 2.31+ (Ubuntu 20.04+, Debian 11+, Fedora 34+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
-  - "64-bit DAW with VST3, LV2, or AU support"
+  - "64-bit DAW with VST3, LV2, AU, or CLAP support"
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:

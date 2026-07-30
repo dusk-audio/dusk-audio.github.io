@@ -2,7 +2,7 @@
 
 Official website for Dusk Audio — free, high-quality audio plugins.
 
-**Live site:** https://dusk-audio.github.io/
+**Live site:** https://duskaudio.com
 
 ## Local Development
 
@@ -35,9 +35,11 @@ bundle exec jekyll serve
 ├── assets/
 │   ├── css/style.css    # Stylesheet
 │   └── images/          # Images and screenshots
+├── builds-gate/         # Cloudflare Worker gating patron builds at builds.duskaudio.com
 ├── plugins/             # Plugins listing page
 ├── index.md             # Home page
 ├── about.md             # About page
+├── dusk-studio.md       # Dusk Studio product page
 └── support.md           # Support/donation page
 ```
 
@@ -46,14 +48,6 @@ bundle exec jekyll serve
 1. Add the plugin entry to `_data/plugins.yml`
 2. Create a page in `_plugins/` (copy an existing one as template)
 3. Add screenshot to `assets/images/plugins/`
-
-## Assets Needed
-
-Place these files in `assets/images/`:
-
-- `logo.png` — Site logo (recommended: 200x200px or larger)
-- `favicon.png` — Favicon (32x32px)
-- `plugins/4k-eq-screenshot.png` — 4K-EQ screenshot
 
 ## License
 

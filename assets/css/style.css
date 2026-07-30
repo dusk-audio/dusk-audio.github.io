@@ -1646,3 +1646,19 @@ body { counter-reset: section; }
 .hub-card p { margin: 0 var(--spacing-lg) var(--spacing-md); color: var(--color-text-light); }
 .hub-cta { display: inline-block; margin: 0 var(--spacing-lg) var(--spacing-lg); color: var(--color-primary); font-weight: 600; }
 @media (max-width: 768px) { .hub-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Wide page variant — body_class: page-wide (used by /plugins/)
+   Grid uses the full container so cards can run three-up on
+   desktop; prose, tables and code keep the 800px reading
+   measure that .page-content sets everywhere else.
+   ============================================================ */
+.page-wide .page-content { max-width: none; }
+.page-wide .page-content > *:not(.plugin-grid) { max-width: 800px; }
+
+/* Three-up above 1080px: (1080 - 48 container padding - 2x32 gap) / 3
+   = 322px per card — never below the 320px min track used by the
+   auto-fill rule at narrower widths. */
+@media (min-width: 1080px) {
+  .page-wide .plugin-grid { grid-template-columns: repeat(3, 1fr); }
+}

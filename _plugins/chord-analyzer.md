@@ -18,11 +18,16 @@ features:
   - Educational tooltips for music theory concepts
   - Resizable UI with persistent window size
 
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, CLAP"
+
 requirements:
   - "Linux: Debian 12+, Ubuntu 22.04+, Fedora 36+ (glibc 2.36+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
-  - "64-bit DAW with VST3, LV2, or AU support"
+  - "64-bit DAW with VST3, LV2, AU, or CLAP support"
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:

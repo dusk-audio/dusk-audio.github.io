@@ -6,12 +6,15 @@ tagline: "Universal EQ: Digital, British Console, and Tube"
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
 version: "0.10.7"
 screenshot: /assets/images/plugins/multi-q-digital.png
-screenshots:
-  - image: /assets/images/plugins/multi-q-digital.png
+gallery:
+  - src: /assets/images/plugins/multi-q-digital.png
+    alt: "Multi-Q in Digital mode, showing the modern parametric EQ with per-band dynamics"
     caption: "Digital Mode: Modern parametric EQ with per-band dynamics"
-  - image: /assets/images/plugins/multi-q-british.png
+  - src: /assets/images/plugins/multi-q-british.png
+    alt: "Multi-Q in British mode, showing the classic console EQ with Brown and Black modes"
     caption: "British Mode: Classic console EQ with Brown/Black modes"
-  - image: /assets/images/plugins/multi-q-tube.png
+  - src: /assets/images/plugins/multi-q-tube.png
+    alt: "Multi-Q in Tube mode, showing the vintage passive tube EQ with tube saturation"
     caption: "Tube Mode: Vintage passive tube EQ with tube saturation"
 
 features:
@@ -27,11 +30,16 @@ features:
   - Preset system with A/B comparison
   - Full automation support
 
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, CLAP"
+
 requirements:
   - "Linux: Debian 12+, Ubuntu 22.04+, Fedora 36+ (glibc 2.36+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
-  - "64-bit DAW with VST3, LV2, or AU support"
+  - "64-bit DAW with VST3, LV2, AU, or CLAP support"
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:

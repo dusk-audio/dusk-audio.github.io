@@ -6,20 +6,27 @@ tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
 version: "1.0.1"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.png
-screenshots:
-  - image: /assets/images/plugins/sunset-circuits-cosmos.png
+gallery:
+  - src: /assets/images/plugins/sunset-circuits-cosmos.png
+    alt: "Sunset Circuits Cosmos panel, a six-voice DCO poly synth with the bucket-brigade chorus section"
     caption: "Cosmos: six-voice DCO poly with the bucket-brigade chorus"
-  - image: /assets/images/plugins/sunset-circuits-oracle.png
+  - src: /assets/images/plugins/sunset-circuits-oracle.png
+    alt: "Sunset Circuits Oracle panel, a five-voice analog poly synth with poly-modulation routing"
     caption: "Oracle: five-voice analog poly with poly-modulation routing"
-  - image: /assets/images/plugins/sunset-circuits-mono.png
+  - src: /assets/images/plugins/sunset-circuits-mono.png
+    alt: "Sunset Circuits Mono panel, a two-oscillator lead voice with ring modulation and hard sync"
     caption: "Mono: aggressive two-oscillator lead voice with ring mod and hard sync"
-  - image: /assets/images/plugins/sunset-circuits-modular.png
+  - src: /assets/images/plugins/sunset-circuits-modular.png
+    alt: "Sunset Circuits Modular panel, a semi-modular with three oscillators, ladder filter, sample and hold, and spring tank"
     caption: "Modular: three oscillators, ladder filter, sample and hold, spring tank"
-  - image: /assets/images/plugins/sunset-circuits-prism.png
+  - src: /assets/images/plugins/sunset-circuits-prism.png
+    alt: "Sunset Circuits Prism panel, a four-operator FM engine with eight algorithms and per-operator envelopes"
     caption: "Prism: four-operator FM with eight algorithms and per-operator envelopes"
-  - image: /assets/images/plugins/sunset-circuits-acid.png
+  - src: /assets/images/plugins/sunset-circuits-acid.png
+    alt: "Sunset Circuits Acid panel, a single-oscillator bass box with a sixteen-step pattern sequencer"
     caption: "Acid: single-oscillator bass box with a sixteen-step pattern sequencer"
-  - image: /assets/images/plugins/sunset-circuits-browser.png
+  - src: /assets/images/plugins/sunset-circuits-browser.png
+    alt: "Sunset Circuits preset browser, showing search, mode chips, and bank filters"
     caption: "The preset browser, with search, mode chips, and bank filters"
 
 features:
@@ -36,6 +43,11 @@ features:
   - 1x / 2x / 4x oversampling
   - 54 factory presets plus a user preset library
   - Full automation support
+
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, LV2, CLAP"
 
 requirements:
   - "Linux x86_64: glibc 2.31 or newer (Ubuntu 20.04+, Debian 11+, Fedora 34+)"

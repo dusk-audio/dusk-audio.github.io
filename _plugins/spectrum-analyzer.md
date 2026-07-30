@@ -18,6 +18,11 @@ features:
   - Peak hold with configurable decay rate
   - Resizable UI with persistent window size
 
+formats:
+  - "Linux: VST3, LV2"
+  - "Windows: VST3"
+  - "macOS: VST3, AU"
+
 requirements:
   - "Linux: Debian 12+, Ubuntu 22.04+, Fedora 36+ (glibc 2.36+)"
   - "Windows: Windows 10 or later"

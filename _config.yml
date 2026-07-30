@@ -40,6 +40,4 @@ exclude:
   - node_modules
   - vendor
   - builds-gate
-  - LAUNCH.md
-  - dusk-audio        # Orphaned standalone $79/Lemon-Squeezy page, superseded by the Patreon model. Excluded from the GitHub Pages (_site) build and has no separate pipeline (only .github/workflows/pages.yml exists), so it is NOT deployed. Its dusk-audio/CNAME is a stale leftover; the live site is served from the root /CNAME (duskaudio.com). Un-exclude to revive.
 
