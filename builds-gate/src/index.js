@@ -169,15 +169,25 @@ async function download(env, request, id) {
   return new Response(null, { status: 302, headers: { Location: loc, "Cache-Control": "no-store" } });
 }
 
+// The MANUAL.pdf attached to a release, if it has one.
+function manualAsset(rel) {
+  return (rel.assets || []).find(function (a) {
+    return /manual/i.test(a.name) && /\.pdf$/i.test(a.name);
+  });
+}
+
 // Public: serve the latest release's MANUAL.pdf (free to read; no login).
 // Proxies the bytes and serves them INLINE so the browser opens the PDF in a
 // tab instead of prompting a download. (Small file, ~1-2 MB.)
 async function manual(env) {
-  var rel = await latestRelease(env);
+  var list = await listReleases(env);
+  var rel = pickLatest(list);
   if (!rel) return new Response("Not available", { status: 404 });
-  var asset = (rel.assets || []).find(function (a) {
-    return /manual/i.test(a.name) && /\.pdf$/i.test(a.name);
-  });
+  // Normally the manual comes from the same release patrons download. If that one
+  // shipped without a PDF, fall back to the newest release that has one rather than
+  // 404 — a missing manual on one build shouldn't take the public page down.
+  var asset = manualAsset(rel);
+  for (var i = 0; i < list.length && !asset; i++) asset = manualAsset(list[i]);
   if (!asset) return new Response("Manual not found", { status: 404 });
   // redirect: 'follow' (default) -> fetch follows GitHub's signed-URL redirect
   // and returns the actual PDF body, which we re-serve with inline headers.
@@ -199,10 +209,9 @@ async function manual(env) {
   });
 }
 
-// Newest non-draft release, INCLUDING prereleases (alpha/beta builds are tagged prerelease,
-// so GitHub's /releases/latest — which skips prereleases — would miss them).
-async function latestRelease(env) {
-  const r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases?per_page=10`, {
+// Every non-draft release, newest published first. [] on any failure.
+async function listReleases(env) {
+  const r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases?per_page=30`, {
     headers: {
       Authorization: `Bearer ${env.GH_PAT}`,
       Accept: "application/vnd.github+json",
@@ -211,16 +220,27 @@ async function latestRelease(env) {
     // Don't serve a stale list from the edge cache after a new release is published.
     cf: { cacheTtl: 0, cacheEverything: false },
   });
-  if (!r.ok) return null;
+  if (!r.ok) return [];
   const list = await r.json();
-  if (!Array.isArray(list)) return null;
+  if (!Array.isArray(list)) return [];
   // The API does NOT guarantee newest-first (these releases share a created_at),
-  // so pick the most recently PUBLISHED non-draft release explicitly.
-  return (
-    list
-      .filter((x) => !x.draft)
-      .sort((a, b) => Date.parse(b.published_at || 0) - Date.parse(a.published_at || 0))[0] || null
-  );
+  // so order by publish time explicitly.
+  return list
+    .filter((x) => !x.draft)
+    .sort((a, b) => Date.parse(b.published_at || 0) - Date.parse(a.published_at || 0));
+}
+
+// The release patrons get: newest STABLE one. Prereleases used to be everything we shipped
+// (the alpha days, when GitHub's /releases/latest would have missed them), but today they're
+// single-platform CI artifacts — a Windows-only build must never shadow a full release for
+// macOS and Linux patrons. Fall back to a prerelease only if there's no stable release at all,
+// so a fresh repo still serves whatever exists.
+function pickLatest(list) {
+  return list.find((x) => !x.prerelease) || list[0] || null;
+}
+
+async function latestRelease(env) {
+  return pickLatest(await listReleases(env));
 }
 
 /* ---------- signed session (HMAC-SHA256 via WebCrypto) ---------- */

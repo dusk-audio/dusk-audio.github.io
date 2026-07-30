@@ -51,7 +51,12 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
 - Publish the build to the private `dusk-studio-releases` repo as the **latest** release.
 - Nothing else: the website button (`https://builds.duskaudio.com/latest`) and the gate always
-  serve the newest published release.
+  serve the newest published **non-prerelease** release.
+- Tag CI and single-platform builds as **prereleases**. The gate skips them, so a Windows-only
+  artifact can't shadow the full release patrons are entitled to. Only if the repo has no
+  stable release at all does the gate fall back to the newest prerelease.
+- `/manual` serves the `MANUAL.pdf` from that same release, falling back to the newest release
+  that has one if the current build shipped without it.
 
 ## Testing
 
