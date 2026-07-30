@@ -1779,3 +1779,24 @@ body { counter-reset: section; }
     font-size: 0.7rem;
   }
 }
+
+/* ========================================
+   Plugin card links (image and title)
+   ======================================== */
+/* width/height keep the anchor filling the 16/10 box so the
+   img inside still crops with object-fit: cover */
+.plugin-card-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.plugin-card-header h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.plugin-card-header h3 a:hover,
+.plugin-card-header h3 a:focus-visible {
+  color: var(--color-primary);
+}

@@ -17,11 +17,11 @@ All Dusk Audio plugins are **100% free**: no trials, no feature locks, no accoun
 {% for plugin in available %}
 <div class="plugin-card">
   <div class="plugin-card-image">
-    <img src="{{ '/assets/images/plugins/' | append: plugin.slug | append: '-screenshot.png' | relative_url }}" alt="{{ plugin.name }} screenshot">
+    <a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ '/assets/images/plugins/' | append: plugin.slug | append: '-screenshot.png' | relative_url }}" alt="{{ plugin.name }} screenshot"></a>
   </div>
   <div class="plugin-card-content">
     <div class="plugin-card-header">
-      <h3>{{ plugin.name }}</h3>
+      <h3><a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}">{{ plugin.name }}</a></h3>
       {% if plugin.status == "released" %}
       <span class="status-badge released">Released</span>
       {% else %}
