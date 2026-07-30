@@ -21,7 +21,7 @@ description: "Dusk Audio builds free, open-source audio plugins (VST3 / LV2, GPL
       <a class="hub-card" href="{{ '/dusk-studio/' | relative_url }}">
         <img src="{{ '/assets/images/dusk-studio-hero.png' | relative_url }}" alt="The Dusk Studio console." loading="lazy">
         <h3>Dusk Studio</h3>
-        <p>A portastudio-style DAW. 24 tracks, MIDI and audio, a fixed signal chain, mastering built in. Beta, from $3/month on Patreon or $27 one-time — or build it free.</p>
+        <p>A portastudio-style DAW. 24 tracks, MIDI and audio, a fixed signal chain, mastering built in. Beta, $1+ on Patreon — or build it free.</p>
         <span class="hub-cta">Explore Dusk Studio →</span>
       </a>
       <a class="hub-card" href="{{ '/plugins/' | relative_url }}">

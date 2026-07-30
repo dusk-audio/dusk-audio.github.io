@@ -82,10 +82,10 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
 
       <div class="path-card path-card--primary">
         <h3>Get the official build</h3>
-        <p>Back Dusk Studio on Patreon from $3/month (Supporter) and get every release build — Linux tarball, Windows MSI, macOS DMG — for as long as you're subscribed. Patron at $5 adds early-access betas one to two weeks ahead of public; Champion at $10 adds DM support and roadmap-feature votes.</p>
+        <p>Back Dusk Studio on Patreon from $1/month and get every beta build — Linux tarball, Windows MSI, macOS DMG — for as long as you're subscribed. New builds land in the patrons-only feed as they ship.</p>
         <p>Early backers are credited as Founding Patrons, with your name in the app's About panel.</p>
         <a href="{{ site.patreon_membership_url }}" class="btn btn-primary btn-full">Get builds on Patreon</a>
-        <p class="path-fineprint">Prefer to buy once? $27 one-time covers the current 0.x beta line and all of 1.x; $49 lifetime adds 2.x. Both available now via Patreon or <a href="https://github.com/sponsors/marc-korte" target="_blank" rel="noopener noreferrer">GitHub Sponsors</a>.</p>
+        <p class="path-fineprint">One-time and lifetime licenses come later, closer to 1.0. During the beta it's Patreon only.</p>
       </div>
     </div>
 
