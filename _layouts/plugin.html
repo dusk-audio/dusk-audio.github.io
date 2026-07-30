@@ -25,6 +25,25 @@ layout: default
   <div class="container plugin-content">
     <div class="plugin-main">
       {% if page.gallery %}
+      {% if page.gallery.size > 1 %}
+      {% comment %}
+        Carousel. Every slide is in the HTML; CSS hides the ones without
+        .active, so with JavaScript off the first image still renders and
+        the page keeps working. The inline script at the bottom of this
+        layout moves .active around and updates the counter.
+      {% endcomment %}
+      <div class="plugin-carousel">
+        {% for image in page.gallery %}
+        <figure class="carousel-slide{% if forloop.first %} active{% endif %}">
+          <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}"{% unless forloop.first %} loading="lazy"{% endunless %}>
+          <figcaption class="gallery-caption">{{ image.caption }}</figcaption>
+        </figure>
+        {% endfor %}
+        <button type="button" class="carousel-nav carousel-prev" aria-label="Previous screenshot">&lsaquo;</button>
+        <button type="button" class="carousel-nav carousel-next" aria-label="Next screenshot">&rsaquo;</button>
+        <p class="carousel-counter" aria-live="polite"><span class="carousel-index">1</span> / {{ page.gallery.size }}</p>
+      </div>
+      {% else %}
       <div class="plugin-gallery">
         <div class="gallery-hero">
           <div class="gallery-item">
@@ -32,17 +51,8 @@ layout: default
             <p class="gallery-caption">{{ page.gallery[0].caption }}</p>
           </div>
         </div>
-        {% if page.gallery.size > 1 %}
-        <div class="gallery-grid">
-          {% for image in page.gallery offset:1 %}
-          <div class="gallery-item">
-            <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}" loading="lazy">
-            <p class="gallery-caption">{{ image.caption }}</p>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
       </div>
+      {% endif %}
       {% elsif page.screenshot %}
       <div class="plugin-screenshot">
         <img src="{{ page.screenshot | relative_url }}" alt="{{ page.title }} screenshot">
@@ -162,3 +172,36 @@ layout: default
     </aside>
   </div>
 </article>
+
+<script>
+  (function () {
+    var carousels = document.querySelectorAll('.plugin-carousel');
+    if (!carousels.length) return;
+
+    carousels.forEach(function (carousel) {
+      var slides = carousel.querySelectorAll('.carousel-slide');
+      var prev = carousel.querySelector('.carousel-prev');
+      var next = carousel.querySelector('.carousel-next');
+      var counter = carousel.querySelector('.carousel-index');
+      if (slides.length < 2 || !prev || !next) return;
+
+      var index = 0;
+
+      function show(target) {
+        index = (target + slides.length) % slides.length;
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle('active', i === index);
+        });
+        if (counter) counter.textContent = index + 1;
+      }
+
+      prev.addEventListener('click', function () { show(index - 1); });
+      next.addEventListener('click', function () { show(index + 1); });
+
+      carousel.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+      });
+    });
+  })();
+</script>

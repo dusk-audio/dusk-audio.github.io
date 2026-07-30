@@ -1662,3 +1662,120 @@ body { counter-reset: section; }
 @media (min-width: 1080px) {
   .page-wide .plugin-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ============================================================
+   Plugin screenshot carousel, used when a plugin gallery has
+   more than one image. All slides ship in the HTML and CSS
+   hides the ones that are not .active, so with JavaScript off
+   the first image still shows. Heights follow the image, no
+   fixed height and no cropping, so wide screenshots stay whole.
+   ============================================================ */
+.plugin-carousel {
+  position: relative;
+  margin-bottom: var(--spacing-2xl);
+  background: var(--color-bg-dark);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.carousel-slide {
+  margin: 0;
+}
+
+.carousel-slide:not(.active) {
+  display: none;
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Keep the caption clear of the counter sitting in the same strip */
+.carousel-slide .gallery-caption {
+  padding-right: 4.5rem;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(33, 30, 26, 0.55);
+  color: #faf8f3;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.carousel-nav:hover {
+  background: rgba(33, 30, 26, 0.85);
+}
+
+.carousel-nav:focus {
+  outline: 2px solid #faf8f3;
+  outline-offset: 2px;
+}
+
+.carousel-nav:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.carousel-nav:focus-visible {
+  outline: 2px solid #faf8f3;
+  outline-offset: 2px;
+  background: rgba(33, 30, 26, 0.85);
+}
+
+.carousel-prev {
+  left: var(--spacing-md);
+}
+
+.carousel-next {
+  right: var(--spacing-md);
+}
+
+.carousel-counter {
+  position: absolute;
+  right: var(--spacing-md);
+  bottom: var(--spacing-sm);
+  margin: 0;
+  font-family: var(--font-readout);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 480px) {
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+
+  .carousel-prev {
+    left: var(--spacing-sm);
+  }
+
+  .carousel-next {
+    right: var(--spacing-sm);
+  }
+
+  .carousel-slide .gallery-caption {
+    padding-right: 3.5rem;
+  }
+
+  .carousel-counter {
+    right: var(--spacing-sm);
+    font-size: 0.7rem;
+  }
+}
