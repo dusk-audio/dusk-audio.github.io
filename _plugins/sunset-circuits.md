@@ -4,7 +4,23 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.0"
+version: "1.0.1"
+screenshot: /assets/images/plugins/sunset-circuits-cosmos.png
+screenshots:
+  - image: /assets/images/plugins/sunset-circuits-cosmos.png
+    caption: "Cosmos: six-voice DCO poly with the bucket-brigade chorus"
+  - image: /assets/images/plugins/sunset-circuits-oracle.png
+    caption: "Oracle: five-voice analog poly with poly-modulation routing"
+  - image: /assets/images/plugins/sunset-circuits-mono.png
+    caption: "Mono: aggressive two-oscillator lead voice with ring mod and hard sync"
+  - image: /assets/images/plugins/sunset-circuits-modular.png
+    caption: "Modular: three oscillators, ladder filter, sample and hold, spring tank"
+  - image: /assets/images/plugins/sunset-circuits-prism.png
+    caption: "Prism: four-operator FM with eight algorithms and per-operator envelopes"
+  - image: /assets/images/plugins/sunset-circuits-acid.png
+    caption: "Acid: single-oscillator bass box with a sixteen-step pattern sequencer"
+  - image: /assets/images/plugins/sunset-circuits-browser.png
+    caption: "The preset browser, with search, mode chips, and bank filters"
 
 features:
   - Six synth engines under one roof, switch personality with one click
@@ -29,6 +45,16 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.1"
+    date: "2026-07-30"
+    changes:
+      - "Preset name entry now works in embedded plugin editors on Windows, where some hosts kept keyboard focus and typing never reached the field"
+      - "User preset rows sharing a display name no longer share one selection"
+      - "Acid envelope caching and Cosmos chorus state fixes"
+      - "FM operator and filter model accuracy corrections across the voicings"
+      - "In-UI resize grip for hosts that provide no window handle of their own"
+      - "On-screen keyboard rendering and note-lifecycle fixes"
+      - "Legato toggle restyled to match the Sync controls"
   - version: "1.0.0"
     date: "2026-07-26"
     changes:
