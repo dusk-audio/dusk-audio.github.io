@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% assign social_image = page.og_image | default: page.screenshot | default: '/assets/images/dusk-studio-hero.png' %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ page.description | default: site.description }}">
@@ -15,9 +16,9 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
   <meta property="og:site_name" content="{{ site.title }}">
-  <meta property="og:image" content="{{ page.og_image | default: '/assets/images/dusk-studio-hero.png' | absolute_url }}">
+  <meta property="og:image" content="{{ social_image | absolute_url }}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{{ page.og_image | default: '/assets/images/dusk-studio-hero.png' | absolute_url }}">
+  <meta name="twitter:image" content="{{ social_image | absolute_url }}">
 
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 
@@ -29,6 +30,7 @@
 
   <!-- Favicon placeholder -->
   <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/favicon.png' | relative_url }}">
 </head>
 <body class="{{ page.body_class }}">
   {% include header.html %}

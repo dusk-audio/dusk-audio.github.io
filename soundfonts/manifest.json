@@ -1,7 +1,7 @@
 {
   "version": 1,
   "updated": "2026-05-29",
-  "_note": "Seed manifest for the in-app Soundfont Downloader (served from GitHub Pages at https://duskaudio.com/soundfonts/manifest.json). Every entry is public-domain or permissively licensed. size_bytes and sha256 are PLACEHOLDERS — compute real values (stat / sha256sum) and confirm each download_url resolves to the file before launch; the app verifies sha256 on download. Cards with non-permissive licenses must never be added.",
+  "_note": "Seed manifest for the in-app Soundfont Downloader (served from GitHub Pages at https://duskaudio.com/soundfonts/manifest.json). Every entry is public-domain or permissively licensed. size_bytes and sha256 are PLACEHOLDERS; compute real values (stat / sha256sum) and confirm each download_url resolves to the file before launch; the app verifies sha256 on download. Cards with non-permissive licenses must never be added.",
   "categories": ["Pianos", "Strings", "Drums", "Synths", "SFX", "General", "Chiptune", "Founders Picks"],
   "soundfonts": [
     {
@@ -48,7 +48,7 @@
     {
       "name": "VintageDreams Waves v2",
       "category": "Synths",
-      "license": "Freeware (Ian Wilson — free for any use)",
+      "license": "Freeware (Ian Wilson, free for any use)",
       "size_bytes": 0,
       "sha256": "",
       "download_url": "https://freepats.zenvoid.org/SoundSets/VintageDreamsWaves-v2.sf2",

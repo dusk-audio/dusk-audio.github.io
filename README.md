@@ -1,6 +1,6 @@
 # Dusk Audio Website
 
-Official website for Dusk Audio — free, high-quality audio plugins.
+Official website for Dusk Audio, home of free, high-quality audio plugins.
 
 **Live site:** https://duskaudio.com
 

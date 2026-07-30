@@ -18,21 +18,21 @@ Visitor hits  https://builds.duskaudio.com/latest
   -> /dl/<id> checks the session -> 302 to a short-lived GitHub signed URL
 ```
 
-Non-members land on a "Join on Patreon" page. We never store Patreon tokens — the
+Non-members land on a "Join on Patreon" page. We never store Patreon tokens. The
 membership check happens once at login and the access/refresh tokens are discarded;
 only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
 ## One-time setup
 
-1. **GitHub PAT** — fine-grained token, **read-only `Contents` on `dusk-audio/dusk-studio-releases` only**.
-2. **Patreon OAuth client** — Patreon → Account settings → **API / Developers** → Create Client.
+1. **GitHub PAT**: fine-grained token, **read-only `Contents` on `dusk-audio/dusk-studio-releases` only**.
+2. **Patreon OAuth client**: Patreon → Account settings → **API / Developers** → Create Client.
    - Redirect URI: `https://builds.duskaudio.com/auth/callback` (must match `OAUTH_REDIRECT_URI`).
    - Copy the **Client ID** and **Client Secret**.
-3. **Campaign id** — Dusk Audio's Patreon campaign id. Get it from the Patreon API
+3. **Campaign id**: Dusk Audio's Patreon campaign id. Get it from the Patreon API
    (`GET /api/oauth2/v2/identity?include=memberships,memberships.campaign` while logged in as
    the creator, or `GET /api/oauth2/v2/campaigns`). Put it in `wrangler.toml` → `DUSK_CAMPAIGN_ID`.
-4. **Session secret** — `openssl rand -hex 32`.
-5. **Config** — `wrangler.toml [vars]`: `RELEASES_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`,
+4. **Session secret**: `openssl rand -hex 32`.
+5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`,
    `OAUTH_REDIRECT_URI`, `SESSION_TTL_HOURS`, `FREE_DOWNLOADS="0"`.
 6. **Secrets** (never committed):
    ```
@@ -78,4 +78,4 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
   round-trip; constant-time signature compare; numeric-only GitHub asset id (blocks SSRF).
 - Binaries are GPL-3.0; members may legally redistribute. Don't add DRM.
 - If a build exceeds GitHub release-asset size limits, move storage to Cloudflare R2 and point
-  `/dl` at a presigned R2 URL — same session gate, different storage.
+  `/dl` at a presigned R2 URL. Same session gate, different storage.

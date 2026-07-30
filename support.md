@@ -18,7 +18,7 @@ If these plugins help your music, consider giving back!
   </div>
 </div>
 
-To be clear about how this works: every plugin is free, and supporting on Patreon is entirely optional. [Dusk Studio]({{ '/dusk-studio/' | relative_url }}) works the same way at the source level — it's GPL-3.0, so you can always clone the repo and build it yourself for nothing. What supporting on Patreon ($1+/month) actually delivers is the prebuilt, ready-to-run binaries of every beta build.
+To be clear about how this works: every plugin is free, and supporting on Patreon is entirely optional. [Dusk Studio]({{ '/dusk-studio/' | relative_url }}) works the same way at the source level: it's GPL-3.0, so you can always clone the repo and build it yourself for nothing. What supporting on Patreon ($1+/month) actually delivers is the prebuilt, ready-to-run binaries of every beta build.
 
 ---
 
