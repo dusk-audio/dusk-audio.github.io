@@ -146,9 +146,15 @@ layout: default
       <div class="info-box">
         <h3>Formats</h3>
         <ul>
+          {% if page.formats %}
+          {% for format in page.formats %}
+          <li>{{ format }}</li>
+          {% endfor %}
+          {% else %}
           <li>Linux: VST3, LV2</li>
           <li>Windows: VST3</li>
           <li>macOS: VST3, AU</li>
+          {% endif %}
         </ul>
       </div>
 

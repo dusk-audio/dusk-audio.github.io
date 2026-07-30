@@ -3,7 +3,7 @@ layout: plugin
 title: TapeMachine 2
 slug: tapemachine-2
 tagline: Two-Machine Analog Tape Emulation
-description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for macOS and Linux.
+description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.4"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
 
@@ -26,10 +26,15 @@ features:
   - Resizable interface
   - Full automation support
 
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, LV2, CLAP"
+
 requirements:
   - "Linux: glibc 2.31+ (Ubuntu 20.04+, Debian 11+, Fedora 34+)"
   - "macOS: macOS 10.13 (High Sierra) or later"
-  - "Windows: build to follow"
+  - "Windows: Windows 10 or later"
   - "64-bit DAW with AU, VST3, CLAP, or LV2 support"
   - "Sample rates: 44.1 kHz to 192 kHz"
 
@@ -216,6 +221,13 @@ LV2:  ~/.lv2/TapeMachine2.lv2
 AU:   ~/Library/Audio/Plug-Ins/Components/TapeMachine2.component
 VST3: ~/Library/Audio/Plug-Ins/VST3/TapeMachine2.vst3
 CLAP: ~/Library/Audio/Plug-Ins/CLAP/TapeMachine2.clap
+LV2:  ~/Library/Audio/Plug-Ins/LV2/TapeMachine2.lv2
+```
+
+### Windows
+```
+VST3: C:\Program Files\Common Files\VST3\TapeMachine2.vst3
+CLAP: C:\Program Files\Common Files\CLAP\TapeMachine2.clap
 ```
 
 ## Open Source

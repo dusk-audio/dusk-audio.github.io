@@ -25,11 +25,16 @@ features:
   - 13 factory presets
   - Full automation support
 
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, CLAP"
+
 requirements:
   - "Linux: Debian 12+, Ubuntu 22.04+, Fedora 36+ (glibc 2.36+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
-  - "64-bit DAW with VST3, LV2, or AU support"
+  - "64-bit DAW with VST3, LV2, AU, or CLAP support"
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:

@@ -7,28 +7,39 @@ description: "Algorithmic reverb with eleven distinct DSP engines: Plate, Vintag
 version: "0.7.0"
 screenshot: /assets/images/plugins/DuskVerb-Shimmer.png
 
-screenshots:
-  - image: /assets/images/plugins/DuskVerb-Shimmer.png
+gallery:
+  - src: /assets/images/plugins/DuskVerb-Shimmer.png
+    alt: "DuskVerb Shimmer engine, an 8-channel Hadamard FDN with an in-loop granular pitch shifter"
     caption: "Shimmer: 8-channel Hadamard FDN with an in-loop granular pitch shifter for octave-up shimmer reverbs. Overhauled in 0.6.0 with a post-loop HF air voice and down-octave lows (Deep Blue Day, Black Hole)."
-  - image: /assets/images/plugins/DuskVerb-Hall.png
+  - src: /assets/images/plugins/DuskVerb-Hall.png
+    alt: "DuskVerb Hall engine, a feedback delay network with a per-octave graphic EQ in the loop"
     caption: "Hall: Feedback delay network with a per-octave GEQ in the loop for honest, independent per-band RT60 and smooth, non-metallic tails."
-  - image: /assets/images/plugins/DuskVerb-DenseHall.png
+  - src: /assets/images/plugins/DuskVerb-DenseHall.png
+    alt: "DuskVerb Dense Hall engine, a heavily diffused 8-line FDN for thick concert tails"
     caption: "Dense Hall: Heavily diffused 8-line FDN for a thick, smooth, lush concert tail. Powers the factory hall presets (Bright Hall, Vocal Hall, Cathedral Large Hall, Blade Runner 224)."
-  - image: /assets/images/plugins/DuskVerb-TiledRoom.png
+  - src: /assets/images/plugins/DuskVerb-TiledRoom.png
+    alt: "DuskVerb Tiled Room engine, a sparse tapped early-reflection front into a short dark FDN tail"
     caption: "Tiled Room: Sparse tapped early-reflection front welded to a short, dark FDN tail. Tight ceramic room character."
-  - image: /assets/images/plugins/DuskVerb-Reverse.png
+  - src: /assets/images/plugins/DuskVerb-Reverse.png
+    alt: "DuskVerb Reverse engine, a rising-gain early-reflection onset into a dark modulated FDN tail"
     caption: "Reverse: Rising-gain early-reflection onset into a dark modulated FDN tail. Swells up into the transient for risers and vintage reverse effects."
-  - image: /assets/images/plugins/DuskVerb-Plate.png
+  - src: /assets/images/plugins/DuskVerb-Plate.png
+    alt: "DuskVerb Plate engine, a 2-allpass cross-coupled plate on the Dattorro topology"
     caption: "Plate: 2-AP cross-coupled plate on the Dattorro topology. Bright, dense, smooth. The classic vocal-plate sound."
-  - image: /assets/images/plugins/DuskVerb-VintagePlate.png
+  - src: /assets/images/plugins/DuskVerb-VintagePlate.png
+    alt: "DuskVerb Vintage Plate engine, the plate tank with a fixed post-EQ voicing"
     caption: "Vintage Plate: The plate tank with a fixed post-EQ voicing for warmer vintage-hardware character."
-  - image: /assets/images/plugins/DuskVerb-SmoothPlate.png
+  - src: /assets/images/plugins/DuskVerb-SmoothPlate.png
+    alt: "DuskVerb Smooth Plate engine, a 6-allpass density cascade for lush dense ambience"
     caption: "Smooth Plate: 6-allpass density cascade. Fast diffusion for lush, dense ambience and smooth pads."
-  - image: /assets/images/plugins/DuskVerb-Chamber.png
+  - src: /assets/images/plugins/DuskVerb-Chamber.png
+    alt: "DuskVerb Chamber engine, four cross-coupled tanks with 48 taps"
     caption: "Chamber: Four cross-coupled tanks with 48 taps. Realistic chambers and rooms with strong early reflections."
-  - image: /assets/images/plugins/DuskVerb-Spring.png
+  - src: /assets/images/plugins/DuskVerb-Spring.png
+    alt: "DuskVerb Spring engine, a 3-spring tank with dispersion allpass chirp"
     caption: "Spring: 3-spring tank with dispersion allpass chirp, inspired by the Fender 6G15. Boingy surf and amp textures."
-  - image: /assets/images/plugins/DuskVerb-Gated.png
+  - src: /assets/images/plugins/DuskVerb-Gated.png
+    alt: "DuskVerb Gated engine, a 64-tap feed-forward delay line with envelope shaping"
     caption: "Gated: 64-tap feed-forward delay line with envelope shaping, the iconic gated-snare sound in the spirit of the AMS RMX16."
 
 features:
@@ -61,11 +72,16 @@ features:
   - Resizable UI with persistence
   - Full automation support
 
+formats:
+  - "Linux: VST3, LV2, CLAP"
+  - "Windows: VST3, CLAP"
+  - "macOS: VST3, AU, CLAP"
+
 requirements:
   - "Linux: glibc 2.31+ (Ubuntu 20.04+, Debian 11+, Fedora 34+)"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.13 (High Sierra) or later"
-  - "64-bit DAW with VST3, LV2, or AU support"
+  - "64-bit DAW with VST3, LV2, AU, or CLAP support"
   - "Sample rates: 44.1 kHz to 192 kHz (sample-rate independent)"
 
 changelog:
