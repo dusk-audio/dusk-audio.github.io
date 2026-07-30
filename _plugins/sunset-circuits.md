@@ -38,9 +38,10 @@ features:
   - Full automation support
 
 requirements:
-  - "Linux: Debian 12+, Ubuntu 22.04+, Fedora 36+ (glibc 2.31+)"
+  - "Linux x86_64: glibc 2.31 or newer (Ubuntu 20.04+, Debian 11+, Fedora 34+)"
+  - "Linux arm64: glibc 2.35 or newer (Ubuntu 22.04+, Debian 12+)"
   - "Windows: Windows 10 or later"
-  - "macOS: macOS 10.13 (High Sierra) or later"
+  - "macOS: macOS 10.15 (Catalina) or later, Intel and Apple Silicon"
   - "64-bit DAW with VST3, CLAP, LV2, or AU support"
   - "Sample rates: 44.1kHz to 192kHz"
 
@@ -81,7 +82,7 @@ The layout stays the same in every mode, so you always know where things are. On
 - **Mono** is an aggressive monophonic voice with two oscillators plus a sub, a fat driven filter, ring modulation, and hard sync, built for basses and leads with weight.
 - **Modular** is a 70s semi-modular voice with three oscillators, a transistor-ladder filter, linear FM, a sample and hold, and a real dispersive spring reverb, at its best on drones and sequences.
 - **Prism** is a mid-80s four-operator FM engine with eight algorithms, per-operator envelopes, and operator feedback: glassy electric pianos, chiming bells, punchy basses, and metallic brass.
-- **Acid** is the silver bass box: one oscillator through a screaming diode-ladder filter, with accent, slide, and a sixteen-step pitch pattern sequencer.
+- **Acid** is the bass box: one oscillator through a screaming diode-ladder filter, with accent, slide, and a sixteen-step pitch pattern sequencer.
 
 ## FM done right (Prism)
 
@@ -89,7 +90,7 @@ Prism gives you four sine-wave operators, eight classic routing algorithms, a fu
 
 ## Acid with a real sequencer
 
-Acid mode expands the sequencer into three lanes: pitch, accent, and slide. Hold one note and the sixteen-step pattern transposes with it. The diode-ladder filter screams near self-oscillation, and the accent circuit makes accented steps jump. It is a complete acid bassline machine.
+Acid mode expands the sequencer into four lanes: gate, pitch, accent, and slide. Hold one note and the sixteen-step pattern transposes with it. The diode-ladder filter screams near self-oscillation, and the accent circuit makes accented steps jump. It is a complete acid bassline machine.
 
 ## Modulation and effects
 
