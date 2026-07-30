@@ -27,7 +27,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
       <li>VST3 · LV2 · AU · CLAP</li>
       <li>BS.1770 mastering</li>
     </ul>
-    <!-- TODO: screenshot predates the 0.11/0.12 UI overhauls — re-capture -->
+    <!-- TODO: re-capture, screenshot predates the 0.11/0.12 UI overhauls -->
     <img src="{{ '/assets/images/dusk-studio-hero.png' | relative_url }}" alt="The Dusk Studio console: 24 tracks in three banks of eight with a fixed channel signal chain, shown on one screen." class="hero-shot" width="2560" height="1048" decoding="async">
   </div>
 </section>
@@ -42,12 +42,12 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
     </div>
     <div class="views-grid">
       <figure class="view">
-        <!-- TODO: screenshot predates the 0.11/0.12 UI overhauls — re-capture -->
+        <!-- TODO: re-capture, screenshot predates the 0.11/0.12 UI overhauls -->
         <img src="{{ '/assets/images/dusk-studio-mixing.png' | relative_url }}" alt="Dusk Studio mixing view: 24 channels across three banks, one insert per channel." loading="lazy">
         <figcaption>Mixing: 24 channels, one insert each</figcaption>
       </figure>
       <figure class="view">
-        <!-- TODO: screenshot predates the 0.11/0.12 UI overhauls — re-capture -->
+        <!-- TODO: re-capture, screenshot predates the 0.11/0.12 UI overhauls -->
         <img src="{{ '/assets/images/dusk-studio-mastering.png' | relative_url }}" alt="Dusk Studio mastering view: 5-band digital EQ, multiband compressor, brick-wall limiter, BS.1770 metering." loading="lazy">
         <figcaption>Mastering: 5-band digital EQ, multiband, limiter, BS.1770</figcaption>
       </figure>
@@ -82,7 +82,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
 
       <div class="path-card path-card--primary">
         <h3>Get the official build</h3>
-        <p>Back Dusk Studio on Patreon from $1/month and get every beta build — Linux tarball, Windows MSI, macOS DMG — for as long as you're subscribed. New builds land in the patrons-only feed as they ship.</p>
+        <p>Back Dusk Studio on Patreon from $1/month and get every beta build (Linux tarball, Windows MSI, macOS DMG) for as long as you're subscribed. New builds land in the patrons-only feed as they ship.</p>
         <p>Early backers are credited as Founding Patrons, with your name in the app's About panel.</p>
         <a href="{{ site.patreon_membership_url }}" class="btn btn-primary btn-full">Get builds on Patreon</a>
         <p class="path-fineprint">One-time and lifetime licenses come later, closer to 1.0. During the beta it's Patreon only.</p>
@@ -90,7 +90,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
     </div>
 
     <p class="path-centerline">The source is always free. The paid builds fund development.</p>
-    <p class="path-honesty">It's a beta, built to a production bar — 1.0 is the public stable declaration. Expect rough edges and <a href="https://github.com/dusk-audio/dusk-studio/discussions" target="_blank" rel="noopener noreferrer">report everything →</a></p>
+    <p class="path-honesty">It's a beta, built to a production bar. 1.0 is the public stable declaration. Expect rough edges and <a href="https://github.com/dusk-audio/dusk-studio/discussions" target="_blank" rel="noopener noreferrer">report everything →</a></p>
   </div>
 </section>
 
@@ -116,7 +116,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
     <div class="philosophy-row">
       <div class="info-box">
         <h3>Linux</h3>
-        <p>PipeWire (recommended) or ALSA. An X11 display is required — on a Wayland desktop that means XWayland, which GNOME and KDE enable by default. Tarballs ship for x86_64 and arm64 (64-bit Raspberry Pi).</p>
+        <p>PipeWire (recommended) or ALSA. An X11 display is required. On a Wayland desktop that means XWayland, which GNOME and KDE enable by default. Tarballs ship for x86_64 and arm64 (64-bit Raspberry Pi).</p>
       </div>
       <div class="info-box">
         <h3>macOS</h3>
@@ -142,21 +142,21 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
       <div class="changelog-entry">
         <h3>v0.12.6 <span class="changelog-date">25 July 2026</span></h3>
         <ul>
-          <li>Manual recording latency offset in Audio Settings → Advanced, applied to every take at placement, for interfaces that misreport their round-trip latency — plus a raw-sample readout in the region editor so a loopback calibration can be measured directly.</li>
+          <li>Manual recording latency offset in Audio Settings → Advanced, applied to every take at placement, for interfaces that misreport their round-trip latency. A raw-sample readout in the region editor lets a loopback calibration be measured directly.</li>
           <li>Aux sends on a monitored input now sound during playback, so a vocal tracked with reverb keeps it while playing along (0.12.3); armed instrument and MIDI tracks sound live over the timeline too (0.12.1).</li>
           <li>Fixed a crash when bouncing, rendering stems, or freezing a track through a CLAP, VST3 or LV2 insert (0.12.2).</li>
           <li>Multi-preset SoundFonts open in a filterable, program-grouped preset grid instead of one long dropdown (0.12.4).</li>
-          <li>Control-surface faders follow the standard Mackie taper — printed 0 means 0.0 dB — and the out-of-process plugin-scan sandbox now actually engages on Windows (0.12.1).</li>
+          <li>Control-surface faders follow the standard Mackie taper, so a printed 0 means 0.0 dB, and the out-of-process plugin-scan sandbox now actually engages on Windows (0.12.1).</li>
         </ul>
       </div>
       <div class="changelog-entry">
         <h3>v0.12.0 <span class="changelog-date">11 July 2026</span></h3>
         <ul>
-          <li>Native plugin hosting on Linux across CLAP, LV2 and VST3 — effects and instruments alike — with editors that embed reliably on Wayland desktops, automatable and MIDI-learnable parameters, and crash-safe discovery.</li>
+          <li>Native plugin hosting on Linux across CLAP, LV2 and VST3 (effects and instruments alike), with editors that embed reliably on Wayland desktops, automatable and MIDI-learnable parameters, and crash-safe discovery.</li>
           <li>Sessions remember the sample rate their audio was made at and switch the device to match on open, warning loudly when they can't.</li>
           <li>Mastering delivery presets: 24-bit WAV at the session rate, 16-bit 44.1 kHz WAV with TPDF dither, or 320 kbps MP3.</li>
           <li>Save As now copies every session-owned file into the new folder instead of silently referencing the old one; loop playback is seamless; latent plugins on an aux return no longer flam against the dry mix.</li>
-          <li>The channel and bus EQ moved to the new-generation console core — a subtle, deliberate re-voicing at 10–20% less CPU on the EQ/compressor path.</li>
+          <li>The channel and bus EQ moved to the new-generation console core: a subtle, deliberate re-voicing at 10 to 20% less CPU on the EQ/compressor path.</li>
         </ul>
       </div>
       <div class="changelog-entry">
@@ -170,13 +170,13 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
         </ul>
       </div>
       <div class="changelog-entry">
-        <h3>v0.10.0-beta.1 <span class="changelog-date">29 May 2026 — first beta</span></h3>
+        <h3>v0.10.0-beta.1 <span class="changelog-date">29 May 2026 (first beta)</span></h3>
         <ul>
           <li>The first beta, after an architectural-audit sprint over every working feature: real-time safety, lifecycle correctness, cross-platform CI, documentation parity. 148 Catch2 tests green on Linux (amd64 + arm64), macOS and Windows.</li>
           <li>Plugin scanning moved out of process, so a plugin that crashes or hangs during discovery is blacklisted instead of taking the app down.</li>
-          <li>Ten new MIDI binding targets — per-track EQ and compressor toggles, bus EQ, master Pultec and bus compressor — with bank-relative variants that keep an 8-fader surface useful across 24 tracks.</li>
+          <li>Ten new MIDI binding targets (per-track EQ and compressor toggles, bus EQ, master Pultec and bus compressor), with bank-relative variants that keep an 8-fader surface useful across 24 tracks.</li>
           <li>Accessibility pass: every channel-strip slider reads its name and value to VoiceOver and Orca, and text-input dialogs render inside the main window.</li>
-          <li>Hot-unplug detection — an interface disappearing stops the transport and says so, leaving the session intact in memory and on disk.</li>
+          <li>Hot-unplug detection: an interface disappearing stops the transport and says so, leaving the session intact in memory and on disk.</li>
         </ul>
       </div>
     </div>

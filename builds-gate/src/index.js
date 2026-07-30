@@ -1,10 +1,10 @@
-// Dusk Studio build gate — Patreon-OAuth delivery.
+// Dusk Studio build gate: Patreon-OAuth delivery.
 //
 // Downloads are locked to ACTIVE $1+ Patreon members of the Dusk Audio campaign.
 // Flow: visitor hits /latest -> "Sign in with Patreon" -> /auth/login redirects to
 // Patreon -> /auth/callback verifies live membership via the Patreon identity API.
 // A member gets a short-lived signed session cookie; downloads are gated on it. We never
-// store Patreon tokens — membership is checked once at login and the tokens are discarded.
+// store Patreon tokens; membership is checked once at login and the tokens are discarded.
 // The GitHub PAT never leaves the Worker; the member gets a short-lived signed GitHub URL.
 //
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
@@ -40,7 +40,7 @@ async function sessionOk(env, request) {
 }
 
 // True if the Patreon identity payload shows an active $1+ membership of OUR campaign.
-// Fails closed if campaignId is unset — otherwise a $1+ patron of ANY other creator's
+// Fails closed if campaignId is unset, otherwise a $1+ patron of ANY other creator's
 // campaign would pass. DUSK_CAMPAIGN_ID is required config.
 function checkMembership(identity, campaignId) {
   if (!campaignId) return false;
@@ -105,7 +105,7 @@ async function authCallback(env, request, url) {
   if (!idr.ok) return htmlResp(page("Sign-in failed", retry("Could not read your Patreon membership.")), 502);
   const identity = await idr.json();
 
-  // Refuse to mint a session we can't sign — an empty HMAC key would be forgeable.
+  // Refuse to mint a session we can't sign; an empty HMAC key would be forgeable.
   if (!env.SESSION_SECRET) {
     return htmlResp(page("Sign-in failed", retry("The gate is misconfigured (no session secret).")), 500);
   }
@@ -116,7 +116,7 @@ async function authCallback(env, request, url) {
     return new Response(notMember(env), { status: 403, headers });
   }
 
-  // Member confirmed — drop the Patreon tokens, mint a signed session, send to the builds.
+  // Member confirmed: drop the Patreon tokens, mint a signed session, send to the builds.
   const ttl = (parseInt(env.SESSION_TTL_HOURS, 10) || 6) * 3600;
   const sess = await signSession(env.SESSION_SECRET, { exp: Math.floor(Date.now() / 1000) + ttl });
   const headers = new Headers({ Location: "/latest" });
@@ -146,13 +146,13 @@ async function latestPage(env, request) {
     <h1>${escapeHtml(rel.name || rel.tag_name || "Latest build")}</h1>
     <p class="tag">${escapeHtml(rel.tag_name || "")}</p>
     <ul class="files">${items}</ul>
-    <p class="muted">Members-only build. Unsigned — see the <a href="/manual">first-launch steps</a> if macOS or Windows warns you.</p>`;
+    <p class="muted">Members-only build. Unsigned; see the <a href="/manual">first-launch steps</a> if macOS or Windows warns you.</p>`;
   return htmlResp(page("Your Dusk Studio build", body), 200, { "Cache-Control": "no-store" });
 }
 
 async function download(env, request, id) {
   if (!(await sessionOk(env, request))) return htmlResp(notMember(env), 403);
-  // numeric asset id only — prevents path/SSRF injection into the GitHub API
+  // numeric asset id only; prevents path/SSRF injection into the GitHub API
   if (!/^\d+$/.test(id)) return new Response("Bad request", { status: 400 });
 
   // GitHub returns a 302 to a short-lived signed CDN URL; hand that to the client.
@@ -185,7 +185,7 @@ async function manual(env) {
   if (!rel) return new Response("Not available", { status: 404 });
   // Normally the manual comes from the same release patrons download. If that one
   // shipped without a PDF, fall back to the newest release that has one rather than
-  // 404 — a missing manual on one build shouldn't take the public page down.
+  // 404; a missing manual on one build shouldn't take the public page down.
   var asset = manualAsset(rel);
   for (var i = 0; i < list.length && !asset; i++) asset = manualAsset(list[i]);
   if (!asset) return new Response("Manual not found", { status: 404 });
@@ -232,7 +232,7 @@ async function listReleases(env) {
 
 // The release patrons get: newest STABLE one. Prereleases used to be everything we shipped
 // (the alpha days, when GitHub's /releases/latest would have missed them), but today they're
-// single-platform CI artifacts — a Windows-only build must never shadow a full release for
+// single-platform CI artifacts; a Windows-only build must never shadow a full release for
 // macOS and Linux patrons. Fall back to a prerelease only if there's no stable release at all,
 // so a fresh repo still serves whatever exists.
 function pickLatest(list) {
@@ -345,7 +345,7 @@ function page(title, body) {
   return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>${escapeHtml(title)} — Dusk Studio</title>
+<title>${escapeHtml(title)} | Dusk Studio</title>
 <style>
   /* Matches the site's studio-paper LIGHT theme (assets/css/style.css). */
   :root{color-scheme:light}

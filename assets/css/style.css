@@ -1253,7 +1253,7 @@ table th:not(:last-child) {
 }
 
 /* ========================================
-   Dusk dark theme (scoped to body.theme-dark — the homepage)
+   Dusk dark theme (scoped to body.theme-dark, the homepage)
    Redefines the palette; token-based components flip automatically.
    Other pages stay on the light :root palette.
    ======================================== */
@@ -1354,7 +1354,7 @@ body.theme-dark .btn-secondary-download:hover {
 }
 
 /* ============================================================
-   Console / portastudio redesign — type, warm palette, motif
+   Console / portastudio redesign: type, warm palette, motif
    ============================================================ */
 :root {
   --font-display: "Saira Condensed", "Arial Narrow", var(--font-sans);
@@ -1648,7 +1648,7 @@ body { counter-reset: section; }
 @media (max-width: 768px) { .hub-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
-   Wide page variant — body_class: page-wide (used by /plugins/)
+   Wide page variant, body_class: page-wide (used by /plugins/)
    Grid uses the full container so cards can run three-up on
    desktop; prose, tables and code keep the 800px reading
    measure that .page-content sets everywhere else.
@@ -1657,7 +1657,7 @@ body { counter-reset: section; }
 .page-wide .page-content > *:not(.plugin-grid) { max-width: 800px; }
 
 /* Three-up above 1080px: (1080 - 48 container padding - 2x32 gap) / 3
-   = 322px per card — never below the 320px min track used by the
+   = 322px per card, never below the 320px min track used by the
    auto-fill rule at narrower widths. */
 @media (min-width: 1080px) {
   .page-wide .plugin-grid { grid-template-columns: repeat(3, 1fr); }
