@@ -108,10 +108,17 @@
   description: Load your own impulse responses for realistic space simulation.
   status: in-dev
   featured: false
-- name: Tape Echo
-  slug: tape-echo
-  tagline: Vintage tape delay emulation
-  description: Classic tape delay sound with modulation, degradation, and vintage
-    character.
-  status: in-dev
-  featured: false
+- name: Tape Echo 2
+  slug: tape-echo-2
+  tagline: Three-head tape delay with spring reverb
+  description: A three-head tape echo and spring reverb modeled end to end, with 12
+    echo modes, mechanical head timing across the full motor range, tape saturation,
+    wow and flutter that worsen with tape age, splice dropout, and regeneration that
+    runs all the way into self-oscillation. Tempo sync offers 14 note divisions held
+    to the transport's physical range, as on the hardware. 13 factory presets,
+    record-path VU and peak metering, dry/wet mix, and independent echo and spring
+    panning. Completely free.
+  status: released
+  featured: true
+  version: "1.0.0"
+  released: "2026-08-04"
