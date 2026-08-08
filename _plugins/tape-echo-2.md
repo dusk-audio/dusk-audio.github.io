@@ -10,7 +10,7 @@ screenshot: /assets/images/plugins/tape-echo-2-screenshot.png
 features:
   - "12 echo modes covering every head and reverb combination"
   - Three playback heads at fixed mechanical ratios, driven by one motor
-  - Spring reverb tank with four unequal springs and dispersive tail
+  - Spring reverb tank with three unequal springs and a dispersive tail
   - Tape saturation with a modeled record and playback chain
   - "Tape Age in three cartridge conditions: New, Used, Old"
   - Wow and flutter that worsen with tape age, as on the hardware
@@ -103,7 +103,9 @@ Age drives all of the transport's imperfections together: wow, scrape flutter, t
 
 ## Spring Reverb
 
-The spring tank uses four unequal springs, so the tail is dispersive and dense rather than a single ringing resonance. The send is linear across the full drive range, which means the spring keeps its character whether you feed it gently or hit it hard.
+The spring tank uses three unequal springs, spread widely enough that their transit times span about 5.6 ms. Each pair beats at the difference of its round-trip rate, and that beating is the tank's movement: there is no LFO anywhere in it. Spacing the springs far apart gives fewer, faster beats that read as texture rather than the slow warble you get from bunching them together. Two short allpass diffusers then fill the gaps between the three arrivals, so the tail is dense instead of a set of spikes.
+
+The send is linear across the full drive range, which means the spring keeps its character whether you feed it gently or hit it hard.
 
 The Record Input switch mutes the feed to the tape while leaving the spring live, so you can hold a spring wash while the echoes decay away underneath it.
 
@@ -142,7 +144,7 @@ The VU meter reads the record path, after the input amplifier and immediately be
 - **Record chain:** oversampled preamp with latency-compensated halfband filtering
 - **Heads:** three fixed mechanical ratios from one motor position, Hermite-interpolated
 - **Modulation:** wow, sinusoidal flutter, and band-limited scrape flutter, all age-coupled
-- **Spring tank:** four unequal springs with allpass dispersion and modeled pickup taps
+- **Spring tank:** three unequal springs with allpass dispersion and modeled pickup taps
 - **Metering:** record-path VU with analog ballistics plus a peak lamp
 
 ### Parameter Ranges
