@@ -16,7 +16,7 @@ features:
   - Wow and flutter that worsen with tape age, as on the hardware
   - Automatic splice dropout as the tape join circulates past the heads
   - Regeneration that runs from a single repeat into self-oscillation
-  - "Tempo sync with 14 note divisions, held to the motor range as on the hardware"
+  - "Tempo sync across eleven note detents, held to the motor range as on the hardware"
   - Record-path VU meter with peak lamp
   - Dry/wet mix plus independent echo and spring panning
   - Record-input switch that mutes the tape feed while the spring stays live
@@ -45,7 +45,7 @@ changelog:
       - Spring reverb tank rebuilt with a linear send and recalibrated recurrence
       - Tape age drives wow, flutter, hiss, and level wobble together
       - Self-oscillation reworked so runaway builds from the tape flux, not loop gain alone
-      - Tempo sync with 14 note divisions, held to the transport's physical range
+      - Tempo sync across eleven note detents, held to the transport's physical range
       - Record-path VU and peak metering
       - 13 factory presets
 ---
@@ -85,7 +85,7 @@ Because the heads are mechanically linked, selecting a multi-head mode gives you
 
 ## Tempo Sync
 
-Fourteen note divisions derive the motor speed from the host tempo. The rhythmic value belongs to the leading active head, so the same division reads differently in a Head 1 mode than in a Head 3 mode.
+Eleven note detents derive the motor speed from the host tempo. The rhythmic value belongs to the leading active head, so the same detent reads differently in a Head 1 mode than in a Head 3 mode.
 
 A real tape echo can only run its motor so slowly. Tempo Sync respects that: a note longer than the transport can carry is held at the motor's maximum rather than transposed down, which is what the hardware does. Longer divisions therefore converge on the same timing at a given tempo, and slow tempos reach the limit sooner. Reach for a shorter division or a multi-head mode when you want the repeat to track the bar at low tempos.
 
