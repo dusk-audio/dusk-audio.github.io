@@ -421,6 +421,16 @@ main {
   object-fit: cover;
 }
 
+/* Ultra-wide panel shots lose too much to object-fit: cover in the 16/10 box.
+   Tape Echo 2 is 2.67:1, so cover scales it to fill the height and crops ~40%
+   of its width, cutting off the Input/Mix/Output column and the Echo Pan knob.
+   Letterbox that card instead: the whole panel reads, and the card background
+   fills the remainder. The detail page is unaffected; it renders the same file
+   at natural aspect via `.plugin-screenshot img { height: auto }`. */
+.plugin-card-image--tape-echo-2 img {
+  object-fit: contain;
+}
+
 .plugin-card-image .placeholder {
   color: var(--color-text-muted);
   font-size: 0.875rem;
