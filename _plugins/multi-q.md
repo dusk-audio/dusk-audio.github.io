@@ -4,7 +4,7 @@ title: Multi-Q
 slug: multi-q
 tagline: "Universal EQ: Digital, British Console, and Tube"
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
-version: "0.10.7"
+version: "0.10.8"
 screenshot: /assets/images/plugins/multi-q-digital.png
 gallery:
   - src: /assets/images/plugins/multi-q-digital.png
@@ -43,6 +43,11 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "0.10.8"
+    date: "2026-08-14"
+    changes:
+      - "Fix an intermittent host crash when typing a value into a knob and then clicking outside the entry field (GH #165)"
+      - "Fix typed values on percent knobs being divided by 100, so entering 50 now sets 50% rather than 1%"
   - version: "0.10.7"
     date: "2026-07-03"
     changes:
