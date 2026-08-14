@@ -1,0 +1,24 @@
+# Keep text files LF in the repository.
+#
+# _plugins/multi-comp.md and _plugins/tapemachine.md had drifted to CRLF. That is
+# invisible in an editor but breaks anchored line matching: the release tooling
+# looks for `^changelog:$` to insert a new entry, and on a CRLF file the line
+# really ends `changelog:\r`, so the match silently finds nothing and the release
+# ships without a changelog entry. Normalising here stops it recurring.
+* text=auto eol=lf
+
+# Binary assets git must not touch.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.zip   binary
+*.mp3   binary
+*.wav   binary
+*.flac  binary
