@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.1"
+version: "1.0.2"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.png
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.png
@@ -52,12 +52,18 @@ formats:
 requirements:
   - "Linux x86_64: glibc 2.31 or newer (Ubuntu 20.04+, Debian 11+, Fedora 34+)"
   - "Linux arm64: glibc 2.35 or newer (Ubuntu 22.04+, Debian 12+)"
+  - "Linux downloads: x64 is for Intel/AMD PCs; arm64 is for ARM systems"
   - "Windows: Windows 10 or later"
   - "macOS: macOS 10.15 (Catalina) or later, Intel and Apple Silicon"
   - "64-bit DAW with VST3, CLAP, LV2, or AU support"
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.2"
+    date: "2026-08-15"
+    changes:
+      - Crash logs are now captured; the supporters overlay has an "Open crash log folder" link
+      - "Linux downloads: one archive per architecture (x64, arm64), no more duplicate archive pairs"
   - version: "1.0.1"
     date: "2026-07-30"
     changes:

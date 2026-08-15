@@ -72,7 +72,7 @@
     the hardware units' classic settings. Completely free.
   status: released
   featured: true
-  version: "1.0.5"
+  version: "1.0.6"
   released: "2026-07-15"
 - name: Groovemind
   slug: groovemind
@@ -112,7 +112,7 @@
     presets and a user preset library. Completely free.
   status: released
   featured: true
-  version: 1.0.1
+  version: 1.0.2
   released: "2026-07-26"
 - name: Convolution Reverb
   slug: convolution-reverb
@@ -132,5 +132,5 @@
     panning. Completely free.
   status: released
   featured: true
-  version: "1.0.1"
+  version: "1.0.2"
   released: "2026-08-04"

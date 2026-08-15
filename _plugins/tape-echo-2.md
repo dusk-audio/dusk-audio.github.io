@@ -4,7 +4,7 @@ title: Tape Echo 2
 slug: tape-echo-2
 tagline: Three-Head Tape Delay with Spring Reverb
 description: A three-head tape echo and spring reverb modeled end to end, with 12 echo modes, mechanical head timing, tape age, splice dropout, and regeneration that runs into self-oscillation. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.1"
+version: "1.0.2"
 screenshot: /assets/images/plugins/tape-echo-2-screenshot.png
 
 features:
@@ -31,12 +31,18 @@ formats:
 
 requirements:
   - "Linux: glibc 2.31+ (Ubuntu 20.04+, Debian 11+, Fedora 34+)"
+  - "Linux downloads: x64 is for Intel/AMD PCs; arm64 is for ARM systems"
   - "macOS: macOS 10.13 (High Sierra) or later"
   - "Windows: Windows 10 or later"
   - "64-bit DAW with AU, VST3, CLAP, or LV2 support"
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.2"
+    date: "2026-08-15"
+    changes:
+      - Crash logs are now captured; the supporters overlay has an "Open crash log folder" link
+      - "Linux downloads: one archive per architecture (x64, arm64), no more duplicate archive pairs"
   - version: "1.0.1"
     date: "2026-08-13"
     changes:
