@@ -17,9 +17,10 @@
     measured frequency, gain, Q, shelf, filter, interaction, nonlinearity and overload
     behaviour.
     AU, VST3, CLAP and LV2.
-  status: in-dev
-  featured: false
-  version: 2.0.11
+  status: released
+  featured: true
+  version: "1.0.0"
+  released: "2026-08-16"
 - name: Multi-Comp
   slug: multi-comp
   tagline: Multi-mode dynamics compressor
