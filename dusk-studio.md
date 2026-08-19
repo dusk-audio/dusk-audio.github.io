@@ -12,7 +12,7 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
     <p class="hero-eyebrow">Open source · GPL-3.0 · Linux (x86_64 + arm64) / macOS (Apple Silicon) / Windows</p>
     <h1>A portastudio for the desktop.</h1>
     <p class="tagline">24 tracks. A fixed signal chain. Everything on one screen. Dusk Studio is a deliberately constrained DAW built to make you stop tweaking and finish music.</p>
-    <p class="hero-badge">v0.12.6 beta</p>
+    <p class="hero-badge">v0.13.0 beta</p>
     <div class="hero-buttons">
       <a href="https://builds.duskaudio.com/latest" class="btn btn-primary btn-lg">Get the latest build</a>
       <a href="https://github.com/dusk-audio/dusk-studio" class="btn btn-secondary btn-lg">Build from source</a>
@@ -139,6 +139,18 @@ description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 
       <p>What has landed on the beta line so far.</p>
     </div>
     <div>
+      <div class="changelog-entry">
+        <h3>v0.13.0 <span class="changelog-date">19 August 2026</span></h3>
+        <ul>
+          <li>Every session now carries a notepad for lyrics and notes: a page-style editor with headings, lists and links that writes chords over the syllables they land on, ranks diatonic chords first once the key is readable, and transposes the whole sheet at once. It saves beside the session as a plain ChordPro text file any chord-sheet app can open.</li>
+          <li>A native PipeWire audio backend on Linux, talking to libpipewire directly instead of borrowing a JACK compatibility layer, with capture and playback sharing one graph cycle. The native ALSA backend stays as the fallback. MIDI interfaces are picked up as they are plugged in, with a refresh that lands mid-take held until the transport stops.</li>
+          <li>Native plugin hosting on macOS across all four formats, Audio Units included: discovery, rendering, session state, and editors embedded in the window.</li>
+          <li>Loop recording keeps every pass. Each lap lands as its own take instead of overwriting the last one, audio and MIDI alike, with held notes and controller state carried across the seam.</li>
+          <li>Stems render in a single pass, each taken at its own point in the engine rather than re-rendering the session once per track, so a full set stays sample-aligned and reconstructs the pre-master mix. A new realtime bounce plays the session through the audio device so hardware inserts print wet.</li>
+          <li>The whole interface zooms from half to double size, remembered per machine, and a denser console fits a full bank of eight plus the buses and master on a 1080p display. Narrow windows keep the faders playable instead of squeezing them past the point of use.</li>
+          <li>Session load no longer inherits the previous session's values for anything a truncated or hand-edited file leaves out, and present-but-corrupt values are clamped to the range their control enforces. MIDI sync settings round-trip. On the control surface, the compressor threshold, ratio, attack, release and makeup encoders now drive the active mode's own parameters, where four of the five were silent in optical and FET modes.</li>
+        </ul>
+      </div>
       <div class="changelog-entry">
         <h3>v0.12.6 <span class="changelog-date">25 July 2026</span></h3>
         <ul>
