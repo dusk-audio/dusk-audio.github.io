@@ -54,7 +54,7 @@ changelog:
   - version: "1.0.0"
     date: "2026-08-04"
     changes:
-      - Ground-up DPF rebuild of Tape Echo with AU, VST3, CLAP, and LV2 support
+      - Ground-up rebuild of Tape Echo on DAF (Dusk Audio Framework), our own framework derived from DPF, with AU, VST3, CLAP, and LV2 support
       - Three-head transport with mechanical head ratios across the full motor range
       - Spring reverb tank rebuilt with a linear send and recalibrated recurrence
       - Tape age drives wow, flutter, hiss, and level wobble together
