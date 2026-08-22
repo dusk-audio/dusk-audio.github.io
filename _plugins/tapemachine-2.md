@@ -81,7 +81,7 @@ changelog:
   - version: "1.0.0"
     date: "2026-07-15"
     changes:
-      - Ground-up DPF rebuild of TapeMachine with AU, VST3, CLAP, and LV2 support
+      - Ground-up rebuild of TapeMachine on DAF (Dusk Audio Framework), our own framework derived from DPF, with AU, VST3, CLAP, and LV2 support
       - Swiss (A800-style) and American (ATR-102-style) machines
       - Anti-aliased waveshaping saturation with per-speed head bump and HF response
       - Four tape speeds (3.75 to 30 IPS) and four tape formulations
