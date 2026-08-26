@@ -19,7 +19,7 @@
     AU, VST3, CLAP and LV2.
   status: released
   featured: true
-  version: "1.0.0"
+  version: "1.0.1"
   released: "2026-08-16"
 - name: Multi-Comp
   slug: multi-comp
@@ -113,7 +113,7 @@
     presets and a user preset library. Completely free.
   status: released
   featured: true
-  version: 1.0.2
+  version: "1.0.3"
   released: "2026-07-26"
 - name: Convolution Reverb
   slug: convolution-reverb
@@ -133,5 +133,5 @@
     panning. Completely free.
   status: released
   featured: true
-  version: "1.0.2"
+  version: "1.0.3"
   released: "2026-08-04"
