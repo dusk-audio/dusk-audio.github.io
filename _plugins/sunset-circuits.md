@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.2"
+version: "1.0.3"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.png
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.png
@@ -59,6 +59,11 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.3"
+    date: "2026-08-26"
+    changes:
+      - "Fixed CLAP output level meters being reported to the host as parameter changes, which made hosts such as Bitwig mark the project modified and constantly override the last-touched parameter"
+      - "User presets: storage deduplicated in the shared framework layer"
   - version: "1.0.2"
     date: "2026-08-15"
     changes:
