@@ -19,7 +19,7 @@
     AU, VST3, CLAP and LV2.
   status: released
   featured: true
-  version: "1.0.1"
+  version: 1.0.2
   released: "2026-08-16"
 - name: Multi-Comp
   slug: multi-comp
