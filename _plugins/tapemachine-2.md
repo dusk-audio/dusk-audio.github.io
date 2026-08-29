@@ -4,7 +4,7 @@ title: TapeMachine 2
 slug: tapemachine-2
 tagline: Two-Machine Analog Tape Emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.9"
+version: "1.0.10"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
 
 features:
@@ -40,6 +40,11 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.10"
+    date: "2026-08-29"
+    changes:
+      - "Fixed the window aspect the plugin reports to the host: it advertised 400x260 against an 800x470 design, so hosts that keep a plugin window on a fixed aspect sized the editor off its design"
+      - "Fixed knob dragging stopping when the plugin window loses keyboard focus mid-drag"
   - version: "1.0.9"
     date: "2026-08-28"
     changes:
