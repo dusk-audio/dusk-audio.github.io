@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.1.4"
+version: "1.2.0"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -31,6 +31,15 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.2.0"
+    date: "2026-08-30"
+    changes:
+      - "Chord names no longer drop notes: C E G F# reads Cadd#11, not C"
+      - "Slash notation for any bass note, including an upper-structure bass such as Cadd#11/F#"
+      - "Sixth chords are named correctly in root position: C6 instead of Am7/C"
+      - "Voicings that leave out the fifth are now named: C7(no5), Cmaj9(no5) and the other shell voicings"
+      - "Altered dominants corrected: C7(#11) where the natural fifth sounds, and 7b9 and 7#9 are now detected"
+      - "Two notes read as an interval, for example C+E (M3), instead of a question mark"
   - version: "1.1.4"
     date: "2026-05-13"
     changes:

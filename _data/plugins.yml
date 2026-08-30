@@ -51,7 +51,7 @@
     and FX versions for every major DAW.
   status: released
   featured: true
-  version: 1.1.4
+  version: 1.2.0
   released: "2026-03-29"
 - name: TapeMachine
   slug: tapemachine
