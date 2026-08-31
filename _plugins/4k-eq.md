@@ -4,7 +4,7 @@ title: 4K-EQ
 slug: 4k-eq
 tagline: Classic British Console EQ Emulation
 description: Professional 4-band parametric equalizer with analog modeling. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.11"
+version: "1.0.12"
 screenshot: /assets/images/plugins/4k-eq-screenshot.png
 
 features:
@@ -34,6 +34,11 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.12"
+    date: "2026-08-31"
+    changes:
+      - "Crash logs are now captured automatically, with a new Open crash log folder link in the credits overlay"
+      - "Editor resize handling hardened: the host window and the in-editor corner grip now share one size constrainer"
   - version: "1.0.11"
     date: "2026-08-14"
     changes:
