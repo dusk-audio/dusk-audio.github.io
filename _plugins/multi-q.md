@@ -4,7 +4,7 @@ title: Multi-Q
 slug: multi-q
 tagline: "Universal EQ: Digital, British Console, and Tube"
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
-version: "0.10.8"
+version: "0.10.9"
 screenshot: /assets/images/plugins/multi-q-digital.png
 gallery:
   - src: /assets/images/plugins/multi-q-digital.png
@@ -43,6 +43,11 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "0.10.9"
+    date: "2026-08-31"
+    changes:
+      - "Crash logs are now captured automatically, with a new Open crash log folder link in the credits overlay"
+      - "Editor resize handling hardened: the host window and the in-editor corner grip now share one size constrainer"
   - version: "0.10.8"
     date: "2026-08-14"
     changes:

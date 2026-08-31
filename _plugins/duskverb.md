@@ -4,7 +4,7 @@ title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
 description: "Algorithmic reverb with eleven distinct DSP engines: Plate, Vintage Plate, Smooth Plate, Chamber, Spring, Gated, Shimmer, Reverse, Hall, Tiled Room, and Dense Hall. Tone, Character, and Duck macro shapers, 20 hardware-inspired factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS."
-version: "0.7.0"
+version: "0.7.1"
 screenshot: /assets/images/plugins/DuskVerb-Shimmer.png
 
 gallery:
@@ -85,6 +85,13 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz (sample-rate independent)"
 
 changelog:
+  - version: "0.7.1"
+    date: "2026-08-31"
+    changes:
+      - "Resizing from the host window edge now keeps the editor's aspect ratio, matching the in-editor corner grip"
+      - "A window size saved by an older build is corrected on load, so the editor no longer reopens clipped"
+      - "Filter design frequencies are clamped below Nyquist throughout the reverb engine, preventing unstable coefficients at low sample rates"
+      - "Crash logs are now captured automatically, with a new Open crash log folder link in the credits overlay"
   - version: "0.7.0"
     date: "2026-07-24"
     changes:

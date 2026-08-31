@@ -4,7 +4,7 @@ title: TapeMachine
 slug: tapemachine
 tagline: Professional Analog Tape Emulation
 description: Professional tape machine emulation calibrated against real vintage hardware measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.0.9"
+version: "1.0.10"
 screenshot: /assets/images/plugins/tapemachine-screenshot.png
 
 features:
@@ -36,6 +36,13 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.10"
+    date: "2026-08-31"
+    changes:
+      - "Machine models renamed: Swiss 800 is now Swiss and Classic 102 is now American; the sound is unchanged"
+      - "The editor now keeps its aspect ratio when resized, including drags from the host window edge"
+      - "A window size saved by an older build is corrected on load, so the editor no longer reopens clipped"
+      - "Crash logs are now captured automatically, with a new Open crash log folder link in the credits overlay"
   - version: "1.0.9"
     date: "2026-07-01"
     changes:
