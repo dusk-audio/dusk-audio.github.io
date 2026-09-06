@@ -4,7 +4,7 @@ title: 4K EQ 2
 slug: 4k-eq-2
 tagline: Calibrated British Console EQ with Brown and Black Voicings
 description: A ground-up rebuild of the 4K EQ, with the equalizer and high-pass/low-pass filters of a classic British E-series channel strip measured band by band. Brown and Black are separate voicings rather than cosmetic themes, each with its own measured frequency, gain, Q, shelf, filter, interaction, nonlinearity and overload behavior. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.4"
+version: "1.0.5"
 screenshot: /assets/images/plugins/4k-eq-2-screenshot.png
 
 features:
@@ -34,6 +34,12 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.5"
+    date: "2026-09-06"
+    changes:
+      - "Frequency knobs regain their full travel"
+      - "Shared printed knob ring and detent laws"
+      - "Framework update (DAF 22b82824, pugl d46e7871): the first click on an unfocused editor registers on macOS, macOS resize sizing fix, drawing state set up on the expose path, AU buffer handling fix, Wayland backend updated"
   - version: "1.0.4"
     date: "2026-08-29"
     changes:

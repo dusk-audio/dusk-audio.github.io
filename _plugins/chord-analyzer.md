@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.2.1"
+version: "1.2.2"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -31,6 +31,12 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.2.2"
+    date: "2026-09-06"
+    changes:
+      - "New read-only Detected Chord parameter carrying the exact label the editor shows, so hosts such as Gig Performer can display the chord without opening the editor (#267)"
+      - "Detected Inversion is numbered off the matched chord shape: 4th, 5th and 6th for a 9th, 11th or 13th in the bass, and a Slash value for a bass the chord does not spell (#273)"
+      - "Editor always fits the host window when the host resizes it below the minimum, instead of overhanging it (#240)"
   - version: "1.2.1"
     date: "2026-08-31"
     changes:

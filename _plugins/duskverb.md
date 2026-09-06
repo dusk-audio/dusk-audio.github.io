@@ -4,7 +4,7 @@ title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
 description: "Algorithmic reverb with eleven distinct DSP engines: Plate, Vintage Plate, Smooth Plate, Chamber, Spring, Gated, Shimmer, Reverse, Hall, Tiled Room, and Dense Hall. Tone, Character, and Duck macro shapers, 20 hardware-inspired factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS."
-version: "0.7.1"
+version: "0.7.2"
 screenshot: /assets/images/plugins/DuskVerb-Shimmer.png
 
 gallery:
@@ -85,6 +85,11 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz (sample-rate independent)"
 
 changelog:
+  - version: "0.7.2"
+    date: "2026-09-06"
+    changes:
+      - "Editor fits the host window on frame resizes; fixes the face being clipped after a corner drag in REAPER on Linux (#240)"
+      - "Layout, resize grip and the supporters overlay follow host-driven resizes instead of going stale (#240)"
   - version: "0.7.1"
     date: "2026-08-31"
     changes:

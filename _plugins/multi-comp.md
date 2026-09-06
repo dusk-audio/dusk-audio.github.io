@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.3.6"
+version: "1.3.7"
 screenshot: /assets/images/plugins/multi-comp-screenshot.png
 
 features:
@@ -39,6 +39,10 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.3.7"
+    date: "2026-09-06"
+    changes:
+      - "Editor always fits the host window when the host resizes it below the minimum, instead of overhanging it (#240)"
   - version: "1.3.6"
     date: "2026-08-31"
     changes:
