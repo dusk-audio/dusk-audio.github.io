@@ -4,7 +4,7 @@ title: Chord Analyzer
 slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
-version: "1.2.2"
+version: "1.3.0"
 screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
 
 features:
@@ -31,6 +31,14 @@ requirements:
   - "DAW must support MIDI routing to analyzer plugins"
 
 changelog:
+  - version: "1.3.0"
+    date: "2026-09-21"
+    changes:
+      - "Headless LV2: four chord suggestion slots are published as output ports (suggestion_1 to suggestion_4, root and quality), using the same encoding as detected_root and detected_quality (#283)"
+      - "Headless LV2: link without libcurl so the plugin loads in Jalv and Zynthian (#284)"
+      - "No-fifth ninth shells (9, maj9, m9) are named from their root: Bb C E D is now C9(no5)/A# instead of A#add9(no5,#11) (#277)"
+      - "Headless LV2: activate() resets held notes, sustain state and the output ports"
+      - "Unit and host tests, plus a headless LV2 link and port check, now run in CI (#276)"
   - version: "1.2.2"
     date: "2026-09-06"
     changes:
