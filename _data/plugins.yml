@@ -91,6 +91,13 @@
   featured: true
   version: 0.10.9
   released: "2026-02-05"
+- name: Multi-Q 2
+  slug: multi-q-2
+  tagline: Four-personality EQ with dynamic bands, Match mode, and console color
+  description: A native rebuild of Multi-Q with four EQ personalities, dynamic bands,
+    Match mode and console color. Completely free.
+  status: in-dev
+  featured: false
 - name: DuskVerb
   slug: duskverb
   tagline: Professional Algorithmic Reverb
@@ -102,6 +109,15 @@
   featured: true
   version: 0.7.3
   released: "2026-02-25"
+- name: DuskVerb 2
+  slug: duskverb-2
+  tagline: Algorithmic reverb with the original DuskVerb engines
+  description: The DuskVerb reverb engines in a native plugin with a redesigned,
+    resizable interface. The same engines and 20 factory presets, plus preset import
+    from the original DuskVerb, A/B comparison snapshots, user presets, and mono,
+    mono to stereo and stereo operation. Completely free.
+  status: in-dev
+  featured: false
 - name: Sunset Circuits
   slug: sunset-circuits
   tagline: Six vintage synth circuits in one instrument
