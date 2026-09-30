@@ -234,9 +234,17 @@ async function listReleases(env) {
 // (the alpha days, when GitHub's /releases/latest would have missed them), but today they're
 // single-platform CI artifacts; a Windows-only build must never shadow a full release for
 // macOS and Linux patrons. Fall back to a prerelease only if there's no stable release at all,
-// so a fresh repo still serves whatever exists.
+// so a fresh repo still serves whatever exists. Side releases (e.g. v0.14.0-lgpl-sources, which
+// carries only source tarballs) aren't builds; only a plain vX.Y.Z tag counts as the stable one.
+const STABLE_TAG = /^v\d+\.\d+\.\d+$/;
+
 function pickLatest(list) {
-  return list.find((x) => !x.prerelease) || list[0] || null;
+  return (
+    list.find((x) => !x.prerelease && STABLE_TAG.test(x.tag_name || "")) ||
+    list.find((x) => !x.prerelease) ||
+    list[0] ||
+    null
+  );
 }
 
 async function latestRelease(env) {
