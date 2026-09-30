@@ -32,7 +32,7 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
    (`GET /api/oauth2/v2/identity?include=memberships,memberships.campaign` while logged in as
    the creator, or `GET /api/oauth2/v2/campaigns`). Put it in `wrangler.toml` → `DUSK_CAMPAIGN_ID`.
 4. **Session secret**: `openssl rand -hex 32`.
-5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`,
+5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`, `DUSK_CREATOR_USER_ID`,
    `OAUTH_REDIRECT_URI`, `SESSION_TTL_HOURS`, `FREE_DOWNLOADS="0"`.
 6. **Secrets** (never committed):
    ```
@@ -62,6 +62,8 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
 - As an **active $1+ patron**: `/latest` → Sign in with Patreon → authorize → build list → a
   file downloads (302 to a GitHub signed URL).
+- As the **campaign owner** (Patreon user `DUSK_CREATOR_USER_ID`): same flow, lands on the build
+  list without a pledge. This is the way to check a release on the live site.
 - As a **non-member**: same start → after Patreon auth → "Join on Patreon" page, no files.
   `GET /dl/<id>` with no session → 403.
 - **Cancellation**: cancel the pledge; after `SESSION_TTL_HOURS`, `/latest` re-auths and blocks.
