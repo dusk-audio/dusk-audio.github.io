@@ -9,7 +9,7 @@
 //
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
 // Vars (wrangler.toml [vars]): RELEASES_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
-//                              OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
+//                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
 
 export default {
   async fetch(request, env) {
@@ -55,6 +55,15 @@ function checkMembership(identity, campaignId) {
     if (active && cents >= 100 && campOk) return true;
   }
   return false;
+}
+
+// The campaign owner can't pledge to their own campaign, so they pass by Patreon user id.
+// identity.data.id comes from Patreon's token-authenticated identity call, not from the
+// browser. Fails closed when the var is unset.
+function isCreator(identity, creatorUserId) {
+  if (!creatorUserId) return false;
+  const id = identity && identity.data && identity.data.id;
+  return id != null && String(id) === String(creatorUserId);
 }
 
 /* ---------- OAuth ---------- */
@@ -110,7 +119,7 @@ async function authCallback(env, request, url) {
     return htmlResp(page("Sign-in failed", retry("The gate is misconfigured (no session secret).")), 500);
   }
 
-  if (!checkMembership(identity, env.DUSK_CAMPAIGN_ID)) {
+  if (!checkMembership(identity, env.DUSK_CAMPAIGN_ID) && !isCreator(identity, env.DUSK_CREATOR_USER_ID)) {
     const headers = new Headers({ "Content-Type": "text/html; charset=UTF-8" });
     headers.append("Set-Cookie", clearCookie("ds_oauthstate"));
     return new Response(notMember(env), { status: 403, headers });
