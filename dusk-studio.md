@@ -13,12 +13,13 @@ og_image: /assets/images/studio/console.webp
     <p class="eyebrow">Dusk Studio · Desktop portastudio</p>
     <h1 id="studio-title">Your music.<br>Your whole studio.</h1>
     <p class="hero-description">24 tracks. A hands-on console. Recording, mixing,<br class="desktop-break"> and mastering in one focused place.</p>
+    <p>Built around rock and singer/songwriter sessions, with audio and MIDI tools for electronic producers, too.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#get">Get Dusk Studio beta</a>
       <a class="btn btn-secondary" href="#takes">Explore takes and comping</a>
     </div>
     <p class="hero-meta">Linux · macOS · Windows &nbsp; / &nbsp; Open source &nbsp; / &nbsp; {% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta</p>
-    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio mixing console with channel EQ, compression, aux sends, buses, and master controls' eager=true width=2560 height=1080 %}
+    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio playing a multitrack mix with active channel, bus, and stereo master meters' eager=true width=2560 height=1080 %}
   </div>
 </section>
 
@@ -88,6 +89,7 @@ og_image: /assets/images/studio/console.webp
 
 <section class="showcase-section" id="get" aria-labelledby="get-title">
   <div class="container">
+    {% include signup-prompt.html %}
     <div class="section-intro">
       <p class="eyebrow">Start making music</p>
       <h2 id="get-title">Get Dusk Studio beta.</h2>
