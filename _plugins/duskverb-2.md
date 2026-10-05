@@ -4,7 +4,7 @@ title: DuskVerb 2
 slug: duskverb-2
 tagline: Algorithmic Reverb with a Redesigned Interface
 description: The original DuskVerb reverb engines in a redesigned, resizable interface, with A/B comparison, user presets, import of original DuskVerb presets, and mono, mono-to-stereo, and stereo routing. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "0.1.0"
+version: "1.0.0"
 screenshot: /assets/images/plugins/duskverb-2-screenshot.png
 
 features:
@@ -42,6 +42,14 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.0"
+    date: "2026-10-05"
+    changes:
+      - "First release of DuskVerb 2: the DuskVerb reverb engines in a redesigned, resizable interface"
+      - "All 20 factory presets and 92 parameters carried over; the sound matches DuskVerb 0.7.3"
+      - "Imports presets saved from the original DuskVerb"
+      - "Mono, mono-to-stereo and stereo layouts"
+      - "AU, VST3, CLAP and LV2 for Linux (x64, arm64), Windows and macOS (universal)"
 ---
 
 DuskVerb 2 is the successor to DuskVerb. It has its own plugin identity, so both can be installed side by side; keep the original for projects that already use it. Original DuskVerb preset files can be imported from the preset menu.
