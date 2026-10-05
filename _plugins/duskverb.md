@@ -3,7 +3,7 @@ layout: plugin
 title: DuskVerb
 slug: duskverb
 tagline: Professional Algorithmic Reverb
-description: "Algorithmic reverb with eleven distinct DSP engines: Plate, Vintage Plate, Smooth Plate, Chamber, Spring, Gated, Shimmer, Reverse, Hall, Tiled Room, and Dense Hall. Tone, Character, and Duck macro shapers, 20 hardware-inspired factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS."
+description: "Algorithmic reverb with twelve selectable DSP engines: Plate, Vintage Plate, Smooth Plate, Chamber, Spring, Gated, Shimmer, Reverse, Hall, Tiled Room, Dense Hall, and Parallel Hall. Tone, Character, and Duck macro shapers, 20 hardware-inspired factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS."
 version: "0.7.3"
 screenshot: /assets/images/plugins/DuskVerb-Shimmer.png
 
@@ -16,7 +16,7 @@ gallery:
     caption: "Hall: Feedback delay network with a per-octave GEQ in the loop for honest, independent per-band RT60 and smooth, non-metallic tails."
   - src: /assets/images/plugins/DuskVerb-DenseHall.png
     alt: "DuskVerb Dense Hall engine, a heavily diffused 8-line FDN for thick concert tails"
-    caption: "Dense Hall: Heavily diffused 8-line FDN for a thick, smooth, lush concert tail. Powers the factory hall presets (Bright Hall, Vocal Hall, Cathedral Large Hall, Blade Runner 224)."
+    caption: "Dense Hall: Heavily diffused 8-line FDN for a thick, smooth, lush concert tail. Powers the factory hall presets (Bright Hall, Cathedral Large Hall, Blade Runner 224)."
   - src: /assets/images/plugins/DuskVerb-TiledRoom.png
     alt: "DuskVerb Tiled Room engine, a sparse tapped early-reflection front into a short dark FDN tail"
     caption: "Tiled Room: Sparse tapped early-reflection front welded to a short, dark FDN tail. Tight ceramic room character."
@@ -41,9 +41,12 @@ gallery:
   - src: /assets/images/plugins/DuskVerb-Gated.png
     alt: "DuskVerb Gated engine, a 64-tap feed-forward delay line with envelope shaping"
     caption: "Gated: 64-tap feed-forward delay line with envelope shaping, the iconic gated-snare sound in the spirit of the AMS RMX16."
+  - src: /assets/images/plugins/DuskVerb-ParallelHall.png
+    alt: "DuskVerb Parallel Hall engine with independent reverb tanks for six frequency bands"
+    caption: "Parallel Hall: Six complementary frequency bands with independent reverb tanks and decay, used by Vocal Hall"
 
 features:
-  - Eleven distinct DSP engines, switch architecture, not just preset values
+  - Twelve selectable DSP engines, switch architecture, not just preset values
   - Plate, a 2-AP cross-coupled Dattorro plate
   - Vintage Plate, the plate tank with a fixed vintage post-EQ voicing
   - Smooth Plate, a 6-AP density cascade for lush, dense ambience
@@ -55,6 +58,7 @@ features:
   - Hall, an FDN with per-octave GEQ for honest per-band RT60
   - Tiled Room, a sparse-ER front with a short dark tail for tight rooms
   - Dense Hall, a heavily diffused 8-line FDN for thick, smooth halls
+  - Parallel Hall, six frequency bands with independent reverb tanks and decay
   - Tone, Character, and Duck macro shapers for fast global voicing
   - 20 hardware-inspired factory presets (anchored to Lexicon, EMT, AMS, Bricasti, Eventide, and Valhalla references)
   - Random-walk LFO modulation, aperiodic shimmer with no audible warble
@@ -180,13 +184,13 @@ changelog:
       - Initial release with VST3/LV2/AU support
 ---
 
-DuskVerb is a free algorithmic reverb that gives you eleven genuinely different DSP engines under the same UI, separate topologies you can audition like swapping hardware boxes, not flavors of the same algorithm. 20 factory presets inspired by real studio gear, a large DECAY visualization, Tone / Character / Duck macro shapers, and the controls you need to shape anything from a tight slap to an infinite shimmering pad.
+DuskVerb is a free algorithmic reverb that gives you twelve different selectable DSP engines under the same UI, separate topologies you can audition like swapping hardware boxes, not flavors of the same algorithm. 20 factory presets inspired by real studio gear, a large DECAY visualization, Tone / Character / Duck macro shapers, and the controls you need to shape anything from a tight slap to an infinite shimmering pad.
 
 ## Overview
 
 Start with the engine. Each one is a completely different reverb, so choosing an engine feels less like turning a knob and more like swapping the box in your rack. Find a space you like, then shape it: size, decay, modulation, damping, early reflections, and a handful of output filters are all a drag away. Every factory preset is ready to sit in a mix the moment you load it, but nothing is locked down. Drop the same preset onto a different engine and you land somewhere new.
 
-Switching engines never clicks or drops out. All eleven are warmed up and running under the hood, so you can flip between them while the music keeps playing and hear each space take over in real time. And because the modulation wanders instead of cycling on a fixed sine, the tails shimmer and breathe like high-end hardware rather than wobbling in a loop.
+Switching engines never clicks or drops out. You can flip between them while the music keeps playing and hear each space take over in real time. And because the modulation wanders instead of cycling on a fixed sine, the tails shimmer and breathe like high-end hardware rather than wobbling in a loop.
 
 New in v0.6.0: a Tone, Character, and Duck macro row for quick global moves, two dedicated hall engines (Hall and Dense Hall) with honest decay times, and new Reverse and Tiled Room engines. The preset menu is now a clean two-column layout with in-window dropdowns that behave correctly under Wayland and XWayland.
 
@@ -232,9 +236,13 @@ New in v0.6.0: a Tone, Character, and Duck macro row for quick global moves, two
 
 <img src="{{ '/assets/images/plugins/DuskVerb-TiledRoom.png' | relative_url }}" alt="DuskVerb Tiled Room">
 
-**Dense Hall** is a heavily diffused 8-line FDN with allpass diffusion and modulation at every stage, giving a dense, smooth tail that the standard hall FDN structurally cannot reach. New in v0.6.0, for thick, lush concert spaces. It powers all four factory hall presets: Bright Hall, Vocal Hall, Cathedral Large Hall, Blade Runner 224.
+**Dense Hall** is a heavily diffused 8-line FDN with allpass diffusion and modulation at every stage, giving a dense, smooth tail that the standard hall FDN structurally cannot reach. New in v0.6.0, for thick, lush concert spaces. It powers three factory hall presets: Bright Hall, Cathedral Large Hall, Blade Runner 224.
 
 <img src="{{ '/assets/images/plugins/DuskVerb-DenseHall.png' | relative_url }}" alt="DuskVerb Dense Hall">
+
+**Parallel Hall** splits the sound into six complementary frequency bands, each with its own reverb tank and independent decay, level, and width. It powers the Vocal Hall factory preset.
+
+<img src="{{ '/assets/images/plugins/DuskVerb-ParallelHall.png' | relative_url }}" alt="DuskVerb Parallel Hall">
 
 ## Macros
 

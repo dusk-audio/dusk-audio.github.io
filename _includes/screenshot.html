@@ -1,0 +1,6 @@
+<figure class="product-figure">
+  <a class="screenshot-link" href="{{ include.src | relative_url }}" data-screenshot aria-label="Enlarge screenshot: {{ include.alt | escape }}">
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt | escape }}" {% if include.eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async"{% if include.width %} width="{{ include.width }}" height="{{ include.height }}"{% endif %}>
+  </a>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

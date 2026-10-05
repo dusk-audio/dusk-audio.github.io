@@ -1,0 +1,6 @@
+# Copy to `.dev.vars` for local `wrangler dev`. NEVER commit the real file.
+# In production these are set with `wrangler secret put NAME` instead.
+PATREON_WEBHOOK_SECRET="shown next to the webhook in the Patreon developer portal"
+PATREON_CREATOR_TOKEN="Creator's Access Token of the Patreon API client"
+MAILERLITE_API_TOKEN="MailerLite -> Integrations -> API"
+ADMIN_TOKEN="random 32+ bytes, e.g. openssl rand -hex 32"

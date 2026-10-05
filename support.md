@@ -22,6 +22,8 @@ To be clear about how this works: every plugin is free, and supporting on Patreo
 
 ---
 
+Dusk Studio is planned to be available for purchase at 1.0. Pricing and release timing will be announced later. The plugins will always remain free.
+
 ## Other Ways to Help
 
 Not in a position to donate? No problem! There are other valuable ways to support the project:

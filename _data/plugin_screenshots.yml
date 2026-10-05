@@ -1,0 +1,246 @@
+# Native captures of the published release binaries. Update alongside product releases.
+tapemachine-2:
+  version: 1.0.11
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/tapemachine-2-v1.0.11
+  images:
+  - path: /assets/images/plugins/tapemachine-2-screenshot.png
+    width: 1200
+    height: 705
+    sha256: f3848da1b129fe5887137f6e318124faf17c9b491a3bdeefc410f723cb429845
+  - path: /assets/images/plugins/tapemachine-2-calibration.png
+    width: 1200
+    height: 705
+    sha256: 7bfec753ebd3fcff05033c6d6aef81fa1bc0f08322b29e75823bc3e9775c7933
+4k-eq-2:
+  version: 1.0.5
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/4k-eq-2-v1.0.5
+  images:
+  - path: /assets/images/plugins/4k-eq-2-screenshot.png
+    width: 1440
+    height: 960
+    sha256: 9a55e06c438b6cb221a906d725ae3725c7e3bf2816d442476f8cccb46e41082a
+sunset-circuits:
+  version: 1.0.7
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/sunset-circuits-v1.0.7
+  images:
+  - path: /assets/images/plugins/sunset-circuits-screenshot.png
+    width: 1240
+    height: 780
+    sha256: 5899d7f103d6e305f592aa88fd570c51a8892955af80bf4088d90cfda1fc9571
+  - path: /assets/images/plugins/sunset-circuits-cosmos.png
+    width: 1240
+    height: 780
+    sha256: 5899d7f103d6e305f592aa88fd570c51a8892955af80bf4088d90cfda1fc9571
+  - path: /assets/images/plugins/sunset-circuits-oracle.png
+    width: 1240
+    height: 780
+    sha256: da48eb2ed7903c7e9d93bed9345fb20fde3eb76a8c9823798a5f2fa1b3320299
+  - path: /assets/images/plugins/sunset-circuits-mono.png
+    width: 1240
+    height: 780
+    sha256: 52ebdbaadd0351e15016f8998e7fe322ca6f028b1f38fd337f6d4f4b043254cb
+  - path: /assets/images/plugins/sunset-circuits-modular.png
+    width: 1240
+    height: 780
+    sha256: 181c96b1845fb5e33fe22a258c9e073304f0790926a0b14b861614d0ef0e6503
+  - path: /assets/images/plugins/sunset-circuits-prism.png
+    width: 1240
+    height: 780
+    sha256: 3d84fc8d6682408f67711af586dea1a62790b0d0933e2158e38a1701920bd330
+  - path: /assets/images/plugins/sunset-circuits-acid.png
+    width: 1240
+    height: 780
+    sha256: 4b0b900eebfd7c40871708a2324f57351c795f82c7e778a39e201c45fdbc78ee
+  - path: /assets/images/plugins/sunset-circuits-browser.png
+    width: 1240
+    height: 780
+    sha256: a1a6c09bb6ce24e083337cc4958274b1425d20f05d5e5d61044510a8c67b2e61
+tape-echo-2:
+  version: 1.0.7
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/tape-echo-2-v1.0.7
+  images:
+  - path: /assets/images/plugins/tape-echo-2-screenshot.png
+    width: 1350
+    height: 510
+    sha256: 454f3449f55d30a259133640f70eeaa32567f979e1d43e62bf988ae8a05c7851
+4k-eq:
+  version: 1.0.12
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/4k-eq-v1.0.12
+  images:
+  - path: /assets/images/plugins/4k-eq-screenshot.png
+    width: 1494
+    height: 993
+    sha256: ef5abf49702a1217631bfd0ceeba3cf257da75301ca6858654faf023a52f0a26
+multi-comp:
+  version: 1.3.8
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/multi-comp-v1.3.8
+  images:
+  - path: /assets/images/plugins/multi-comp-screenshot.png
+    width: 1419
+    height: 947
+    sha256: 9aa20ef93a5ca55bb84e94f22a712f865d5dd82b2923d0220fd6d4ac288fbe5f
+  - path: /assets/images/plugins/multi-comp/vintage-opto.png
+    width: 1419
+    height: 947
+    sha256: 08bdf740993203022c28d7a47a94cfbba55d5541808259e6b3d9422e07024fdf
+  - path: /assets/images/plugins/multi-comp/vintage-fet.png
+    width: 1419
+    height: 947
+    sha256: b6e47160f4708295beee9f9b6081e93ae9c5e39d4dc5ee2b1dff8eee3a6a35ce
+  - path: /assets/images/plugins/multi-comp/classic-vca.png
+    width: 1419
+    height: 947
+    sha256: 3c320e8dfe9769740ae8cda2cf5d1f7581e0ad6cccbe67f08c70de2897a80c14
+  - path: /assets/images/plugins/multi-comp/bus-compressor.png
+    width: 1419
+    height: 947
+    sha256: 2dd2ec3c58fb7c0e24a8a34616e45f3f48124c17a759acb7cf68a8e113910d6a
+  - path: /assets/images/plugins/multi-comp/studio-fet.png
+    width: 1419
+    height: 947
+    sha256: dd70ba54d4b48e410ec3d95964277cfba40b877eec3e23d8ad8dfdf853889a5b
+  - path: /assets/images/plugins/multi-comp/studio-vca.png
+    width: 1419
+    height: 947
+    sha256: 4602ca56f3114ce665a06b73fa6d9a1755740c94ca94984d392a064646c06427
+  - path: /assets/images/plugins/multi-comp/digital.png
+    width: 1419
+    height: 947
+    sha256: de95308d36d7b2950ced9517c40375c0ae268ea06859a26e86fc4d4013809550
+  - path: /assets/images/plugins/multi-comp/multiband.png
+    width: 1419
+    height: 947
+    sha256: c95eeaa986d6610eaf66ac81af8f8c4f9fbded733a0c227221d12e84732319df
+spectrum-analyzer:
+  version: 1.0.2
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: LV2
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/spectrum-analyzer-v1.0.2
+  images:
+  - path: /assets/images/plugins/spectrum-analyzer-screenshot.png
+    width: 1637
+    height: 933
+    sha256: 47a25ca84d9982f1491860e43a37e2b561c27f8a9dd52adb0798532e828135a2
+chord-analyzer:
+  version: 1.3.0
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/chord-analyzer-v1.3.0
+  images:
+  - path: /assets/images/plugins/chord-analyzer-screenshot.png
+    width: 1200
+    height: 870
+    sha256: f8537cf9cdc496de8299dfacb166a200519294136a2e3469a9024d9551fadaa1
+tapemachine:
+  version: 1.0.10
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/tapemachine-v1.0.10
+  images:
+  - path: /assets/images/plugins/tapemachine-screenshot.png
+    width: 1200
+    height: 870
+    sha256: 4edd123d60069b925aa6a809ca335bf8530211a9bff37c66f2c586c07b70dab4
+multi-q:
+  version: 0.10.9
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/multi-q-v0.10.9
+  images:
+  - path: /assets/images/plugins/multi-q-screenshot.png
+    width: 1575
+    height: 1125
+    sha256: 39890f92fc9a01e24205840934f05da20376f759ba47957e64edb21527f05a93
+  - path: /assets/images/plugins/multi-q-digital.png
+    width: 1575
+    height: 1125
+    sha256: 39890f92fc9a01e24205840934f05da20376f759ba47957e64edb21527f05a93
+  - path: /assets/images/plugins/multi-q-british.png
+    width: 1575
+    height: 1125
+    sha256: 4b192868153b74077957add6211a76370ff3b1c99bb12de206c80dcd16919d79
+  - path: /assets/images/plugins/multi-q-tube.png
+    width: 1575
+    height: 1125
+    sha256: 889a2260498103d4f0a181f3468cf73e23a299bc01b6ced015743dd8e0da89a1
+duskverb:
+  version: 0.7.3
+  captured: '2026-10-05'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/duskverb-v0.7.3
+  images:
+  - path: /assets/images/plugins/duskverb-screenshot.png
+    width: 1470
+    height: 798
+    sha256: f993cc4f07e383435dbc289eeabe3ace3aa2af4d9afdd5501cff6d014a2930c1
+  - path: /assets/images/plugins/DuskVerb-Plate.png
+    width: 1470
+    height: 798
+    sha256: 409ca94a7c61f881f612325bb198d907fc16eb5db5c85abc430ca8176070d1aa
+  - path: /assets/images/plugins/DuskVerb-VintagePlate.png
+    width: 1470
+    height: 798
+    sha256: 98263dc6061a8f23b1dc619771b99f322c5622dce9c4a12701cc97f73faf8b8c
+  - path: /assets/images/plugins/DuskVerb-SmoothPlate.png
+    width: 1470
+    height: 798
+    sha256: 5e95e6766ae7ba390597e33bed5159bc569bf9ab8bb14d2c983c9c2de1514410
+  - path: /assets/images/plugins/DuskVerb-Chamber.png
+    width: 1470
+    height: 798
+    sha256: 97a2d19843552f737cd724321055925eff04c9379a00388e0e28616fe95f0527
+  - path: /assets/images/plugins/DuskVerb-Spring.png
+    width: 1470
+    height: 798
+    sha256: 98f10203393780af8d589a3a29db450276b79280c5f9fd2e6089325981ffdaf2
+  - path: /assets/images/plugins/DuskVerb-Gated.png
+    width: 1470
+    height: 798
+    sha256: b877d6a85aa33701d6a52660d90f2fa91f5e482ec409218ac676432bdb1211f5
+  - path: /assets/images/plugins/DuskVerb-Shimmer.png
+    width: 1470
+    height: 798
+    sha256: f993cc4f07e383435dbc289eeabe3ace3aa2af4d9afdd5501cff6d014a2930c1
+  - path: /assets/images/plugins/DuskVerb-Reverse.png
+    width: 1470
+    height: 798
+    sha256: 1530975e226d18815d307eb6c6bea896c122a374abfb70c077a8b085ae5d19e1
+  - path: /assets/images/plugins/DuskVerb-Hall.png
+    width: 1470
+    height: 798
+    sha256: e0b8ad32b0f2beeabd3a7972267999ec9f8d86e0a86c95a0244632fc3badd1b6
+  - path: /assets/images/plugins/DuskVerb-TiledRoom.png
+    width: 1470
+    height: 798
+    sha256: c0956eb79397bcba10b261f95b310aba98ef4bf9fe663bdff3b2ae1f0294d6c4
+  - path: /assets/images/plugins/DuskVerb-DenseHall.png
+    width: 1470
+    height: 798
+    sha256: cf1c8a1e3d47cf5f99b0ee99585889c427fcd0f0e6d5fcf1797b9ba8b2a3bbe1
+  - path: /assets/images/plugins/DuskVerb-ParallelHall.png
+    width: 1470
+    height: 798
+    sha256: 0e2a3a4799a9c49c19e5e98df5c7619bdb71eacc70924f265528f96ade1afcce

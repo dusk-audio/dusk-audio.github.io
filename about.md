@@ -28,11 +28,11 @@ Linux users have long been underserved by plugin developers. Many commercial plu
 
 Alongside the plugins, I'm building [Dusk Studio]({{ '/dusk-studio/' | relative_url }}): a deliberately constrained, portastudio-style DAW with 24 tracks, a fixed signal chain, and mastering built in. It runs on the same DSP heritage as the plugins, so what you learn in one carries over to the other.
 
-Like everything else here, it's open source under the GPL-3.0. It's currently in beta.
+Dusk Studio is open source under GPL-3.0 and currently in beta. Official beta builds are available through Patreon; you can also build from source for free. A purchase option is planned for 1.0, with pricing and release timing to be announced. The plugins will remain free.
 
 ## AI Disclosure {#ai-disclosure}
 
-These plugins are developed with the assistance of AI tools. If that bothers you, these aren't for you.
+Dusk Audio is developed with assistance from AI tools. The source is available on GitHub for inspection and contributions.
 
 ## The Philosophy
 
