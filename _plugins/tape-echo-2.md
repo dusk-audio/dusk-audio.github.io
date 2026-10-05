@@ -4,7 +4,7 @@ title: Tape Echo 2
 slug: tape-echo-2
 tagline: Three-Head Tape Delay with Spring Reverb
 description: A three-head tape echo and spring reverb modeled end to end, with 12 echo modes, mechanical head timing, tape age, splice dropout, and regeneration that runs into self-oscillation. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.7"
+version: "1.0.8"
 screenshot: /assets/images/plugins/tape-echo-2-screenshot.png
 
 features:
@@ -38,6 +38,12 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.8"
+    date: "2026-10-05"
+    changes:
+      - "New Noise control raises the tape hum and hiss by up to 60 dB. At its minimum the noise is unchanged from earlier versions, so existing sessions and presets sound the same"
+      - "New Hum switch sets the mains hum to 60 Hz or 50 Hz"
+      - "The tape noise is now silent in Reverb Only mode, where no playback head is selected"
   - version: "1.0.7"
     date: "2026-09-06"
     changes:
