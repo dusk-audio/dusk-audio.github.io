@@ -182,3 +182,23 @@ Release follow-up: when official 0.15 builds ship, update `release_status` to
   interaction checks pass. Eight extra carousel checks cover every slide and
   wrapping in TapeMachine 2, DuskVerb, Sunset Circuits, and Multi-Q at both widths.
   Website evidence is in the capture directory's `website-qa/` folder.
+
+
+## Final publication review — October 5, 2026
+
+- Fixed two TapeMachine 2 changelog entries parsed as YAML mappings, and escaped
+  shared HTML metadata. Rechecked all changelog entries as plain strings.
+- Preserved upstream Multi-Q 2 and DuskVerb 2 development listings and builds-gate
+  fixes. Kept the 0.1.0 DuskVerb 2 manual matching the current source version.
+- Production strict Jekyll build, JavaScript syntax checks, all 17 pages' local
+  targets/anchors/IDs, all 44 release download filenames, and 42 screenshot hashes pass.
+- After merging upstream changes, all 34 desktop/mobile browser cases and twelve
+  interaction checks pass, with no broken visible images, horizontal overflow,
+  JavaScript errors, or automated WCAG A/AA findings.
+- All twelve post-notify tests pass using mocked services. It is excluded from the
+  site and remains in draft mode. Its documentation now clarifies that sequential
+  retry deduplication does not serialize overlapping webhook deliveries. The Worker
+  requires separate deployment; this website publication does not deploy it or send email.
+- Coverage remains Chromium only. No real newsletter submission or authenticated
+  Patreon purchase/download was performed; existing PDF manuals were not rebuilt.
+- Final build and browser evidence: `/tmp/dusk-publish-final/`.

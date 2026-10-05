@@ -9,7 +9,7 @@
 //
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
 // Vars (wrangler.toml [vars]): RELEASES_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
-//                              OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
+//                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
 
 export default {
   async fetch(request, env) {
@@ -55,6 +55,15 @@ function checkMembership(identity, campaignId) {
     if (active && cents >= 100 && campOk) return true;
   }
   return false;
+}
+
+// The campaign owner can't pledge to their own campaign, so they pass by Patreon user id.
+// identity.data.id comes from Patreon's token-authenticated identity call, not from the
+// browser. Fails closed when the var is unset.
+function isCreator(identity, creatorUserId) {
+  if (!creatorUserId) return false;
+  const id = identity && identity.data && identity.data.id;
+  return id != null && String(id) === String(creatorUserId);
 }
 
 /* ---------- OAuth ---------- */
@@ -110,7 +119,7 @@ async function authCallback(env, request, url) {
     return htmlResp(page("Sign-in failed", retry("The gate is misconfigured (no session secret).")), 500);
   }
 
-  if (!checkMembership(identity, env.DUSK_CAMPAIGN_ID)) {
+  if (!checkMembership(identity, env.DUSK_CAMPAIGN_ID) && !isCreator(identity, env.DUSK_CREATOR_USER_ID)) {
     const headers = new Headers({ "Content-Type": "text/html; charset=UTF-8" });
     headers.append("Set-Cookie", clearCookie("ds_oauthstate"));
     return new Response(notMember(env), { status: 403, headers });
@@ -234,9 +243,17 @@ async function listReleases(env) {
 // (the alpha days, when GitHub's /releases/latest would have missed them), but today they're
 // single-platform CI artifacts; a Windows-only build must never shadow a full release for
 // macOS and Linux patrons. Fall back to a prerelease only if there's no stable release at all,
-// so a fresh repo still serves whatever exists.
+// so a fresh repo still serves whatever exists. Side releases (e.g. v0.14.0-lgpl-sources, which
+// carries only source tarballs) aren't builds; only a plain vX.Y.Z tag counts as the stable one.
+const STABLE_TAG = /^v\d+\.\d+\.\d+$/;
+
 function pickLatest(list) {
-  return list.find((x) => !x.prerelease) || list[0] || null;
+  return (
+    list.find((x) => !x.prerelease && STABLE_TAG.test(x.tag_name || "")) ||
+    list.find((x) => !x.prerelease) ||
+    list[0] ||
+    null
+  );
 }
 
 async function latestRelease(env) {
