@@ -1,5 +1,31 @@
 (function () {
   'use strict';
+  // Reuse one MailerLite form: duplicate embed IDs and callbacks break subscription state.
+  var newsletter = document.querySelector('.newsletter-dialog');
+  var newsletterContent = document.getElementById('newsletter-content');
+  if (newsletter && newsletterContent && typeof newsletter.showModal === 'function') {
+    var newsletterHome = newsletterContent.parentNode;
+    var signupTrigger;
+    document.querySelectorAll('[data-newsletter]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        signupTrigger = link;
+        newsletter.querySelector('#newsletter-dialog-slot').appendChild(newsletterContent);
+        newsletter.showModal();
+        var success = newsletterContent.querySelector('.row-success');
+        if (success.style.display === 'block') success.focus();
+        else newsletterContent.querySelector('input[type="email"]').focus();
+      });
+    });
+    newsletter.addEventListener('click', function (event) {
+      if (event.target === newsletter) newsletter.close();
+    });
+    newsletter.addEventListener('close', function () {
+      newsletterHome.appendChild(newsletterContent);
+      if (signupTrigger) signupTrigger.focus();
+    });
+  }
   var toggle = document.querySelector('.nav-toggle');
   var navigation = document.querySelector('.nav-links');
   function closeNavigation() {

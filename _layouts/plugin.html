@@ -18,6 +18,10 @@ layout: default
         {% else %}
         <span class="status-badge in-dev">In Development</span>
         {% endif %}
+        <div class="cta-row">
+          {% if plugin_data.status == 'released' or plugin_data.status == 'pre-release' %}<a class="btn btn-primary" href="#plugin-downloads">Download free</a>{% endif %}
+          <a class="btn btn-secondary" href="#newsletter" data-newsletter>Get plugin updates</a>
+        </div>
       </div>
       {% if plugin_data.generation == 'legacy' %}
       <div class="legacy-notice">
@@ -110,7 +114,7 @@ layout: default
       {% assign linux_arm64_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-linux-arm64.zip" %}
       {% assign windows_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-windows.zip" %}
       {% assign macos_download = site.releases_url | append: "/download/" | append: release_tag | append: "/" | append: page.slug | append: "-macos.zip" %}
-      <div class="download-box">
+      <div class="download-box" id="plugin-downloads">
         <h3>Download</h3>
         <p class="version">Version {{ page.version }}</p>
 

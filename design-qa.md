@@ -202,3 +202,35 @@ Release follow-up: when official 0.15 builds ship, update `release_status` to
 - Coverage remains Chromium only. No real newsletter submission or authenticated
   Patreon purchase/download was performed; existing PDF manuals were not rebuilt.
 - Final build and browser evidence: `/tmp/dusk-publish-final/`.
+
+
+## Email access and audio removal — October 5, 2026
+
+- Marc rejected the generated music examples. Removed the Listen page, all
+  generated audio/MIDI/session assets, plugin players, navigation links, and the
+  walkthrough using that music. Removed related data, tools, JavaScript, and CSS.
+  Listening content is deferred until real recordings are available.
+- Kept the persistent Get updates link, contextual homepage/DAW prompts, and plugin
+  update/download shortcuts. Signup text now describes builds and plugin releases.
+- Kept the single MailerLite form/dialog, keyboard focus restoration, no-JavaScript
+  fallback, visible error handling, and the corrected success callback.
+- After removal, strict production build, JavaScript syntax, and diff whitespace
+  checks pass. All 17 pages and 515 local links/media/anchors pass, with no demo
+  players, Listen route, or generated media left in the built site.
+- Thirty-one retained signup checks pass at 1440, 390, and 320 pixels, covering
+  accessibility, focus, validation, mocked network/field errors, retries, success,
+  and the no-JavaScript fallback. No real subscriber was created.
+
+
+## Full-mix hero screenshot — October 5, 2026
+
+- Replaced console.webp with a lossless 2560×1080 native playback capture. An
+  isolated 16-track session uses existing local multitrack WAVs, with routing to
+  four buses. All ten visible channel meters, four bus meters, and the stereo
+  master show actual signal levels; no meter graphics were fabricated.
+- Updated the homepage and DAW hero alt text. Screenshot dimensions are unchanged.
+  No audio is shipped, and the original user sessions and source audio were not
+  modified. Capture processes used temporary config/audio output and were stopped.
+- Strict production build and diff whitespace checks pass. Both hero pages decode
+  the image at its expected dimensions and pass screenshot zoom and overflow
+  checks at 1440 and 390 pixels. Evidence: /tmp/dusk-full-mix-capture/.

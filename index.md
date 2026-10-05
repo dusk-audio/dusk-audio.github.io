@@ -13,6 +13,7 @@ og_image: /assets/images/studio/console.webp
       <div>
         <h1 id="home-title">From first take<br>to finished song.</h1>
         <p class="hero-description">Recording, mixing, and mastering<br class="desktop-break"> in a focused desktop portastudio.</p>
+        <p>Made for bands and songwriters. At home with electronic music, too.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="{{ '/dusk-studio/' | relative_url }}">Explore Dusk Studio</a>
           <a class="btn btn-secondary" href="{{ '/plugins/' | relative_url }}">Browse free plugins</a>
@@ -20,7 +21,7 @@ og_image: /assets/images/studio/console.webp
       </div>
       <p class="hero-aside">A portastudio for the desktop.<br>Linux · macOS · Windows</p>
     </div>
-    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio mixing console with channel EQ, compression, aux sends, buses, and master controls' eager=true width=2560 height=1080 %}
+    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio playing a multitrack mix with active channel, bus, and stereo master meters' eager=true width=2560 height=1080 %}
   </div>
 </section>
 
@@ -34,6 +35,10 @@ og_image: /assets/images/studio/console.webp
     </div>
     {% include screenshot.html src='/assets/images/studio/takes.webp' alt='Three colored take lanes with selected sections combined into a performance in the audio editor' width=1294 height=1030 %}
   </div>
+</section>
+
+<section class="showcase-section" aria-label="Dusk Audio updates">
+  <div class="container">{% include signup-prompt.html %}</div>
 </section>
 
 <section class="showcase-section plugin-showcase" aria-labelledby="plugins-title">

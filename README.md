@@ -86,7 +86,7 @@ The website uses real application captures, converted to lossless WebP in
 
 | Website asset | Dusk Studio capture |
 | --- | --- |
-| `console.webp` | `qg-06-mixing-stage.png` |
+| `console.webp` | `full-mix-playing.png` |
 | `recording.webp` | `qg-04-record-rolling.png` |
 | `takes.webp` | `docs/images/ed-06-take-lanes.png` |
 | `mastering.webp` | `np-08-mastering-view.png` |
@@ -97,6 +97,12 @@ Console, recording, mastering, instrument, and channel images were recaptured
 from the local development binary. The takes image is the inspected documentation
 capture, chosen for its readable portrait layout. These demonstrate the 0.15
 development UI; they are not proof that 0.15 has been released.
+
+The console hero was refreshed on October 5, 2026 from actual playback of an
+isolated 16-track session using existing local multitrack audio. All ten visible
+channels, four buses, and the stereo master show live levels. The 2560×1080 capture
+is lossless WebP; no audio files are included in the website. Capture evidence is
+in `/tmp/dusk-full-mix-capture/`.
 
 Use the DAW's capture harness on an isolated Xvfb display, with
 `DUSKSTUDIO_CONFIG_DIR` pointing at a temporary folder to preserve personal audio
@@ -131,6 +137,21 @@ plugin carousel, installation accordions, and navigation without JavaScript.
 Confirm download filenames against published GitHub release assets. The latest
 visual comparison and validation notes are in `design-qa.md` (excluded from the
 published site).
+
+## Email signup
+
+“Get updates” stays visible outside the mobile menu. Contextual prompts open the
+same MailerLite form in an accessible dialog; closing restores it to the footer.
+There is one embed and one input, including after success. Without JavaScript,
+links scroll to the footer and the form posts directly to MailerLite. Field and
+network failures show inline messages. No timed popup or email gate is used.
+
+Signup browser tests intercept MailerLite requests: they do not create subscribers
+or prove actual confirmation-email delivery.
+
+Audio demonstrations are deferred until real recordings are available. The
+rejected generated examples, players, session download, and related walkthrough
+have been removed.
 
 ## License
 
