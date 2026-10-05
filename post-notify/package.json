@@ -1,0 +1,15 @@
+{
+  "name": "dusk-post-notify",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Cloudflare Worker that turns a new Patreon post into a MailerLite campaign for subscribers who are not on Patreon.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}

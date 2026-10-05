@@ -1,0 +1,22 @@
+name = "dusk-post-notify"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]   # node:crypto, for Patreon's HMAC-MD5 webhook signature
+
+# Non-secret config.
+[vars]
+DUSK_CAMPAIGN_ID = "14880404"                       # Dusk Audio's Patreon campaign id (same as builds-gate)
+GROUP_NAME       = "Post notify (not on Patreon)"   # MailerLite group the Worker maintains; created on first run
+FROM_NAME        = "Dusk Audio"
+FROM_EMAIL       = "dusk.audio.software@gmail.com"  # REQUIRED: a sender address already verified in MailerLite
+SEND_MODE        = "draft"                          # "draft" = leave the campaign for review; "send" = send it at once
+PUBLIC_ONLY      = "0"                              # "1" = ignore patron-only posts
+
+# Secrets: set with `wrangler secret put NAME`, NEVER put values here:
+#   wrangler secret put PATREON_WEBHOOK_SECRET   # shown next to the webhook in the Patreon developer portal
+#   wrangler secret put PATREON_CREATOR_TOKEN    # Creator's Access Token of the Patreon API client
+#   wrangler secret put MAILERLITE_API_TOKEN     # MailerLite -> Integrations -> API
+#   wrangler secret put ADMIN_TOKEN              # random, guards POST /sync (e.g. `openssl rand -hex 32`)
+
+[observability]
+enabled = true

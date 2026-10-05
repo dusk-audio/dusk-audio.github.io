@@ -1,30 +1,20 @@
 <header class="site-header">
   <div class="container">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="{{ '/' | relative_url }}" class="logo">
         <span class="logo-text">Dusk Audio</span>
       </a>
 
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger"></span>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-navigation">
+        Menu
       </button>
 
-      <ul class="nav-links">
-        <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
-        <li><a href="{{ '/dusk-studio/' | relative_url }}" {% if page.url == '/dusk-studio/' %}class="active"{% endif %}>Dusk Studio</a></li>
-        <li><a href="{{ '/plugins/' | relative_url }}" {% if page.url contains '/plugins' %}class="active"{% endif %}>Plugins</a></li>
-        <li><a href="{{ '/support/' | relative_url }}" {% if page.url == '/support/' %}class="active"{% endif %}>Support</a></li>
-        <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
+      <ul class="nav-links" id="main-navigation">
+        <li><a href="{{ '/dusk-studio/' | relative_url }}" {% if page.url == '/dusk-studio/' %}class="active" aria-current="page"{% endif %}>Dusk Studio</a></li>
+        <li><a href="{{ '/plugins/' | relative_url }}" {% if page.url contains '/plugins' %}class="active" aria-current="page"{% endif %}>Plugins</a></li>
+        <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active" aria-current="page"{% endif %}>About</a></li>
+        <li><a href="{{ '/support/' | relative_url }}" {% if page.url == '/support/' %}class="active" aria-current="page"{% endif %}>Support</a></li>
       </ul>
     </nav>
   </div>
 </header>
-
-<script>
-  document.querySelector('.nav-toggle').addEventListener('click', function() {
-    const nav = document.querySelector('.nav-links');
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', !expanded);
-    nav.classList.toggle('open');
-  });
-</script>

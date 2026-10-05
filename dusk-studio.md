@@ -1,278 +1,135 @@
 ---
 layout: default
-title: "Dusk Studio"
+title: Dusk Studio
 permalink: /dusk-studio/
-og_title: "Dusk Studio: a portastudio for the desktop"
-description: "Dusk Studio is a deliberately constrained, portastudio-style DAW: 24 tracks, a fixed signal chain, MIDI and soundfonts, mastering built in. Open source, GPL-3.0, beta."
+og_title: "Dusk Studio — a portastudio for the desktop"
+description: "A focused, 24-track desktop portastudio. Record audio and MIDI, shape your mix, and master your song. Explore its console, mastering tools, and 0.15 takes and comping workflow."
+body_class: showcase-page studio-page
+og_image: /assets/images/studio/console.webp
 ---
 
-<!-- HERO -->
-<section class="hero hero-studio" id="top">
+<section class="showcase-hero dark-surface" aria-labelledby="studio-title">
   <div class="container">
-    <p class="hero-eyebrow">Open source · GPL-3.0 · Linux (x86_64 + arm64) / macOS (Apple Silicon) / Windows</p>
-    <h1>A portastudio for the desktop.</h1>
-    <p class="tagline">24 tracks. A fixed signal chain. Everything on one screen. Dusk Studio is a deliberately constrained DAW built to make you stop tweaking and finish music.</p>
-    <p class="hero-badge">v0.13.0 beta</p>
-    <div class="hero-buttons">
-      <a href="https://builds.duskaudio.com/latest" class="btn btn-primary btn-lg">Get the latest build</a>
-      <a href="https://github.com/dusk-audio/dusk-studio" class="btn btn-secondary btn-lg">Build from source</a>
-      <!-- Temporary fallback: points at MANUAL.md on GitHub until the builds-gate Worker fix is deployed. -->
-      <a href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md" class="btn btn-secondary btn-lg">Manual</a>
+    <p class="eyebrow">Dusk Studio · Desktop portastudio</p>
+    <h1 id="studio-title">Your music.<br>Your whole studio.</h1>
+    <p class="hero-description">24 tracks. A hands-on console. Recording, mixing,<br class="desktop-break"> and mastering in one focused place.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#get">Get Dusk Studio beta</a>
+      <a class="btn btn-secondary" href="#takes">Explore takes and comping</a>
     </div>
-    <ul class="spec-strip" aria-label="At a glance">
-      <li>24 tracks</li>
-      <li>3 banks of 8</li>
-      <li>Fixed signal chain</li>
-      <li>MIDI + soundfonts</li>
-      <li>VST3 · LV2 · AU · CLAP</li>
-      <li>BS.1770 mastering</li>
-    </ul>
-    <!-- TODO: re-capture, screenshot predates the 0.11/0.12 UI overhauls -->
-    <img src="{{ '/assets/images/dusk-studio-hero.png' | relative_url }}" alt="The Dusk Studio console: 24 tracks in three banks of eight with a fixed channel signal chain, shown on one screen." class="hero-shot" width="2560" height="1048" decoding="async">
+    <p class="hero-meta">Linux · macOS · Windows &nbsp; / &nbsp; Open source &nbsp; / &nbsp; {% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta</p>
+    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio mixing console with channel EQ, compression, aux sends, buses, and master controls' eager=true width=2560 height=1080 %}
   </div>
 </section>
 
-<!-- VIEWS (record / mix / master) -->
-<section class="section views">
+<nav class="studio-navigation" aria-label="Dusk Studio sections">
   <div class="container">
-    <div class="section-header">
-      <h2>Record, mix, and master in one place.</h2>
-      <p>No exporting to a second app. The signal chain, the mix, and the master all live in the same window.</p>
-      <p>Four stages, one page each: RECORDING to track, MIXING for the console, MASTERING for the final pass, AUX for the sends and returns. Within a stage there are no tabs and nothing hidden.</p>
+    <a href="#record">Record</a><a href="#takes">Takes &amp; comping</a><a href="#mix">Mix</a><a href="#master">Master</a><a href="#get">Get the beta</a>
+  </div>
+</nav>
+
+<section class="showcase-section" id="record" aria-labelledby="record-title">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">01 / Record</p>
+      <h2 id="record-title">Give your ideas a home.</h2>
+      <p>Record audio and MIDI across 24 tracks. Work with soundfonts, your own instruments, or the built-in synth. Loop and punch recording keep the focus on the performance.</p>
     </div>
-    <div class="views-grid">
-      <figure class="view">
-        <!-- TODO: re-capture, screenshot predates the 0.11/0.12 UI overhauls -->
-        <img src="{{ '/assets/images/dusk-studio-mixing.png' | relative_url }}" alt="Dusk Studio mixing view: 24 channels across three banks, one insert per channel." loading="lazy">
-        <figcaption>Mixing: 24 channels, one insert each</figcaption>
-      </figure>
-      <figure class="view">
-        <!-- TODO: re-capture, screenshot predates the 0.11/0.12 UI overhauls -->
-        <img src="{{ '/assets/images/dusk-studio-mastering.png' | relative_url }}" alt="Dusk Studio mastering view: 5-band digital EQ, multiband compressor, brick-wall limiter, BS.1770 metering." loading="lazy">
-        <figcaption>Mastering: 5-band digital EQ, multiband, limiter, BS.1770</figcaption>
-      </figure>
+    {% include screenshot.html src='/assets/images/studio/recording.webp' alt='Dusk Studio recording console with track inputs, record-arm controls, and channel strips' caption='The recording stage: inputs, record controls, and a familiar console.' width=2560 height=1080 %}
+    <div class="feature-split supporting-feature">
+      <div class="feature-copy">
+        <h3>Start with a sound.</h3>
+        <p>The built-in Sunset instrument brings six synth personalities into your session. Add tape, delay, and reverb using built-in units, or load your own plugins.</p>
+      </div>
+      {% include screenshot.html src='/assets/images/studio/instrument.webp' alt='The built-in Sunset synthesizer interface with oscillator, filter, envelope, and sequencer controls' width=1240 height=780 %}
     </div>
   </div>
 </section>
 
-<!-- STORY STRIP -->
-<section class="section story-strip">
+<section class="showcase-section dark-surface" id="takes" aria-labelledby="comp-title">
   <div class="container">
-    <blockquote class="story">
-      <p>In December my Tascam DP-24 died. It helped me finish songs, not because it was powerful, but because it wasn't. Nothing in software felt like that. So I built it.</p>
-    </blockquote>
-    <p class="story-link"><a href="https://www.patreon.com/posts/meet-dusk-studio-160135290" target="_blank" rel="noopener noreferrer">Read the full story →</a></p>
+    <div class="section-intro">
+      <p class="eyebrow">02 / Refine · {% include studio-release-label.html %}</p>
+      <h2 id="comp-title">Keep every take.<br>Build your best performance.</h2>
+      <p>Every recording pass stays whole on its track. Open the take lanes, audition a performance, and choose the sections that feel right. Hear edits as you make them, while playback continues.</p>
+    </div>
+    {% include screenshot.html src='/assets/images/studio/takes.webp' alt='The audio editor showing three colored take lanes and a performance assembled from sections of all three' caption='Selected sections stay bright. Each take remains available beneath your comp.' width=1294 height=1030 %}
+    <ol class="workflow-list comp-steps">
+      <li><h3>Keep the performance</h3><p>Record again without losing the full earlier pass.</p></li>
+      <li><h3>Choose the best sections</h3><p>Click or drag in a lane to bring that part into the track.</p></li>
+      <li><h3>Listen as you refine</h3><p>Solo a take, move a seam, and hear changes during playback.</p></li>
+    </ol>
+    {% if site.data.studio.release_status != 'released' %}<p class="fine-print">This is a preview of {{ site.data.studio.version }}. The current official beta is {{ site.data.studio.published_version }}.</p>{% endif %}
   </div>
 </section>
 
-<!-- GET DUSK STUDIO (dual-path) -->
-<section class="section section-alt" id="get">
-  <div class="container">
-    <div class="section-header">
-      <h2>Get Dusk Studio</h2>
+<section class="showcase-section" id="mix" aria-labelledby="mix-title">
+  <div class="container feature-split">
+    <div class="feature-copy">
+      <p class="eyebrow">03 / Mix</p>
+      <h2 id="mix-title">A console you<br>can settle into.</h2>
+      <p>EQ, compression, sends, and faders where you expect them. A fixed signal chain and one insert per channel keep the workflow purposeful. Bring your own VST3, LV2, AU, or CLAP plugins on supported platforms.</p>
+      <p>Use three banks of eight with a control surface, and shape the mix through the buses and master channel.</p>
     </div>
-
-    <div class="dual-path">
-      <div class="path-card">
-        <h3>Build it yourself (free)</h3>
-        <p>The source is GPL-3.0 and free forever. Clone it, audit it, build it, modify it.</p>
-        <a href="https://github.com/dusk-audio/dusk-studio" class="btn btn-secondary btn-full">Source on GitHub</a>
-        <p class="path-fineprint">Self-builds get no support tier, but the code is identical.</p>
-      </div>
-
-      <div class="path-card path-card--primary">
-        <h3>Get the official build</h3>
-        <p>Back Dusk Studio on Patreon from $1/month and get every beta build (Linux tarball, Windows MSI, macOS DMG) for as long as you're subscribed. New builds land in the patrons-only feed as they ship.</p>
-        <p>Early backers are credited as Founding Patrons, with your name in the app's About panel.</p>
-        <a href="{{ site.patreon_membership_url }}" class="btn btn-primary btn-full">Get builds on Patreon</a>
-        <p class="path-fineprint">One-time and lifetime licenses come later, closer to 1.0. During the beta it's Patreon only.</p>
-      </div>
-    </div>
-
-    <p class="path-centerline">The source is always free. The paid builds fund development.</p>
-    <p class="path-honesty">It's a beta, built to a production bar. 1.0 is the public stable declaration. Expect rough edges and <a href="https://github.com/dusk-audio/dusk-studio/discussions" target="_blank" rel="noopener noreferrer">report everything →</a></p>
+    {% include screenshot.html src='/assets/images/studio/channel.webp' alt='Dusk Studio channel strip with EQ, compressor, aux sends, pan, fader, and automation controls' caption='A familiar channel strip, with the signal chain laid out in front of you.' width=155 height=944 %}
   </div>
 </section>
 
-<!-- FIRST-LAUNCH NOTE -->
-<section class="section" id="first-launch">
+<section class="showcase-section dark-surface" id="master" aria-labelledby="master-title">
   <div class="container">
-    <div class="section-header">
-      <h2>First launch on Mac and Windows</h2>
-      <p>The builds are unsigned by design, so macOS and Windows warn you the first time. On macOS, right-click the app and choose Open. On Windows, click More info, then Run anyway. About 30 seconds, once.</p>
+    <div class="section-intro">
+      <p class="eyebrow">04 / Master</p>
+      <h2 id="master-title">Finish the song.<br>Stay in the studio.</h2>
+      <p>Move straight from your mix to a dedicated mastering stage. Shape the balance with EQ, control dynamics with multiband compression, and finish with true-peak limiting and loudness metering.</p>
     </div>
-    <!-- Temporary fallback: points at MANUAL.md on GitHub until the builds-gate Worker fix is deployed. -->
-    <p><a class="btn btn-secondary" href="https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md#installing-dusk-studio">First-launch walkthrough in the manual</a></p>
+    {% include screenshot.html src='/assets/images/studio/mastering.webp' alt='Dusk Studio mastering stage with waveform, five-band EQ, multiband compressor, true-peak limiter, and loudness metering' caption='Mastering EQ, multiband dynamics, and limiting in a single stage.' width=1904 height=911 %}
   </div>
 </section>
 
-<!-- SYSTEM REQUIREMENTS -->
-<section class="section" id="requirements">
+<section class="showcase-section" id="get" aria-labelledby="get-title">
   <div class="container">
-    <div class="section-header">
-      <h2>System requirements</h2>
-      <p>Three desktop platforms, no exotic hardware. Here's what each one needs.</p>
+    <div class="section-intro">
+      <p class="eyebrow">Start making music</p>
+      <h2 id="get-title">Get Dusk Studio beta.</h2>
+      <p>Official beta builds are available through Patreon from $1/month. The source is open under GPL-3.0 and free to build yourself.</p>
     </div>
-    <div class="philosophy-row">
-      <div class="info-box">
-        <h3>Linux</h3>
-        <p>PipeWire (recommended) or ALSA. An X11 display is required. On a Wayland desktop that means XWayland, which GNOME and KDE enable by default. Tarballs ship for x86_64 and arm64 (64-bit Raspberry Pi).</p>
+    <div class="beta-options">
+      <div>
+        <h3>Official builds</h3>
+        <p>Linux tarballs, a Windows installer, and a macOS disk image. Patreon membership gives you access to beta builds while subscribed.</p>
+        <a class="btn btn-primary" href="{{ site.patreon_membership_url }}">Get beta access on Patreon</a>
+        <a class="text-link member-link" href="{{ site.data.studio.builds_url }}">Already a member? Get the latest build</a>
       </div>
-      <div class="info-box">
-        <h3>macOS</h3>
-        <p>Apple Silicon, delivered as an arm64 DMG. macOS 14.4 (Sonoma) or later for the out-of-process plugin sandbox; older macOS runs plugins in-process.</p>
-      </div>
-      <div class="info-box">
-        <h3>Windows</h3>
-        <p>Windows 10 or later, installed from an MSI. An ASIO driver is recommended; without one, Dusk Studio falls back to WASAPI exclusive mode.</p>
+      <div>
+        <h3>Build from source</h3>
+        <p>Explore the code, build the application, and help shape its development. The source remains available for free.</p>
+        <a class="btn btn-secondary" href="{{ site.data.studio.source_url }}">Source on GitHub</a>
+        <a class="text-link member-link" href="{{ site.data.studio.manual_url }}">Read the user manual</a>
       </div>
     </div>
-    <p>Any modern multi-core CPU handles a 24-track session at 48 kHz. Multicore DSP is on by default, spreading the channel-strip work across the cores you have.</p>
+    <p class="purchase-note">Dusk Studio is planned to be available for purchase at 1.0. Pricing, licensing details, and release timing will be announced later. Beta membership covers official beta builds; future purchase terms will be announced separately.</p>
   </div>
 </section>
 
-<!-- CHANGELOG -->
-<section class="section" id="changelog">
-  <div class="container">
-    <div class="section-header">
-      <h2>Changelog</h2>
-      <p>What has landed on the beta line so far.</p>
-    </div>
-    <div>
-      <div class="changelog-entry">
-        <h3>v0.13.0 <span class="changelog-date">19 August 2026</span></h3>
-        <ul>
-          <li>Every session now carries a notepad for lyrics and notes: a page-style editor with headings, lists and links that writes chords over the syllables they land on, ranks diatonic chords first once the key is readable, and transposes the whole sheet at once. It saves beside the session as a plain ChordPro text file any chord-sheet app can open.</li>
-          <li>A native PipeWire audio backend on Linux, talking to libpipewire directly instead of borrowing a JACK compatibility layer, with capture and playback sharing one graph cycle. The native ALSA backend stays as the fallback. MIDI interfaces are picked up as they are plugged in, with a refresh that lands mid-take held until the transport stops.</li>
-          <li>Native plugin hosting on macOS across all four formats, Audio Units included: discovery, rendering, session state, and editors embedded in the window.</li>
-          <li>Loop recording keeps every pass. Each lap lands as its own take instead of overwriting the last one, audio and MIDI alike, with held notes and controller state carried across the seam.</li>
-          <li>Stems render in a single pass, each taken at its own point in the engine rather than re-rendering the session once per track, so a full set stays sample-aligned and reconstructs the pre-master mix. A new realtime bounce plays the session through the audio device so hardware inserts print wet.</li>
-          <li>The whole interface zooms from half to double size, remembered per machine, and a denser console fits a full bank of eight plus the buses and master on a 1080p display. Narrow windows keep the faders playable instead of squeezing them past the point of use.</li>
-          <li>Session load no longer inherits the previous session's values for anything a truncated or hand-edited file leaves out, and present-but-corrupt values are clamped to the range their control enforces. MIDI sync settings round-trip. On the control surface, the compressor threshold, ratio, attack, release and makeup encoders now drive the active mode's own parameters, where four of the five were silent in optical and FET modes.</li>
-        </ul>
+<section class="showcase-section studio-details" aria-labelledby="details-title">
+  <div class="container reading-width">
+    <h2 id="details-title">Before you get started.</h2>
+    <details id="requirements">
+      <summary>System requirements</summary>
+      <div class="details-body">
+        <h3>Linux</h3><p>x86_64 and arm64 builds. PipeWire or ALSA audio. An X11 display is required, including XWayland on a Wayland desktop.</p>
+        <h3>macOS</h3><p>Apple Silicon. macOS 14.4 or later for out-of-process plugin hosting; older supported systems run plugins in-process.</p>
+        <h3>Windows</h3><p>Windows 10 or later. An ASIO driver is recommended; WASAPI exclusive mode is also available.</p>
+        <p>Check the manual and current release notes for platform-specific requirements.</p>
       </div>
-      <div class="changelog-entry">
-        <h3>v0.12.6 <span class="changelog-date">25 July 2026</span></h3>
-        <ul>
-          <li>Manual recording latency offset in Audio Settings → Advanced, applied to every take at placement, for interfaces that misreport their round-trip latency. A raw-sample readout in the region editor lets a loopback calibration be measured directly.</li>
-          <li>Aux sends on a monitored input now sound during playback, so a vocal tracked with reverb keeps it while playing along (0.12.3); armed instrument and MIDI tracks sound live over the timeline too (0.12.1).</li>
-          <li>Fixed a crash when bouncing, rendering stems, or freezing a track through a CLAP, VST3 or LV2 insert (0.12.2).</li>
-          <li>Multi-preset SoundFonts open in a filterable, program-grouped preset grid instead of one long dropdown (0.12.4).</li>
-          <li>Control-surface faders follow the standard Mackie taper, so a printed 0 means 0.0 dB, and the out-of-process plugin-scan sandbox now actually engages on Windows (0.12.1).</li>
-        </ul>
-      </div>
-      <div class="changelog-entry">
-        <h3>v0.12.0 <span class="changelog-date">11 July 2026</span></h3>
-        <ul>
-          <li>Native plugin hosting on Linux across CLAP, LV2 and VST3 (effects and instruments alike), with editors that embed reliably on Wayland desktops, automatable and MIDI-learnable parameters, and crash-safe discovery.</li>
-          <li>Sessions remember the sample rate their audio was made at and switch the device to match on open, warning loudly when they can't.</li>
-          <li>Mastering delivery presets: 24-bit WAV at the session rate, 16-bit 44.1 kHz WAV with TPDF dither, or 320 kbps MP3.</li>
-          <li>Save As now copies every session-owned file into the new folder instead of silently referencing the old one; loop playback is seamless; latent plugins on an aux return no longer flam against the dry mix.</li>
-          <li>The channel and bus EQ moved to the new-generation console core: a subtle, deliberate re-voicing at 10 to 20% less CPU on the EQ/compressor path.</li>
-        </ul>
-      </div>
-      <div class="changelog-entry">
-        <h3>v0.11.0 <span class="changelog-date">22 June 2026</span></h3>
-        <ul>
-          <li>MP3 bounce and master export at 320 kbps. WAV stays the default, and stems stay WAV so they re-import sample-aligned.</li>
-          <li>Import DP Song (experimental): reads a raw TASCAM DP-24 / DP-24SD / DP-32 song folder off the SD card and rebuilds the session, with recovered clip positions, mixer recall, tempo and markers.</li>
-          <li>The mastering limiter was rebuilt as a true-peak brick-wall limiter, joined by an FFT spectrum overlay on the mastering EQ and DP-24-style multiband compressor presets.</li>
-          <li>A Multicore DSP setting, a Dusk-native audio device selector, and a piecewise tempo map for songs that change tempo.</li>
-          <li>0.11.1 added chase / follow playhead, a bar-and-beat grid in the region editors, and a Raspberry Pi (arm64) Linux tarball.</li>
-        </ul>
-      </div>
-      <div class="changelog-entry">
-        <h3>v0.10.0-beta.1 <span class="changelog-date">29 May 2026 (first beta)</span></h3>
-        <ul>
-          <li>The first beta, after an architectural-audit sprint over every working feature: real-time safety, lifecycle correctness, cross-platform CI, documentation parity. 148 Catch2 tests green on Linux (amd64 + arm64), macOS and Windows.</li>
-          <li>Plugin scanning moved out of process, so a plugin that crashes or hangs during discovery is blacklisted instead of taking the app down.</li>
-          <li>Ten new MIDI binding targets (per-track EQ and compressor toggles, bus EQ, master Pultec and bus compressor), with bank-relative variants that keep an 8-fader surface useful across 24 tracks.</li>
-          <li>Accessibility pass: every channel-strip slider reads its name and value to VoiceOver and Orca, and text-input dialogs render inside the main window.</li>
-          <li>Hot-unplug detection: an interface disappearing stops the transport and says so, leaving the session intact in memory and on disk.</li>
-        </ul>
-      </div>
-    </div>
-    <p><a href="https://github.com/dusk-audio/dusk-studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">Full changelog on GitHub →</a></p>
+    </details>
+    <details id="first-launch">
+      <summary>Installation and first launch</summary>
+      <div class="details-body"><p>Follow the platform-specific installation instructions supplied with your build. The manual covers first-launch permissions, audio devices, and getting a session started.</p><a class="text-link" href="{{ site.data.studio.manual_url }}#installing-dusk-studio">Installation walkthrough</a></div>
+    </details>
+    <details id="changelog">
+      <summary>Release notes and feedback</summary>
+      <div class="details-body"><p>{% if site.data.studio.release_status == 'released' %}Current beta: {{ site.data.studio.version }}.{% else %}Current beta: {{ site.data.studio.published_version }}. {{ site.data.studio.version }} is upcoming, with track-based takes and comping in the audio editor.{% endif %}</p><p><a class="text-link" href="{{ site.data.studio.source_url }}/blob/main/CHANGELOG.md">Full changelog</a></p><a class="text-link" href="{{ site.data.studio.source_url }}/discussions">Share feedback and report issues</a></div>
+    </details>
   </div>
 </section>
-
-<!-- PHILOSOPHY -->
-<section class="section philosophy">
-  <div class="container">
-    <div class="philosophy-row">
-      <div class="philosophy-item">
-        <h3>24 tracks, fixed.</h3>
-        <p>Three banks of 8, mapped to real control surfaces.</p>
-      </div>
-      <div class="philosophy-item">
-        <h3>One insert per channel.</h3>
-        <p>Never a chain.</p>
-      </div>
-      <div class="philosophy-item">
-        <h3>Everything visible.</h3>
-        <p>No tabs, no hidden panels, no preferences sprawl.</p>
-      </div>
-    </div>
-
-    <p class="philosophy-tagline">The constraints are the product.</p>
-
-    <div class="philosophy-row philosophy-row--promise">
-      <div class="philosophy-item">
-        <h3>Linux first</h3>
-        <p>Built primarily for the Linux audio community, where quality free tools are especially needed. Also on Windows and macOS.</p>
-      </div>
-      <div class="philosophy-item">
-        <h3>No strings attached</h3>
-        <p>No trials, no feature limitations, no nag screens, no accounts required. Download, install, and create.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Click-to-zoom lightbox (binds to .hero-shot) -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
-<script>
-  (function () {
-    var lb = document.getElementById('lightbox');
-    var lbImg = document.getElementById('lightbox-img');
-    var closeBtn = document.getElementById('lightbox-close');
-    if (!lb) return;
-    var lastFocused = null;
-
-    function open(trigger) {
-      lastFocused = trigger || document.activeElement;
-      lbImg.src = (trigger && (trigger.currentSrc || trigger.src)) || '';
-      lbImg.alt = (trigger && trigger.alt) || '';
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      closeBtn.focus();
-    }
-    function close() {
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-      lbImg.src = '';
-      if (lastFocused && lastFocused.focus) lastFocused.focus();
-      lastFocused = null;
-    }
-
-    document.querySelectorAll('.hero-shot').forEach(function (img) {
-      if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
-      img.setAttribute('role', 'button');
-      img.addEventListener('click', function () { open(img); });
-      img.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); }
-      });
-    });
-
-    lb.addEventListener('click', function (e) { if (e.target !== lbImg) close(); });
-    closeBtn.addEventListener('click', close);
-    document.addEventListener('keydown', function (e) {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') { close(); return; }
-      if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
-    });
-  })();
-</script>

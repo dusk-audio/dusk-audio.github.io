@@ -1,5 +1,10 @@
 - name: 4K-EQ
   slug: 4k-eq
+  generation: legacy
+  display_order: 10
+  category: Equalizer
+  summary: Classic British console EQ.
+  successor: 4k-eq-2
   tagline: Classic British Console EQ Emulation
   description: Professional 4-band parametric EQ with Brown/Black modes, analog saturation
     modeling, and real-time spectrum analyzer. VST3/AU/LV2/CLAP. The legendary console
@@ -10,6 +15,10 @@
   released: "2026-01-03"
 - name: 4K EQ 2
   slug: 4k-eq-2
+  generation: current
+  display_order: 4
+  category: Equalizer
+  summary: Classic console tone, with independently calibrated Brown and Black voicings.
   tagline: Calibrated British console EQ with Brown and Black voicings
   description: A ground-up rebuild of the 4K EQ, with the equalizer and high-pass/low-pass
     filters of a classic British E-series channel strip measured band by band. Brown
@@ -23,6 +32,10 @@
   released: "2026-08-16"
 - name: Multi-Comp
   slug: multi-comp
+  generation: legacy
+  display_order: 11
+  category: Dynamics
+  summary: Eight compression modes in the original interface.
   tagline: Multi-mode dynamics compressor
   description: 8 compression modes including Vintage FET, Vintage Opto, a stereo-linked
     SSL-style Bus Compressor, Classic VCA, Studio FET/VCA, Digital, and 4-band Multiband.
@@ -35,6 +48,10 @@
   released: "2026-01-03"
 - name: Spectrum Analyzer
   slug: spectrum-analyzer
+  generation: legacy
+  display_order: 12
+  category: Analysis
+  summary: FFT spectrum visualization and loudness metering.
   tagline: Real-time FFT spectrum visualization
   description: See your sound with crystal clarity. Real-time FFT analysis with LUFS
     metering, true-peak detection, K-System scales, and stereo correlation. Multiple
@@ -45,6 +62,10 @@
   released: "2026-04-15"
 - name: Chord Analyzer
   slug: chord-analyzer
+  generation: legacy
+  display_order: 13
+  category: Analysis
+  summary: Real-time chord identification for learning and transcription.
   tagline: Intelligent chord detection and display
   description: Identify chords in real-time as you play. Perfect for learning, transcription,
     and music theory exploration. Works as a MIDI insert in Cubase, plus instrument
@@ -55,6 +76,11 @@
   released: "2026-03-29"
 - name: TapeMachine
   slug: tapemachine
+  generation: legacy
+  display_order: 14
+  category: Tape
+  summary: The original analog tape emulation.
+  successor: tapemachine-2
   tagline: Analog tape saturation with wow/flutter
   description: Professional tape emulation with Swiss800 and Classic102 models, authentic
     saturation, wow/flutter, and premium vintage UI. Completely free.
@@ -64,11 +90,15 @@
   released: "2026-01-25"
 - name: TapeMachine 2
   slug: tapemachine-2
+  generation: current
+  display_order: 2
+  category: Tape
+  summary: Two modeled tape machines for tracking warmth and a finished mix.
   tagline: Two-machine analog tape emulation
   description: The next-generation tape engine with two modeled machines, Swiss
     (A800-style) and American (ATR-102-style), featuring anti-aliased
     tape saturation, per-speed head bump and HF response, four tape speeds, four
-    formulations, adjustable head width, wow & flutter, repro
+    formulations, front-panel calibration (+3, +6, +7.5, +9 dB), adjustable head width, wow & flutter, repro
     EQ, and machine-authentic front-panel toggles. 20 factory presets modeled on
     the hardware units' classic settings. Completely free.
   status: released
@@ -83,6 +113,10 @@
   featured: false
 - name: Multi-Q
   slug: multi-q
+  generation: legacy
+  display_order: 15
+  category: Equalizer
+  summary: Digital, British console, and tube EQ in one plugin.
   tagline: "Universal EQ: Digital, British Console, and Tube"
   description: Three professional EQs in one plugin. Modern parametric with dynamics,
     classic British console emulation with E-series transformer-core low-end saturation,
@@ -91,10 +125,25 @@
   featured: true
   version: 0.10.9
   released: "2026-02-05"
+- name: Multi-Q 2
+  slug: multi-q-2
+  generation: current
+  display_order: 6
+  category: Equalizer
+  summary: Four EQ personalities with dynamic bands and console color.
+  tagline: Four-personality EQ with dynamic bands, Match mode, and console color
+  description: A native rebuild of Multi-Q with four EQ personalities, dynamic bands,
+    Match mode and console color. Completely free.
+  status: in-dev
+  featured: false
 - name: DuskVerb
   slug: duskverb
+  generation: legacy
+  display_order: 16
+  category: Reverb
+  summary: The original algorithmic reverb collection.
   tagline: Professional Algorithmic Reverb
-  description: Professional algorithmic reverb with 11 distinct DSP engines (plate,
+  description: Professional algorithmic reverb with 12 selectable DSP engines (plate,
     chamber, spring, gated, shimmer, reverse, hall, and more), Tone/Character/Duck
     macros, early reflections, random-walk modulation, freeze, and 20 hardware-inspired
     factory presets. Completely free.
@@ -102,8 +151,25 @@
   featured: true
   version: 0.7.3
   released: "2026-02-25"
+- name: DuskVerb 2
+  slug: duskverb-2
+  generation: current
+  display_order: 5
+  category: Reverb
+  summary: Algorithmic reverb in a redesigned interface.
+  tagline: Algorithmic reverb with a redesigned interface
+  description: The original DuskVerb reverb engines in a modern DAF interface,
+    with complete sound snapshots, original preset import, and mono, mono-to-stereo,
+    and stereo routing. Ships alongside the original DuskVerb.
+  status: in-dev
+  featured: false
+  version: 0.1.0
 - name: Sunset Circuits
   slug: sunset-circuits
+  generation: current
+  display_order: 1
+  category: Instrument
+  summary: Six vintage synth circuits, one expressive instrument.
   tagline: Six vintage synth circuits in one instrument
   description: Six classic synthesizers under one roof, one instrument that
     switches personality with a single click. A stable-tuned DCO poly, a self-
@@ -123,6 +189,10 @@
   featured: false
 - name: Tape Echo 2
   slug: tape-echo-2
+  generation: current
+  display_order: 3
+  category: Delay
+  summary: Three-head tape echo and spring reverb with character and movement.
   tagline: Three-head tape delay with spring reverb
   description: A three-head tape echo and spring reverb modeled end to end, with 12
     echo modes, mechanical head timing across the full motor range, tape saturation,

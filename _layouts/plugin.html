@@ -19,6 +19,17 @@ layout: default
         <span class="status-badge in-dev">In Development</span>
         {% endif %}
       </div>
+      {% if plugin_data.generation == 'legacy' %}
+      <div class="legacy-notice">
+        <p><strong>Legacy collection.</strong> Bug fixes continue. New features and interface development focus on the current generation.</p>
+        {% if plugin_data.successor %}
+        {% assign successor = site.data.plugins | where: 'slug', plugin_data.successor | first %}
+        <a class="text-link" href="{{ '/plugins/' | append: successor.slug | append: '/' | relative_url }}">Explore {{ successor.name }}</a>
+        {% else %}
+        <a class="text-link" href="{{ '/plugins/' | relative_url }}">Explore current plugins</a>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
   </header>
 
@@ -105,18 +116,18 @@ layout: default
 
         <div class="download-section">
           <h4>Linux</h4>
-          <a href="{{ linux_download }}" class="btn btn-download">VST3 + LV2</a>
+          <a href="{{ linux_download }}" class="btn btn-download">Download for Linux x86_64</a>
           <a href="{{ linux_arm64_download }}" class="btn btn-download btn-secondary-download">ARM64 (RPi)</a>
         </div>
 
         <div class="download-section">
           <h4>Windows</h4>
-          <a href="{{ windows_download }}" class="btn btn-download">VST3</a>
+          <a href="{{ windows_download }}" class="btn btn-download">Download for Windows</a>
         </div>
 
         <div class="download-section">
           <h4>macOS</h4>
-          <a href="{{ macos_download }}" class="btn btn-download">VST3 + AU</a>
+          <a href="{{ macos_download }}" class="btn btn-download">Download for macOS</a>
         </div>
 
         <a href="{{ plugin_release_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>

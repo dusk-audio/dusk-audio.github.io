@@ -1,6 +1,6 @@
 # Dusk Audio - Jekyll Configuration
 title: Dusk Audio
-description: Free, high-quality audio plugins for Linux, Windows, and macOS
+description: Dusk Studio, a focused desktop portastudio, and free instruments and effects for Linux, Windows, and macOS
 url: "https://duskaudio.com"
 baseurl: ""
 
@@ -45,4 +45,5 @@ exclude:
   - node_modules
   - vendor
   - builds-gate
-
+  - post-notify
+  - design-qa.md

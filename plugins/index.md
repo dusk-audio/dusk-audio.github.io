@@ -1,107 +1,85 @@
 ---
-layout: page
-title: Plugins
-subtitle: Free audio plugins for Linux, Windows, and macOS
-description: Download free VST3, LV2, AU, and CLAP audio plugins from Dusk Audio. EQ, compression, analysis tools and more.
-body_class: page-wide
+layout: default
+title: Free plugins
+og_title: "Dusk Audio — free instruments and effects"
+description: "Explore the current Dusk Audio plugin collection: free instruments, EQ, tape, and delay for Linux, Windows, and macOS. Legacy plugins remain available with bug-fix support."
+body_class: showcase-page plugins-page
 ---
 
-All Dusk Audio plugins are **100% free**: no trials, no feature locks, no accounts. Just download and create.
-
-## Available Now
-
-<div class="plugin-grid">
-{% assign released = site.data.plugins | where: "status", "released" %}
-{% assign prerelease = site.data.plugins | where: "status", "pre-release" %}
-{% assign available = released | concat: prerelease | sort: "released" | reverse %}
-{% for plugin in available %}
-<div class="plugin-card">
-  <div class="plugin-card-image plugin-card-image--{{ plugin.slug }}">
-    <a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ '/assets/images/plugins/' | append: plugin.slug | append: '-screenshot.png' | relative_url }}" alt="{{ plugin.name }} screenshot"></a>
+<section class="showcase-hero collection-hero">
+  <div class="container">
+    <p class="eyebrow">Dusk Audio plugins</p>
+    <h1>Find your sound.</h1>
+    <p class="hero-description">Synths, EQ, tape, and delay.<br>Always free. No trials, accounts, or feature locks.</p>
+    <nav class="collection-nav" aria-label="Plugin collections">
+      <a href="#current">Current collection</a>
+      <a href="#legacy">Legacy collection</a>
+      <a href="#installation">Installation</a>
+    </nav>
   </div>
-  <div class="plugin-card-content">
-    <div class="plugin-card-header">
-      <h3><a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}">{{ plugin.name }}</a></h3>
-      {% if plugin.status == "released" %}
-      <span class="status-badge released">Released</span>
-      {% else %}
-      <span class="status-badge pre-release">Pre-release</span>
-      {% endif %}
+</section>
+
+<section class="showcase-section" id="current" aria-labelledby="current-title">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">The current generation</p>
+      <h2 id="current-title">A fresh take on classic sound.</h2>
+      <p>Our latest instruments and effects, built with the Dusk Audio Framework (DAF). Modern interfaces and ongoing feature development, available free for Linux, macOS, and Windows.</p>
     </div>
-    <p>{{ plugin.description }}</p>
-    <div class="plugin-card-footer">
-      <a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}" class="btn btn-primary">Details</a>
-      <a href="{{ site.releases_url }}/tag/{{ plugin.slug }}-v{{ plugin.version }}" class="btn btn-download">Download</a>
+    <div class="product-grid">
+      {% assign released = site.data.plugins | where: 'status', 'released' %}
+      {% assign prerelease = site.data.plugins | where: 'status', 'pre-release' %}
+      {% assign available = released | concat: prerelease %}
+      {% assign current = available | where: 'generation', 'current' | sort: 'display_order' %}
+      {% for product in current %}{% include product-card.html product=product %}{% endfor %}
     </div>
   </div>
-</div>
-{% endfor %}
-</div>
+</section>
 
-{% assign coming_soon = site.data.plugins | where: "status", "coming-soon" %}
-{% if coming_soon.size > 0 %}
-
-## Coming Soon
-
-Plugins that are nearly finished and will be released shortly.
-
-<div class="plugin-grid">
-{% for plugin in coming_soon %}
-<div class="plugin-card">
-  <div class="plugin-card-image">
-    <span class="placeholder">Screenshot coming soon</span>
-  </div>
-  <div class="plugin-card-content">
-    <div class="plugin-card-header">
-      <h3>{{ plugin.name }}</h3>
-      <span class="status-badge coming-soon">Coming Soon</span>
+<section class="showcase-section legacy-section" id="legacy" aria-labelledby="legacy-title">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Original JUCE collection</p>
+      <h2 id="legacy-title">Legacy plugins. Still supported.</h2>
+      <p>The original Dusk Audio plugins remain free to download. Bug fixes continue; new features and interface development focus on the current generation.</p>
+      <p class="fine-print">For existing projects, keep the version they were created with. Successor plugins are separate products; preset and session compatibility varies by plugin.</p>
     </div>
-    <p>{{ plugin.description }}</p>
+    <div class="product-grid legacy-grid">
+      {% assign legacy = available | where: 'generation', 'legacy' | sort: 'display_order' %}
+      {% for product in legacy %}{% include product-card.html product=product %}{% endfor %}
+    </div>
   </div>
-</div>
-{% endfor %}
-</div>
+</section>
+
+{% assign in_dev = site.data.plugins | where: 'status', 'in-dev' %}
+{% assign coming_soon = site.data.plugins | where: 'status', 'coming-soon' %}
+{% assign future = in_dev | concat: coming_soon %}
+{% if future.size > 0 %}
+<section class="showcase-section development-section" aria-labelledby="development-title">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Looking ahead</p>
+      <h2 id="development-title">On the workbench.</h2>
+      <p>New tools in development. These standalone downloads are not available yet.</p>
+    </div>
+    <ul class="development-list">
+      {% for product in future %}
+      <li><h3>{{ product.name }}</h3><p>{{ product.tagline }}</p><span class="status-badge in-dev">In development</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
 {% endif %}
 
-## In Development
+<section class="showcase-section installation-section" id="installation" aria-labelledby="installation-title">
+  <div class="container reading-width">
+    <h2 id="installation-title">Ready for your DAW.</h2>
+    <p>Linux builds include x86_64 and arm64. Windows and macOS builds are also available. Formats and requirements vary by plugin; check its product page before downloading.</p>
+    <details class="installation-details">
+      <summary>Plugin installation paths</summary>
+      <div class="installation-content" markdown="1">
 
-Plugins currently being built. Follow us for updates!
-
-<table class="plugins-table">
-  <thead>
-    <tr>
-      <th>Plugin</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% assign in_dev = site.data.plugins | where: "status", "in-dev" %}
-    {% for plugin in in_dev %}
-    <tr>
-      <td><strong>{{ plugin.name }}</strong></td>
-      <td>{{ plugin.tagline }}</td>
-      <td><span class="status-badge in-dev">In Development</span></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
----
-
-## Platform Support
-
-All released plugins are available for:
-
-| Platform | Formats |
-|----------|---------|
-| **Linux** (x86_64 and arm64) | VST3, LV2, CLAP |
-| **Windows** | VST3, CLAP |
-| **macOS** | VST3, AU, CLAP |
-
-CLAP ships with every plugin except Spectrum Analyzer, and TapeMachine 2 and Sunset Circuits also ship LV2 on macOS. See each plugin's page for its exact formats.
-
-## Installation
+## Plugin installation
 
 ### Linux
 
@@ -157,10 +135,7 @@ C:\Program Files\Common Files\CLAP\
 /Library/Audio/Plug-Ins/CLAP/
 ```
 
----
-
-## Get Updates
-
-Want to know when new plugins are released?
-
-<a href="{{ site.patreon_url }}" class="btn btn-primary">Follow on Patreon</a>
+</div>
+</details>
+</div>
+</section>

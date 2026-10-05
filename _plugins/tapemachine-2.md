@@ -6,6 +6,13 @@ tagline: Two-Machine Analog Tape Emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.11"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
+gallery:
+  - src: /assets/images/plugins/tapemachine-2-screenshot.png
+    alt: "TapeMachine 2 v1.0.11 with the faceplate calibration selector"
+    caption: "TapeMachine 2 v1.0.11: machine, speed, formulation, calibration, signal path, and EQ controls"
+  - src: /assets/images/plugins/tapemachine-2-calibration.png
+    alt: "TapeMachine 2 calibration menu with +3, +6, +7.5, and +9 dB operating levels"
+    caption: "Choose +3, +6, +7.5, or +9 dB calibration directly on the faceplate"
 
 features:
   - "Two modeled machines: Swiss (A800-style) and American (ATR-102-style)"
@@ -16,6 +23,7 @@ features:
   - 'Adjustable head width (American machine): 1/4", 1/2", 1"'
   - "Machine-authentic front-panel toggles: Crosstalk, Wow & Flutter, Transformer"
   - "Four signal path modes: Repro, Sync, Input, Thru"
+  - "Faceplate calibration: +3, +6, +7.5, and +9 dB operating levels"
   - NAB and CCIR EQ standards
   - Separate Wow & Flutter controls with coherent stereo processing
   - Four-band advanced Repro EQ (LF / LMF / HMF / HF)
@@ -69,7 +77,7 @@ changelog:
   - version: "1.0.5"
     date: "2026-08-13"
     changes:
-      - Fixed non-finite output at unusually low sample rates: every filter design frequency is now clamped below Nyquist
+      - "Fixed non-finite output at unusually low sample rates: every filter design frequency is now clamped below Nyquist"
       - Fixed a volume spike when changing presets
       - Fixed the tape speed dropdown showing a question mark instead of the inch mark
       - Gain Link holds levels more consistently across bypass, preset and processing changes
@@ -92,7 +100,7 @@ changelog:
   - version: "1.0.1"
     date: "2026-07-19"
     changes:
-      - Program-band tone matching: new correction bands keyed to a 500 Hz program envelope, neutral at the calibration anchor
+      - "Program-band tone matching: new correction bands keyed to a 500 Hz program envelope, neutral at the calibration anchor"
       - Deep-sub program bloom restores the reference decks' low-end thickening on hot material
       - Per-preset repro sub-bell and lowpass resonance for closer factory-preset matching
       - Crosstalk retuned to the reference; presets now honor their own Crosstalk switch

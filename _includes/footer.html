@@ -3,18 +3,20 @@
     <div class="footer-content">
       <div class="footer-brand">
         <span class="footer-logo">Dusk Audio</span>
-        <p>Free, high-quality audio plugins for everyone.</p>
+        <p>A focused desktop studio.<br>Free instruments and effects.</p>
       </div>
 
       <div class="footer-links">
         <div class="footer-column">
-          <h4>Plugins</h4>
+          <h4>Current plugins</h4>
           <ul>
-            {% for plugin in site.data.plugins %}
+            {% assign current_plugins = site.data.plugins | where: 'generation', 'current' | sort: 'display_order' %}
+            {% for plugin in current_plugins %}
             {% if plugin.status == "released" or plugin.status == "pre-release" or plugin.status == "coming-soon" %}
             <li><a href="{{ '/plugins/' | append: plugin.slug | append: '/' | relative_url }}">{{ plugin.name }}</a></li>
             {% endif %}
             {% endfor %}
+            <li><a href="{{ '/plugins/' | relative_url }}#legacy">Legacy collection</a></li>
           </ul>
         </div>
 
@@ -22,7 +24,7 @@
           <h4>Resources</h4>
           <ul>
             <li><a href="{{ '/plugins/' | relative_url }}">All Plugins</a></li>
-            <li><a href="https://github.com/dusk-audio/dusk-studio">Dusk Studio</a></li>
+            <li><a href="{{ '/dusk-studio/' | relative_url }}">Dusk Studio</a></li>
             <li><a href="https://github.com/dusk-audio/dusk-studio/discussions">Dusk Studio Discussions</a></li>
             <li><a href="{{ site.releases_url }}">GitHub Releases</a></li>
             <li><a href="{{ site.github_repo }}">Source Code</a></li>
