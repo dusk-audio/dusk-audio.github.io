@@ -161,9 +161,9 @@
   description: The original DuskVerb reverb engines in a modern DAF interface,
     with complete sound snapshots, original preset import, and mono, mono-to-stereo,
     and stereo routing. Ships alongside the original DuskVerb.
-  status: in-dev
-  featured: false
-  version: 0.1.0
+  status: released
+  featured: true
+  version: 1.0.0
 - name: Sunset Circuits
   slug: sunset-circuits
   generation: current
