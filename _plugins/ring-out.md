@@ -4,7 +4,7 @@ title: Ring Out
 slug: ring-out
 tagline: Feedback Eliminator for Monitors and PA
 description: Ring Out finds the frequencies that feed back and notches them out, with a one-minute SETUP to ring out a system, ADD to catch a ring during the show, and up to twenty editable notch filters. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "0.1.0"
+version: "1.0.0"
 screenshot: /assets/images/plugins/ring-out-screenshot.png
 
 features:
@@ -38,6 +38,14 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.0"
+    date: "2026-10-07"
+    changes:
+      - "First release of Ring Out, a feedback eliminator for ringing out monitors and PA"
+      - "SETUP listens for 60 seconds and notches each ring it hears; ADD catches one more ring on demand"
+      - "Up to twenty editable notch filters, with global Q and depth trims and a LINK between output gain and cut depth"
+      - "Low and High sensitivity; stereo detection that a ring in one channel cannot hide from"
+      - "AU, VST3, CLAP and LV2 for Linux (x64, arm64), Windows and macOS (universal)"
 ---
 
 Ring Out is built for ringing out wedges and a PA before soundcheck. Arm SETUP, bring the gain up slowly, and let it notch the frequencies that start to ring; then disarm it and keep the filters for the show. Keep a mute within reach while you do it: a ring can grow faster than any detector can react.

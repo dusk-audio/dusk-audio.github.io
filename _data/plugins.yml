@@ -218,6 +218,7 @@
     comes back. ADD catches one more ring on demand during the show. Every filter
     can be edited by hand, with global Q and depth trims, a LINK that trades output
     gain for cut depth, input and output meters, and user presets. Completely free.
-  status: in-dev
-  featured: false
+  status: released
+  featured: true
   released: "2026-10-07"
+  version: 1.0.0
