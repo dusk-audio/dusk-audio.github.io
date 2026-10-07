@@ -244,3 +244,17 @@ duskverb:
     width: 1470
     height: 798
     sha256: 0e2a3a4799a9c49c19e5e98df5c7619bdb71eacc70924f265528f96ade1afcce
+ring-out:
+  # Captured before the release from a local build of the v1.0.0 source (same
+  # commit the tag builds), not the published binary. Replace with a capture of
+  # the release download, as for the other entries.
+  version: 1.0.0
+  captured: '2026-10-07'
+  platform: Linux x86_64
+  format: CLAP
+  release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/ring-out-v1.0.0
+  images:
+  - path: /assets/images/plugins/ring-out-screenshot.png
+    width: 960
+    height: 600
+    sha256: 61c0d08fcdb575b2b18de9b6443ceaaeed0c57d6d1cf9cb15387c6b7fce8a57d

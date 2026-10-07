@@ -205,3 +205,19 @@
   featured: true
   version: 1.0.8
   released: "2026-08-04"
+- name: Ring Out
+  slug: ring-out
+  generation: current
+  display_order: 7
+  category: Live Sound
+  summary: Feedback eliminator for ringing out monitors and PA.
+  tagline: Feedback eliminator for monitors and PA
+  description: Finds the frequencies that ring and notches them out. Arm SETUP
+    for a minute while you bring the gain up and Ring Out places up to twenty narrow
+    notch filters on the rings it hears, deepening or widening a notch when a ring
+    comes back. ADD catches one more ring on demand during the show. Every filter
+    can be edited by hand, with global Q and depth trims, a LINK that trades output
+    gain for cut depth, input and output meters, and user presets. Completely free.
+  status: in-dev
+  featured: false
+  released: "2026-10-07"
