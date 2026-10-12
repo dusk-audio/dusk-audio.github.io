@@ -4,7 +4,7 @@ title: Ring Out
 slug: ring-out
 tagline: Feedback Eliminator for Monitors and PA
 description: Ring Out finds the frequencies that feed back and notches them out, with a one-minute LEARN to ring out a system, CATCH to catch a ring during the show, and up to twenty notches you can drag on the graph or pull on their own faders. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.0"
+version: "1.1.0"
 screenshot: /assets/images/plugins/ring-out-screenshot.png
 
 features:
@@ -39,6 +39,14 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.1.0"
+    date: "2026-10-12"
+    changes:
+      - "New editor: a full-width graph where each notch is a numbered node you can drag (frequency, cut, wheel for Q), with a callout on the selected notch and a ripple where the detector places one"
+      - "Notch bank with a cut fader per notch, plus frequency, cut and Q steppers with typed entry for the selected notch"
+      - "Round LEARN button with a countdown ring, HOLD TO CATCH, and RING NOT COVERED shown in red"
+      - "Controls renamed to match the editor: Sensitivity, Learn, Catch, Clear, Q Scale, Cut Trim, Output; existing sessions and automation load unchanged"
+      - "Larger, easier-to-read editor (1040 x 640)"
   - version: "1.0.0"
     date: "2026-10-07"
     changes:
