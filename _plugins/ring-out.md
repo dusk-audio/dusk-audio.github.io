@@ -3,26 +3,27 @@ layout: plugin
 title: Ring Out
 slug: ring-out
 tagline: Feedback Eliminator for Monitors and PA
-description: Ring Out finds the frequencies that feed back and notches them out, with a one-minute SETUP to ring out a system, ADD to catch a ring during the show, and up to twenty editable notch filters. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
+description: Ring Out finds the frequencies that feed back and notches them out, with a one-minute LEARN to ring out a system, CATCH to catch a ring during the show, and up to twenty notches you can drag on the graph or pull on their own faders. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.0"
 screenshot: /assets/images/plugins/ring-out-screenshot.png
 
 features:
-  - "SETUP: arm the detector for 60 seconds while you raise the gain, and it places a notch on each ring it hears"
-  - "ADD: one press places or deepens one filter on the next ring, for the ring that turns up mid-show"
-  - Up to twenty narrow notch filters, each with on/off, cut, frequency, and Q
+  - "LEARN: arm the detector for 60 seconds while you raise the gain, and it places a notch on each ring it hears"
+  - "CATCH: one press places or deepens one notch on the next ring, for the ring that turns up mid-show"
+  - "Up to twenty narrow notches in a bank of strips, each with on/off, its own CUT fader, frequency, and Q"
   - A ring that comes back deepens or widens its existing notch instead of taking a new slot
   - "Tells a ring from a note by how it behaves: feedback holds or grows, a note decays, and harmonic-rich sounds are passed over"
   - "Two sensitivity settings: Low for conservative detection, High for quieter rings and faster response"
   - Stereo detection that a ring in one channel or opposite-polarity signals cannot hide from
-  - Global Q and depth trims across every filter
-  - LINK trades output gain for cut depth, so turning up also deepens the notches
-  - Spectrum display with the filter curve, click to select a filter
+  - Q SCALE and CUT TRIM across every notch
+  - LINK trades output level for cut depth, so turning up also deepens the notches
+  - "Spectrum display with the notch curve: drag a notch's node for frequency and cut, wheel for Q"
+  - A ripple on the graph marks each notch the detector places or deepens
   - Input and output level meters with peak hold
   - Notches fade in and out smoothly, with no clicks when filters change or on bypass
   - User presets that store the filter table with the settings
-  - Typed value entry for each filter's cut, frequency, and Q
-  - Host automation of SENSE, SETUP, ADD, RESET, the global trims, LINK, and output gain
+  - Typed value entry for each notch's cut, frequency, and Q
+  - Host automation of Sensitivity, Learn, Catch, Clear, Q Scale, Cut Trim, Link, and Output
 
 formats:
   - "Linux: VST3, LV2, CLAP"
@@ -48,6 +49,6 @@ changelog:
       - "AU, VST3, CLAP and LV2 for Linux (x64, arm64), Windows and macOS (universal)"
 ---
 
-Ring Out is built for ringing out wedges and a PA before soundcheck. Arm SETUP, bring the gain up slowly, and let it notch the frequencies that start to ring; then disarm it and keep the filters for the show. Keep a mute within reach while you do it: a ring can grow faster than any detector can react.
+Ring Out is built for ringing out wedges and a PA before soundcheck. Arm LEARN, bring the gain up slowly, and let it notch the frequencies that start to ring; then disarm it and keep the notches for the show. Keep a mute within reach while you do it: a ring can grow faster than any detector can react.
 
 Ring Out is open source under GPL-3.0-or-later. View the source, report issues, or contribute on [GitHub](https://github.com/dusk-audio/dusk-audio-plugins).
