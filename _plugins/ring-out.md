@@ -2,7 +2,7 @@
 layout: plugin
 title: Ring Out
 slug: ring-out
-tagline: Feedback Eliminator for Monitors and PA
+tagline: Feedback Eliminator for Live Audio
 description: Ring Out finds the frequencies that feed back and notches them out, with a one-minute LEARN to ring out a system, CATCH to catch a ring during the show, and up to twenty notches you can drag on the graph or pull on their own faders. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.1.0"
 screenshot: /assets/images/plugins/ring-out-screenshot.png
