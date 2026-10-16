@@ -93,7 +93,7 @@ og_image: /assets/images/studio/console.webp
     <div class="section-intro">
       <p class="eyebrow">Start making music</p>
       <h2 id="get-title">Get Dusk Studio beta.</h2>
-      <p>Official beta builds are available through Patreon from $1/month. The source is open under GPL-3.0 and free to build yourself.</p>
+      <p>Official beta builds are available through Patreon from $5/month. The source is open under GPL-3.0 and free to build yourself.</p>
     </div>
     <div class="beta-options">
       <div>
