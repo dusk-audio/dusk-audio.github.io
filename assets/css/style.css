@@ -752,6 +752,12 @@ main {
   background: var(--color-bg-alt);
 }
 
+.download-follow {
+  font-size: 0.875rem;
+  margin: var(--spacing-sm) 0 0;
+  text-align: center;
+}
+
 /* ========================================
    Changelog
    ======================================== */
