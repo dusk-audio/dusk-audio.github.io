@@ -23,10 +23,10 @@ const PATREON = "https://www.patreon.com/api/oauth2/v2";
 const MAX_PAGES = 50; // runaway-pagination guard
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     try {
-      if (request.method === "POST" && url.pathname === "/patreon/webhook") return await webhook(request, env);
+      if (request.method === "POST" && url.pathname === "/patreon/webhook") return await webhook(request, env, ctx);
       if (request.method === "POST" && url.pathname === "/sync") return await manualSync(request, env, url);
       return new Response("Not found", { status: 404 });
     } catch (e) {
@@ -39,7 +39,7 @@ export default {
 
 /* ---------- routes ---------- */
 
-async function webhook(request, env) {
+async function webhook(request, env, ctx) {
   const raw = await request.text();
   if (!verifySignature(env.PATREON_WEBHOOK_SECRET, raw, request.headers.get("X-Patreon-Signature"))) {
     return json({ ok: false, error: "bad signature" }, 401);
@@ -56,14 +56,32 @@ async function webhook(request, env) {
   const attr = post.attributes || {};
   if (env.PUBLIC_ONLY === "1" && !attr.is_public) return json({ ok: true, skipped: "not public" });
 
+  // Patreon gives up after 5 seconds and pauses the webhook after repeated timeouts, while
+  // reading every member and syncing the group takes longer. So acknowledge now and do the
+  // work after the response. A failure there is logged, not retried by Patreon; the draft's
+  // absence in MailerLite and `wrangler tail` show it.
+  if (ctx && ctx.waitUntil) {
+    ctx.waitUntil(
+      publish(env, post).then(
+        (out) => console.log("post-notify:", JSON.stringify({ post: post.id, ...out })),
+        (e) => console.error("post-notify failed:", post.id, e && e.message),
+      ),
+    );
+    return json({ ok: true, queued: true }, 202);
+  }
+  return json(await publish(env, post));
+}
+
+// Everything after the webhook is accepted. Returns counts and ids only, never addresses.
+async function publish(env, post) {
   // The marker in the campaign name is what makes a redelivered webhook a no-op.
   const marker = `[patreon:${post.id}]`;
-  if (await campaignExists(env, marker)) return json({ ok: true, skipped: "duplicate" });
+  if (await campaignExists(env, marker)) return { ok: true, skipped: "duplicate" };
 
   const groupId = await ensureGroup(env, true);
   const sync = await syncRecipients(env, groupId, true);
   const campaign = await createCampaign(env, post, marker, groupId, sync.ok);
-  return json({ ok: true, deduped: sync.ok, recipients: sync.recipients, ...campaign });
+  return { ok: true, deduped: sync.ok, recipients: sync.recipients, ...campaign };
 }
 
 // Manual check: POST /sync shows what a sync would change; POST /sync?apply=1 applies it.
