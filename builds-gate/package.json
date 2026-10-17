@@ -5,7 +5,8 @@
   "description": "Cloudflare Worker that gates Dusk Studio builds behind active paid Patreon membership.",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "test": "node --test"
   },
   "devDependencies": {
     "wrangler": "^4.151.1"

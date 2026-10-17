@@ -178,6 +178,29 @@ async function latestPage(env, request) {
 // on GitHub, so only releases still inside their window are listed.
 const PUBLIC_ON = /Free for everyone on (\d{4}-\d{2}-\d{2})/;
 
+// Prerelease tags (alpha, beta, rc) are mirrored with a first line of "Members-only
+// prerelease ..." and never go public. One is listed while it is its plugin's newest
+// mirrored release, so the stable release that follows replaces it.
+const MEMBERS_ONLY = /^\*\*Members-only prerelease\b/;
+
+// "multi-comp-2-v1.1.0-alpha1" -> "multi-comp-2"
+function pluginSlug(rel) {
+  return String(rel.tag_name || "").replace(/-v\d+\.\d+\.\d+.*$/, "");
+}
+
+// The mirrored releases to list today, in the order fetchReleases returns them
+// (newest first): dated ones inside their window, then each plugin's prerelease
+// while nothing newer of that plugin has been mirrored.
+function earlyListing(list, today) {
+  const newestBySlug = new Map();
+  for (const r of list) if (!newestBySlug.has(pluginSlug(r))) newestBySlug.set(pluginSlug(r), r);
+  return list.filter((r) => {
+    if (MEMBERS_ONLY.test(r.body || "")) return newestBySlug.get(pluginSlug(r)) === r;
+    const when = publicOn(r);
+    return when && when > today;
+  });
+}
+
 // The date, or null when missing or not a real calendar day (9999-99-99 would
 // otherwise sort after every real date and keep a release listed forever).
 function publicOn(rel) {
@@ -195,10 +218,7 @@ async function earlyPage(env, request) {
     return htmlResp(page("Early-access plugins", "<p>Couldn't load the early-access releases. Try again in a moment.</p>"), 502,
       { "Cache-Control": "no-store" });
   }
-  const current = list.filter((r) => {
-    const when = publicOn(r);
-    return when && when > today;
-  });
+  const current = earlyListing(list, today);
 
   const sections = current.length
     ? current
@@ -209,8 +229,10 @@ async function earlyPage(env, request) {
                 `<li><a href="/edl/${a.id}">${escapeHtml(a.name)}</a> <span class="sz">${(a.size / 1048576).toFixed(1)} MB</span></li>`
             )
             .join("");
+          const when = publicOn(rel);
+          const note = when ? `Free for everyone on ${escapeHtml(when)}` : "Members-only prerelease";
           return `<h2>${escapeHtml(rel.name || rel.tag_name)}</h2>
-            <p class="tag">Free for everyone on ${escapeHtml(publicOn(rel))}</p>
+            <p class="tag">${note}</p>
             <ul class="files">${files || "<li>No files attached to this release.</li>"}</ul>`;
         })
         .join("")
@@ -219,7 +241,8 @@ async function earlyPage(env, request) {
 
   const body = `
     <h1>Early-access plugins</h1>
-    <p class="muted">New plugin releases reach members two weeks before everyone else.</p>
+    <p class="muted">New plugin releases reach members two weeks before everyone else.
+       Alpha and beta builds are for members only.</p>
     ${sections}
     <p><a href="/latest">Dusk Studio builds</a></p>`;
   return htmlResp(page("Early-access plugins", body), 200, { "Cache-Control": "no-store" });
