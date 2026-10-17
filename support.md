@@ -16,6 +16,11 @@ If these plugins help your music, consider giving back!
     <p>Monthly support helps fund ongoing development and new plugins. Get updates on what's coming next!</p>
     <a href="{{ site.patreon_url }}" class="btn btn-primary btn-lg">Support on Patreon</a>
   </div>
+  <div class="support-option">
+    <h3>Ko-fi</h3>
+    <p>Can't commit monthly? Leave a one-time tip. Every bit helps, though builds and credits come with a Patreon membership.</p>
+    <a href="{{ site.kofi_url }}" class="btn btn-secondary btn-lg">Tip on Ko-fi</a>
+  </div>
 </div>
 
 To be clear about how this works: every plugin is free, and supporting on Patreon is entirely optional. [Dusk Studio]({{ '/dusk-studio/' | relative_url }}) works the same way at the source level: it's GPL-3.0, so you can always clone the repo and build it yourself for nothing. What supporting on Patreon ($5/month and up) actually delivers is the prebuilt, ready-to-run binaries of every beta build.
