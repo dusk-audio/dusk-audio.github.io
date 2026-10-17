@@ -752,6 +752,16 @@ main {
   background: var(--color-bg-alt);
 }
 
+.support-cta .support-cta-tip {
+  font-size: 0.8125rem;
+  margin: var(--spacing-sm) 0 0;
+}
+
+.support-cta .support-cta-tip a {
+  color: white;
+  text-decoration: underline;
+}
+
 .download-follow {
   font-size: 0.875rem;
   margin: var(--spacing-sm) 0 0;
