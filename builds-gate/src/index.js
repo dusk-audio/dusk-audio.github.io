@@ -178,15 +178,23 @@ async function latestPage(env, request) {
 // on GitHub, so only releases still inside their window are listed.
 const PUBLIC_ON = /Free for everyone on (\d{4}-\d{2}-\d{2})/;
 
+// The date, or null when missing or not a real calendar day (9999-99-99 would
+// otherwise sort after every real date and keep a release listed forever).
 function publicOn(rel) {
   const m = PUBLIC_ON.exec(rel.body || "");
-  return m ? m[1] : null;
+  if (!m) return null;
+  const d = new Date(m[1] + "T00:00:00Z");
+  return !isNaN(d) && d.toISOString().slice(0, 10) === m[1] ? m[1] : null;
 }
 
 async function earlyPage(env, request) {
   if (!(await sessionOk(env, request))) return htmlResp(signIn(env, "/early"));
   const today = new Date().toISOString().slice(0, 10);
-  const list = env.EARLY_REPO ? await listReleases(env, env.EARLY_REPO) : [];
+  const list = env.EARLY_REPO ? await fetchReleases(env, env.EARLY_REPO) : [];
+  if (!list) {
+    return htmlResp(page("Early-access plugins", "<p>Couldn't load the early-access releases. Try again in a moment.</p>"), 502,
+      { "Cache-Control": "no-store" });
+  }
   const current = list.filter((r) => {
     const when = publicOn(r);
     return when && when > today;
@@ -232,6 +240,12 @@ async function download(env, request, id, repo) {
     },
     redirect: "manual",
   });
+  // Normally a 302 to a signed URL, but GitHub may answer 200 with the bytes.
+  if (r.status === 200) {
+    const headers = new Headers(r.headers);
+    headers.set("Cache-Control", "no-store");
+    return new Response(r.body, { status: 200, headers });
+  }
   const loc = r.headers.get("Location");
   if (!loc) return new Response("Not available", { status: 404 });
   return new Response(null, { status: 302, headers: { Location: loc, "Cache-Control": "no-store" } });
@@ -279,6 +293,12 @@ async function manual(env) {
 
 // Every non-draft release, newest published first. [] on any failure.
 async function listReleases(env, repo = env.RELEASES_REPO) {
+  return (await fetchReleases(env, repo)) || [];
+}
+
+// Like listReleases, but null when GitHub refuses or fails (e.g. a 404 because the
+// PAT can't see the repo), so a caller can tell that apart from "no releases".
+async function fetchReleases(env, repo) {
   const r = await fetch(`https://api.github.com/repos/${repo}/releases?per_page=30`, {
     headers: {
       Authorization: `Bearer ${env.GH_PAT}`,
@@ -288,9 +308,9 @@ async function listReleases(env, repo = env.RELEASES_REPO) {
     // Don't serve a stale list from the edge cache after a new release is published.
     cf: { cacheTtl: 0, cacheEverything: false },
   });
-  if (!r.ok) return [];
+  if (!r.ok) return null;
   const list = await r.json();
-  if (!Array.isArray(list)) return [];
+  if (!Array.isArray(list)) return null;
   // The API does NOT guarantee newest-first (these releases share a created_at),
   // so order by publish time explicitly.
   return list
