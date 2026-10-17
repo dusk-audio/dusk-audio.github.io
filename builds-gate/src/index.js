@@ -1,6 +1,9 @@
 // Dusk Studio build gate: Patreon-OAuth delivery.
 //
-// Downloads are locked to ACTIVE $1+ Patreon members of the Dusk Audio campaign.
+// Downloads are locked to ACTIVE $1+ Patreon members of the Dusk Audio campaign. New
+// members join at $5+; the $1 and $3 tiers are closed but their members keep access.
+// /latest serves Dusk Studio builds; /early serves plugin releases still inside their
+// early-access window (mirrored to EARLY_REPO by the plugins repo's release workflows).
 // Flow: visitor hits /latest -> "Sign in with Patreon" -> /auth/login redirects to
 // Patreon -> /auth/callback verifies live membership via the Patreon identity API.
 // A member gets a short-lived signed session cookie; downloads are gated on it. We never
@@ -8,7 +11,7 @@
 // The GitHub PAT never leaves the Worker; the member gets a short-lived signed GitHub URL.
 //
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
-// Vars (wrangler.toml [vars]): RELEASES_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
+// Vars (wrangler.toml [vars]): RELEASES_REPO, EARLY_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
 //                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
 
 export default {
@@ -18,10 +21,12 @@ export default {
     try {
       if (p === "/") return htmlResp(signIn(env));
       if (p === "/manual") return manual(env); // public: the manual is free to read
-      if (p === "/auth/login") return authLogin(env);
+      if (p === "/auth/login") return authLogin(env, url);
       if (p === "/auth/callback") return authCallback(env, request, url);
       if (p === "/latest") return latestPage(env, request);
-      if (p.startsWith("/dl/")) return download(env, request, decodeURIComponent(p.slice(4)));
+      if (p === "/early") return earlyPage(env, request);
+      if (p.startsWith("/dl/")) return download(env, request, decodeURIComponent(p.slice(4)), env.RELEASES_REPO);
+      if (p.startsWith("/edl/")) return download(env, request, decodeURIComponent(p.slice(5)), env.EARLY_REPO);
       return new Response("Not found", { status: 404 });
     } catch (_e) {
       return htmlResp(page("Something went wrong", "<p>Try again in a moment.</p>"), 500);
@@ -68,7 +73,11 @@ function isCreator(identity, creatorUserId) {
 
 /* ---------- OAuth ---------- */
 
-function authLogin(env) {
+// Where to land after sign-in. Whitelisted: never an open redirect.
+const AFTER_LOGIN = ["/latest", "/early"];
+
+function authLogin(env, url) {
+  const next = url.searchParams.get("next");
   const state = randHex(16);
   const auth = new URL("https://www.patreon.com/oauth2/authorize");
   auth.searchParams.set("response_type", "code");
@@ -78,6 +87,7 @@ function authLogin(env) {
   auth.searchParams.set("state", state);
   const headers = new Headers({ Location: auth.toString() });
   headers.append("Set-Cookie", cookie("ds_oauthstate", state, 600)); // 10 min
+  headers.append("Set-Cookie", cookie("ds_next", AFTER_LOGIN.includes(next) ? next : "/latest", 600));
   return new Response(null, { status: 302, headers });
 }
 
@@ -122,15 +132,18 @@ async function authCallback(env, request, url) {
   if (!checkMembership(identity, env.DUSK_CAMPAIGN_ID) && !isCreator(identity, env.DUSK_CREATOR_USER_ID)) {
     const headers = new Headers({ "Content-Type": "text/html; charset=UTF-8" });
     headers.append("Set-Cookie", clearCookie("ds_oauthstate"));
+    headers.append("Set-Cookie", clearCookie("ds_next"));
     return new Response(notMember(env), { status: 403, headers });
   }
 
   // Member confirmed: drop the Patreon tokens, mint a signed session, send to the builds.
   const ttl = (parseInt(env.SESSION_TTL_HOURS, 10) || 6) * 3600;
   const sess = await signSession(env.SESSION_SECRET, { exp: Math.floor(Date.now() / 1000) + ttl });
-  const headers = new Headers({ Location: "/latest" });
+  const next = getCookie(request, "ds_next");
+  const headers = new Headers({ Location: AFTER_LOGIN.includes(next) ? next : "/latest" });
   headers.append("Set-Cookie", cookie("ds_sess", sess, ttl));
   headers.append("Set-Cookie", clearCookie("ds_oauthstate"));
+  headers.append("Set-Cookie", clearCookie("ds_next"));
   return new Response(null, { status: 302, headers });
 }
 
@@ -155,17 +168,63 @@ async function latestPage(env, request) {
     <h1>${escapeHtml(rel.name || rel.tag_name || "Latest build")}</h1>
     <p class="tag">${escapeHtml(rel.tag_name || "")}</p>
     <ul class="files">${items}</ul>
-    <p class="muted">Members-only build. Unsigned; see the <a href="/manual">first-launch steps</a> if macOS or Windows warns you.</p>`;
+    <p class="muted">Members-only build. Unsigned; see the <a href="/manual">first-launch steps</a> if macOS or Windows warns you.</p>
+    <p><a href="/early">Early-access plugin releases</a></p>`;
   return htmlResp(page("Your Dusk Studio build", body), 200, { "Cache-Control": "no-store" });
 }
 
-async function download(env, request, id) {
+// The plugins repo mirrors each early-access release here with a first line of
+// "... Free for everyone on YYYY-MM-DD." Once that day arrives the release is public
+// on GitHub, so only releases still inside their window are listed.
+const PUBLIC_ON = /Free for everyone on (\d{4}-\d{2}-\d{2})/;
+
+function publicOn(rel) {
+  const m = PUBLIC_ON.exec(rel.body || "");
+  return m ? m[1] : null;
+}
+
+async function earlyPage(env, request) {
+  if (!(await sessionOk(env, request))) return htmlResp(signIn(env, "/early"));
+  const today = new Date().toISOString().slice(0, 10);
+  const list = env.EARLY_REPO ? await listReleases(env, env.EARLY_REPO) : [];
+  const current = list.filter((r) => {
+    const when = publicOn(r);
+    return when && when > today;
+  });
+
+  const sections = current.length
+    ? current
+        .map((rel) => {
+          const files = (rel.assets || [])
+            .map(
+              (a) =>
+                `<li><a href="/edl/${a.id}">${escapeHtml(a.name)}</a> <span class="sz">${(a.size / 1048576).toFixed(1)} MB</span></li>`
+            )
+            .join("");
+          return `<h2>${escapeHtml(rel.name || rel.tag_name)}</h2>
+            <p class="tag">Free for everyone on ${escapeHtml(publicOn(rel))}</p>
+            <ul class="files">${files || "<li>No files attached to this release.</li>"}</ul>`;
+        })
+        .join("")
+    : `<p>No plugin is in early access right now. Every released plugin is on
+       <a href="https://github.com/dusk-audio/dusk-audio-plugins/releases">GitHub</a>.</p>`;
+
+  const body = `
+    <h1>Early-access plugins</h1>
+    <p class="muted">New plugin releases reach members two weeks before everyone else.</p>
+    ${sections}
+    <p><a href="/latest">Dusk Studio builds</a></p>`;
+  return htmlResp(page("Early-access plugins", body), 200, { "Cache-Control": "no-store" });
+}
+
+async function download(env, request, id, repo) {
   if (!(await sessionOk(env, request))) return htmlResp(notMember(env), 403);
   // numeric asset id only; prevents path/SSRF injection into the GitHub API
   if (!/^\d+$/.test(id)) return new Response("Bad request", { status: 400 });
+  if (!repo) return new Response("Not available", { status: 404 });
 
   // GitHub returns a 302 to a short-lived signed CDN URL; hand that to the client.
-  const r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases/assets/${id}`, {
+  const r = await fetch(`https://api.github.com/repos/${repo}/releases/assets/${id}`, {
     headers: {
       Authorization: `Bearer ${env.GH_PAT}`,
       Accept: "application/octet-stream",
@@ -219,8 +278,8 @@ async function manual(env) {
 }
 
 // Every non-draft release, newest published first. [] on any failure.
-async function listReleases(env) {
-  const r = await fetch(`https://api.github.com/repos/${env.RELEASES_REPO}/releases?per_page=30`, {
+async function listReleases(env, repo = env.RELEASES_REPO) {
+  const r = await fetch(`https://api.github.com/repos/${repo}/releases?per_page=30`, {
     headers: {
       Authorization: `Bearer ${env.GH_PAT}`,
       Accept: "application/vnd.github+json",
@@ -340,12 +399,15 @@ function retry(msg) {
 
 /* ---------- pages ---------- */
 
-function signIn(env) {
+function signIn(env, next = "/latest") {
+  const early = next === "/early";
   return page(
-    "Get Dusk Studio builds",
-    `<h1>Dusk Studio builds</h1>
-     <p>Official builds are for active $1+ Patreon members. Sign in with Patreon to download the latest build.</p>
-     <p><a class="cta" href="/auth/login">Sign in with Patreon</a></p>`
+    early ? "Early-access plugins" : "Get Dusk Studio builds",
+    `<h1>${early ? "Early-access plugins" : "Dusk Studio builds"}</h1>
+     <p>${early
+       ? "New plugin releases reach Patreon members two weeks before everyone else."
+       : "Official Dusk Studio builds are for Patreon members."} Sign in with Patreon to download.</p>
+     <p><a class="cta" href="/auth/login?next=${encodeURIComponent(next)}">Sign in with Patreon</a></p>`
   );
 }
 
@@ -353,7 +415,7 @@ function notMember(env) {
   return page(
     "Patrons only",
     `<h1>Almost there</h1>
-     <p>Your Patreon account isn't an active $1+ member of Dusk Audio yet. Join for $1+ to get every build, alpha and beta:</p>
+     <p>Your Patreon account isn't an active paid member of Dusk Audio yet. Memberships start at $5 a month and include every Dusk Studio build and early access to new plugin releases:</p>
      <p><a class="cta" href="${escapeHtml(env.PATREON_JOIN_URL || "https://www.patreon.com/cw/DuskAudio/membership")}">Join on Patreon</a></p>`
   );
 }

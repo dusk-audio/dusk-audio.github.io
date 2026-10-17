@@ -1,7 +1,9 @@
 # Dusk Studio build gate (Cloudflare Worker, Patreon OAuth)
 
 Serves the official Dusk Studio binaries from the **private** `dusk-studio-releases`
-repo to **active $1+ Patreon members** of the Dusk Audio campaign. The Worker verifies
+repo, and early-access plugin releases from the **private** `dusk-plugins-early` repo, to
+**active $1+ Patreon members** of the Dusk Audio campaign. New members join at $5+; the
+closed $1 and $3 tiers keep access. The Worker verifies
 membership live via Patreon OAuth on each login, mints a short-lived signed session
 cookie, and gates downloads on it. The GitHub token never reaches the browser.
 
@@ -18,13 +20,20 @@ Visitor hits  https://builds.duskaudio.com/latest
   -> /dl/<id> checks the session -> 302 to a short-lived GitHub signed URL
 ```
 
+`/early` lists plugin releases still inside their early-access window and serves them
+through `/edl/<id>`. The plugins repo's release workflows mirror each early-access release
+there (see `.github/scripts/early_access.sh` in dusk-audio-plugins); its notes start with
+"Free for everyone on YYYY-MM-DD", and the page hides it once that day arrives because the
+release is public on GitHub by then. Sign-in from `/early` returns to `/early`.
+
 Non-members land on a "Join on Patreon" page. We never store Patreon tokens. The
 membership check happens once at login and the access/refresh tokens are discarded;
 only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
 ## One-time setup
 
-1. **GitHub PAT**: fine-grained token, **read-only `Contents` on `dusk-audio/dusk-studio-releases` only**.
+1. **GitHub PAT**: fine-grained token, **read-only `Contents` on `dusk-audio/dusk-studio-releases`
+   and `dusk-audio/dusk-plugins-early` only**.
 2. **Patreon OAuth client**: Patreon → Account settings → **API / Developers** → Create Client.
    - Redirect URI: `https://builds.duskaudio.com/auth/callback` (must match `OAUTH_REDIRECT_URI`).
    - Copy the **Client ID** and **Client Secret**.
@@ -32,7 +41,7 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
    (`GET /api/oauth2/v2/identity?include=memberships,memberships.campaign` while logged in as
    the creator, or `GET /api/oauth2/v2/campaigns`). Put it in `wrangler.toml` → `DUSK_CAMPAIGN_ID`.
 4. **Session secret**: `openssl rand -hex 32`.
-5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`, `DUSK_CREATOR_USER_ID`,
+5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `EARLY_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`, `DUSK_CREATOR_USER_ID`,
    `OAUTH_REDIRECT_URI`, `SESSION_TTL_HOURS`, `FREE_DOWNLOADS="0"`.
 6. **Secrets** (never committed):
    ```
