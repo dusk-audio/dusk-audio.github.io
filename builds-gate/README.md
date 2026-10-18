@@ -83,8 +83,9 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
 - **Session TTL** bounds how long a just-cancelled patron keeps access (default 6h). Shorter =
   tighter enforcement, more re-logins; Patreon SSO makes re-login a fast redirect.
-- `FREE_DOWNLOADS="1"` is an **emergency public override** that drops the gate entirely
-  (e.g. to make a build public). Default `"0"`.
+- `FREE_DOWNLOADS="1"` is an **emergency public override** that drops the gate on the Dusk
+  Studio builds (`/latest`, `/dl`), e.g. to make a build public. Early access (`/early`, `/edl`)
+  always needs a member session, so a members-only prerelease never goes public. Default `"0"`.
 - Security: signed `HttpOnly`/`Secure`/`SameSite=Lax` cookies; CSRF `state` on the OAuth
   round-trip; constant-time signature compare; numeric-only GitHub asset id (blocks SSRF).
 - Binaries are GPL-3.0; members may legally redistribute. Don't add DRM.

@@ -11,7 +11,7 @@ DUSK_CAMPAIGN_ID  = "14880404"                              # Dusk Audio's Patre
 DUSK_CREATOR_USER_ID = "187471121"                          # the campaign owner's Patreon user id; passes without a pledge so the creator can test /latest
 OAUTH_REDIRECT_URI = "https://builds.duskaudio.com/auth/callback"  # must match the Patreon OAuth client's redirect URI exactly
 SESSION_TTL_HOURS = "6"                                     # how long a login lasts before re-verifying membership
-FREE_DOWNLOADS    = "0"                                     # "1" = emergency public override (no login); "0" = members-only
+FREE_DOWNLOADS    = "0"                                     # "1" = emergency public override for Dusk Studio builds (no login; early access stays members-only); "0" = members-only
 
 # Secrets: set with `wrangler secret put NAME`, NEVER put values here:
 #   wrangler secret put PATREON_CLIENT_ID      # from the Patreon OAuth client
