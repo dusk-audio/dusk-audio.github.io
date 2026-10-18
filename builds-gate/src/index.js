@@ -13,22 +13,26 @@
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
 // Vars (wrangler.toml [vars]): RELEASES_REPO, EARLY_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
 //                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
+// FREE_DOWNLOADS opens only the Dusk Studio builds (/latest, /dl); early access always
+// needs a member session.
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
+    // `return await` keeps a rejected handler inside this try.
     try {
       if (p === "/") return htmlResp(signIn(env));
-      if (p === "/manual") return manual(env); // public: the manual is free to read
+      if (p === "/manual") return await manual(env); // public: the manual is free to read
       if (p === "/auth/login") return authLogin(env, url);
-      if (p === "/auth/callback") return authCallback(env, request, url);
-      if (p === "/latest") return latestPage(env, request);
-      if (p === "/early") return earlyPage(env, request);
-      if (p.startsWith("/dl/")) return download(env, request, decodeURIComponent(p.slice(4)), env.RELEASES_REPO);
-      if (p.startsWith("/edl/")) return download(env, request, decodeURIComponent(p.slice(5)), env.EARLY_REPO);
+      if (p === "/auth/callback") return await authCallback(env, request, url);
+      if (p === "/latest") return await latestPage(env, request);
+      if (p === "/early") return await earlyPage(env, request);
+      if (p.startsWith("/dl/")) return await download(env, request, decodeURIComponent(p.slice(4)), env.RELEASES_REPO, sessionOk);
+      if (p.startsWith("/edl/")) return await download(env, request, decodeURIComponent(p.slice(5)), env.EARLY_REPO, memberSession);
       return new Response("Not found", { status: 404 });
-    } catch (_e) {
+    } catch (e) {
+      console.error(e); // still visible in `wrangler tail` and the Workers logs
       return htmlResp(page("Something went wrong", "<p>Try again in a moment.</p>"), 500);
     }
   },
@@ -36,12 +40,19 @@ export default {
 
 /* ---------- access control ---------- */
 
-// Emergency public override: set FREE_DOWNLOADS=1 to drop the gate entirely. Default off.
-async function sessionOk(env, request) {
-  if (env.FREE_DOWNLOADS === "1") return true;
+// A signed, unexpired member session. Early access (/early, /edl) checks only this:
+// a members-only prerelease must never go public, whatever the override says.
+async function memberSession(env, request) {
   if (!env.SESSION_SECRET) return false; // fail closed on misconfig (empty key = forgeable)
   const c = getCookie(request, "ds_sess");
   return c ? verifySession(env.SESSION_SECRET, c) : false;
+}
+
+// The Dusk Studio builds (/latest, /dl). Emergency public override: set FREE_DOWNLOADS=1
+// to drop this gate. Default off. It never opens early access.
+async function sessionOk(env, request) {
+  if (env.FREE_DOWNLOADS === "1") return true;
+  return memberSession(env, request);
 }
 
 // True if the Patreon identity payload shows an active $1+ membership of OUR campaign.
@@ -211,9 +222,9 @@ function publicOn(rel) {
 }
 
 async function earlyPage(env, request) {
-  if (!(await sessionOk(env, request))) return htmlResp(signIn(env, "/early"));
+  if (!(await memberSession(env, request))) return htmlResp(signIn(env, "/early"));
   const today = new Date().toISOString().slice(0, 10);
-  const list = env.EARLY_REPO ? await fetchReleases(env, env.EARLY_REPO) : [];
+  const list = env.EARLY_REPO ? await fetchReleases(env, env.EARLY_REPO, { allPages: true }) : [];
   if (!list) {
     return htmlResp(page("Early-access plugins", "<p>Couldn't load the early-access releases. Try again in a moment.</p>"), 502,
       { "Cache-Control": "no-store" });
@@ -250,8 +261,9 @@ async function earlyPage(env, request) {
   return htmlResp(page("Early-access plugins", body), 200, { "Cache-Control": "no-store" });
 }
 
-async function download(env, request, id, repo) {
-  if (!(await sessionOk(env, request))) return htmlResp(notMember(env), 403);
+// `admitted` is the access check for the route: sessionOk for /dl, memberSession for /edl.
+async function download(env, request, id, repo, admitted) {
+  if (!(await admitted(env, request))) return htmlResp(notMember(env), 403);
   // numeric asset id only; prevents path/SSRF injection into the GitHub API
   if (!/^\d+$/.test(id)) return new Response("Bad request", { status: 400 });
   if (!repo) return new Response("Not available", { status: 404 });
@@ -316,29 +328,51 @@ async function manual(env) {
   });
 }
 
-// Every non-draft release, newest published first. [] on any failure.
+// The non-draft releases on the first page (up to PER_PAGE), newest published first.
+// [] on any failure.
 async function listReleases(env, repo = env.RELEASES_REPO) {
   return (await fetchReleases(env, repo)) || [];
 }
 
+// Releases per page (GitHub's maximum), and the most pages an early-access listing
+// reads, which bounds the subrequests per visit.
+const PER_PAGE = 100;
+const MAX_PAGES = 10;
+
 // Like listReleases, but null when GitHub refuses or fails (e.g. a 404 because the
 // PAT can't see the repo), so a caller can tell that apart from "no releases".
-async function fetchReleases(env, repo) {
-  const r = await fetch(`https://api.github.com/repos/${repo}/releases?per_page=30`, {
-    headers: {
-      Authorization: `Bearer ${env.GH_PAT}`,
-      Accept: "application/vnd.github+json",
-      "User-Agent": "dusk-builds-gate",
-    },
-    // Don't serve a stale list from the edge cache after a new release is published.
-    cf: { cacheTtl: 0, cacheEverything: false },
-  });
-  if (!r.ok) return null;
-  const list = await r.json();
-  if (!Array.isArray(list)) return null;
+// Without allPages it reads one page, as /latest and /manual always have (PER_PAGE
+// releases; it was 30). With it, it reads every page, because the API's order is not
+// newest-first (see the sort below) and the newest release can sit on any page; then
+// a failed page, or a list that fills all MAX_PAGES pages, gives null rather than a
+// partial list.
+async function fetchReleases(env, repo, { allPages = false } = {}) {
+  const releases = new Map();
+  const pages = allPages ? MAX_PAGES : 1;
+  let complete = false;
+  for (let n = 1; n <= pages && !complete; n++) {
+    const r = await fetch(`https://api.github.com/repos/${repo}/releases?per_page=${PER_PAGE}&page=${n}`, {
+      headers: {
+        Authorization: `Bearer ${env.GH_PAT}`,
+        Accept: "application/vnd.github+json",
+        "User-Agent": "dusk-builds-gate",
+      },
+      // Don't serve a stale list from the edge cache after a new release is published.
+      cf: { cacheTtl: 0, cacheEverything: false },
+    });
+    if (!r.ok) return null;
+    const batch = await r.json();
+    if (!Array.isArray(batch)) return null;
+    // Offset paging over releases that share a sort key can repeat a release on two
+    // pages (kept once here) or skip one, which nothing here can detect: keep the
+    // early-access repo under one page.
+    for (const x of batch) releases.set(x.id, x);
+    complete = batch.length < PER_PAGE;
+  }
+  if (allPages && !complete) return null;
   // The API does NOT guarantee newest-first (these releases share a created_at),
   // so order by publish time explicitly.
-  return list
+  return [...releases.values()]
     .filter((x) => !x.draft)
     .sort((a, b) => Date.parse(b.published_at || 0) - Date.parse(a.published_at || 0));
 }
