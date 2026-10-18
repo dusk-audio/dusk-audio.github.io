@@ -12,6 +12,7 @@ it separately with Wrangler. It is independent of `builds-gate/` and shares no s
 ```
 You publish a post on Patreon
   -> Patreon webhook (posts:publish) -> POST /patreon/webhook   (HMAC signature checked)
+  -> 202 at once; the rest runs after the response (Patreon times out after 5 s)
   -> read the campaign's member emails from the Patreon API
   -> sync the MailerLite group "Post notify (not on Patreon)":
        every ACTIVE subscriber whose email is not a current Patreon member
@@ -26,6 +27,9 @@ You publish a post on Patreon
   side, because Patreon no longer emails them.
 - Patron-only posts go out as a title and a link; their text is never put in the email.
   Set `PUBLIC_ONLY="1"` to skip them entirely.
+- The Worker answers Patreon before doing the work, because Patreon waits only 5 seconds and
+  pauses the webhook after repeated timeouts. A failure after that answer is not retried by
+  Patreon: no draft appears, and `wrangler tail` shows `post-notify failed: <post id> ...`.
 - The campaign name ends in `[patreon:<post id>]`. A redelivered webhook finds that marker
   and does nothing, so one post makes one campaign.
 
