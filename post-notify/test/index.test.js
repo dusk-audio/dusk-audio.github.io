@@ -45,6 +45,7 @@ async function fakeFetch(input, init = {}) {
     return reply({ total: body.requests.length, successful: body.requests.length, failed: 0, responses: [] });
   }
   if (path === "/api/campaigns" && method === "GET") {
+    if (state.campaignListStatus) return reply({}, state.campaignListStatus);
     return reply({ data: state.campaigns[url.searchParams.get("filter[status]")] || [] });
   }
   if (path === "/api/campaigns" && method === "POST") {
@@ -102,7 +103,7 @@ const post = {
   },
 };
 
-function hook(payload = post, { event = "posts:publish", secret = env.PATREON_WEBHOOK_SECRET, e = env } = {}) {
+function hook(payload = post, { event = "posts:publish", secret = env.PATREON_WEBHOOK_SECRET, e = env, ctx } = {}) {
   const raw = JSON.stringify(payload);
   const sig = createHmac("md5", secret).update(raw).digest("hex");
   const req = new Request("https://w.example/patreon/webhook", {
@@ -110,7 +111,14 @@ function hook(payload = post, { event = "posts:publish", secret = env.PATREON_WE
     headers: { "X-Patreon-Signature": sig, "X-Patreon-Event": event },
     body: raw,
   });
-  return worker.fetch(req, e);
+  return worker.fetch(req, e, ctx);
+}
+
+// The ExecutionContext Workers passes in production: collects the work left running after
+// the response.
+function fakeCtx() {
+  const pending = [];
+  return { pending, waitUntil: (p) => pending.push(p), settle: () => Promise.all(pending) };
 }
 
 const ops = (op) => calls.filter((c) => c.op === op);
@@ -237,4 +245,39 @@ test("/sync needs the admin token and is a dry run unless apply=1", async () => 
   const applied = await (await call("?apply=1", "admin")).json();
   assert.equal(applied.applied, true);
   assert.equal(ops("batch").length, 1);
+});
+
+test("with a ctx it acknowledges at once and publishes after the response", async () => {
+  const ctx = fakeCtx();
+  const r = await hook(post, { ctx });
+  assert.equal(r.status, 202);
+  assert.deepEqual(await r.json(), { ok: true, queued: true });
+  assert.equal(ctx.pending.length, 1);
+  await ctx.settle();
+  const [c] = ops("createCampaign");
+  assert.equal(c.body.name, "DuskVerb <2> is out [patreon:777]");
+  assert.deepEqual(c.body.groups, ["g1"]);
+});
+
+test("with a ctx a bad signature is still refused before anything runs", async () => {
+  const ctx = fakeCtx();
+  assert.equal((await hook(post, { secret: "wrong", ctx })).status, 401);
+  assert.equal(ctx.pending.length, 0);
+  assert.equal(calls.length, 0);
+});
+
+test("a failure after the response is logged, not thrown", async () => {
+  state.campaignListStatus = 500;
+  const ctx = fakeCtx();
+  const errors = [];
+  const orig = console.error;
+  console.error = (...a) => errors.push(a.join(" "));
+  try {
+    assert.equal((await hook(post, { ctx })).status, 202);
+    await ctx.settle();
+  } finally {
+    console.error = orig;
+  }
+  assert.equal(ops("createCampaign").length, 0);
+  assert.match(errors.join("\n"), /post-notify failed: 777 MailerLite list campaigns 500/);
 });
