@@ -229,8 +229,10 @@ async function earlyPage(env, request) {
                 `<li><a href="/edl/${a.id}">${escapeHtml(a.name)}</a> <span class="sz">${(a.size / 1048576).toFixed(1)} MB</span></li>`
             )
             .join("");
-          const when = publicOn(rel);
-          const note = when ? `Free for everyone on ${escapeHtml(when)}` : "Members-only prerelease";
+          // Same precedence as earlyListing: the members-only line wins over any date.
+          const note = MEMBERS_ONLY.test(rel.body || "")
+            ? "Members-only prerelease"
+            : `Free for everyone on ${escapeHtml(publicOn(rel))}`;
           return `<h2>${escapeHtml(rel.name || rel.tag_name)}</h2>
             <p class="tag">${note}</p>
             <ul class="files">${files || "<li>No files attached to this release.</li>"}</ul>`;
