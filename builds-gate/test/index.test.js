@@ -60,6 +60,14 @@ test("lists a members-only prerelease with no date", async () => {
   assert.match(html, /href="\/edl\/\d+"/);
 });
 
+test("a members-only prerelease is labelled members-only even if its notes hold a date", async () => {
+  releases = [rel("multi-comp-2-v1.1.0-alpha1", "2026-10-20T10:00:00Z", membersOnly,
+                  { body: `${membersOnly}\n\nChangelog: Free for everyone on 2999-01-01.` })];
+  const { html } = await early();
+  assert.match(html, /<p class="tag">Members-only prerelease<\/p>/);
+  assert.doesNotMatch(html, /<p class="tag">Free for everyone/);
+});
+
 test("only a plugin's newest prerelease is listed", async () => {
   releases = [rel("multi-comp-2-v1.1.0-alpha1", "2026-10-20T10:00:00Z", membersOnly),
               rel("multi-comp-2-v1.1.0-alpha2", "2026-10-25T10:00:00Z", membersOnly)];
