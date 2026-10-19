@@ -99,8 +99,8 @@ og_image: /assets/images/studio/console.webp
       <div>
         <h3>Official builds</h3>
         <p>Linux tarballs, a Windows installer, and a macOS disk image. Patreon membership gives you access to beta builds while subscribed.</p>
-        <a class="btn btn-primary" href="{{ site.patreon_membership_url }}">Get beta access on Patreon</a>
-        <a class="text-link member-link" href="{{ site.data.studio.builds_url }}">Already a member? Get the latest build</a>
+        <a class="btn btn-primary" href="{{ site.data.studio.builds_url }}">Download for Patreon members</a>
+        <a class="text-link member-link" href="{{ site.patreon_membership_url }}">Not a member yet? Join on Patreon from $5/month</a>
       </div>
       <div>
         <h3>Build from source</h3>
