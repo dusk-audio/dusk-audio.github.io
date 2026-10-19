@@ -1,0 +1,37 @@
+name: Builds gate
+
+# Tests the Patreon build gate (builds-gate/) on every change to it, and checks the live
+# gate every 30 minutes. GitHub emails the repo owner when a scheduled run fails, so a
+# broken gate shows up there before a patron has to report it.
+
+on:
+  pull_request:
+    paths: ["builds-gate/**", ".github/workflows/builds-gate.yml"]
+  push:
+    branches: [main]
+    paths: ["builds-gate/**", ".github/workflows/builds-gate.yml"]
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test
+        working-directory: builds-gate
+
+  smoke:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: builds-gate/smoke.sh
