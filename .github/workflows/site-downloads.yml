@@ -1,0 +1,32 @@
+name: Site downloads
+
+# Builds the site and checks every download link on it (.github/scripts/check-downloads.sh).
+# "site-downloads" is a required check on main, so a pull request that breaks a download
+# link can't merge. It also runs after every push to main and every 6 hours, because a
+# plugin release can change on GitHub (a draft, a deleted file) without a site change;
+# GitHub emails the repo owner when a scheduled run fails.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site-downloads:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      - run: .github/scripts/check-downloads.sh _site
