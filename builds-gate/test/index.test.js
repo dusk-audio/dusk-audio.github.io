@@ -17,7 +17,7 @@ async function sessionCookie(secret, ttlSeconds) {
 }
 const member = await sessionCookie(env.SESSION_SECRET, 3600);
 
-let releases, builds, failPage, notJson, fetched, realFetch;
+let releases, builds, failPage, notJson, fetched, realFetch, patreon;
 
 let nextReleaseId = 1;
 function rel(tag, published, firstLine, extra = {}) {
@@ -41,10 +41,20 @@ beforeEach(() => {
   failPage = 0;
   notJson = false;
   fetched = [];
+  // Patreon's token exchange answers tokenStatus (with tokenError when it fails); the
+  // identity call answers `identity`.
+  patreon = { tokenStatus: 200, tokenError: null, identity: null };
   realFetch = globalThis.fetch;
   globalThis.fetch = async (input) => {
     const url = new URL(String(input));
     fetched.push(url.toString());
+    if (url.hostname === "www.patreon.com" && url.pathname === "/api/oauth2/token") {
+      const body = patreon.tokenStatus === 200 ? { access_token: "tok" } : { error: patreon.tokenError };
+      return new Response(JSON.stringify(body), { status: patreon.tokenStatus });
+    }
+    if (url.hostname === "www.patreon.com" && url.pathname === "/api/oauth2/v2/identity") {
+      return new Response(JSON.stringify(patreon.identity), { status: 200 });
+    }
     const listing = url.hostname === "api.github.com" && url.pathname.match(/^\/repos\/(o\/early|o\/builds)\/releases$/);
     if (listing) {
       // GitHub's default page size is 30 and its largest 100.
@@ -276,4 +286,177 @@ test("a listing that is not JSON gives the error page, not an unhandled exceptio
   } finally {
     console.error = realError;
   }
+});
+
+/* ---------- Patreon sign-in ---------- */
+
+const CAMPAIGN = "14880404";
+const signInEnv = {
+  ...env,
+  DUSK_CAMPAIGN_ID: CAMPAIGN,
+  DUSK_CREATOR_USER_ID: "900",
+  SUPPORT_EMAIL: "help@example.com",
+  PATREON_JOIN_URL: "https://patreon.example/join",
+};
+const membership = (status, cents, campaign = CAMPAIGN) => ({
+  type: "member",
+  attributes: { patron_status: status, currently_entitled_amount_cents: cents },
+  relationships: { campaign: { data: { type: "campaign", id: campaign } } },
+});
+const account = (id, members = [], name = "Pat Ron") => ({ data: { id, type: "user", attributes: { full_name: name } }, included: members });
+
+// The whole sign-in the way a browser makes it: /auth/login, Patreon's redirect back
+// with the state, then the callback. Returns the callback's response, the session
+// cookie it set (if any) and the gate's log lines.
+async function signInAs(identity, e = signInEnv, next = "/latest") {
+  patreon.identity = identity;
+  const login = await worker.fetch(new Request(`https://builds.example/auth/login?next=${encodeURIComponent(next)}`), e);
+  const state = new URL(login.headers.get("Location")).searchParams.get("state");
+  const jar = login.headers.getSetCookie().map((c) => c.split(";")[0]).join("; ");
+  const logs = await captureLogs(() =>
+    worker.fetch(new Request(`https://builds.example/auth/callback?code=c&state=${state}`, { headers: { Cookie: jar } }), e));
+  const r = logs.result;
+  const sess = r.headers.getSetCookie().find((c) => c.startsWith("ds_sess="));
+  return { status: r.status, location: r.headers.get("Location"), html: await r.text(), session: sess && sess.split(";")[0], logs: logs.lines };
+}
+
+async function captureLogs(fn) {
+  const lines = [];
+  const realLog = console.log;
+  console.log = (line) => lines.push(JSON.parse(line));
+  try {
+    return { result: await fn(), lines };
+  } finally {
+    console.log = realLog;
+  }
+}
+
+test("an active $5 patron signs in, sees the builds and downloads one", async () => {
+  builds = [rel("v0.20.0", "2026-10-10T10:00:00Z", "Dusk Studio")];
+  const r = await signInAs(account("1", [membership("active_patron", 500)]));
+  assert.equal(r.status, 302);
+  assert.equal(r.location, "/latest");
+  assert.ok(r.session);
+  assert.deepEqual(r.logs, [{ gate: true, outcome: "admitted", user: "1", via: "member", cents: 500 }]);
+  const page = await get("/latest", signInEnv, r.session);
+  assert.match(page.html, /href="\/dl\/202610101"/);
+  const file = await get("/dl/202610101", signInEnv, r.session);
+  assert.equal(file.status, 302);
+  assert.equal(file.location, "https://objects.example/202610101");
+});
+
+test("a member of the closed $1 tier still gets in", async () => {
+  const r = await signInAs(account("2", [membership("active_patron", 100)]));
+  assert.equal(r.status, 302);
+  assert.ok(r.session);
+});
+
+test("the creator gets in without a pledge", async () => {
+  const r = await signInAs(account("900"));
+  assert.equal(r.status, 302);
+  assert.ok(r.session);
+  assert.equal(r.logs[0].via, "creator");
+});
+
+test("a patron who also follows other creators gets in", async () => {
+  const r = await signInAs(account("3", [membership(null, 0, "1"), membership("active_patron", 500), membership("active_patron", 300, "2")]));
+  assert.equal(r.status, 302);
+});
+
+test("sign-in from /early returns to /early", async () => {
+  const r = await signInAs(account("1", [membership("active_patron", 500)]), signInEnv, "/early");
+  assert.equal(r.location, "/early");
+});
+
+for (const [label, members, reason, status, cents, says] of [
+  ["a declined payment", [membership("declined_patron", 500)], "declined", "declined_patron", 500, /didn&#39;t go through/],
+  ["an ended membership", [membership("former_patron", 0)], "former", "former_patron", 0, /has ended/],
+  ["a free membership", [membership(null, 0)], "free", null, 0, /free membership/],
+  ["an active pledge under $1", [membership("active_patron", 50)], "free", "active_patron", 50, /free membership/],
+  ["only another creator's membership", [membership("active_patron", 500, "999")], "none", null, 0, /doesn&#39;t show a Dusk Audio membership/],
+  ["no membership at all", [], "none", null, 0, /doesn&#39;t show a Dusk Audio membership/],
+]) {
+  test(`${label} is refused with Patreon's reason, the account used and a way out`, async () => {
+    const r = await signInAs(account("7", members));
+    assert.equal(r.status, 403);
+    assert.equal(r.session, undefined);
+    assert.deepEqual(r.logs, [{ gate: true, outcome: "refused", user: "7", reason, status, cents }]);
+    assert.match(r.html, says);
+    assert.match(r.html, /signed in to Patreon as <strong>Pat Ron<\/strong>/);
+    assert.match(r.html, /href="\/auth\/login">sign in again</);
+    assert.match(r.html, /mailto:help@example\.com/);
+    if (reason === "declined") {
+      assert.match(r.html, /Update payment on Patreon/);
+      assert.doesNotMatch(r.html, /Join on Patreon/);
+    } else {
+      assert.match(r.html, /href="https:\/\/patreon\.example\/join">Join on Patreon/);
+    }
+  });
+}
+
+test("the refusal page escapes the Patreon name and leaves out the support line when unset", async () => {
+  const r = await signInAs(account("8", [], "<b>x</b>"), { ...signInEnv, SUPPORT_EMAIL: "" });
+  assert.match(r.html, /&lt;b&gt;x&lt;\/b&gt;/);
+  assert.doesNotMatch(r.html, /mailto:/);
+});
+
+test("Patreon's token error is logged, not the response body", async () => {
+  patreon.tokenStatus = 401;
+  patreon.tokenError = "invalid_client";
+  const r = await signInAs(account("1", [membership("active_patron", 500)]));
+  assert.equal(r.status, 502);
+  assert.deepEqual(r.logs, [{ gate: true, outcome: "failed", step: "token", http: 401, why: "invalid_client" }]);
+});
+
+test("a callback that can't be verified says why in the log", async () => {
+  for (const [query, why] of [["code=c&state=s", "no_state_cookie"], ["error=access_denied&state=s", "access_denied"]]) {
+    const { result, lines } = await captureLogs(() => worker.fetch(new Request(`https://builds.example/auth/callback?${query}`), signInEnv));
+    assert.equal(result.status, 400);
+    assert.deepEqual(lines, [{ gate: true, outcome: "failed", step: "callback", why }]);
+    if (why === "access_denied") assert.match(await result.text(), /cancelled/);
+  }
+});
+
+test("a download link without a live session offers sign-in, not 'not a member'", async () => {
+  const expired = await sessionCookie(env.SESSION_SECRET, -60);
+  for (const [path, next] of [["/dl/202610101", "/latest"], ["/edl/202610201", "/early"]]) {
+    for (const cookie of [null, expired]) {
+      const file = await get(path, signInEnv, cookie);
+      assert.equal(file.status, 403);
+      assert.match(file.html, /has expired or you haven&#39;t signed in/);
+      assert.match(file.html, new RegExp(`href="/auth/login\\?next=${encodeURIComponent(next)}"`));
+      assert.doesNotMatch(file.html, /couldn't find your membership/);
+    }
+  }
+  assert.deepEqual(fetched, []);
+});
+
+const healthEnv = { ...signInEnv, PATREON_CLIENT_ID: "id", PATREON_CLIENT_SECRET: "client-secret", OAUTH_REDIRECT_URI: "https://builds.example/auth/callback" };
+const health = async (e = healthEnv) => {
+  const r = await worker.fetch(new Request("https://builds.example/health"), e);
+  return { status: r.status, text: await r.text() };
+};
+
+test("/health is green when both repos can be read and the config is set", async () => {
+  builds = [rel("v0.20.0", "2026-10-10T10:00:00Z", "Dusk Studio")];
+  const { status, text } = await health();
+  assert.equal(status, 200);
+  assert.deepEqual(JSON.parse(text), {
+    ok: true, latest: "v0.20.0",
+    checks: { config: true, builds_listed: true, early_readable: true, members_only: true },
+  });
+  assert.doesNotMatch(text, /client-secret|"pat"/);
+});
+
+test("/health is red when GitHub can't be read or a secret is missing", async () => {
+  builds = [rel("v0.20.0", "2026-10-10T10:00:00Z", "Dusk Studio")];
+  failPage = 1;
+  const down = await health();
+  assert.equal(down.status, 503);
+  assert.equal(JSON.parse(down.text).checks.builds_listed, false);
+  assert.equal(JSON.parse(down.text).checks.early_readable, false);
+  failPage = 0;
+  const unset = await health({ ...healthEnv, PATREON_CLIENT_SECRET: "" });
+  assert.equal(unset.status, 503);
+  assert.equal(JSON.parse(unset.text).checks.config, false);
 });
