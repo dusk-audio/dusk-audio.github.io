@@ -12,9 +12,13 @@
 //
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
 // Vars (wrangler.toml [vars]): RELEASES_REPO, EARLY_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
-//                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS
+//                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS,
+//                              SUPPORT_EMAIL
 // FREE_DOWNLOADS opens only the Dusk Studio builds (/latest, /dl); early access always
 // needs a member session.
+// Every sign-in logs one "gate" line (admitted, refused with Patreon's reason, or failed)
+// to the Workers logs, so a patron's report can be matched to what Patreon told us.
+// /health reports whether the config and GitHub access work; the smoke check polls it.
 
 export default {
   async fetch(request, env) {
@@ -23,13 +27,14 @@ export default {
     // `return await` keeps a rejected handler inside this try.
     try {
       if (p === "/") return htmlResp(signIn(env));
+      if (p === "/health") return await health(env);
       if (p === "/manual") return await manual(env); // public: the manual is free to read
       if (p === "/auth/login") return authLogin(env, url);
       if (p === "/auth/callback") return await authCallback(env, request, url);
       if (p === "/latest") return await latestPage(env, request);
       if (p === "/early") return await earlyPage(env, request);
-      if (p.startsWith("/dl/")) return await download(env, request, decodeURIComponent(p.slice(4)), env.RELEASES_REPO, sessionOk);
-      if (p.startsWith("/edl/")) return await download(env, request, decodeURIComponent(p.slice(5)), env.EARLY_REPO, memberSession);
+      if (p.startsWith("/dl/")) return await download(env, request, decodeURIComponent(p.slice(4)), env.RELEASES_REPO, sessionOk, "/latest");
+      if (p.startsWith("/edl/")) return await download(env, request, decodeURIComponent(p.slice(5)), env.EARLY_REPO, memberSession, "/early");
       return new Response("Not found", { status: 404 });
     } catch (e) {
       console.error(e); // still visible in `wrangler tail` and the Workers logs
@@ -55,22 +60,34 @@ async function sessionOk(env, request) {
   return memberSession(env, request);
 }
 
-// True if the Patreon identity payload shows an active $1+ membership of OUR campaign.
-// Fails closed if campaignId is unset, otherwise a $1+ patron of ANY other creator's
-// campaign would pass. DUSK_CAMPAIGN_ID is required config.
-function checkMembership(identity, campaignId) {
-  if (!campaignId) return false;
+// What the Patreon identity payload shows for OUR campaign. `reason` is "active" for an
+// active $1+ membership (the only one that passes), else "declined" (payment failed),
+// "former" (membership ended), "free" (free or under-$1 membership) or "none" (this
+// Patreon account has no membership of the campaign). `status` and `cents` are Patreon's
+// own values, kept for the log. Fails closed ("none") if campaignId is unset, otherwise a
+// $1+ patron of ANY other creator's campaign would pass. DUSK_CAMPAIGN_ID is required config.
+function membershipState(identity, campaignId) {
+  const state = { reason: "none", status: null, cents: 0 };
+  if (!campaignId) return state;
   const included = (identity && identity.included) || [];
   for (const inc of included) {
     if (inc.type !== "member") continue;
     const attr = inc.attributes || {};
-    const active = attr.patron_status === "active_patron";
-    const cents = attr.currently_entitled_amount_cents || 0;
     const camp = inc.relationships && inc.relationships.campaign && inc.relationships.campaign.data;
-    const campOk = camp && String(camp.id) === String(campaignId);
-    if (active && cents >= 100 && campOk) return true;
+    if (!camp || String(camp.id) !== String(campaignId)) continue;
+    const status = attr.patron_status || null;
+    const cents = attr.currently_entitled_amount_cents || 0;
+    if (status === "active_patron" && cents >= 100) return { reason: "active", status, cents };
+    const reason = status === "declined_patron" ? "declined" : status === "former_patron" ? "former" : "free";
+    Object.assign(state, { reason, status, cents });
   }
-  return false;
+  return state;
+}
+
+// One JSON line per sign-in outcome, for `wrangler tail` and the Workers logs.
+// Patreon's user id and membership values only: no names, emails or tokens.
+function logGate(fields) {
+  console.log(JSON.stringify({ gate: true, ...fields }));
 }
 
 // The campaign owner can't pledge to their own campaign, so they pass by Patreon user id.
@@ -108,7 +125,12 @@ async function authCallback(env, request, url) {
   const cookieState = getCookie(request, "ds_oauthstate");
   // CSRF: the state echoed by Patreon must match the one we set before the redirect.
   if (!code || !state || !cookieState || !safeEqual(state, cookieState)) {
-    return htmlResp(page("Sign-in failed", retry("Could not verify the sign-in.")), 400);
+    const why = url.searchParams.get("error") || (!code ? "no_code" : !cookieState ? "no_state_cookie" : "state_mismatch");
+    logGate({ outcome: "failed", step: "callback", why });
+    const msg = why === "access_denied"
+      ? "Patreon sign-in was cancelled."
+      : "Could not verify the sign-in. This happens if it took longer than 10 minutes or ran in two tabs at once.";
+    return htmlResp(page("Sign-in failed", retry(msg)), 400);
   }
 
   // Exchange the code for an access token.
@@ -123,29 +145,46 @@ async function authCallback(env, request, url) {
       redirect_uri: env.OAUTH_REDIRECT_URI || "",
     }),
   });
-  if (!tok.ok) return htmlResp(page("Sign-in failed", retry("Patreon sign-in failed.")), 502);
+  if (!tok.ok) {
+    // Patreon's error code ("invalid_client" = wrong client id/secret, "invalid_grant" =
+    // stale or reused code) says whether the gate or the visitor's attempt is at fault.
+    logGate({ outcome: "failed", step: "token", http: tok.status, why: await errorCode(tok) });
+    return htmlResp(page("Sign-in failed", retry("Patreon sign-in failed.")), 502);
+  }
   const { access_token } = await tok.json();
 
-  // Read the member's live membership state.
+  // Read the member's live membership state, and the account's name so a patron who
+  // signed in with the wrong Patreon account can see which one they used.
   const idUrl =
     "https://www.patreon.com/api/oauth2/v2/identity" +
     "?include=memberships,memberships.campaign" +
-    "&fields%5Bmember%5D=patron_status,currently_entitled_amount_cents";
+    "&fields%5Bmember%5D=patron_status,currently_entitled_amount_cents" +
+    "&fields%5Buser%5D=full_name";
   const idr = await fetch(idUrl, { headers: { Authorization: `Bearer ${access_token}` } });
-  if (!idr.ok) return htmlResp(page("Sign-in failed", retry("Could not read your Patreon membership.")), 502);
+  if (!idr.ok) {
+    logGate({ outcome: "failed", step: "identity", http: idr.status, why: await errorCode(idr) });
+    return htmlResp(page("Sign-in failed", retry("Could not read your Patreon membership.")), 502);
+  }
   const identity = await idr.json();
 
   // Refuse to mint a session we can't sign; an empty HMAC key would be forgeable.
   if (!env.SESSION_SECRET) {
+    logGate({ outcome: "failed", step: "config", why: "no_session_secret" });
     return htmlResp(page("Sign-in failed", retry("The gate is misconfigured (no session secret).")), 500);
   }
 
-  if (!checkMembership(identity, env.DUSK_CAMPAIGN_ID) && !isCreator(identity, env.DUSK_CREATOR_USER_ID)) {
+  const userId = identity && identity.data && identity.data.id;
+  const membership = membershipState(identity, env.DUSK_CAMPAIGN_ID);
+  const creator = isCreator(identity, env.DUSK_CREATOR_USER_ID);
+  if (membership.reason !== "active" && !creator) {
+    logGate({ outcome: "refused", user: userId, reason: membership.reason, status: membership.status, cents: membership.cents });
+    const name = identity && identity.data && identity.data.attributes && identity.data.attributes.full_name;
     const headers = new Headers({ "Content-Type": "text/html; charset=UTF-8" });
     headers.append("Set-Cookie", clearCookie("ds_oauthstate"));
     headers.append("Set-Cookie", clearCookie("ds_next"));
-    return new Response(notMember(env), { status: 403, headers });
+    return new Response(notMember(env, membership.reason, name), { status: 403, headers });
   }
+  logGate({ outcome: "admitted", user: userId, via: membership.reason === "active" ? "member" : "creator", cents: membership.cents });
 
   // Member confirmed: drop the Patreon tokens, mint a signed session, send to the builds.
   const ttl = (parseInt(env.SESSION_TTL_HOURS, 10) || 6) * 3600;
@@ -262,8 +301,13 @@ async function earlyPage(env, request) {
 }
 
 // `admitted` is the access check for the route: sessionOk for /dl, memberSession for /edl.
-async function download(env, request, id, repo, admitted) {
-  if (!(await admitted(env, request))) return htmlResp(notMember(env), 403);
+// `listing` is the page the route's files are listed on, where sign-in returns to.
+// Failing the check only means there is no live session (never signed in here, or the
+// SESSION_TTL_HOURS login ran out), not that the visitor isn't a member: so offer sign-in.
+async function download(env, request, id, repo, admitted, listing) {
+  if (!(await admitted(env, request))) {
+    return htmlResp(signIn(env, listing, "Your sign-in has expired or you haven't signed in on this browser yet."), 403);
+  }
   // numeric asset id only; prevents path/SSRF injection into the GitHub API
   if (!/^\d+$/.test(id)) return new Response("Bad request", { status: 400 });
   if (!repo) return new Response("Not available", { status: 404 });
@@ -284,7 +328,11 @@ async function download(env, request, id, repo, admitted) {
     return new Response(r.body, { status: 200, headers });
   }
   const loc = r.headers.get("Location");
-  if (!loc) return new Response("Not available", { status: 404 });
+  if (!loc) {
+    // A 404 here with a listed file usually means GH_PAT lost access to the repo.
+    logGate({ outcome: "failed", step: "download", http: r.status, repo });
+    return new Response("Not available", { status: 404 });
+  }
   return new Response(null, { status: 302, headers: { Location: loc, "Cache-Control": "no-store" } });
 }
 
@@ -398,6 +446,37 @@ async function latestRelease(env) {
   return pickLatest(await listReleases(env));
 }
 
+// Public: true/false per check, never a value. 503 when any check fails, so the smoke
+// check (.github/workflows/builds-gate.yml) fails and GitHub emails the repo owner.
+// It can't prove PATREON_CLIENT_SECRET is right without a real sign-in; the "gate" log
+// lines (step "token", why "invalid_client") show that.
+async function health(env) {
+  const builds = env.RELEASES_REPO ? await fetchReleases(env, env.RELEASES_REPO) : null;
+  const latest = builds && pickLatest(builds);
+  const checks = {
+    config: ["PATREON_CLIENT_ID", "PATREON_CLIENT_SECRET", "SESSION_SECRET", "GH_PAT", "DUSK_CAMPAIGN_ID", "OAUTH_REDIRECT_URI"]
+      .every((k) => !!env[k]),
+    builds_listed: !!(latest && (latest.assets || []).length),
+    early_readable: !!(env.EARLY_REPO && (await fetchReleases(env, env.EARLY_REPO))),
+    members_only: env.FREE_DOWNLOADS !== "1",
+  };
+  const ok = checks.config && checks.builds_listed && checks.early_readable;
+  return new Response(JSON.stringify({ ok, latest: latest ? latest.tag_name : null, checks }), {
+    status: ok ? 200 : 503,
+    headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
+  });
+}
+
+// Patreon's OAuth error code ({"error":"invalid_client"}), or null. Never the whole body.
+async function errorCode(resp) {
+  try {
+    const body = await resp.json();
+    return typeof body.error === "string" ? body.error.slice(0, 40) : null;
+  } catch (_e) {
+    return null;
+  }
+}
+
 /* ---------- signed session (HMAC-SHA256 via WebCrypto) ---------- */
 
 const _enc = new TextEncoder();
@@ -478,24 +557,55 @@ function retry(msg) {
 
 /* ---------- pages ---------- */
 
-function signIn(env, next = "/latest") {
+function joinUrl(env) {
+  return escapeHtml(env.PATREON_JOIN_URL || "https://www.patreon.com/cw/DuskAudio/membership");
+}
+
+// "Email us" line for a member the gate turns away, when SUPPORT_EMAIL is set.
+function support(env) {
+  if (!env.SUPPORT_EMAIL) return "";
+  const mail = escapeHtml(env.SUPPORT_EMAIL);
+  return `<p class="muted">Paying member and still stuck? Email <a href="mailto:${mail}">${mail}</a> and we'll sort it out.</p>`;
+}
+
+// `note` explains why sign-in is asked for again (e.g. an expired session on a download).
+function signIn(env, next = "/latest", note = "") {
   const early = next === "/early";
   return page(
     early ? "Early-access plugins" : "Get Dusk Studio builds",
     `<h1>${early ? "Early-access plugins" : "Dusk Studio builds"}</h1>
+     ${note ? `<p>${escapeHtml(note)}</p>` : ""}
      <p>${early
        ? "New plugin releases reach Patreon members two weeks before everyone else."
        : "Official Dusk Studio builds are for Patreon members."} Sign in with Patreon to download.</p>
-     <p><a class="cta" href="/auth/login?next=${encodeURIComponent(next)}">Sign in with Patreon</a></p>`
+     <p><a class="cta" href="/auth/login?next=${encodeURIComponent(next)}">Sign in with Patreon</a></p>
+     <p class="muted">Not a member yet? <a href="${joinUrl(env)}">Join on Patreon</a> from $5 a month.</p>`
   );
 }
 
-function notMember(env) {
+// What Patreon showed for the account, in the visitor's terms (reasons from membershipState).
+const REFUSAL = {
+  declined: "Patreon shows that your last payment to Dusk Audio didn't go through. " +
+    "Update your payment method on Patreon, then sign in here again once Patreon shows the payment as paid.",
+  former: "Patreon shows that your Dusk Audio membership has ended.",
+  free: "Patreon shows a free membership. Dusk Studio builds and early access come with a paid membership.",
+  none: "Patreon doesn't show a Dusk Audio membership on this account.",
+};
+
+function notMember(env, reason = "none", name = "") {
+  const account = name ? ` as <strong>${escapeHtml(name)}</strong>` : "";
+  const action = reason === "declined"
+    ? `<p><a class="cta" href="https://www.patreon.com/settings/memberships">Update payment on Patreon</a></p>`
+    : `<p>Memberships start at $5 a month and include every Dusk Studio build and early access to new plugin releases:</p>
+       <p><a class="cta" href="${joinUrl(env)}">Join on Patreon</a></p>`;
   return page(
     "Patrons only",
-    `<h1>Almost there</h1>
-     <p>Your Patreon account isn't an active paid member of Dusk Audio yet. Memberships start at $5 a month and include every Dusk Studio build and early access to new plugin releases:</p>
-     <p><a class="cta" href="${escapeHtml(env.PATREON_JOIN_URL || "https://www.patreon.com/cw/DuskAudio/membership")}">Join on Patreon</a></p>`
+    `<h1>We couldn't find your membership</h1>
+     <p>You signed in to Patreon${account}. ${escapeHtml(REFUSAL[reason] || REFUSAL.none)}</p>
+     <p>Pay with a different Patreon account? Sign out of Patreon at
+       <a href="https://www.patreon.com">patreon.com</a>, then <a href="/auth/login">sign in again</a> with that account.</p>
+     ${action}
+     ${support(env)}`
   );
 }
 

@@ -26,7 +26,11 @@ there (see `.github/scripts/early_access.sh` in dusk-audio-plugins); its notes s
 "Free for everyone on YYYY-MM-DD", and the page hides it once that day arrives because the
 release is public on GitHub by then. Sign-in from `/early` returns to `/early`.
 
-Non-members land on a "Join on Patreon" page. We never store Patreon tokens. The
+A visitor the gate turns away sees which Patreon account they signed in with, what
+Patreon shows for it (payment declined, membership ended, free membership, or no Dusk
+Audio membership), how to retry with another account, and the `SUPPORT_EMAIL` address.
+A download link opened without a live session asks to sign in again; it never claims
+the visitor isn't a member. We never store Patreon tokens. The
 membership check happens once at login and the access/refresh tokens are discarded;
 only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
@@ -73,8 +77,28 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
   file downloads (302 to a GitHub signed URL).
 - As the **campaign owner** (Patreon user `DUSK_CREATOR_USER_ID`): same flow, lands on the build
   list without a pledge. This is the way to check a release on the live site.
-- As a **non-member**: same start → after Patreon auth → "Join on Patreon" page, no files.
-  `GET /dl/<id>` with no session → 403.
+- As a **non-member**: same start → after Patreon auth → "We couldn't find your membership"
+  page with Patreon's reason, no files. `GET /dl/<id>` with no session → 403 sign-in page.
+- `node --test` runs the unit tests, including the whole sign-in against a stubbed Patreon.
+- `builds-gate/smoke.sh` checks the live gate from outside (`/health`, sign-in pages, the
+  OAuth redirect, `/manual`, a download link). CI runs it every 30 minutes.
+
+## When a patron can't download
+
+Every sign-in writes one JSON log line with `"gate":true`. Find it in the dashboard
+(Workers → dusk-builds-gate → Logs) or live with `npx wrangler tail --format pretty`:
+
+- `"outcome":"refused"` with `reason`, plus Patreon's own `status` and `cents`:
+  `declined` (Patreon marked the payment declined), `former`, `free` (free follow or a
+  pledge under $1), `none` (no membership of `DUSK_CAMPAIGN_ID` on that account, usually
+  a second Patreon account). Compare with the member's page in Patreon's dashboard.
+- `"outcome":"failed"`: `step` `token` with `why` `invalid_client` means
+  `PATREON_CLIENT_ID`/`PATREON_CLIENT_SECRET` are wrong, and nobody can sign in;
+  `invalid_grant` is one visitor's stale code. `step` `callback` is a lost state cookie or
+  a cancelled sign-in. `step` `download` with `http` 404 means `GH_PAT` lost a repo.
+- No line at all: they never got back from Patreon to `/auth/callback`.
+
+`/health` answers `{"ok":true,...}` when the config is set and both repos can be read.
 - **Cancellation**: cancel the pledge; after `SESSION_TTL_HOURS`, `/latest` re-auths and blocks.
 - `curl -s https://builds.duskaudio.com/latest` (no cookie) → the sign-in page, not the file list.
 - `/manual` loads the PDF with no login.
