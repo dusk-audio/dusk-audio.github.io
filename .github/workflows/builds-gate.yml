@@ -1,15 +1,22 @@
 name: Builds gate
 
-# Tests the Patreon build gate (builds-gate/) on every change to it, and checks the live
-# gate every 30 minutes. GitHub emails the repo owner when a scheduled run fails, so a
-# broken gate shows up there before a patron has to report it.
+# The Patreon build gate (builds-gate/) ships only through this workflow:
+#
+# - gate-tests runs the unit tests on every pull request. It is a required check on main,
+#   so a change that breaks sign-in or downloads can't merge.
+# - deploy runs on every push to main that changes builds-gate/: tests again, deploy,
+#   then the live smoke check with the deep /health check (members' files download).
+#   If the smoke check fails, it rolls the Worker back to the version before and fails.
+# - smoke runs every 30 minutes against the live gate; GitHub emails the repo owner when
+#   a scheduled run fails.
+#
+# Secrets: CLOUDFLARE_API_TOKEN (Workers edit), CLOUDFLARE_ACCOUNT_ID, HEALTH_TOKEN (the
+# same value as the Worker's HEALTH_TOKEN secret).
 
 on:
   pull_request:
-    paths: ["builds-gate/**", ".github/workflows/builds-gate.yml"]
   push:
     branches: [main]
-    paths: ["builds-gate/**", ".github/workflows/builds-gate.yml"]
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
@@ -18,7 +25,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  gate-tests:
     if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -29,9 +36,65 @@ jobs:
       - run: node --test
         working-directory: builds-gate
 
+  deploy:
+    needs: gate-tests
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    # One deploy at a time; a newer push waits rather than racing a rollback.
+    concurrency:
+      group: builds-gate-deploy
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      HEALTH_TOKEN: ${{ secrets.HEALTH_TOKEN }}
+      REQUIRE_DEEP: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Did builds-gate change?
+        id: changed
+        run: |
+          if git diff --quiet HEAD~1 HEAD -- builds-gate/; then
+            echo "builds-gate/ unchanged; nothing to deploy."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.changed.outputs.deploy == 'true'
+        with:
+          node-version: "22"
+      - name: Deploy
+        if: steps.changed.outputs.deploy == 'true'
+        working-directory: builds-gate
+        run: |
+          for s in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID HEALTH_TOKEN; do
+            [ -n "${!s}" ] || { echo "::error::The $s secret is not set; see builds-gate/README.md (Deploys)."; exit 1; }
+          done
+          npm ci
+          npx wrangler deploy --message "CI ${GITHUB_SHA::7} (run $GITHUB_RUN_ID)"
+      - name: Smoke check, rolling back on failure
+        if: steps.changed.outputs.deploy == 'true'
+        run: |
+          # A new version takes a few seconds to reach every edge.
+          for attempt in 1 2 3 4; do
+            builds-gate/smoke.sh && exit 0
+            echo "Smoke check failed (attempt $attempt); retrying in 20s."
+            sleep 20
+          done
+          echo "::error::The deployed gate failed its smoke check; rolling back to the previous version."
+          (cd builds-gate && npx wrangler rollback --yes --message "Smoke check failed after CI ${GITHUB_SHA::7} (run $GITHUB_RUN_ID)")
+          sleep 20
+          builds-gate/smoke.sh || echo "::error::The gate still fails after the rollback; check it by hand."
+          exit 1
+
   smoke:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    env:
+      HEALTH_TOKEN: ${{ secrets.HEALTH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - run: builds-gate/smoke.sh
