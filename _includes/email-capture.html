@@ -94,7 +94,12 @@
       });
     }
 
+    var help = box.querySelector('.newsletter-captcha-help');
+    var helpText = help.textContent;
+
     window.duskNewsletterCaptchaReady = function () {
+      help.textContent = helpText;
+      box.classList.remove('ml-error');
       box.hidden = false;
       draw();
       watchChallenges();
@@ -107,8 +112,10 @@
       script.src = 'https://www.google.com/recaptcha/api.js?onload=duskNewsletterCaptchaReady&render=explicit';
       script.async = true;
       script.onerror = function () {
-        box.querySelector('.newsletter-captcha-help').textContent =
-          'The spam check could not load. Allow google.com/recaptcha or try again later.';
+        // Let the next focus or click in the form try again.
+        script.remove();
+        requested = false;
+        help.textContent = 'The spam check could not load. Allow google.com/recaptcha or try again later.';
         box.classList.add('ml-error');
         box.hidden = false;
       };
