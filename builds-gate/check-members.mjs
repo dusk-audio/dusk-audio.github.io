@@ -4,7 +4,8 @@
 // through the real Worker code (src/index.js), with Patreon's identity reply built from
 // that member's own patron_status and currently_entitled_amount_cents. Nothing is sent
 // to the deployed gate or to GitHub. Prints counts per outcome, and by name only the
-// members worth a look: anyone Patreon last charged successfully whom the gate refuses.
+// members worth a look: any active patron Patreon last charged successfully whom the
+// gate refuses.
 //
 //   node builds-gate/check-members.mjs            (from the repo root)
 //
@@ -136,5 +137,5 @@ for (const m of list) {
 
 console.log(`${list.length} members`);
 for (const [k, n] of [...counts].sort((x, y) => y[1] - x[1])) console.log(`  ${String(n).padStart(4)}  ${k}`);
-console.log(look.length ? `\nPaid on Patreon but refused by the gate:\n  ${look.join("\n  ")}` : "\nEvery member Patreon last charged successfully gets in.");
+console.log(look.length ? `\nActive patrons Patreon last charged successfully, refused by the gate:\n  ${look.join("\n  ")}` : "\nEvery active patron Patreon last charged successfully gets in.");
 process.exit(look.length ? 1 : 0);
