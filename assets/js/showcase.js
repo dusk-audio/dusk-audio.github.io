@@ -12,6 +12,7 @@
         event.preventDefault();
         signupTrigger = link;
         newsletter.querySelector('#newsletter-dialog-slot').appendChild(newsletterContent);
+        if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
         newsletter.showModal();
         var success = newsletterContent.querySelector('.row-success');
         if (success.style.display === 'block') success.focus();
@@ -21,8 +22,17 @@
     newsletter.addEventListener('click', function (event) {
       if (event.target === newsletter) newsletter.close();
     });
+    document.addEventListener('keydown', function (event) {
+      // A modal dialog closes on Escape by itself; the non-modal fallback does not.
+      if (event.key === 'Escape' && newsletter.open && !newsletter.matches(':modal')) newsletter.close();
+    });
     newsletter.addEventListener('close', function () {
+      // email-capture.html reopens the dialog non-modally when a reCAPTCHA challenge appears; the
+      // close event of that switch arrives once the dialog is already open again.
+      if (newsletter.open) return;
+      newsletter.classList.remove('is-floating');
       newsletterHome.appendChild(newsletterContent);
+      if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
       if (signupTrigger) signupTrigger.focus();
     });
   }

@@ -166,6 +166,10 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
 .newsletter-privacy { color: var(--color-text-muted); font-size: .8rem; max-width: 70ch; margin-top: 20px; }
 .newsletter-dialog { color: var(--color-text); background: var(--color-bg-alt); padding: clamp(24px, 5vw, 48px); border: 1px solid var(--color-border-dark); border-radius: 5px; width: min(680px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow-y: auto; }
 .newsletter-dialog::backdrop { background: rgba(0, 0, 0, .8); }
+.newsletter-dialog.is-floating { position: fixed; inset: 0; margin: auto; z-index: 1000; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .8); }
+/* Stands in for ::backdrop: covers the page under the floating dialog, and a click on it targets the
+   dialog, which showcase.js closes like a backdrop click. It sits below Google's challenge frame. */
+.newsletter-dialog.is-floating::before { content: ""; position: fixed; inset: 0; z-index: -1; }
 .newsletter-dialog > form { text-align: right; margin-bottom: 20px; }
 .newsletter-close { color: var(--color-text); background: transparent; border: 1px solid var(--color-text-muted); padding: 8px 14px; border-radius: 3px; font: inherit; cursor: pointer; }
 .newsletter-dialog h2 { font-size: 2.5rem; line-height: 1.1; }
@@ -174,6 +178,16 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
 .newsletter-dialog .email-form-input { flex: 1 1 260px; min-width: 0; }
 .newsletter-dialog .newsletter-field { flex: 1 1 260px; }
 .ml-server-error.d-none { display: none; }
+.newsletter-captcha { flex-basis: 100%; }
+.newsletter-captcha[hidden] { display: none; }
+.newsletter-captcha .g-recaptcha { min-height: 78px; }
+.newsletter-captcha-help { display: none; color: #ffc1b4; font-size: .85rem; margin-top: 10px; }
+.newsletter-captcha.ml-error .newsletter-captcha-help { display: block; }
+@media (max-width: 360px) {
+  /* The widget is a fixed 304 px; scale it to fit and clip its unscaled layout box. */
+  .newsletter-captcha { overflow: hidden; }
+  .newsletter-captcha .g-recaptcha { transform: scale(.88); transform-origin: 0 0; min-height: 0; height: 69px; }
+}
 .signup-prompt { border-block: 1px solid var(--color-border); padding-block: 26px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .signup-prompt p { color: var(--color-text-light); margin: 0; }
 .signup-prompt strong { display: block; color: var(--color-text); font-size: 1.2rem; }

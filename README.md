@@ -142,9 +142,15 @@ published site).
 
 “Get updates” stays visible outside the mobile menu. Contextual prompts open the
 same MailerLite form in an accessible dialog; closing restores it to the footer.
-There is one embed and one input, including after success. Without JavaScript,
-links scroll to the footer and the form posts directly to MailerLite. Field and
-network failures show inline messages. No timed popup or email gate is used.
+There is one embed and one input, including after success. Field and network
+failures show inline messages. No timed popup or email gate is used.
+
+The form has a reCAPTCHA checkbox, which MailerLite checks server-side (turned on in
+MailerLite under Forms > Email Capture > Settings); it stops bots posting to the
+form endpoint directly. Google's script loads on the first click or focus in the
+form, not with every page. The site key is `mailerlite_recaptcha_sitekey` in
+`_config.yml`. Without JavaScript the checkbox cannot appear, so links still scroll
+to the footer but MailerLite refuses the plain POST.
 
 Signup browser tests intercept MailerLite requests: they do not create subscribers
 or prove actual confirmation-email delivery.
