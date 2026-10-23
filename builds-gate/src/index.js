@@ -10,7 +10,8 @@
 // store Patreon tokens; membership is checked once at login and the tokens are discarded.
 // The GitHub PAT never leaves the Worker; the member gets a short-lived signed GitHub URL.
 //
-// Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT
+// Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT,
+//                                HEALTH_TOKEN (optional; unlocks the deep /health check)
 // Vars (wrangler.toml [vars]): RELEASES_REPO, EARLY_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
 //                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS,
 //                              SUPPORT_EMAIL
@@ -27,7 +28,7 @@ export default {
     // `return await` keeps a rejected handler inside this try.
     try {
       if (p === "/") return htmlResp(signIn(env));
-      if (p === "/health") return await health(env);
+      if (p === "/health") return await health(env, request);
       if (p === "/manual") return await manual(env); // public: the manual is free to read
       if (p === "/auth/login") return authLogin(env, url);
       if (p === "/auth/callback") return await authCallback(env, request, url);
@@ -312,15 +313,7 @@ async function download(env, request, id, repo, admitted, listing) {
   if (!/^\d+$/.test(id)) return new Response("Bad request", { status: 400 });
   if (!repo) return new Response("Not available", { status: 404 });
 
-  // GitHub returns a 302 to a short-lived signed CDN URL; hand that to the client.
-  const r = await fetch(`https://api.github.com/repos/${repo}/releases/assets/${id}`, {
-    headers: {
-      Authorization: `Bearer ${env.GH_PAT}`,
-      Accept: "application/octet-stream",
-      "User-Agent": "dusk-builds-gate",
-    },
-    redirect: "manual",
-  });
+  const r = await githubAsset(env, repo, id);
   // Normally a 302 to a signed URL, but GitHub may answer 200 with the bytes.
   if (r.status === 200) {
     const headers = new Headers(r.headers);
@@ -334,6 +327,19 @@ async function download(env, request, id, repo, admitted, listing) {
     return new Response("Not available", { status: 404 });
   }
   return new Response(null, { status: 302, headers: { Location: loc, "Cache-Control": "no-store" } });
+}
+
+// GitHub's answer for one release asset: normally a 302 to a short-lived signed CDN URL,
+// which /dl and /edl hand to the member. The deep /health check reads the same answer.
+function githubAsset(env, repo, id) {
+  return fetch(`https://api.github.com/repos/${repo}/releases/assets/${id}`, {
+    headers: {
+      Authorization: `Bearer ${env.GH_PAT}`,
+      Accept: "application/octet-stream",
+      "User-Agent": "dusk-builds-gate",
+    },
+    redirect: "manual",
+  });
 }
 
 // The MANUAL.pdf attached to a release, if it has one.
@@ -446,25 +452,87 @@ async function latestRelease(env) {
   return pickLatest(await listReleases(env));
 }
 
-// Public: true/false per check, never a value. 503 when any check fails, so the smoke
-// check (.github/workflows/builds-gate.yml) fails and GitHub emails the repo owner.
-// It can't prove PATREON_CLIENT_SECRET is right without a real sign-in; the "gate" log
-// lines (step "token", why "invalid_client") show that.
-async function health(env) {
+// The files every Dusk Studio release must carry, one per platform members download.
+const PLATFORM_FILES = [/-Linux-x86_64\.tar\.xz$/, /-Linux-aarch64\.tar\.xz$/, /-macOS-arm64\.dmg$/, /-Windows-x64\.msi$/];
+
+// The most early-access files the deep check fetches, which bounds its subrequests.
+const EARLY_FILES_CHECKED = 8;
+
+// true/false per check, never a value. 503 when any check fails, so the smoke check
+// (.github/workflows/builds-gate.yml) fails: after a deploy that rolls the deploy back,
+// on the schedule GitHub emails the repo owner.
+//
+// Anyone gets the cheap checks: config set, both repos readable. With
+// `Authorization: Bearer <HEALTH_TOKEN>` it also checks what a member gets: the newest
+// Dusk Studio release carries every platform and GitHub hands out each of its files, the
+// files /early lists download, and Patreon knows PATREON_CLIENT_ID. Those cost a
+// GitHub call per file, hence the token. A wrong PATREON_CLIENT_SECRET still only shows
+// on a real sign-in (log step "token", why "invalid_client").
+async function health(env, request) {
+  const deep = !!env.HEALTH_TOKEN && safeEqual(request.headers.get("Authorization") || "", `Bearer ${env.HEALTH_TOKEN}`);
   const builds = env.RELEASES_REPO ? await fetchReleases(env, env.RELEASES_REPO) : null;
   const latest = builds && pickLatest(builds);
+  const early = env.EARLY_REPO ? await fetchReleases(env, env.EARLY_REPO, { allPages: true }) : null;
   const checks = {
     config: ["PATREON_CLIENT_ID", "PATREON_CLIENT_SECRET", "SESSION_SECRET", "GH_PAT", "DUSK_CAMPAIGN_ID", "OAUTH_REDIRECT_URI"]
       .every((k) => !!env[k]),
     builds_listed: !!(latest && (latest.assets || []).length),
-    early_readable: !!(env.EARLY_REPO && (await fetchReleases(env, env.EARLY_REPO))),
+    early_readable: !!early,
     members_only: env.FREE_DOWNLOADS !== "1",
   };
-  const ok = checks.config && checks.builds_listed && checks.early_readable;
-  return new Response(JSON.stringify({ ok, latest: latest ? latest.tag_name : null, checks }), {
+  const failedFiles = [];
+  if (deep) {
+    const assets = (latest && latest.assets) || [];
+    const today = new Date().toISOString().slice(0, 10);
+    const earlyFiles = early ? earlyListing(early, today).flatMap((r) => r.assets || []).slice(0, EARLY_FILES_CHECKED) : [];
+    checks.builds_platforms = PLATFORM_FILES.every((re) => assets.some((a) => re.test(a.name)));
+    checks.builds_downloadable = await allDownloadable(env, env.RELEASES_REPO, assets, failedFiles);
+    checks.early_downloadable = await allDownloadable(env, env.EARLY_REPO, earlyFiles, failedFiles);
+    checks.patreon_client_id = await patreonKnowsClient(env);
+  }
+  // FREE_DOWNLOADS=1 is a deliberate override, reported but not a failure.
+  const ok = Object.entries(checks).every(([k, v]) => k === "members_only" || v);
+  const body = { ok, deep, latest: latest ? latest.tag_name : null, checks };
+  if (deep) body.failed_files = failedFiles;
+  return new Response(JSON.stringify(body), {
     status: ok ? 200 : 503,
     headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
   });
+}
+
+// True if GitHub hands out every one of `assets` the way /dl does, and the signed URL it
+// redirects to answers. Names of the ones that fail go into `failed`.
+async function allDownloadable(env, repo, assets, failed) {
+  const results = await Promise.all(
+    assets.map(async (a) => {
+      const r = await githubAsset(env, repo, a.id);
+      if (r.status === 200) {
+        if (r.body) await r.body.cancel(); // the bytes themselves; seeing them start is enough
+        return true;
+      }
+      const loc = r.headers.get("Location");
+      return !!loc && (await fetch(loc, { method: "HEAD" })).ok;
+    })
+  );
+  assets.forEach((a, i) => results[i] || failed.push(a.name));
+  return results.every(Boolean);
+}
+
+// Patreon checks the code before the client secret: a made-up code answers
+// "invalid_grant" for a client it knows and "invalid_client" for an id it doesn't.
+async function patreonKnowsClient(env) {
+  const r = await fetch("https://www.patreon.com/api/oauth2/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      code: "health-check",
+      grant_type: "authorization_code",
+      client_id: env.PATREON_CLIENT_ID || "",
+      client_secret: env.PATREON_CLIENT_SECRET || "",
+      redirect_uri: env.OAUTH_REDIRECT_URI || "",
+    }),
+  });
+  return (await errorCode(r)) === "invalid_grant";
 }
 
 // Patreon's OAuth error code ({"error":"invalid_client"}), or null. Never the whole body.
