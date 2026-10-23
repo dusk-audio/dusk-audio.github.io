@@ -55,7 +55,7 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
    wrangler secret put SESSION_SECRET     # the openssl rand value from step 4
    wrangler secret put GH_PAT             # the fine-grained PAT
    ```
-7. **Deploy**: `npm install && npm run deploy`
+7. **Deploy**: merge to `main` (see Deploys below); by hand only in an emergency: `npm install && npm run deploy`
 8. **Custom domain**: add `builds.duskaudio.com` as a Worker custom domain (Cloudflare
    dashboard → the Worker → Settings → Domains & Routes), or uncomment `routes` in `wrangler.toml`.
 9. **Test** (see below).
@@ -79,9 +79,48 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
   list without a pledge. This is the way to check a release on the live site.
 - As a **non-member**: same start → after Patreon auth → "We couldn't find your membership"
   page with Patreon's reason, no files. `GET /dl/<id>` with no session → 403 sign-in page.
+- **Cancellation**: cancel the pledge; after `SESSION_TTL_HOURS`, `/latest` re-auths and blocks.
+- `curl -s https://builds.duskaudio.com/latest` (no cookie) → the sign-in page, not the file list.
+- `/manual` loads the PDF with no login.
 - `node --test` runs the unit tests, including the whole sign-in against a stubbed Patreon.
 - `builds-gate/smoke.sh` checks the live gate from outside (`/health`, sign-in pages, the
-  OAuth redirect, `/manual`, a download link). CI runs it every 30 minutes.
+  OAuth redirect, `/manual`, a download link); with `HEALTH_TOKEN` set, also that every
+  member file downloads. CI runs it after each deploy and every 30 minutes.
+
+## Deploys, and what stops a change from breaking downloads
+
+Merges to `main` deploy the gate; don't deploy from a laptop.
+
+- **Before merge**: `main` is protected. A pull request can't merge until two checks pass:
+  `gate-tests` (these unit tests) and `site-downloads` (the site is built and every
+  download link on it checked: the Dusk Studio main button opens `/latest`, every gate
+  link is a page the gate serves, every plugin download answers 200). Both run on every
+  pull request, whatever it changes.
+- **Deploy** (`.github/workflows/builds-gate.yml`, job `deploy`): on a push to `main` that
+  changes `builds-gate/`, the tests run again, `wrangler deploy` ships the Worker, and
+  `smoke.sh` runs with the deep `/health` check. If that fails four times over a minute,
+  the job runs `wrangler rollback` to the version before and fails, which emails you.
+- **After**: the smoke check every 30 minutes and the site check every 6 hours catch what
+  changes outside a pull request: a new Dusk Studio release missing a platform, a GH_PAT
+  that expired or lost a repo, a plugin release turned back into a draft.
+
+The deep `/health` check (`Authorization: Bearer <HEALTH_TOKEN>`) reports: the newest
+stable Dusk Studio release has the Linux x86_64, Linux aarch64, macOS and Windows files,
+GitHub hands out every one of them and every file `/early` lists, and Patreon knows
+`PATREON_CLIENT_ID`. It can't prove `PATREON_CLIENT_SECRET` without a real sign-in;
+a wrong one shows as `"step":"token","why":"invalid_client"` in the logs.
+
+Secrets for CI (repo Settings → Secrets and variables → Actions):
+`CLOUDFLARE_API_TOKEN` (a Cloudflare API token from the "Edit Cloudflare Workers"
+template), `CLOUDFLARE_ACCOUNT_ID`, and `HEALTH_TOKEN`, the same random value as the
+Worker's secret (`openssl rand -hex 32`, then `wrangler secret put HEALTH_TOKEN`).
+
+Emergency deploy by hand: `npm run deploy` (runs the tests first), then
+`HEALTH_TOKEN=... ./smoke.sh`; `npx wrangler rollback` undoes it.
+
+An `early-access/<date>` website branch (see the plugins repo's `early_access.sh`) goes
+into `main` through a pull request too, once its release is public, so `site-downloads`
+can check its links.
 
 ## When a patron can't download
 
@@ -105,9 +144,6 @@ the Patreon client's Creator's Access Token (hidden), reads all members of the c
 signs each one in through the Worker code with their live Patreon data, locally. It prints
 counts per outcome and names anyone Patreon last charged successfully whom the gate would
 refuse (exit status 1 if there is one).
-- **Cancellation**: cancel the pledge; after `SESSION_TTL_HOURS`, `/latest` re-auths and blocks.
-- `curl -s https://builds.duskaudio.com/latest` (no cookie) → the sign-in page, not the file list.
-- `/manual` loads the PDF with no login.
 
 ## Notes / tradeoffs
 
