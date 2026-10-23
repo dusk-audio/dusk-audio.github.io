@@ -17,7 +17,7 @@ async function sessionCookie(secret, ttlSeconds) {
 }
 const member = await sessionCookie(env.SESSION_SECRET, 3600);
 
-let releases, builds, failPage, notJson, fetched, realFetch, patreon;
+let releases, builds, failPage, notJson, fetched, realFetch, patreon, refusedAssets, brokenObjects;
 
 let nextReleaseId = 1;
 function rel(tag, published, firstLine, extra = {}) {
@@ -44,6 +44,9 @@ beforeEach(() => {
   // Patreon's token exchange answers tokenStatus (with tokenError when it fails); the
   // identity call answers `identity`.
   patreon = { tokenStatus: 200, tokenError: null, identity: null };
+  // Asset ids GitHub won't hand out (404), and signed URLs that fail (403).
+  refusedAssets = new Set();
+  brokenObjects = new Set();
   realFetch = globalThis.fetch;
   globalThis.fetch = async (input) => {
     const url = new URL(String(input));
@@ -66,7 +69,11 @@ beforeEach(() => {
       return new Response(JSON.stringify(all.slice((page - 1) * perPage, page * perPage)), { status: 200 });
     }
     const asset = url.hostname === "api.github.com" && url.pathname.match(/^\/repos\/o\/(early|builds)\/releases\/assets\/(\d+)$/);
-    if (asset) return new Response(null, { status: 302, headers: { Location: `https://objects.example/${asset[2]}` } });
+    if (asset) {
+      if (refusedAssets.has(asset[2])) return new Response("Not Found", { status: 404 });
+      return new Response(null, { status: 302, headers: { Location: `https://objects.example/${asset[2]}` } });
+    }
+    if (url.hostname === "objects.example") return new Response(null, { status: brokenObjects.has(url.pathname.slice(1)) ? 403 : 200 });
     throw new Error(`unexpected fetch ${url}`);
   };
 });
@@ -432,8 +439,8 @@ test("a download link without a live session offers sign-in, not 'not a member'"
 });
 
 const healthEnv = { ...signInEnv, PATREON_CLIENT_ID: "id", PATREON_CLIENT_SECRET: "client-secret", OAUTH_REDIRECT_URI: "https://builds.example/auth/callback" };
-const health = async (e = healthEnv) => {
-  const r = await worker.fetch(new Request("https://builds.example/health"), e);
+const health = async (e = healthEnv, auth = null) => {
+  const r = await worker.fetch(new Request("https://builds.example/health", { headers: auth ? { Authorization: auth } : {} }), e);
   return { status: r.status, text: await r.text() };
 };
 
@@ -442,7 +449,7 @@ test("/health is green when both repos can be read and the config is set", async
   const { status, text } = await health();
   assert.equal(status, 200);
   assert.deepEqual(JSON.parse(text), {
-    ok: true, latest: "v0.20.0",
+    ok: true, deep: false, latest: "v0.20.0",
     checks: { config: true, builds_listed: true, early_readable: true, members_only: true },
   });
   assert.doesNotMatch(text, /client-secret|"pat"/);
@@ -459,4 +466,81 @@ test("/health is red when GitHub can't be read or a secret is missing", async ()
   const unset = await health({ ...healthEnv, PATREON_CLIENT_SECRET: "" });
   assert.equal(unset.status, 503);
   assert.equal(JSON.parse(unset.text).checks.config, false);
+});
+
+/* ---------- deep /health ---------- */
+
+const deepEnv = { ...healthEnv, HEALTH_TOKEN: "health-token" };
+const deepHealth = (e = deepEnv) => health(e, "Bearer health-token");
+
+// A Dusk Studio release with one file per platform, ids 501-504.
+function fullBuild() {
+  const files = ["Linux-x86_64.tar.xz", "Linux-aarch64.tar.xz", "macOS-arm64.dmg", "Windows-x64.msi"];
+  return rel("v0.20.0", "2026-10-10T10:00:00Z", "Dusk Studio", {
+    assets: files.map((f, i) => ({ id: 501 + i, name: `dusk-studio-0.20.0-${f}`, size: 1048576 })),
+  });
+}
+const deepReady = () => {
+  builds = [fullBuild()];
+  releases = [alpha()];
+  patreon.tokenStatus = 401;
+  patreon.tokenError = "invalid_grant"; // what Patreon answers a known client with a made-up code
+};
+
+test("deep /health fetches every Dusk Studio file and every listed early file", async () => {
+  deepReady();
+  const { status, text } = await deepHealth();
+  assert.equal(status, 200);
+  const body = JSON.parse(text);
+  assert.equal(body.deep, true);
+  assert.deepEqual(body.checks, {
+    config: true, builds_listed: true, early_readable: true, members_only: true,
+    builds_platforms: true, builds_downloadable: true, early_downloadable: true, patreon_client_id: true,
+  });
+  assert.deepEqual(body.failed_files, []);
+  for (const id of ["501", "502", "503", "504", "202610201"]) {
+    assert.ok(fetched.includes(`https://objects.example/${id}`), `signed URL ${id} checked`);
+  }
+});
+
+test("without the right token /health stays shallow and fetches no files", async () => {
+  deepReady();
+  for (const auth of [null, "Bearer wrong"]) {
+    fetched = [];
+    const body = JSON.parse((await health(deepEnv, auth)).text);
+    assert.equal(body.deep, false);
+    assert.equal(body.failed_files, undefined);
+    assert.ok(!fetched.some((u) => u.includes("/assets/") || u.includes("patreon")));
+  }
+  fetched = [];
+  const unset = JSON.parse((await health({ ...deepEnv, HEALTH_TOKEN: "" }, "Bearer ")).text);
+  assert.equal(unset.deep, false);
+});
+
+test("deep /health fails when a release is missing a platform", async () => {
+  deepReady();
+  builds[0].assets = builds[0].assets.filter((a) => !/Windows/.test(a.name));
+  const { status, text } = await deepHealth();
+  assert.equal(status, 503);
+  assert.equal(JSON.parse(text).checks.builds_platforms, false);
+});
+
+test("deep /health names a file GitHub won't hand out or whose signed URL fails", async () => {
+  deepReady();
+  refusedAssets.add("503");
+  brokenObjects.add("202610201");
+  const { status, text } = await deepHealth();
+  assert.equal(status, 503);
+  const body = JSON.parse(text);
+  assert.equal(body.checks.builds_downloadable, false);
+  assert.equal(body.checks.early_downloadable, false);
+  assert.deepEqual(body.failed_files.sort(), ["dusk-studio-0.20.0-macOS-arm64.dmg", "multi-comp-2-v1.1.0-alpha1.zip"]);
+});
+
+test("deep /health fails when Patreon doesn't know the client id", async () => {
+  deepReady();
+  patreon.tokenError = "invalid_client";
+  const { status, text } = await deepHealth();
+  assert.equal(status, 503);
+  assert.equal(JSON.parse(text).checks.patreon_client_id, false);
 });
