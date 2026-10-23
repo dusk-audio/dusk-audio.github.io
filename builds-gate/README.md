@@ -139,6 +139,12 @@ Every sign-in writes one JSON log line with `"gate":true`. Find it in the dashbo
 
 `/health` answers `{"ok":true,...}` when the config is set and both repos can be read.
 
+To check every member at once, `node --no-warnings builds-gate/check-members.mjs` asks for
+the Patreon client's Creator's Access Token (hidden), reads all members of the campaign and
+signs each one in through the Worker code with their live Patreon data, locally. It prints
+counts per outcome and names any active patron Patreon last charged successfully whom the
+gate would refuse (exit status 1 if there is one).
+
 ## Notes / tradeoffs
 
 - **Session TTL** bounds how long a just-cancelled patron keeps access (default 6h). Shorter =
