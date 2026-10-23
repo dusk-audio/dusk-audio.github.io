@@ -17,6 +17,12 @@
             <input id="newsletter-email" class="email-form-input ml-field-email" type="email" name="fields[email]" placeholder="you@email.com" autocomplete="email" inputmode="email" aria-describedby="newsletter-field-help" required>
             <p class="newsletter-field-help" id="newsletter-field-help" role="alert">Please check your email address and try again.</p>
           </div>
+          <!-- reCAPTCHA (MailerLite verifies it). Google's script loads on first interaction with the
+               form, not with every page; see the script below. -->
+          <div class="ml-form-recaptcha ml-validate-required newsletter-captcha" hidden>
+            <div class="g-recaptcha"></div>
+            <p class="newsletter-captcha-help" role="alert">Please tick “I’m not a robot” first.</p>
+          </div>
           <input type="hidden" name="ml-submit" value="1">
           <input type="hidden" name="anticsrf" value="true">
           <button class="btn btn-primary primary" type="submit">Keep me posted</button>
@@ -27,7 +33,7 @@
         <p>Thanks! Check your inbox to confirm your email address.</p>
       </div>
     </div>
-    <p class="newsletter-privacy">By subscribing, you agree to receive Dusk Audio emails through MailerLite. Unsubscribe at any time. Your email is never required to download free plugins.</p>
+    <p class="newsletter-privacy">By subscribing, you agree to receive Dusk Audio emails through MailerLite. Unsubscribe at any time. Your email is never required to download free plugins. This form is protected by reCAPTCHA: Google’s <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
     </div>
   </div>
 </section>
@@ -45,5 +51,89 @@
     success.style.display = 'block';
     success.focus();
   }
+</script>
+<script>
+  // reCAPTCHA for the signup form. MailerLite rejects a submission without a valid token, and
+  // webforms.min.js serializes the widget's g-recaptcha-response with the form. The widget is
+  // rendered explicitly so it can be redrawn: moving the form into or out of the signup dialog
+  // reloads its iframe, which leaves the old widget dead (showcase.js calls rerender()).
+  (function () {
+    var form = document.querySelector('#mlb2-42165633 form');
+    var box = form && form.querySelector('.newsletter-captcha');
+    if (!box) return;
+    var sitekey = {{ site.mailerlite_recaptcha_sitekey | jsonify }};
+    var requested = false;
+    var widget = null;
+
+    function draw() {
+      var old = box.querySelector('.g-recaptcha');
+      var slot = document.createElement('div');
+      slot.className = 'g-recaptcha';
+      box.replaceChild(slot, old);
+      widget = window.grecaptcha.render(slot, { sitekey: sitekey, theme: 'dark' });
+    }
+    // Google opens its image challenge in a frame on <body>. In the signup dialog, which is modal
+    // (top layer, rest of the page inert), that frame sits underneath and cannot be clicked. When a
+    // challenge shows there, reopen the dialog non-modally in the same place (showcase.js keeps the
+    // form inside it), so the challenge lands on top.
+    var watched = new WeakSet();
+    function floatDialog() {
+      var dialog = form.closest('dialog');
+      if (!dialog || !dialog.open || !dialog.matches(':modal')) return;
+      dialog.close();
+      dialog.classList.add('is-floating');
+      dialog.show();
+    }
+    function watchChallenges() {
+      Array.prototype.forEach.call(document.body.children, function (holder) {
+        if (watched.has(holder) || !holder.querySelector('iframe[src*="/recaptcha/"][src*="bframe"]')) return;
+        watched.add(holder);
+        new MutationObserver(function () {
+          if (getComputedStyle(holder).visibility === 'visible') floatDialog();
+        }).observe(holder, { attributes: true, attributeFilter: ['style'] });
+      });
+    }
+
+    var help = box.querySelector('.newsletter-captcha-help');
+    var helpText = help.textContent;
+
+    window.duskNewsletterCaptchaReady = function () {
+      help.textContent = helpText;
+      box.classList.remove('ml-error');
+      box.hidden = false;
+      draw();
+      watchChallenges();
+      new MutationObserver(watchChallenges).observe(document.body, { childList: true });
+    };
+    function load() {
+      if (requested) return;
+      requested = true;
+      var script = document.createElement('script');
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=duskNewsletterCaptchaReady&render=explicit';
+      script.async = true;
+      script.onerror = function () {
+        // Let the next focus or click in the form try again.
+        script.remove();
+        requested = false;
+        help.textContent = 'The spam check could not load. Allow google.com/recaptcha or try again later.';
+        box.classList.add('ml-error');
+        box.hidden = false;
+      };
+      document.head.appendChild(script);
+    }
+    form.addEventListener('focusin', load);
+    form.addEventListener('pointerdown', load);
+
+    // A token works once. When MailerLite answers with an error, the one just sent is spent, so
+    // give the person a fresh checkbox for the next try.
+    var serverError = form.querySelector('.ml-server-error');
+    new MutationObserver(function () {
+      if (widget !== null && !serverError.classList.contains('d-none')) window.grecaptcha.reset(widget);
+    }).observe(serverError, { attributes: true, attributeFilter: ['class'] });
+
+    window.duskNewsletterCaptcha = {
+      rerender: function () { if (widget !== null) draw(); }
+    };
+  })();
 </script>
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>

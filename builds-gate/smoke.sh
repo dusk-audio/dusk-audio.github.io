@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 # Live check of the deployed gate, from outside, the way a visitor reaches it. Run by
-# .github/workflows/builds-gate.yml every 30 minutes; a failed run emails the repo owner.
-# It can't sign in to Patreon, so it checks everything up to Patreon's door: the config
-# and GitHub access (/health), the sign-in pages, the OAuth redirect and a download link.
+# .github/workflows/builds-gate.yml after every deploy (a failure rolls the deploy back)
+# and every 30 minutes (a failure emails the repo owner). It can't sign in to Patreon, so
+# it checks everything up to Patreon's door: the config and GitHub access (/health), the
+# sign-in pages, the OAuth redirect and a download link. With HEALTH_TOKEN set it also
+# runs the deep /health check: every file of the newest Dusk Studio release and of the
+# early-access listing downloads, and Patreon knows the client id.
 #
-#   builds-gate/smoke.sh [BASE_URL]     (default https://builds.duskaudio.com)
+#   [HEALTH_TOKEN=...] builds-gate/smoke.sh [BASE_URL]     (default https://builds.duskaudio.com)
+# REQUIRE_DEEP=1 makes a missing HEALTH_TOKEN a failure (CI sets it).
 set -uo pipefail
 
 BASE="${1:-https://builds.duskaudio.com}"
@@ -36,5 +40,18 @@ check "OAuth redirect to Patreon" "/auth/login?next=%2Flatest" 302 \
   "^https://www\.patreon\.com/oauth2/authorize\?.*client_id=[^&]+.*redirect_uri=$CALLBACK"
 check "public manual" /manual 200
 check "download link asks to sign in" /dl/1 403 'Sign in with Patreon'
+
+if [ -n "${HEALTH_TOKEN:-}" ]; then
+  deep=$(curl -sS --max-time 60 -H "Authorization: Bearer $HEALTH_TOKEN" "$BASE/health")
+  if grep -q '"deep":true' <<<"$deep" && grep -q '"ok":true' <<<"$deep"; then
+    echo "ok   members' files download (deep /health)"
+  else
+    echo "FAIL deep /health: $deep"
+    failed=1
+  fi
+elif [ "${REQUIRE_DEEP:-0}" = 1 ]; then
+  echo "FAIL HEALTH_TOKEN is not set, so the members' files weren't checked"
+  failed=1
+fi
 
 exit "$failed"
