@@ -4,7 +4,7 @@ title: Multi-Comp
 slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
-version: "1.3.8"
+version: "1.3.9"
 screenshot: /assets/images/plugins/multi-comp-screenshot.png
 
 features:
@@ -39,6 +39,13 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.3.9"
+    date: "2026-10-30"
+    changes:
+      - "FET ratio buttons show the stored ratio when the editor reopens, in Vintage FET and Studio FET; they could show 4:1 while another ratio was active, and clicking 4:1 then did nothing (#326)"
+      - "FET ratio buttons follow automation and preset changes while the editor is open, and a click on them is recorded by Touch and Latch automation"
+      - "Analog Noise is now off by default in new instances; saved sessions keep their setting"
+      - "Special Thanks panel: supporters are listed under the current Patreon tiers"
   - version: "1.3.8"
     date: "2026-09-07"
     changes:
