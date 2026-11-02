@@ -141,19 +141,22 @@ published site).
 ## Email signup
 
 “Get updates” stays visible outside the mobile menu. Contextual prompts open the
-same MailerLite form in an accessible dialog; closing restores it to the footer.
-There is one embed and one input, including after success. Field and network
-failures show inline messages. No timed popup or email gate is used.
+same signup form in an accessible dialog; closing restores it to the footer.
+There is one form and one input, including after success. Field, spam-check and
+network failures show inline messages. No timed popup or email gate is used.
 
-The form has a reCAPTCHA checkbox, which MailerLite checks server-side (turned on in
-MailerLite under Forms > Email Capture > Settings); it stops bots posting to the
-form endpoint directly. Google's script loads on the first click or focus in the
-form, not with every page. The site key is `mailerlite_recaptcha_sitekey` in
-`_config.yml`. Without JavaScript the checkbox cannot appear, so links still scroll
-to the footer but MailerLite refuses the plain POST.
+The list is on Kit. The form posts to the post-notify Worker's `/subscribe`
+(`newsletter_subscribe_url` in `_config.yml`; see `post-notify/README.md`), which
+checks a Cloudflare Turnstile token server-side and adds the address to Kit. Kit
+then sends its confirmation email (double opt-in). Kit's form id is not in the
+page, so bots can't post to Kit directly. Turnstile's script loads on the first
+click or focus in the form, not with every page, and the widget only shows when it
+needs a click. The sitekey is `turnstile_sitekey` in `_config.yml`. Without
+JavaScript there is no token, so links still scroll to the footer, but the Worker
+answers the plain POST with a short “needs JavaScript” page.
 
-Signup browser tests intercept MailerLite requests: they do not create subscribers
-or prove actual confirmation-email delivery.
+Signup browser tests run against a local `wrangler dev` with Turnstile's test keys
+(see `post-notify/README.md`, Testing). Only deliberate test addresses reach Kit.
 
 Audio demonstrations are deferred until real recordings are available. The
 earlier example tracks, players, session download, and related walkthrough
