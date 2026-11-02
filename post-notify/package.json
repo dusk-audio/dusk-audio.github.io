@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Cloudflare Worker that turns a new Patreon post into a MailerLite campaign for subscribers who are not on Patreon.",
+  "description": "Cloudflare Worker for the Dusk Audio newsletter on Kit: the website signup, checked with Turnstile, and Patreon post -> Kit broadcast for subscribers who are not on Patreon.",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
