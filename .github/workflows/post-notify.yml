@@ -1,0 +1,26 @@
+name: Post notify
+
+# Unit tests of the newsletter Worker (post-notify/): the website signup and Patreon post ->
+# Kit broadcast. The site's email signup goes through it, so a change that breaks the tests
+# fails its pull request. Deploys stay manual (`npm run deploy`; see post-notify/README.md).
+
+on:
+  pull_request:
+    paths: ["post-notify/**", ".github/workflows/post-notify.yml"]
+  push:
+    branches: [main]
+    paths: ["post-notify/**", ".github/workflows/post-notify.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test
+        working-directory: post-notify
