@@ -6,34 +6,33 @@
       <h2 id="newsletter-title">Keep up with Dusk.</h2>
       <p id="newsletter-description">New Dusk Studio builds and free plugin releases. A couple of emails a month, tops.</p>
     </div>
-    <!-- MailerLite form 189284465127720015 (account 2404218), themed to match the site.
-         webforms.min.js upgrades submit to inline AJAX success; without it the form falls
-         back to a plain POST (opens MailerLite's confirmation in a new tab). No tracking pixel. -->
-    <div id="mlb2-42165633" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42165633">
+    <!-- Signup posts to the post-notify Worker (post-notify/README.md). It checks the Turnstile
+         token and adds the address to Kit, and Kit sends the confirmation email. The script
+         below shows the answer inline; without JavaScript there is no token, so the Worker
+         answers the plain POST (in a new tab) with a short "needs JavaScript" page. -->
+    <div class="newsletter-signup">
       <div class="row-form">
-        <form class="ml-block-form email-form" action="https://assets.mailerlite.com/jsonp/2404218/forms/189284465127720015/subscribe" method="post" target="_blank" rel="noopener">
+        <form class="email-form" action="{{ site.newsletter_subscribe_url }}" method="post" target="_blank" rel="noopener">
           <div class="newsletter-field">
             <label class="visually-hidden" for="newsletter-email">Email address</label>
-            <input id="newsletter-email" class="email-form-input ml-field-email" type="email" name="fields[email]" placeholder="you@email.com" autocomplete="email" inputmode="email" aria-describedby="newsletter-field-help" required>
+            <input id="newsletter-email" class="email-form-input" type="email" name="email" placeholder="you@email.com" autocomplete="email" inputmode="email" aria-describedby="newsletter-field-help" required>
             <p class="newsletter-field-help" id="newsletter-field-help" role="alert">Please check your email address and try again.</p>
           </div>
-          <!-- reCAPTCHA (MailerLite verifies it). Google's script loads on first interaction with the
-               form, not with every page; see the script below. -->
-          <div class="ml-form-recaptcha ml-validate-required newsletter-captcha" hidden>
-            <div class="g-recaptcha"></div>
-            <p class="newsletter-captcha-help" role="alert">Please tick “I’m not a robot” first.</p>
+          <!-- Cloudflare Turnstile (the Worker verifies it). Its script loads on first interaction
+               with the form, not with every page, and the widget only shows when it needs a click. -->
+          <div class="newsletter-captcha" hidden>
+            <div class="newsletter-turnstile"></div>
+            <p class="newsletter-captcha-help" role="alert">The spam check didn’t pass. Please try again.</p>
           </div>
-          <input type="hidden" name="ml-submit" value="1">
-          <input type="hidden" name="anticsrf" value="true">
           <button class="btn btn-primary primary" type="submit">Keep me posted</button>
-          <div class="ml-server-error d-none" role="alert"></div>
+          <p class="newsletter-server-error" role="alert" hidden></p>
         </form>
       </div>
       <div class="row-success email-success" role="status" tabindex="-1" style="display: none;">
         <p>Thanks! Check your inbox to confirm your email address.</p>
       </div>
     </div>
-    <p class="newsletter-privacy">By subscribing, you agree to receive Dusk Audio emails through MailerLite. Unsubscribe at any time. Your email is never required to download free plugins. This form is protected by reCAPTCHA: Google’s <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+    <p class="newsletter-privacy">By subscribing, you agree to receive Dusk Audio emails through Kit. Unsubscribe at any time. Your email is never required to download free plugins. This form is protected by Cloudflare Turnstile: Cloudflare’s <a href="https://www.cloudflare.com/turnstile-privacy-policy/">Turnstile Privacy Addendum</a> applies.</p>
     </div>
   </div>
 </section>
@@ -44,96 +43,162 @@
 </dialog>
 
 <script>
-  function ml_webform_success_42165633() {
-    var container = document.getElementById('mlb2-42165633');
-    container.querySelector('.row-form').style.display = 'none';
-    var success = container.querySelector('.row-success');
-    success.style.display = 'block';
-    success.focus();
-  }
-</script>
-<script>
-  // reCAPTCHA for the signup form. MailerLite rejects a submission without a valid token, and
-  // webforms.min.js serializes the widget's g-recaptcha-response with the form. The widget is
-  // rendered explicitly so it can be redrawn: moving the form into or out of the signup dialog
-  // reloads its iframe, which leaves the old widget dead (showcase.js calls rerender()).
+  // Email signup: validates the address, gets a Turnstile token, posts both to the Worker,
+  // and shows its answer inline. The widget is rendered explicitly so it can be redrawn:
+  // moving the form into or out of the signup dialog reloads its iframe, which leaves the old
+  // widget dead (showcase.js calls rerender()).
   (function () {
-    var form = document.querySelector('#mlb2-42165633 form');
-    var box = form && form.querySelector('.newsletter-captcha');
-    if (!box) return;
-    var sitekey = {{ site.mailerlite_recaptcha_sitekey | jsonify }};
+    var form = document.querySelector('#newsletter-content .email-form');
+    if (!form || !window.fetch || !window.URLSearchParams) return;
+    // The messages below replace the browser's own validation bubbles.
+    form.noValidate = true;
+    var input = form.querySelector('input[type="email"]');
+    var button = form.querySelector('button[type="submit"]');
+    var serverError = form.querySelector('.newsletter-server-error');
+    var box = form.querySelector('.newsletter-captcha');
+    var help = box.querySelector('.newsletter-captcha-help');
+    var helpText = help.textContent;
+    var sitekey = {{ site.turnstile_sitekey | jsonify }};
     var requested = false;
     var widget = null;
+    var token = '';
+    var waiting = false; // a submit is waiting for the token
 
     function draw() {
-      var old = box.querySelector('.g-recaptcha');
-      var slot = document.createElement('div');
-      slot.className = 'g-recaptcha';
-      box.replaceChild(slot, old);
-      widget = window.grecaptcha.render(slot, { sitekey: sitekey, theme: 'dark' });
-    }
-    // Google opens its image challenge in a frame on <body>. In the signup dialog, which is modal
-    // (top layer, rest of the page inert), that frame sits underneath and cannot be clicked. When a
-    // challenge shows there, reopen the dialog non-modally in the same place (showcase.js keeps the
-    // form inside it), so the challenge lands on top.
-    var watched = new WeakSet();
-    function floatDialog() {
-      var dialog = form.closest('dialog');
-      if (!dialog || !dialog.open || !dialog.matches(':modal')) return;
-      dialog.close();
-      dialog.classList.add('is-floating');
-      dialog.show();
-    }
-    function watchChallenges() {
-      Array.prototype.forEach.call(document.body.children, function (holder) {
-        if (watched.has(holder) || !holder.querySelector('iframe[src*="/recaptcha/"][src*="bframe"]')) return;
-        watched.add(holder);
-        new MutationObserver(function () {
-          if (getComputedStyle(holder).visibility === 'visible') floatDialog();
-        }).observe(holder, { attributes: true, attributeFilter: ['style'] });
+      if (widget !== null) window.turnstile.remove(widget);
+      token = '';
+      box.classList.remove('is-shown');
+      widget = window.turnstile.render(box.querySelector('.newsletter-turnstile'), {
+        sitekey: sitekey,
+        theme: 'dark',
+        // 'flexible' needs 300 px; the narrowest phones get the compact widget.
+        size: form.clientWidth >= 300 ? 'flexible' : 'compact',
+        appearance: 'interaction-only',
+        // The widget only shows when it needs a click; until then its box stays out of the row.
+        'before-interactive-callback': function () { box.classList.add('is-shown'); },
+        'after-interactive-callback': function () { box.classList.remove('is-shown'); },
+        callback: function (value) {
+          token = value;
+          if (waiting) send();
+        },
+        // Expired tokens refresh by themselves, and failed checks retry by themselves; a
+        // message only matters to someone already waiting on the button.
+        'expired-callback': function () { token = ''; },
+        'error-callback': function () {
+          token = '';
+          if (waiting) captchaError('The spam check could not run. Please reload the page and try again.');
+          return true;
+        },
+        'timeout-callback': function () {
+          token = '';
+          if (waiting) captchaError('The spam check timed out. Please try again.');
+          window.turnstile.reset(widget);
+        },
+        'unsupported-callback': function () {
+          captchaError('This browser can’t run the spam check. Please try another browser.');
+        }
       });
     }
 
-    var help = box.querySelector('.newsletter-captcha-help');
-    var helpText = help.textContent;
-
     window.duskNewsletterCaptchaReady = function () {
-      help.textContent = helpText;
-      box.classList.remove('ml-error');
       box.hidden = false;
       draw();
-      watchChallenges();
-      new MutationObserver(watchChallenges).observe(document.body, { childList: true });
     };
     function load() {
       if (requested) return;
       requested = true;
       var script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=duskNewsletterCaptchaReady&render=explicit';
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=duskNewsletterCaptchaReady';
       script.async = true;
       script.onerror = function () {
         // Let the next focus or click in the form try again.
         script.remove();
         requested = false;
-        help.textContent = 'The spam check could not load. Allow google.com/recaptcha or try again later.';
-        box.classList.add('ml-error');
-        box.hidden = false;
+        captchaError('The spam check could not load. Allow challenges.cloudflare.com or try again later.');
       };
       document.head.appendChild(script);
     }
     form.addEventListener('focusin', load);
     form.addEventListener('pointerdown', load);
 
-    // A token works once. When MailerLite answers with an error, the one just sent is spent, so
-    // give the person a fresh checkbox for the next try.
-    var serverError = form.querySelector('.ml-server-error');
-    new MutationObserver(function () {
-      if (widget !== null && !serverError.classList.contains('d-none')) window.grecaptcha.reset(widget);
-    }).observe(serverError, { attributes: true, attributeFilter: ['class'] });
+    function busy(on) {
+      button.disabled = on;
+      form.setAttribute('aria-busy', on ? 'true' : 'false');
+    }
+    function clearErrors() {
+      input.classList.remove('is-invalid');
+      input.removeAttribute('aria-invalid');
+      box.classList.remove('is-invalid');
+      help.textContent = helpText;
+      serverError.hidden = true;
+    }
+    function fieldError() {
+      input.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+    }
+    function captchaError(text) {
+      waiting = false;
+      busy(false);
+      help.textContent = text;
+      box.classList.add('is-invalid');
+      box.hidden = false;
+    }
+    function serverFailure() {
+      serverError.textContent = 'Something went wrong on our side. Please try again in a moment.';
+      serverError.hidden = false;
+    }
+    function succeed() {
+      form.closest('.row-form').style.display = 'none';
+      var success = document.querySelector('#newsletter-content .row-success');
+      success.style.display = 'block';
+      success.focus();
+    }
+
+    function send() {
+      waiting = false;
+      busy(true);
+      var body = new URLSearchParams();
+      body.set('email', input.value.trim());
+      body.set('cf-turnstile-response', token);
+      body.set('referrer', location.origin + location.pathname);
+      fetch(form.action, { method: 'POST', body: body })
+        .then(function (response) {
+          return response.json().catch(function () { return {}; }).then(function (answer) {
+            if (response.ok && answer.ok) return succeed();
+            if (answer.error === 'email') return fieldError();
+            if (answer.error === 'captcha') return captchaError(helpText);
+            serverFailure();
+          });
+        }, serverFailure)
+        .then(function () {
+          busy(false);
+          // A token works once, so every attempt gets a fresh one for the next.
+          token = '';
+          if (widget !== null) window.turnstile.reset(widget);
+        });
+    }
+
+    input.addEventListener('input', function () {
+      if (input.classList.contains('is-invalid') && input.checkValidity()) clearErrors();
+    });
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (button.disabled) return;
+      clearErrors();
+      if (!input.value.trim() || !input.checkValidity()) return fieldError();
+      load();
+      // Turnstile is still checking, or wants a click: send as soon as it passes.
+      if (!token) {
+        waiting = true;
+        busy(true);
+        return;
+      }
+      send();
+    });
 
     window.duskNewsletterCaptcha = {
       rerender: function () { if (widget !== null) draw(); }
     };
   })();
 </script>
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>

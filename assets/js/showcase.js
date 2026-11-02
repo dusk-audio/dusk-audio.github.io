@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  // Reuse one MailerLite form: duplicate embed IDs and callbacks break subscription state.
+  // Reuse one signup form: a second copy would duplicate its ids and its Turnstile widget.
   var newsletter = document.querySelector('.newsletter-dialog');
   var newsletterContent = document.getElementById('newsletter-content');
   if (newsletter && newsletterContent && typeof newsletter.showModal === 'function') {
@@ -12,8 +12,9 @@
         event.preventDefault();
         signupTrigger = link;
         newsletter.querySelector('#newsletter-dialog-slot').appendChild(newsletterContent);
-        if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
         newsletter.showModal();
+        // After showModal: the widget sizes itself to the open dialog.
+        if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
         var success = newsletterContent.querySelector('.row-success');
         if (success.style.display === 'block') success.focus();
         else newsletterContent.querySelector('input[type="email"]').focus();
@@ -22,15 +23,7 @@
     newsletter.addEventListener('click', function (event) {
       if (event.target === newsletter) newsletter.close();
     });
-    document.addEventListener('keydown', function (event) {
-      // A modal dialog closes on Escape by itself; the non-modal fallback does not.
-      if (event.key === 'Escape' && newsletter.open && !newsletter.matches(':modal')) newsletter.close();
-    });
     newsletter.addEventListener('close', function () {
-      // email-capture.html reopens the dialog non-modally when a reCAPTCHA challenge appears; the
-      // close event of that switch arrives once the dialog is already open again.
-      if (newsletter.open) return;
-      newsletter.classList.remove('is-floating');
       newsletterHome.appendChild(newsletterContent);
       if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
       if (signupTrigger) signupTrigger.focus();

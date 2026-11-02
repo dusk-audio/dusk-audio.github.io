@@ -2,5 +2,10 @@
 # In production these are set with `wrangler secret put NAME` instead.
 PATREON_WEBHOOK_SECRET="shown next to the webhook in the Patreon developer portal"
 PATREON_CREATOR_TOKEN="Creator's Access Token of the Patreon API client"
-MAILERLITE_API_TOKEN="MailerLite -> Integrations -> API"
+KIT_API_KEY="Kit -> Settings -> Developer -> API keys (V4)"
 ADMIN_TOKEN="random 32+ bytes, e.g. openssl rand -hex 32"
+# Local signup testing: Turnstile's always-pass dummy secret (pair it with the dummy sitekey
+# 1x00000000000000000000AA on the page), any hostname, and the local Jekyll origin.
+TURNSTILE_SECRET="1x0000000000000000000000000000000AA"
+TURNSTILE_HOSTNAME=""
+ALLOWED_ORIGINS="http://localhost:4000"

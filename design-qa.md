@@ -234,3 +234,26 @@ Release follow-up: when official 0.15 builds ship, update `release_status` to
 - Strict production build and diff whitespace checks pass. Both hero pages decode
   the image at its expected dimensions and pass screenshot zoom and overflow
   checks at 1440 and 390 pixels. Evidence: /tmp/dusk-full-mix-capture/.
+
+
+## Kit email signup — November 2, 2026
+
+- The newsletter moved from MailerLite (free plan capped at 250 subscribers) to Kit.
+  The form posts to the post-notify Worker's `/subscribe`, which checks a Cloudflare
+  Turnstile token and adds the address to Kit; Kit sends the confirmation email.
+  Google reCAPTCHA, MailerLite's script and the floating-dialog workaround for
+  reCAPTCHA's challenge frame are gone.
+- Turnstile loads on the first focus or click in the form and stays invisible unless
+  it needs a click, so the field and button keep their row.
+- Checked in Chrome against a local `wrangler dev` with Turnstile's test keys, at
+  1440 pixels and at 390 and 320 pixels in iframes: invalid address, success and its
+  focus, the dialog's open, close and focus return with one redrawn widget, success
+  inside the dialog, no horizontal overflow, and no console errors. The refused spam
+  check, Kit's address check and the server error were answered by a stubbed fetch
+  in the page, and the unreachable Worker by a closed port; the Worker's side of
+  those answers is covered by its unit tests and curl.
+- One real signup with a test address reached Kit as an unconfirmed subscriber on
+  the "Newsletter site" form. A signed test webhook made a Kit draft (never sent)
+  for everyone without the Patreon tag, and a redelivery was skipped as a duplicate.
+- All 24 post-notify tests, the strict production build and the diff whitespace
+  check pass.
