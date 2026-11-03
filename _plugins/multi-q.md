@@ -5,15 +5,15 @@ slug: multi-q
 tagline: "Universal EQ: Digital, British Console, and Tube"
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
 version: "0.10.9"
-screenshot: /assets/images/plugins/multi-q-digital.png
+screenshot: /assets/images/plugins/multi-q-digital.webp
 gallery:
-  - src: /assets/images/plugins/multi-q-digital.png
+  - src: /assets/images/plugins/multi-q-digital.webp
     alt: "Multi-Q in Digital mode, showing the modern parametric EQ with per-band dynamics"
     caption: "Digital Mode: Modern parametric EQ with per-band dynamics"
-  - src: /assets/images/plugins/multi-q-british.png
+  - src: /assets/images/plugins/multi-q-british.webp
     alt: "Multi-Q in British mode, showing the classic console EQ with Brown and Black modes"
     caption: "British Mode: Classic console EQ with Brown/Black modes"
-  - src: /assets/images/plugins/multi-q-tube.png
+  - src: /assets/images/plugins/multi-q-tube.webp
     alt: "Multi-Q in Tube mode, showing the vintage passive tube EQ with tube saturation"
     caption: "Tube Mode: Vintage passive tube EQ with tube saturation"
 
@@ -92,7 +92,7 @@ Switch between modes instantly while keeping your session settings. Each mode ha
 
 ## Digital Mode
 
-<img src="{{ '/assets/images/plugins/multi-q-digital.png' | relative_url }}" alt="Multi-Q Digital Mode">
+<img src="{{ '/assets/images/plugins/multi-q-digital.webp' | relative_url }}" alt="Multi-Q Digital Mode" width="1575" height="1125" loading="lazy" decoding="async">
 
 Modern parametric EQ with per-band dynamics and dynamic processing built in.
 
@@ -109,7 +109,7 @@ Each band can respond dynamically to the input signal. Set a threshold, and the 
 
 ## British Mode
 
-<img src="{{ '/assets/images/plugins/multi-q-british.png' | relative_url }}" alt="Multi-Q British Mode">
+<img src="{{ '/assets/images/plugins/multi-q-british.webp' | relative_url }}" alt="Multi-Q British Mode" width="1575" height="1125" loading="lazy" decoding="async">
 
 Classic console EQ emulation using the same engine as our 4K-EQ, integrated into Multi-Q.
 
@@ -127,7 +127,7 @@ Classic console EQ emulation using the same engine as our 4K-EQ, integrated into
 
 ## Tube Mode
 
-<img src="{{ '/assets/images/plugins/multi-q-tube.png' | relative_url }}" alt="Multi-Q Tube Mode">
+<img src="{{ '/assets/images/plugins/multi-q-tube.webp' | relative_url }}" alt="Multi-Q Tube Mode" width="1575" height="1125" loading="lazy" decoding="async">
 
 Vintage passive tube EQ with tube saturation, home of the legendary "boost and cut at the same frequency" trick.
 

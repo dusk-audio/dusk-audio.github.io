@@ -29,6 +29,7 @@ bundle exec jekyll serve
 ├── _config.yml          # Site configuration
 ├── _data/
 │   ├── plugins.yml      # Plugin database, generations, and display order
+│   ├── plugin_screenshots.yml # Plugin image sources, dimensions, and hashes
 │   └── studio.yml       # DAW version and release state
 ├── _includes/           # Reusable components
 ├── _layouts/            # Page templates
@@ -37,7 +38,8 @@ bundle exec jekyll serve
 │   ├── css/style.css    # Existing product-page styles
 │   ├── css/showcase.css # Shared studio design and responsive showcase layouts
 │   ├── js/showcase.js   # Navigation, accessible screenshot zoom, scrollable content
-│   └── images/          # Images and screenshots
+│   ├── fonts/           # Saira Condensed 700, self-hosted (OFL)
+│   └── images/          # Images, screenshots, and link preview cards (social/)
 ├── builds-gate/         # Cloudflare Worker gating patron builds at builds.duskaudio.com
 ├── plugins/             # Plugins listing page
 ├── index.md             # Home page
@@ -58,7 +60,9 @@ consistent when moving between the DAW, plugins, and information pages.
 
 1. Add the plugin entry to `_data/plugins.yml`
 2. Create a page in `_plugins/` (copy an existing one as template)
-3. Add screenshot to `assets/images/plugins/`
+3. Add its screenshots to `assets/images/plugins/` as lossless WebP, record them in
+   `_data/plugin_screenshots.yml`, and make its link preview card (see "Link preview
+   images" below)
 
 Use `generation: current` for DAF plugins and `generation: legacy` for the original
 JUCE collection. Set `display_order`, `category`, and a short `summary` for the
@@ -133,13 +137,41 @@ format, dimensions, and SHA-256 for each website plugin image. The October 5,
 2026 refresh captured all 11 released plugins from their published Linux x86_64
 binaries, with CLAP for ten plugins and LV2 for Spectrum Analyzer. Mode galleries
 use those same binaries. These captures do not imply that PDF manuals were rebuilt.
+On November 3, 2026 the images were converted to lossless WebP with identical
+pixels; the recorded hashes are of the WebP files.
 
 When updating a plugin release, refresh both its collection-card screenshot and
-all product-page gallery/body images from the released binary. Record the new
-version and image hashes in the manifest, and update explicit image dimensions.
-Use an isolated Xvfb display for native captures; keep host chrome, tooltips,
-and unrelated dialogs out of the image. Give analyzers real audio or MIDI input
-when showing their analysis. Check the page and carousel on desktop and mobile.
+all product-page gallery/body images from the released binary. Save them as
+lossless WebP (`magick in.png -define webp:lossless=true out.webp`), and record the
+new version, image hashes, and dimensions in the manifest. Cards, product-page
+screenshots, and galleries take their width and height from the manifest; images
+written into a page's body need `width`, `height`, `loading="lazy"`, and
+`decoding="async"` by hand. Use an isolated Xvfb display for native captures; keep
+host chrome, tooltips, and unrelated dialogs out of the image. Give analyzers real
+audio or MIDI input when showing their analysis. Check the page and carousel on
+desktop and mobile.
+
+### Link preview images
+
+Every page's `og:image` is a 1200×630 JPEG card in `assets/images/social/`. Social
+sites show that size without cropping, and not all of them handle WebP. Plugin pages
+use `<slug>.jpg`, made from the page's `screenshot`. Every other page uses
+`dusk-studio.jpg`, made from `console.webp` (`social_image` in `_config.yml`). After
+changing any of those screenshots, remake the cards (needs Pillow):
+
+```bash
+python3 .github/scripts/social-cards.py
+```
+
+## Icons and fonts
+
+- `favicon.ico` (16, 32, and 48 px) and `assets/images/apple-touch-icon.png` (180 px)
+  are resized from `assets/images/favicon.png`, the 1024 px original, which no page
+  loads.
+- The display font, Saira Condensed 700, is hosted in `assets/fonts/` with its SIL
+  Open Font License. These are the Latin and Latin Extended files Google Fonts
+  serves; no page requests Google Fonts. Only the 700 weight is used, for h1 and h2,
+  and the Latin file is preloaded because every page's h1 uses it.
 
 ## Validation
 

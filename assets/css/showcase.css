@@ -1,3 +1,22 @@
+/* Saira Condensed 700 for h1 and h2 (the only weight used): the files Google Fonts serves,
+   hosted here under the SIL Open Font License (assets/fonts/OFL.txt). */
+@font-face {
+  font-family: 'Saira Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/saira-condensed-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Saira Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/saira-condensed-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* The shared studio palette; existing product content keeps its Jekyll layouts. */
 :root {
   --color-bg: #171816;
@@ -187,7 +206,7 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
 .site-footer { background: var(--color-bg-alt); color: var(--color-text); border-top: 1px solid var(--color-border); padding-block: 50px 24px; }
 .footer-brand p, .footer-bottom, .footer-column a { color: var(--color-text-light); }
 .footer-logo { font-family: var(--font-sans); font-weight: 700; font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase; }
-.footer-column h4 { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .08em; }
+.footer-column h2 { font-family: var(--font-sans); font-size: .75rem; font-weight: 600; letter-spacing: .08em; }
 .footer-bottom { border-color: var(--color-border); }
 .screenshot-dialog { background: #171816; border: 1px solid #72746b; border-radius: 5px; padding: 18px; width: min(96vw, 1800px); max-width: 96vw; max-height: 94vh; color: #faf8f3; }
 .screenshot-dialog::backdrop { background: rgba(0, 0, 0, .88); }

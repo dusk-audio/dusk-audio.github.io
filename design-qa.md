@@ -297,3 +297,46 @@ released. README.md, "Dusk Studio releases", has the steps for future releases.
 
 Limitations: Chromium only. The SFZ Manager's Installed tab is not shown; it needs a
 large pack download to look populated.
+
+## Page weight and accessibility pass — November 3, 2026
+
+- Icons: every page linked the 1024 px `favicon.png` (635 KB) as its icon. Pages now
+  link `favicon.ico` (16, 32 and 48 px, 5 KB) and a 180 px Apple touch icon (27 KB).
+- Plugin images: all 44 PNGs are now lossless WebP, 7.32 MB → 3.09 MB. Each WebP was
+  decoded and compared with its PNG (identical pixels) before the PNG was removed.
+  Nothing else linked to the PNGs. Checked: Kit, MailerLite and Patreon posts, release
+  notes in the four dusk-audio repositories, and the DuskStudio and plugins
+  repositories.
+  - Cards, product-page screenshots and galleries take width and height from
+    `_data/plugin_screenshots.yml`.
+  - The Multi-Comp, Multi-Q and DuskVerb body images are lazy and sized.
+- Link previews: 1200×630 JPEG cards from `.github/scripts/social-cards.py`, with
+  `og:image:width`, `og:image:height` and alt text. They replace `console.webp`
+  (2560×1080 WebP) and the plugin PNGs.
+- Saira Condensed 700 is self-hosted; no page requests Google Fonts. It was the only
+  weight any page loaded (all 18 pages at both widths), so 500 and 600 are not hosted.
+- Accessibility:
+  - The menu button's accessible name is now its visible text, "Menu".
+  - The footer column headings (`h4` → `h2`) and the Support page's option headings
+    (`h3` → `h2`) no longer skip levels. Their computed styles are unchanged.
+- Removed: the keywords meta tag; jekyll-feed, whose `feed.xml` had no entries; the
+  unused `body.theme-dark` rules in `style.css`; and four unreferenced images, 1.6 MB
+  (`logo.png`, `dusk-studio-hero.png`, `dusk-studio-mixing.png`,
+  `dusk-studio-mastering.png`).
+- Checked against the previous build, over the DevTools protocol, for all 18 pages at
+  1440 and 390 pixels:
+  - Page heights are unchanged. With images blocked, pages now keep their loaded height
+    (Multi-Comp at 1440: 11,921 px before, 17,430 px now), so image space is reserved.
+  - Full-page captures match. 13 of 96 tiles differed by sub-pixel text and single
+    pixel rows. Capturing the unchanged build twice gave 15 such tiles, including 11 of
+    those 13. The other 2 were recaptured three more times, and each had pixel-identical
+    before/after pairs.
+  - Computed styles of the changed headings and of every h1 are unchanged.
+  - Nothing is requested from other sites on load. There are no console errors or
+    warnings and no broken or distorted images. The preloaded font is fetched once.
+  - Bytes loaded up front, summed over the 36 loads: 18.4 MB → 7.8 MB. Home at 1440:
+    1,129 KB → 379 KB. Multi-Comp: 2,242 KB → 303 KB.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass. There are no
+    broken internal links or anchors, and every image has a width and height.
+
+Limitations: Chromium only. How each social site displays the new cards was not tested.
