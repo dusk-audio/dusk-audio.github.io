@@ -78,9 +78,9 @@ og_image: /assets/images/studio/console.webp
     </div>
     <ol class="workflow-list">
       <li><h3>Record</h3><p>Capture audio and MIDI across 24 tracks.</p></li>
-      <li><h3>Refine</h3><p>With 0.15, keep your takes and comp the best sections.</p></li>
+      <li><h3>Refine</h3><p>Keep your takes and comp the best sections.</p></li>
       <li><h3>Mix</h3><p>Shape your sound with EQ, compression, and sends.</p></li>
-      <li><h3>Master</h3><p>Finish with mastering EQ, multiband compression, and limiting.</p></li>
+      <li><h3>Master</h3><p>Finish with mastering EQ, multiband compression, limiting, and phase analysis.</p></li>
     </ol>
     <a class="text-link" href="{{ '/dusk-studio/' | relative_url }}">Meet Dusk Studio</a>
   </div>
@@ -96,7 +96,7 @@ og_image: /assets/images/studio/console.webp
     </div>
     <div class="get-started-copy">
       <h3>Start making music.</h3>
-      <p>Dusk Studio is in beta. Official builds are available through Patreon from $1/month, or you can build from the open-source code for free.</p>
+      <p>Dusk Studio is in beta. Official builds are available through Patreon from $5/month, or you can build from the open-source code for free.</p>
       <a class="btn btn-primary" href="{{ '/dusk-studio/' | relative_url }}#get">Get Dusk Studio beta</a>
       <p class="fine-print">The plugins are always free. A purchase option for Dusk Studio is planned for 1.0; pricing and release timing are still to come.</p>
     </div>
