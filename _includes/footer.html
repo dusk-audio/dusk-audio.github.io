@@ -8,7 +8,7 @@
 
       <div class="footer-links">
         <div class="footer-column">
-          <h4>Current plugins</h4>
+          <h2>Current plugins</h2>
           <ul>
             {% assign current_plugins = site.data.plugins | where: 'generation', 'current' | sort: 'display_order' %}
             {% for plugin in current_plugins %}
@@ -21,7 +21,7 @@
         </div>
 
         <div class="footer-column">
-          <h4>Resources</h4>
+          <h2>Resources</h2>
           <ul>
             <li><a href="{{ '/plugins/' | relative_url }}">All Plugins</a></li>
             <li><a href="{{ '/dusk-studio/' | relative_url }}">Dusk Studio</a></li>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="footer-column">
-          <h4>Support</h4>
+          <h2>Support</h2>
           <ul>
             <li><a href="{{ site.patreon_url }}">Patreon</a></li>
             <li><a href="{{ '/support/' | relative_url }}">How to Help</a></li>

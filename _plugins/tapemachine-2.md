@@ -5,12 +5,12 @@ slug: tapemachine-2
 tagline: Two-Machine Analog Tape Emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.11"
-screenshot: /assets/images/plugins/tapemachine-2-screenshot.png
+screenshot: /assets/images/plugins/tapemachine-2-screenshot.webp
 gallery:
-  - src: /assets/images/plugins/tapemachine-2-screenshot.png
+  - src: /assets/images/plugins/tapemachine-2-screenshot.webp
     alt: "TapeMachine 2 v1.0.11 with the faceplate calibration selector"
     caption: "TapeMachine 2 v1.0.11: machine, speed, formulation, calibration, signal path, and EQ controls"
-  - src: /assets/images/plugins/tapemachine-2-calibration.png
+  - src: /assets/images/plugins/tapemachine-2-calibration.webp
     alt: "TapeMachine 2 calibration menu with +3, +6, +7.5, and +9 dB operating levels"
     caption: "Choose +3, +6, +7.5, or +9 dB calibration directly on the faceplate"
 

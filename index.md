@@ -4,7 +4,6 @@ title: Home
 og_title: "Dusk Audio — from first take to finished song"
 description: "Meet Dusk Studio, a focused desktop portastudio for recording, mixing, and mastering. Explore free Dusk Audio instruments and effects for Linux, macOS, and Windows."
 body_class: showcase-page home-page
-og_image: /assets/images/studio/console.webp
 ---
 
 <section class="showcase-hero dark-surface" aria-labelledby="home-title">
@@ -45,7 +44,7 @@ og_image: /assets/images/studio/console.webp
   <div class="container">
     <div class="feature-split feature-split--image-first">
       <a class="spotlight-image" href="{{ '/plugins/sunset-circuits/' | relative_url }}" aria-label="Explore Sunset Circuits">
-        <img src="{{ '/assets/images/plugins/sunset-circuits-screenshot.png' | relative_url }}" alt="Sunset Circuits synthesizer with oscillator, filter, modulation, sequencer, and keyboard controls" loading="lazy" decoding="async" width="1240" height="780">
+        <img src="{{ '/assets/images/plugins/sunset-circuits-screenshot.webp' | relative_url }}" alt="Sunset Circuits synthesizer with oscillator, filter, modulation, sequencer, and keyboard controls" loading="lazy" decoding="async" width="1240" height="780">
       </a>
       <div class="feature-copy">
         <p class="eyebrow">Free instruments and effects</p>
