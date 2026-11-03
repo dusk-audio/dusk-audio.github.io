@@ -69,11 +69,18 @@ the replacement has an existing product page and a published download.
 
 ## Dusk Studio releases
 
-`_data/studio.yml` controls the beta version and the takes showcase labels.
-While 0.15 is pending, keep `release_status: upcoming` and the actual published
-beta in `published_version`. Once the official 0.15 build is available, set
-`release_status: released` and `published_version: "0.15.0"`. The hero and feature
-labels update together. Do not change this simply because a release is planned.
+`_data/studio.yml` describes the Dusk Studio beta. `version` is the release the site
+presents, `published_version` the build members can download, and `highlights` a short
+list of what that release adds, shown under "Release notes and feedback".
+
+- While a release is announced but not downloadable, set `release_status: upcoming`
+  and keep the downloadable build in `published_version`. The takes labels then say
+  "Coming in Dusk Studio <version>", and the page names the current official beta.
+- When its official builds are published, set `release_status: released` and
+  `published_version` to the same version. The hero, labels and release notes update
+  together.
+
+Do not change this simply because a release is planned.
 
 Official beta builds use the existing Patreon flow. A purchase option is planned
 for 1.0, with pricing, terms, and timing to be announced separately. Plugins remain
@@ -92,11 +99,21 @@ The website uses real application captures, converted to lossless WebP in
 | `mastering.webp` | `np-08-mastering-view.png` |
 | `instrument.webp` | `bi-05-sunset.png` |
 | `channel.webp` | `np-03-channel-strip-mixing.png` |
+| `sfz-online.webp` | SFZ Manager, Online tab, captured by hand |
 
-Console, recording, mastering, instrument, and channel images were recaptured
-from the local development binary. The takes image is the inspected documentation
-capture, chosen for its readable portrait layout. These demonstrate the 0.15
-development UI; they are not proof that 0.15 has been released.
+Console, recording, instrument, and channel images were recaptured from the 0.15
+development binary. The takes image is the documentation capture from the 0.16.0
+tag, chosen for its readable portrait layout.
+
+The mastering and SFZ Manager images come from the official 0.16.0 Linux x86_64
+release (SHA-256 checked), captured on November 2, 2026:
+
+- **Mastering:** the DAW's `docs/capture-screenshots.sh`, copied with `BIN` pointing at
+  the release binary and `OUT` at a temporary folder. Its editor figures (piano roll,
+  take lanes) did not render on Xvfb, which is why the takes image is the docs capture.
+- **SFZ Manager:** driven by hand with `xdotool` on a private Xvfb display, browsing the
+  real repositories. The harness's own SFZ figures show test fixtures, so they are
+  not used.
 
 The console hero was refreshed on October 5, 2026 from actual playback of an
 isolated 16-track session using existing local multitrack audio. All ten visible
