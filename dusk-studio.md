@@ -3,7 +3,7 @@ layout: default
 title: Dusk Studio
 permalink: /dusk-studio/
 og_title: "Dusk Studio — a portastudio for the desktop"
-description: "A focused, 24-track desktop portastudio. Record audio and MIDI, shape your mix, and master your song. Explore its console, mastering tools, and 0.15 takes and comping workflow."
+description: "A focused, 24-track desktop portastudio. Record, comp your takes, mix, and master, with online SFZ instrument libraries and mastering phase analysis."
 body_class: showcase-page studio-page
 og_image: /assets/images/studio/console.webp
 ---
@@ -34,7 +34,7 @@ og_image: /assets/images/studio/console.webp
     <div class="section-intro">
       <p class="eyebrow">01 / Record</p>
       <h2 id="record-title">Give your ideas a home.</h2>
-      <p>Record audio and MIDI across 24 tracks. Work with soundfonts, your own instruments, or the built-in synth. Loop and punch recording keep the focus on the performance.</p>
+      <p>Record audio and MIDI across 24 tracks. Loop and punch recording keep the focus on the performance. With MIDI Merge, each loop pass adds to the same region, and the piano roll shows the notes as you play.</p>
     </div>
     {% include screenshot.html src='/assets/images/studio/recording.webp' alt='Dusk Studio recording console with track inputs, record-arm controls, and channel strips' caption='The recording stage: inputs, record controls, and a familiar console.' width=2560 height=1080 %}
     <div class="feature-split supporting-feature">
@@ -43,6 +43,13 @@ og_image: /assets/images/studio/console.webp
         <p>The built-in Sunset instrument brings six synth personalities into your session. Add tape, delay, and reverb using built-in units, or load your own plugins.</p>
       </div>
       {% include screenshot.html src='/assets/images/studio/instrument.webp' alt='The built-in Sunset synthesizer interface with oscillator, filter, envelope, and sequencer controls' width=1240 height=780 %}
+    </div>
+    <div class="feature-split feature-split--image-first supporting-feature">
+      {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching all four repositories for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' width=1112 height=772 %}
+      <div class="feature-copy">
+        <h3>Find free instruments.</h3>
+        <p>Browse SFZ Instruments, Musical Artifacts, FreePats, and Versilian Studios without leaving Dusk Studio. Each pack shows its license before you download it, and your sessions find the same pack on another computer.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -81,9 +88,9 @@ og_image: /assets/images/studio/console.webp
     <div class="section-intro">
       <p class="eyebrow">04 / Master</p>
       <h2 id="master-title">Finish the song.<br>Stay in the studio.</h2>
-      <p>Move straight from your mix to a dedicated mastering stage. Shape the balance with EQ, control dynamics with multiband compression, and finish with true-peak limiting and loudness metering.</p>
+      <p>Move straight from your mix to a dedicated mastering stage. Shape the balance with EQ, control dynamics with multiband compression, and finish with true-peak limiting and loudness metering. Phase analysis checks mono compatibility band by band, and the Mono monitor lets you hear the fold-down while exports stay stereo.</p>
     </div>
-    {% include screenshot.html src='/assets/images/studio/mastering.webp' alt='Dusk Studio mastering stage with waveform, five-band EQ, multiband compressor, true-peak limiter, and loudness metering' caption='Mastering EQ, multiband dynamics, and limiting in a single stage.' width=1904 height=911 %}
+    {% include screenshot.html src='/assets/images/studio/mastering.webp' alt='Dusk Studio mastering stage with waveform, five-band EQ, multiband compressor, true-peak limiter, loudness metering, and phase analysis' caption='Mastering EQ, multiband dynamics, limiting, and phase analysis in a single stage.' width=1424 height=1120 %}
   </div>
 </section>
 
@@ -120,7 +127,7 @@ og_image: /assets/images/studio/console.webp
       <summary>System requirements</summary>
       <div class="details-body">
         <h3>Linux</h3><p>x86_64 and arm64 builds. PipeWire or ALSA audio. An X11 display is required, including XWayland on a Wayland desktop.</p>
-        <h3>macOS</h3><p>Apple Silicon. macOS 14.4 or later for out-of-process plugin hosting; older supported systems run plugins in-process.</p>
+        <h3>macOS</h3><p>Apple Silicon, macOS 11 (Big Sur) or later.</p>
         <h3>Windows</h3><p>Windows 10 or later. An ASIO driver is recommended; WASAPI exclusive mode is also available.</p>
         <p>Check the manual and current release notes for platform-specific requirements.</p>
       </div>
@@ -131,7 +138,7 @@ og_image: /assets/images/studio/console.webp
     </details>
     <details id="changelog">
       <summary>Release notes and feedback</summary>
-      <div class="details-body"><p>{% if site.data.studio.release_status == 'released' %}Current beta: {{ site.data.studio.version }}.{% else %}Current beta: {{ site.data.studio.published_version }}. {{ site.data.studio.version }} is upcoming, with track-based takes and comping in the audio editor.{% endif %}</p><p><a class="text-link" href="{{ site.data.studio.source_url }}/blob/main/CHANGELOG.md">Full changelog</a></p><a class="text-link" href="{{ site.data.studio.source_url }}/discussions">Share feedback and report issues</a></div>
+      <div class="details-body"><p>{% if site.data.studio.release_status == 'released' %}Current beta: {{ site.data.studio.version }}. New in this release: {{ site.data.studio.highlights }}.{% else %}Current beta: {{ site.data.studio.published_version }}. {{ site.data.studio.version }} is upcoming, with {{ site.data.studio.highlights }}.{% endif %}</p><p><a class="text-link" href="{{ site.data.studio.source_url }}/blob/main/CHANGELOG.md">Full changelog</a></p><a class="text-link" href="{{ site.data.studio.source_url }}/discussions">Share feedback and report issues</a></div>
     </details>
   </div>
 </section>

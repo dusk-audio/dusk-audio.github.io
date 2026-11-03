@@ -257,3 +257,42 @@ Release follow-up: when official 0.15 builds ship, update `release_status` to
   for everyone without the Patreon tag, and a redelivery was skipped as a duplicate.
 - All 24 post-notify tests, the strict production build and the diff whitespace
   check pass.
+
+
+## Dusk Studio 0.16 — November 2, 2026
+
+- The site now presents Dusk Studio 0.16.0, released November 1; 0.15.0 and 0.15.1
+  shipped in October. `_data/studio.yml` is `released` at 0.16.0 with a `highlights`
+  line. The hero, the takes labels and the release notes show 0.16.0, and the
+  "preview of 0.15" note is gone.
+- New 0.16 copy:
+  - Record mentions MIDI Merge and live piano-roll notes.
+  - A "Find free instruments." block covers the SFZ Manager.
+  - Master adds phase analysis and the Mono monitor.
+- The macOS requirement follows the 0.16 manual (macOS 11 or later). The home page's
+  Patreon price now says $5/month, matching the Studio page; new members join at $5
+  (`builds-gate/README.md`).
+- Images come from the official 0.16.0 Linux x86_64 release, SHA-256 checked:
+  - `mastering.webp` (1424×1120) is the capture harness's mastering view. It was
+    captured on an isolated Xvfb display with a private PipeWire graph and a temporary
+    home. It shows the new Phase panel, with no warnings, dialogs or incomplete panels.
+  - `sfz-online.webp` (1112×772) was driven by hand with `xdotool` on a private Xvfb
+    display, against the real repositories. It shows All repositories, a search for
+    "orchestra", and VSCO 2 Community Edition selected with its CC0 license. It is
+    cropped to the window bounds, with no tooltips, test data or rate-limit notices.
+  - `takes.webp` is unchanged. It is pixel-identical to the 0.16.0 tag's documentation
+    capture, and no audio-editor source changed after that capture. The harness's
+    editor figures did not render on Xvfb.
+- Checked:
+  - The strict build and `git diff --check` pass.
+  - The built home and Studio pages contain no 0.14 or 0.15 version text, no "Coming
+    in" and no "preview of".
+  - Every Studio image's width and height match its file.
+  - Over the DevTools protocol at 1440 and 390 pixels, with every image loaded and
+    decoded:
+    - there is no horizontal overflow, and no console errors, warnings or exceptions;
+    - the Record, Takes and Master sections render as intended. The new block puts its
+      image beside the copy on desktop and its copy first on mobile.
+
+Limitations: Chromium only. The SFZ Manager's Installed tab is not shown; it needs a
+large pack download to look populated.

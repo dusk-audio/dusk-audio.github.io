@@ -1,7 +1,9 @@
-# Set release_status to released and published_version to version when 0.15 ships.
-version: "0.15.0"
-release_status: upcoming
-published_version: "0.14.0"
+# version is the release the site describes. While it is announced but not yet downloadable,
+# set release_status: upcoming and keep the downloadable build in published_version.
+version: "0.16.0"
+release_status: released
+published_version: "0.16.0"
+highlights: "MIDI Merge, online SFZ instrument libraries, and phase analysis in mastering"
 builds_url: https://builds.duskaudio.com/latest
 source_url: https://github.com/dusk-audio/dusk-studio
 manual_url: https://github.com/dusk-audio/dusk-studio/blob/main/MANUAL.md
