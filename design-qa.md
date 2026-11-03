@@ -152,8 +152,8 @@ or release action was performed.
 - [x] Validate responsive layouts, keyboard interactions, and accessibility.
 - [x] Record final visual comparison and remaining coverage limits.
 
-Release follow-up: when official 0.15 builds ship, update `release_status` to
-`released` and `published_version` to `0.15.0` in `_data/studio.yml`.
+Release follow-up (done November 2, 2026): `_data/studio.yml` now marks 0.16.0
+released. README.md, "Dusk Studio releases", has the steps for future releases.
 
 
 ## Plugin release screenshots — October 5, 2026
@@ -271,7 +271,8 @@ Release follow-up: when official 0.15 builds ship, update `release_status` to
 - The macOS requirement follows the 0.16 manual (macOS 11 or later). The home page's
   Patreon price now says $5/month, matching the Studio page; new members join at $5
   (`builds-gate/README.md`).
-- Images come from the official 0.16.0 Linux x86_64 release, SHA-256 checked:
+- `mastering.webp` and `sfz-online.webp` come from the official 0.16.0 Linux x86_64
+  release, SHA-256 checked. `takes.webp` is not a new capture:
   - `mastering.webp` (1424×1120) is the capture harness's mastering view. It was
     captured on an isolated Xvfb display with a private PipeWire graph and a temporary
     home. It shows the new Phase panel, with no warnings, dialogs or incomplete panels.
