@@ -5,7 +5,7 @@ slug: chord-analyzer
 tagline: Real-time chord detection with music theory analysis
 description: MIDI chord analyzer with Roman numeral analysis, harmonic function detection, intelligent chord suggestions, and session recording. Free VST3, LV2, and AU plugin.
 version: "1.3.0"
-screenshot: /assets/images/plugins/chord-analyzer-screenshot.png
+screenshot: /assets/images/plugins/chord-analyzer-screenshot.webp
 
 features:
   - Real-time chord detection from MIDI input

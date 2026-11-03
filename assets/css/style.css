@@ -920,7 +920,11 @@ table th:not(:last-child) {
   text-align: center;
 }
 
-.support-option h3 {
+.support-option h2 {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: normal;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -971,7 +975,7 @@ table th:not(:last-child) {
   gap: var(--spacing-xl);
 }
 
-.footer-column h4 {
+.footer-column h2 {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1263,89 +1267,6 @@ table th:not(:last-child) {
   }
 }
 
-/* ========================================
-   Dusk dark theme (scoped to body.theme-dark, the homepage)
-   Redefines the palette; token-based components flip automatically.
-   Other pages stay on the light :root palette.
-   ======================================== */
-body.theme-dark {
-  /* warm dusk amber for CTAs/highlights */
-  --color-primary: #e8945f;
-  --color-primary-dark: #d97f48;
-  --color-primary-light: #f3ad84;
-  /* twilight violet, used sparingly */
-  --color-accent: #c9a6ff;
-  --color-accent-dark: #b189f0;
-
-  --color-text: #f3f2f5;
-  --color-text-light: #c4c3cf;
-  --color-text-muted: #8b8a99;
-
-  --color-bg: #0e0e13;        /* near-black, faint blue */
-  --color-bg-alt: #15151c;
-  --color-bg-dark: #1d1d26;
-
-  --color-border: #2a2a36;
-  --color-border-dark: #3a3a48;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.6);
-
-  background: var(--color-bg);
-  color: var(--color-text);
-}
-
-/* amber buttons need dark text, not white */
-body.theme-dark .btn-primary,
-body.theme-dark .btn-primary:hover,
-body.theme-dark .btn-nav,
-body.theme-dark .btn-nav:hover,
-body.theme-dark .btn-download,
-body.theme-dark .btn-download:hover { color: #160a04 !important; }
-
-/* warm "dusk" glow behind the hero */
-body.theme-dark .hero {
-  background:
-    radial-gradient(1200px 520px at 50% -12%, rgba(232, 148, 95, 0.12), transparent 60%),
-    var(--color-bg);
-}
-
-/* alpha badge: amber pill on dark */
-body.theme-dark .hero-badge {
-  color: var(--color-primary-light);
-  background: rgba(232, 148, 95, 0.10);
-  border-color: var(--color-primary);
-}
-
-/* featured "official build" card: amber edge */
-body.theme-dark .path-card--primary {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-md);
-}
-
-/* keep the dusk-amber accent on the story quote bar */
-body.theme-dark .story { border-left-color: var(--color-primary); }
-
-/* dark-theme contrast fixes for warm-bg elements (primary is amber in dark) */
-body.theme-dark .support-cta,
-body.theme-dark .support-cta h4 { color: #160a04; }
-body.theme-dark .support-cta .btn-support { background: #160a04; color: var(--color-primary-light); }
-body.theme-dark .support-cta .btn-support:hover { background: #261206; }
-body.theme-dark .btn-secondary-download:hover { color: #160a04; }
-
-/* ARM64 outline download button: keep amber text on dark (it has .btn-download too,
-   which gets the dark-text override; this beats it so the button stays visible). */
-body.theme-dark .btn-secondary-download {
-  background: transparent;
-  color: var(--color-primary) !important;
-  border-color: var(--color-primary);
-}
-body.theme-dark .btn-secondary-download:hover {
-  background: var(--color-primary);
-  color: #160a04 !important;
-}
-
 /* Hero screenshot: larger + click-to-zoom lightbox */
 .hero-shot { max-width: 1100px; cursor: zoom-in; }
 .lightbox {
@@ -1388,7 +1309,7 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.005em; }
 .hero-eyebrow,
 .hero-badge,
 .status-badge,
-.footer-column h4,
+.footer-column h2,
 .tier {
   font-family: var(--font-readout);
   text-transform: uppercase;
@@ -1406,36 +1327,6 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.005em; }
   margin: 0 auto 18px;
   border-radius: 2px;
 }
-
-/* Warm charcoal palette (overrides the earlier cool near-black) */
-body.theme-dark {
-  --color-bg: #16130f;
-  --color-bg-alt: #1d1813;
-  --color-bg-dark: #251f18;
-  --color-text: #f4efe6;
-  --color-text-light: #cdc4b6;
-  --color-text-muted: #8f8676;
-  --color-border: #332c22;
-  --color-border-dark: #463c2f;
-  --color-primary: #e8945f;
-  --color-primary-dark: #d27e49;
-  --color-primary-light: #f3ad84;
-  --color-accent: #d8694e;       /* VU red-orange, used sparingly */
-  --color-accent-dark: #c0543b;
-}
-
-/* Hero glow re-tuned for the warm bg */
-body.theme-dark .hero {
-  background:
-    radial-gradient(1100px 480px at 50% -14%, rgba(232, 148, 95, 0.14), transparent 62%),
-    var(--color-bg);
-}
-body.theme-dark .hero-badge {
-  color: var(--color-primary-light);
-  background: rgba(232, 148, 95, 0.10);
-  border-color: var(--color-primary);
-}
-body.theme-dark .story { border-left-color: var(--color-accent); }
 
 /* Subtle panel sheen on cards (console-panel feel) */
 .path-card, .guarantee-item, .download-box, .info-box {

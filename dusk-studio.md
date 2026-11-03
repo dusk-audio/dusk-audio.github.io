@@ -5,7 +5,6 @@ permalink: /dusk-studio/
 og_title: "Dusk Studio — a portastudio for the desktop"
 description: "A focused, 24-track desktop portastudio. Record, comp your takes, mix, and master, with online SFZ instrument libraries and mastering phase analysis."
 body_class: showcase-page studio-page
-og_image: /assets/images/studio/console.webp
 ---
 
 <section class="showcase-hero dark-surface" aria-labelledby="studio-title">

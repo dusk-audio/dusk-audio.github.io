@@ -5,7 +5,7 @@ slug: tape-echo-2
 tagline: Three-Head Tape Delay with Spring Reverb
 description: A three-head tape echo and spring reverb modeled end to end, with 12 echo modes, mechanical head timing, tape age, splice dropout, and regeneration that runs into self-oscillation. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.8"
-screenshot: /assets/images/plugins/tape-echo-2-screenshot.png
+screenshot: /assets/images/plugins/tape-echo-2-screenshot.webp
 
 features:
   - "12 echo modes covering every head and reverb combination"

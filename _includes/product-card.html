@@ -1,7 +1,9 @@
 {% assign product = include.product %}
+{% assign shot_path = '/assets/images/plugins/' | append: product.slug | append: '-screenshot.webp' %}
+{% assign shot = site.data.plugin_screenshots[product.slug].images | where: 'path', shot_path | first %}
 <article class="product-card">
   <a class="product-card-shot" href="{{ '/plugins/' | append: product.slug | append: '/' | relative_url }}" tabindex="-1" aria-hidden="true">
-    <img src="{{ '/assets/images/plugins/' | append: product.slug | append: '-screenshot.png' | relative_url }}" alt="" loading="lazy" decoding="async">
+    <img src="{{ shot_path | relative_url }}" alt="" loading="lazy" decoding="async"{% if shot %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %}>
   </a>
   <div class="product-card-copy">
     <p class="eyebrow">{{ product.category }} · Free plugin</p>
