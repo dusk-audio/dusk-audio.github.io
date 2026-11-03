@@ -2,6 +2,7 @@
 layout: default
 ---
 {% assign plugin_data = site.data.plugins | where: "slug", page.slug | first %}
+{% assign shots = site.data.plugin_screenshots[page.slug].images %}
 
 <article class="plugin-page">
   <header class="plugin-header">
@@ -49,8 +50,9 @@ layout: default
       {% endcomment %}
       <div class="plugin-carousel">
         {% for image in page.gallery %}
+        {% assign shot = shots | where: 'path', image.src | first %}
         <figure class="carousel-slide{% if forloop.first %} active{% endif %}">
-          <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}"{% unless forloop.first %} loading="lazy"{% endunless %}>
+          <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}"{% if shot %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %}{% unless forloop.first %} loading="lazy"{% endunless %}>
           <figcaption class="gallery-caption">{{ image.caption }}</figcaption>
         </figure>
         {% endfor %}
@@ -62,7 +64,8 @@ layout: default
       <div class="plugin-gallery">
         <div class="gallery-hero">
           <div class="gallery-item">
-            <img src="{{ page.gallery[0].src | relative_url }}" alt="{{ page.gallery[0].alt }}">
+            {% assign shot = shots | where: 'path', page.gallery[0].src | first %}
+            <img src="{{ page.gallery[0].src | relative_url }}" alt="{{ page.gallery[0].alt }}"{% if shot %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %}>
             <p class="gallery-caption">{{ page.gallery[0].caption }}</p>
           </div>
         </div>
@@ -70,7 +73,8 @@ layout: default
       {% endif %}
       {% elsif page.screenshot %}
       <div class="plugin-screenshot">
-        <img src="{{ page.screenshot | relative_url }}" alt="{{ page.title }} screenshot">
+        {% assign shot = shots | where: 'path', page.screenshot | first %}
+        <img src="{{ page.screenshot | relative_url }}" alt="{{ page.title }} screenshot"{% if shot %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %}>
       </div>
       {% endif %}
 

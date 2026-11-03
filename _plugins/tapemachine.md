@@ -5,7 +5,7 @@ slug: tapemachine
 tagline: Professional Analog Tape Emulation
 description: Professional tape machine emulation calibrated against real vintage hardware measurements. Authentic saturation, wow/flutter, and vintage VU meters. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.0.10"
-screenshot: /assets/images/plugins/tapemachine-screenshot.png
+screenshot: /assets/images/plugins/tapemachine-screenshot.webp
 
 features:
   - "Two tape machine models: Swiss800 and Classic102"
