@@ -33,7 +33,7 @@ That machine helped me get things done. Not because it was powerful, but because
 
 When I sit in front of a modern DAW, I often record a guitar track, then play with plugins for an hour and get nothing accomplished. If you're like me and struggle with option paralysis, or have ADHD, I'm sure you can relate.
 
-When the DP-24 gave out, I went looking for software that felt the same way. Nothing did. Every DAW out there wants to be everything at once. So I started building the one I actually wanted: [Dusk Studio]({{ '/dusk-studio/' | relative_url }}), a deliberately constrained DAW.
+When the DP-24 gave out, I went looking for software that felt the same way. Nothing did. Every DAW out there wants to be everything at once. So I started building the one I actually wanted: [Dusk Studio]({{ '/dusk-studio/' | relative_url }}), a portastudio styled DAW with modern DSP and functionality.
 
 The whole thing comes down to one question: will this keep me focused and force me to finish a song? If the answer is no, it doesn't get built. That's why every track has the same fixed channel strip with a single insert slot, and why recording, mixing, and mastering each get their own stage.
 

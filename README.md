@@ -188,7 +188,7 @@ python3 .github/scripts/social-cards.py
   - The 16 px frame keeps only the crescent.
   - The 32 and 48 px frames leave out the star.
   - The touch icon is the full drawing on a square background.
-  - `assets/images/favicon.png` is the earlier line-art icon. No page loads it.
+  - The earlier line-art icon, `assets/images/favicon.png`, was removed; no page loaded it.
 - Fonts are self-hosted in `assets/fonts/`; no page requests a font service.
   - DejaVu Sans regular and bold match the native Dusk Studio panels. Both are
     preloaded. The WOFF2 files are subsets of the installed DejaVu TTFs, covering
