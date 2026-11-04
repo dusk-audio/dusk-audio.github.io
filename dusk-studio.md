@@ -46,13 +46,13 @@ body_class: showcase-page studio-page
     <div class="feature-split feature-split--image-first">
       {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching all four repositories for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' caption='The SFZ Manager shows each pack’s license before you download it.' width=1112 height=772 %}
       <div class="feature-copy">
-        <h3>Four free libraries, searchable in the app</h3>
-        <p>Search them all at once, or narrow the results by category: piano, drum kit, acoustic guitar, and more.</p>
+        <h3>More than 100 free instruments, searchable in the app</h3>
+        <p>Search four libraries at once, or narrow the results by category: piano, drum kit, acoustic guitar, and more.</p>
         <dl class="library-sources">
-          <dt>SFZ Instruments</dt><dd>Community-made SFZ instruments on GitHub</dd>
-          <dt>Musical Artifacts</dt><dd>An archive of free instruments and SoundFonts</dd>
-          <dt>FreePats</dt><dd>Creative Commons sampled instruments</dd>
-          <dt>Versilian Studios</dt><dd>VSCO 2 Community Edition and the Versilian Community Sample Library</dd>
+          <dt>SFZ Instruments</dt><dd>73 instruments, including the Salamander Grand Piano and DrumGizmo’s drum kits</dd>
+          <dt>FreePats</dt><dd>41 Creative Commons instruments, from timpani to electric guitars</dd>
+          <dt>Versilian Studios</dt><dd>VSCO 2 Community Edition, a chamber orchestra, and the Versilian Community Sample Library</dd>
+          <dt>Musical Artifacts</dt><dd>More free SFZ instruments shared by its community</dd>
         </dl>
       </div>
     </div>
