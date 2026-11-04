@@ -645,22 +645,11 @@ main {
 }
 
 .plugin-features ul {
-  list-style: none;
-  padding: 0;
+  padding-left: var(--spacing-lg);
 }
 
 .plugin-features li {
-  padding: var(--spacing-sm) 0;
-  padding-left: var(--spacing-lg);
-  position: relative;
-}
-
-.plugin-features li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--color-released);
-  font-weight: bold;
+  padding: var(--spacing-xs) 0;
 }
 
 .plugin-sidebar {
@@ -1013,21 +1002,6 @@ table th:not(:last-child) {
 
 .footer-bottom p {
   margin: 0;
-}
-
-.footer-bottom .ai-disclosure {
-  margin-top: var(--spacing-sm);
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-}
-
-.footer-bottom .ai-disclosure a {
-  color: var(--color-text-muted);
-  text-decoration: underline;
-}
-
-.footer-bottom .ai-disclosure a:hover {
-  color: var(--color-primary);
 }
 
 /* ========================================

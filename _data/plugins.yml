@@ -5,7 +5,7 @@
   category: Equalizer
   summary: Classic British console EQ.
   successor: 4k-eq-2
-  tagline: Classic British Console EQ Emulation
+  tagline: Classic British console EQ
   description: Professional 4-band parametric EQ with Brown/Black modes, analog saturation
     modeling, and real-time spectrum analyzer. VST3/AU/LV2/CLAP. The legendary console
     sound, completely free.
@@ -18,7 +18,7 @@
   generation: current
   display_order: 4
   category: Equalizer
-  summary: Classic console tone, with independently calibrated Brown and Black voicings.
+  summary: British console EQ measured band by band, with Brown and Black voicings.
   tagline: Calibrated British console EQ with Brown and Black voicings
   description: A ground-up rebuild of the 4K EQ, with the equalizer and high-pass/low-pass
     filters of a classic British E-series channel strip measured band by band. Brown
@@ -93,7 +93,7 @@
   generation: current
   display_order: 2
   category: Tape
-  summary: Two modeled tape machines for tracking warmth and a finished mix.
+  summary: Swiss and American tape machines, with four tape speeds and four formulations.
   tagline: Two-machine analog tape emulation
   description: The next-generation tape engine with two modeled machines, Swiss
     (A800-style) and American (ATR-102-style), featuring anti-aliased
@@ -117,7 +117,7 @@
   display_order: 15
   category: Equalizer
   summary: Digital, British console, and tube EQ in one plugin.
-  tagline: "Universal EQ: Digital, British Console, and Tube"
+  tagline: Digital, British console, and tube EQ in one plugin
   description: Three professional EQs in one plugin. Modern parametric with dynamics,
     classic British console emulation with E-series transformer-core low-end saturation,
     and vintage passive tube EQ. Completely free.
@@ -142,7 +142,7 @@
   display_order: 16
   category: Reverb
   summary: The original algorithmic reverb collection.
-  tagline: Professional Algorithmic Reverb
+  tagline: Algorithmic reverb with 12 engines
   description: Professional algorithmic reverb with 12 selectable DSP engines (plate,
     chamber, spring, gated, shimmer, reverse, hall, and more), Tone/Character/Duck
     macros, early reflections, random-walk modulation, freeze, and 20 hardware-inspired
@@ -169,7 +169,7 @@
   generation: current
   display_order: 1
   category: Instrument
-  summary: Six vintage synth circuits, one expressive instrument.
+  summary: Six vintage synth circuits in one instrument.
   tagline: Six vintage synth circuits in one instrument
   description: Six classic synthesizers under one roof, one instrument that
     switches personality with a single click. A stable-tuned DCO poly, a self-
@@ -192,7 +192,7 @@
   generation: current
   display_order: 3
   category: Delay
-  summary: Three-head tape echo and spring reverb with character and movement.
+  summary: Three-head tape echo and spring reverb, with 12 echo modes.
   tagline: Three-head tape delay with spring reverb
   description: A three-head tape echo and spring reverb modeled end to end, with 12
     echo modes, mechanical head timing across the full motor range, tape saturation,
@@ -209,7 +209,7 @@
   slug: ring-out
   generation: current
   display_order: 7
-  category: Live Sound
+  category: Live sound
   summary: Feedback eliminator for live audio, from wedges and in-ears to the PA.
   tagline: Feedback eliminator for live audio
   description: Finds the frequencies that ring and notches them out. Arm SETUP
