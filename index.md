@@ -12,7 +12,7 @@ body_class: showcase-page home-page
       <div>
         <h1 id="home-title">A 24-track DAW laid out like a mixing console</h1>
         <p class="hero-description">Dusk Studio records, mixes, and masters songs on Linux, macOS, and Windows.</p>
-        <p>Made for bands and songwriters, with MIDI tools for electronic music too.</p>
+        <p>Great for all genres.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="{{ '/dusk-studio/' | relative_url }}">How Dusk Studio works</a>
           <a class="btn btn-secondary" href="{{ '/plugins/' | relative_url }}">Browse free plugins</a>
