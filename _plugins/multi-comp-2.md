@@ -6,7 +6,7 @@ published: false
 tagline: Multi-Mode Compressor with Hardware-Style Faces
 description: Eight compression modes in one plugin. Opto, FET, and VCA modes sit on hardware-style faceplates and are each measured against a reference unit; Bus, Studio FET, Studio VCA, Digital, and 4-band Multiband cover the rest. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.0"
-screenshot: /assets/images/plugins/multi-comp-2-screenshot.png
+screenshot: /assets/images/plugins/multi-comp-2-screenshot.webp
 
 features:
   - "Opto mode: a leveling amplifier with Gain, Peak Reduction, and Compress / Limit"
