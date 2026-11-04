@@ -339,3 +339,131 @@ large pack download to look populated.
     broken internal links or anchors, and every image has a width and height.
 
 Limitations: Chromium only. How each social site displays the new cards was not tested.
+
+## Plainer headings and labels — November 3, 2026
+
+This pass removes the commonest signs of a template: all-caps labels, a label above every heading, "A · B · C" meta strings, and copy that sells instead of describing.
+
+- Labels:
+  - The tracked all-caps label above most headings is gone. Before this pass there were 9 on Home, 6 on Dusk Studio and 16 on Plugins.
+  - Two labels stay, in sentence case, because they carry information:
+    - each plugin card's category;
+    - the Dusk Studio release that has takes: "Available in the Dusk Studio 0.16.0 beta", or "Coming in Dusk Studio <version>" while that release is upcoming.
+  - The Dusk Studio page shows its release label only while a release is upcoming.
+  - Removed badges:
+    - "Available now" on released plugin pages;
+    - the per-row "In development" badge on the Plugins page, whose section heading already says it.
+  - Now in sentence case: status badges, footer headings, platform headings in the download box, table headers, and the "Live sound" category.
+- Middle-dot strings are now sentences. The home hero's side note is gone, and its platform list moved into the hero text.
+- Headings:
+  - Headings are plain statements, not two-part slogans, and have no closing full stop.
+  - The Dusk Studio sections are named as in its section menu: Record, Takes and comping, Mix, Master, Get the beta.
+  - The new headings are working drafts.
+- Links:
+  - No link says "Explore X".
+  - Plugin cards link from the plugin's name and image, and keep their Download link.
+  - Other links say where they go, for example "How takes and comping work", "All plugins" and "Current version: TapeMachine 2".
+  - The sidebar buttons are in sentence case.
+- Headings use `text-wrap: balance` in place of hand-placed line breaks.
+- Checked against the previous build at 1440 and 390 pixels, on Home, Dusk Studio, Plugins, Sunset Circuits and TapeMachine:
+  - Nothing overflows horizontally.
+  - The pages are shorter. Home at 1440 px went from 6,786 px to 6,539 px.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass.
+  - No internal link or anchor is broken. There are 17 fewer internal links, all of them "Explore X" card links.
+
+Limitations: tested in Chromium only, and only the five pages above were captured. The About page, the Support page and plugin body copy are unchanged.
+
+## Instruments, labelled console, one type family, new icon — November 3, 2026
+
+This is the second pass. The first changed only words and labels; this one changes the layout, the type and the icon.
+
+- Wording:
+  - The site no longer calls Dusk Studio a portastudio. Its screen is a mixing console, and only the record → mix → master stages come from the Tascam DP-24.
+  - The home h1, both pages' descriptions and link-preview titles, and the site description now say "a 24-track DAW laid out like a mixing console".
+  - About and 404 still say "portastudio-style".
+- Console figure (`_includes/console-figure.html`, on Home and Dusk Studio):
+  - The capture is labelled the way MANUAL.md labels the main window: "Stage selector" above it, and "Channel strips 1–10 of 24", "Buses 1–4" and "Master" below.
+  - The labels are hidden below 640 px, where they would collide. The image's alt text names the same parts.
+- Instruments:
+  - Dusk Studio has a new section and menu entry for the SFZ/SF2 sampler and the SFZ Manager. It covers:
+    - the four online libraries;
+    - published demos;
+    - your own .sfz, .sf2 and .bank.xml files, with the preset picker;
+    - sessions that keep their sounds;
+    - the Sunset synth, moved here from Record.
+  - Home has a matching block after the takes section.
+  - The facts come from MANUAL.md and the 0.16.0 changelog. Nothing is from the unreleased 0.16.1.
+- Type:
+  - Saira (variable, 400 to 700) replaces the system font for text. Saira Condensed stays for h1 and h2.
+  - Every page now preloads 33 KB more (the Latin file).
+- Icon:
+  - A bold crescent and cat, drawn in `assets/images/icon.svg`, replaces the line art, which blurred at tab sizes.
+  - At 16 px the icon is the crescent alone.
+- Checked at 1440 and 390 px on Home, Dusk Studio, Plugins, Sunset Circuits and About:
+  - Nothing overflows horizontally.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass.
+  - No internal link or anchor is broken.
+
+Limitations: tested in Chromium only. The icon is a draft until Marc approves it.
+
+## Instrument counts — November 3, 2026
+
+The Instruments copy says "more than 100 free instruments". The count follows Dusk Studio 0.16's browse rules in `src/engine/sfz/SfzProvider.cpp`:
+
+- **SFZ Instruments:** 73. The org has 76 public repositories, minus three that the app can't download:
+  - `sfzinstruments.github.io` (the website);
+  - `sfztemplates`;
+  - `mappings` (SFZ files without samples).
+
+  Each of the 73 has `.sfz` files and audio samples in its git tree.
+- **FreePats:** 41. These are the repositories with a CC0 or CC BY licence, the only kinds the app offers. Of the user's 45, two GPL repositories and two without a licence are excluded.
+- **Versilian Studios:** 2 collections, VSCO 2 Community Edition and VCSL. The app installs their SFZ releases.
+- **Musical Artifacts:** not counted. Its API answered 403 to a scripted request. The 0.16 live validation (Dusk Studio, `docs/validation/0.16-sfz-live.json`) saw 6 eligible packs on its first page.
+
+That makes 116 downloadable packs from three sources, before Musical Artifacts. Most packs are one instrument; the Versilian collections hold dozens each. So "more than 100" understates the total.
+
+To refresh the count:
+- `gh api --paginate '/orgs/sfzinstruments/repos?type=public&per_page=100'`
+- `gh api --paginate '/users/freepats/repos?type=owner&per_page=100'`, filtered on `license.spdx_id`.
+
+## Fewer template patterns — November 4, 2026
+
+Below the hero the site still read as a template. Labels were fixed on November 3; what
+remained was structural: every section built the same way (heading, grey paragraph, amber
+link, screenshot swapping sides), rows of equal feature columns, a grid of identical plugin
+cards, a signup prompt three times per page, and the Studio page showing the console twice in
+a row.
+
+- Footer: only the copyright line remains. About: one section removed at Marc's request.
+- Home:
+  - The mid-page signup band and the four-column "One stage at a time" row are gone. The
+    stages are now a sentence in the DP-24 story, where the idea comes from.
+  - The Sunset Circuits spotlight and the card grid became one plugin list: thumbnail, name,
+    one line, download link and version. Sunset Circuits no longer appears twice.
+- Dusk Studio:
+  - Record shows a full-size crop of the recording stage (`recording-detail.webp`) labelled
+    "Record, loop, punch", "Markers", "Input" and "Monitor, arm, print", instead of a second
+    full console.
+  - Mix shows the channel strip at its real 155 px, instead of stretched to 240 px, labelled
+    down its side with the manual's names for its parts. Its copy names the parts and the insert
+    slot's plugin formats, and starts at the top of the strip.
+  - The three-column rows under Instruments and Takes became sentences in the section text.
+  - The signup band above "Get the beta" became one inline link in that section's text.
+  - "Before you install" lines up with the other sections instead of centering.
+- Plugins:
+  - The current and legacy collections use the same list; legacy rows are compact.
+  - Plugin pages keep their feature lists, which carry most of the detail on Ring Out and
+    DuskVerb 2, as plain bullets instead of check marks.
+  - Taglines are in sentence case, without "Professional". Four summaries now give facts
+    from the plugins' descriptions instead of "character and movement" and the like.
+- Copy: removed "keep the workflow purposeful", "a familiar console", "The constraints are
+  intentional", "Always free. No trials, accounts, or feature locks." and "Follow us for
+  updates!". About and 404 no longer say "portastudio-style".
+- Checked at 1440, 390 and 320 px on Home, Dusk Studio, Plugins and Ring Out:
+  - Nothing overflows horizontally. The side labels hide below 640 px on the Record crop and
+    below 340 px on the channel strip.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass.
+  - No internal link or anchor is broken.
+
+Limitations: tested in Chromium only. The home story and the new section text are drafts for
+Marc to rewrite.

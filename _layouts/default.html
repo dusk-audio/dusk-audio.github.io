@@ -32,13 +32,16 @@
 
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
 
-  <!-- Every page's h1 uses this font (assets/css/showcase.css), so it loads alongside the CSS. -->
+  <!-- Every page uses both fonts (assets/css/showcase.css): Saira Condensed for its h1, Saira for
+       its text. They load alongside the CSS. -->
   <link rel="preload" href="{{ '/assets/fonts/saira-condensed-700-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/saira-400-700-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/showcase.css' | relative_url }}">
   <script src="{{ '/assets/js/showcase.js' | relative_url }}" defer></script>
 
-  <!-- Icons, resized from assets/images/favicon.png (the 1024 px original, which no page loads). -->
+  <!-- Icons, drawn from assets/images/icon.svg: favicon.ico has a crescent-only 16 px frame and the
+       crescent with the cat at 32 and 48 px; the touch icon is the full drawing, square. -->
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="16x16 32x32 48x48">
   <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
 </head>

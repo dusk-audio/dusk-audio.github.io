@@ -38,7 +38,7 @@ bundle exec jekyll serve
 │   ├── css/style.css    # Existing product-page styles
 │   ├── css/showcase.css # Shared studio design and responsive showcase layouts
 │   ├── js/showcase.js   # Navigation, accessible screenshot zoom, scrollable content
-│   ├── fonts/           # Saira Condensed 700, self-hosted (OFL)
+│   ├── fonts/           # Saira Condensed 700 and Saira, self-hosted (OFL)
 │   └── images/          # Images, screenshots, and link preview cards (social/)
 ├── builds-gate/         # Cloudflare Worker gating patron builds at builds.duskaudio.com
 ├── plugins/             # Plugins listing page
@@ -98,7 +98,7 @@ The website uses real application captures, converted to lossless WebP in
 | Website asset | Dusk Studio capture |
 | --- | --- |
 | `console.webp` | `full-mix-playing.png` |
-| `recording.webp` | `qg-04-record-rolling.png` |
+| `recording-detail.webp` | `qg-04-record-rolling.png`, top left at full size |
 | `takes.webp` | `docs/images/ed-06-take-lanes.png` |
 | `mastering.webp` | `np-08-mastering-view.png` |
 | `instrument.webp` | `bi-05-sunset.png` |
@@ -106,7 +106,10 @@ The website uses real application captures, converted to lossless WebP in
 | `sfz-online.webp` | SFZ Manager, Online tab, captured by hand |
 
 Console, recording, instrument, and channel images were recaptured from the 0.15
-development binary. The takes image is the documentation capture from the 0.16.0
+development binary. `recording-detail.webp` is the top left (x 6–807, y 42–211) of that
+2560×1080 recording-stage capture, shown at its real size with labels. The full capture was
+retired on November 4, 2026: the hero already shows the whole console, and the capture had a
+tooltip in its menu row. The takes image is the documentation capture from the 0.16.0
 tag, chosen for its readable portrait layout.
 
 The mastering and SFZ Manager images come from the official 0.16.0 Linux x86_64
@@ -166,12 +169,17 @@ python3 .github/scripts/social-cards.py
 ## Icons and fonts
 
 - `favicon.ico` (16, 32, and 48 px) and `assets/images/apple-touch-icon.png` (180 px)
-  are resized from `assets/images/favicon.png`, the 1024 px original, which no page
-  loads.
-- The display font, Saira Condensed 700, is hosted in `assets/fonts/` with its SIL
-  Open Font License. These are the Latin and Latin Extended files Google Fonts
-  serves; no page requests Google Fonts. Only the 700 weight is used, for h1 and h2,
-  and the Latin file is preloaded because every page's h1 uses it.
+  are rendered from `assets/images/icon.svg` (a crescent moon and a cat).
+  - The 16 px frame keeps only the crescent.
+  - The 32 and 48 px frames leave out the star.
+  - The touch icon is the full drawing on a square background.
+  - `assets/images/favicon.png` is the earlier line-art icon. No page loads it.
+- Fonts: one family, hosted in `assets/fonts/` with its SIL Open Font License.
+  - Saira Condensed 700 is used for h1 and h2.
+  - Saira, a variable font covering weights 400 to 700, is used for all other text.
+  - These are the Latin and Latin Extended files Google Fonts serves; no page requests
+    Google Fonts.
+  - Both Latin files are preloaded, because every page uses both fonts.
 
 ## Validation
 

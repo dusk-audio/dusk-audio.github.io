@@ -2,7 +2,7 @@
 layout: plugin
 title: 4K-EQ
 slug: 4k-eq
-tagline: Classic British Console EQ Emulation
+tagline: Classic British console EQ
 description: Professional 4-band parametric equalizer with analog modeling. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.0.12"
 screenshot: /assets/images/plugins/4k-eq-screenshot.webp

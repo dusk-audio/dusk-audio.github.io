@@ -3,7 +3,7 @@ layout: plugin
 title: DuskVerb 2
 slug: duskverb-2
 published: false
-tagline: Algorithmic Reverb with a Redesigned Interface
+tagline: Algorithmic reverb with a redesigned interface
 description: The original DuskVerb reverb engines in a redesigned, resizable interface, with A/B comparison, user presets, import of original DuskVerb presets, and mono, mono-to-stereo, and stereo routing. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.0"
 screenshot: /assets/images/plugins/duskverb-2-screenshot.webp
