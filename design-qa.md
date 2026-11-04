@@ -372,3 +372,36 @@ This pass removes the commonest signs of a template: all-caps labels, a label ab
   - No internal link or anchor is broken. There are 17 fewer internal links, all of them "Explore X" card links.
 
 Limitations: tested in Chromium only, and only the five pages above were captured. The About page, the Support page and plugin body copy are unchanged.
+
+## Instruments, labelled console, one type family, new icon — November 3, 2026
+
+This is the second pass. The first changed only words and labels; this one changes the layout, the type and the icon.
+
+- Wording:
+  - The site no longer calls Dusk Studio a portastudio. Its screen is a mixing console, and only the record → mix → master stages come from the Tascam DP-24.
+  - The home h1, both pages' descriptions and link-preview titles, and the site description now say "a 24-track DAW laid out like a mixing console".
+  - About and 404 still say "portastudio-style".
+- Console figure (`_includes/console-figure.html`, on Home and Dusk Studio):
+  - The capture is labelled the way MANUAL.md labels the main window: "Stage selector" above it, and "Channel strips 1–10 of 24", "Buses 1–4" and "Master" below.
+  - The labels are hidden below 640 px, where they would collide. The image's alt text names the same parts.
+- Instruments:
+  - Dusk Studio has a new section and menu entry for the SFZ/SF2 sampler and the SFZ Manager. It covers:
+    - the four online libraries;
+    - published demos;
+    - your own .sfz, .sf2 and .bank.xml files, with the preset picker;
+    - sessions that keep their sounds;
+    - the Sunset synth, moved here from Record.
+  - Home has a matching block after the takes section.
+  - The facts come from MANUAL.md and the 0.16.0 changelog. Nothing is from the unreleased 0.16.1.
+- Type:
+  - Saira (variable, 400 to 700) replaces the system font for text. Saira Condensed stays for h1 and h2.
+  - Every page now preloads 33 KB more (the Latin file).
+- Icon:
+  - A bold crescent and cat, drawn in `assets/images/icon.svg`, replaces the line art, which blurred at tab sizes.
+  - At 16 px the icon is the crescent alone.
+- Checked at 1440 and 390 px on Home, Dusk Studio, Plugins, Sunset Circuits and About:
+  - Nothing overflows horizontally.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass.
+  - No internal link or anchor is broken.
+
+Limitations: tested in Chromium only. The icon is a draft until Marc approves it.

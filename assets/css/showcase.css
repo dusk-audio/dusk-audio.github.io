@@ -1,5 +1,22 @@
-/* Saira Condensed 700 for h1 and h2 (the only weight used): the files Google Fonts serves,
-   hosted here under the SIL Open Font License (assets/fonts/OFL.txt). */
+/* One family: Saira Condensed 700 for h1 and h2, and Saira (variable, 400 to 700) for all other
+   text. These are the files Google Fonts serves, hosted here under the SIL Open Font License
+   (assets/fonts/OFL.txt). */
+@font-face {
+  font-family: 'Saira';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/saira-400-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Saira';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/saira-400-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 @font-face {
   font-family: 'Saira Condensed';
   font-style: normal;
@@ -32,6 +49,7 @@
   --color-primary-light: #efc995;
   --color-accent: #e0b576;
   --color-accent-dark: #efc995;
+  --font-sans: 'Saira', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   --font-display: 'Saira Condensed', 'Arial Narrow', var(--font-sans);
   --font-readout: var(--font-sans);
   --max-width: 1440px;
@@ -83,13 +101,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .product-figure img { width: 100%; height: auto; border-radius: 5px; }
 .product-figure figcaption { margin-top: 12px; color: var(--color-text-muted); font-size: .8rem; }
 .screenshot-link { display: block; cursor: zoom-in; border-radius: 5px; }
+/* The console capture labelled like a front-panel diagram (_includes/console-figure.html): each
+   label sits on a bracket spanning its part of the image, between --from and --to. */
+.console-callouts { position: relative; height: 34px; margin: 0; font-size: .85rem; font-weight: 500; line-height: 1; color: var(--color-text-light); }
+.console-callouts span { position: absolute; left: var(--from); width: calc(var(--to) - var(--from)); text-align: center; white-space: nowrap; }
+.console-callouts span::before { content: ""; position: absolute; left: 0; right: 0; height: 7px; border: 1px solid var(--color-border-dark); }
+.console-callouts--above span { bottom: 0; padding-bottom: 14px; }
+.console-callouts--above span::before { bottom: 2px; border-bottom: 0; }
+.console-callouts--below span { top: 0; padding-top: 14px; }
+.console-callouts--below span::before { top: 2px; border-top: 0; }
+.console-figure .product-figure img { border-radius: 3px; }
 .showcase-section { padding-block: clamp(52px, 6vw, 88px); }
 .showcase-section h2 { font-size: clamp(2.5rem, 4.1vw, 3.8rem); line-height: 1.06; letter-spacing: -.018em; margin-bottom: 22px; text-wrap: balance; }
 .feature-split { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: clamp(30px, 5vw, 76px); }
 .feature-split--image-first { grid-template-columns: 1.35fr .85fr; }
 .feature-copy { min-width: 0; }
 .feature-copy > p:not(.eyebrow) { color: var(--color-text-light); max-width: 52ch; font-size: 1.1rem; }
-.feature-copy h3 { font-size: 1.65rem; }
+.feature-copy h3 { font-size: 1.65rem; text-wrap: balance; }
 .release-label { margin-top: 22px; margin-bottom: 18px; }
 .text-link { display: inline-block; font-weight: 600; color: var(--color-primary); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; padding-block: 6px; }
 .text-link:hover { color: var(--color-primary-dark); }
@@ -126,6 +154,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .studio-navigation a { color: var(--color-text); font-weight: 600; font-size: .92rem; padding-block: 5px; }
 .supporting-feature { margin-top: 48px; }
 .comp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 34px; }
+.instruments-section { background: var(--color-bg-alt); }
+.instruments-section .comp-steps { margin-top: 56px; }
+.library-sources { display: grid; grid-template-columns: auto 1fr; column-gap: 24px; margin: 24px 0 0; }
+.library-sources dt, .library-sources dd { margin: 0; padding: 12px 0; border-top: 1px solid var(--color-border-dark); }
+.library-sources dt { font-weight: 600; color: var(--color-text); }
+.library-sources dd { color: var(--color-text-light); }
 #mix .product-figure { max-width: 240px; justify-self: center; }
 .beta-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px; }
 .beta-options > div { border-top: 1px solid var(--color-border-dark); padding-top: 24px; }
@@ -256,6 +290,8 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
   .get-started-copy { padding: 28px 0 0; border-left: 0; border-top: 1px solid var(--color-border-dark); }
   .development-list li { grid-template-columns: 1fr; gap: 8px; }
   .development-list .status-badge { justify-self: start; }
+  .library-sources { grid-template-columns: 1fr; }
+  .library-sources dd { border-top: 0; padding-top: 0; }
   #mix .product-figure { max-width: 180px; }
   .studio-navigation .container { gap: 6px 20px; }
   .email-form { flex-wrap: wrap; }
@@ -265,6 +301,9 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
   .footer-content { gap: 32px; }
   .footer-links { gap: 30px; }
   .screenshot-dialog { padding: 12px; }
+}
+@media (max-width: 640px) {
+  .console-callouts { display: none; }
 }
 @media (max-width: 380px) {
   .workflow-list { grid-template-columns: 1fr; }
