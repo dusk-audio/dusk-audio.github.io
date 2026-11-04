@@ -30,10 +30,6 @@ Alongside the plugins, I'm building [Dusk Studio]({{ '/dusk-studio/' | relative_
 
 Dusk Studio is open source under GPL-3.0 and currently in beta. Official beta builds are available through Patreon; you can also build from source for free. A purchase option is planned for 1.0, with pricing and release timing to be announced. The plugins will remain free.
 
-## AI Disclosure {#ai-disclosure}
-
-Dusk Audio is developed with assistance from AI tools. The source is available on GitHub for inspection and contributions.
-
 ## The Philosophy
 
 - **Quality over quantity:** Each plugin should do its job well

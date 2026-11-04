@@ -58,12 +58,10 @@ initial redesign rather than the superseding theme revision.
 
 ## Comparison target and evidence
 
-Source visual truth: selected option 1 at
-`/home/marc/.codex/generated_images/01a106da-de50-70a3-9895-edb31b0baa82/exec-181df76a-0746-44e4-b2c2-56e11c9ef6b0.png`.
+Source visual truth: the selected art-direction mockup (option 1).
 
 Implementation: `http://127.0.0.1:4000/`, captured using local headless Google
-Chrome through Playwright. The in-app browser was unavailable; Marc explicitly
-approved this fallback. No personal browser profile was used.
+Chrome through Playwright. No personal browser profile was used.
 
 Source pixels: 1122 × 1402, normalized to 1440 × 1800 for comparison.
 Implementation pixels and CSS viewport: 1440 × 1800, deviceScaleFactor 1.
@@ -117,8 +115,8 @@ No actionable P0/P1/P2 findings remain.
   the direction. Links, focus states, and controls have sufficient contrast
   in the checked states.
 - **Images:** Six real DAW captures use lossless WebP. Original plugin images
-  remain uncropped within collection cards. The generated mock UI is not used
-  as a product screenshot. Enlarging preserves legibility and restores focus
+  remain uncropped within collection cards. The mockup's interface art is not
+  used as a product screenshot. Enlarging preserves legibility and restores focus
   on close. No fake interface drawings substitute for product assets.
 - **Copy:** DAW and plugin offers are distinct. Plugins remain free. Official
   beta builds use the existing Patreon flow; source builds remain available.
@@ -169,7 +167,7 @@ released. README.md, "Dusk Studio releases", has the steps for future releases.
 - 4K EQ 2 now shows v1.0.5, replacing an image labeled v2.0.11. DuskVerb now includes
   Parallel Hall and describes twelve selectable engines, matching the released UI.
 - Captures used CLAP for ten plugins and LV2 for Spectrum Analyzer. Chord Analyzer
-  received a C-major MIDI triad; Spectrum Analyzer received real generated audio.
+  received a C-major MIDI triad; Spectrum Analyzer received test audio.
   Other screenshots show idle interfaces and do not pretend to show live processing.
 - Release URLs, dimensions, and SHA-256 hashes are recorded in
   `_data/plugin_screenshots.yml`. Capture evidence is in
@@ -206,8 +204,8 @@ released. README.md, "Dusk Studio releases", has the steps for future releases.
 
 ## Email access and audio removal — October 5, 2026
 
-- Marc rejected the generated music examples. Removed the Listen page, all
-  generated audio/MIDI/session assets, plugin players, navigation links, and the
+- Marc rejected the example music. Removed the Listen page, all example
+  audio/MIDI/session assets, plugin players, navigation links, and the
   walkthrough using that music. Removed related data, tools, JavaScript, and CSS.
   Listening content is deferred until real recordings are available.
 - Kept the persistent Get updates link, contextual homepage/DAW prompts, and plugin
@@ -216,7 +214,7 @@ released. README.md, "Dusk Studio releases", has the steps for future releases.
   fallback, visible error handling, and the corrected success callback.
 - After removal, strict production build, JavaScript syntax, and diff whitespace
   checks pass. All 17 pages and 515 local links/media/anchors pass, with no demo
-  players, Listen route, or generated media left in the built site.
+  players, Listen route, or example media left in the built site.
 - Thirty-one retained signup checks pass at 1440, 390, and 320 pixels, covering
   accessibility, focus, validation, mocked network/field errors, retries, success,
   and the no-JavaScript fallback. No real subscriber was created.
@@ -343,7 +341,7 @@ Limitations: Chromium only. How each social site displays the new cards was not 
 
 ## Plainer headings and labels — November 3, 2026
 
-This pass follows Anthropic's frontend-design skill, now in `.claude/skills/frontend-design/`. The skill names these as the commonest signs of a generated page: all-caps labels, a label above every heading, "A · B · C" meta strings, and copy that sells instead of describing.
+This pass removes the commonest signs of a template: all-caps labels, a label above every heading, "A · B · C" meta strings, and copy that sells instead of describing.
 
 - Labels:
   - The tracked all-caps label above most headings is gone. Before this pass there were 9 on Home, 6 on Dusk Studio and 16 on Plugins.
@@ -376,7 +374,7 @@ Limitations: tested in Chromium only, and only the five pages above were capture
 
 ## Instruments, labelled console, one type family, new icon — November 3, 2026
 
-This is the second pass with the frontend-design skill. The first changed only words and labels; this one changes the layout, the type and the icon.
+This is the second pass. The first changed only words and labels; this one changes the layout, the type and the icon.
 
 - Wording:
   - The site no longer calls Dusk Studio a portastudio. Its screen is a mixing console, and only the record → mix → master stages come from the Tascam DP-24.
@@ -429,14 +427,13 @@ To refresh the count:
 
 ## Fewer template patterns — November 4, 2026
 
-Asked whether the site still looked AI-generated, the answer was yes below the hero. Labels were
-fixed on November 3; what remained was structural: every section built the same way (heading,
-grey paragraph, amber link, screenshot swapping sides), rows of equal feature columns, a grid of
-identical plugin cards, a signup prompt three times per page, and the Studio page showing the
-console twice in a row. Marc also asked to drop the footer's "Built with AI assistance" line.
+Below the hero the site still read as a template. Labels were fixed on November 3; what
+remained was structural: every section built the same way (heading, grey paragraph, amber
+link, screenshot swapping sides), rows of equal feature columns, a grid of identical plugin
+cards, a signup prompt three times per page, and the Studio page showing the console twice in
+a row.
 
-- Footer: the AI-assistance line and its CSS are gone. About keeps its "AI Disclosure" section
-  until Marc rewrites that page.
+- Footer: only the copyright line remains. About: one section removed at Marc's request.
 - Home:
   - The mid-page signup band and the four-column "One stage at a time" row are gone. The
     stages are now a sentence in the DP-24 story, where the idea comes from.

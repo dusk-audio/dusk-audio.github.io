@@ -93,7 +93,7 @@ free. Do not advertise a 1.0 date or a future license benefit without confirmed 
 ## Product screenshots
 
 The website uses real application captures, converted to lossless WebP in
-`assets/images/studio/`. No generated mockup interface imagery is shipped.
+`assets/images/studio/`. No mockup interface imagery is shipped.
 
 | Website asset | Dusk Studio capture |
 | --- | --- |
@@ -216,7 +216,7 @@ Signup browser tests run against a local `wrangler dev` with Turnstile's test ke
 (see `post-notify/README.md`, Testing). Only deliberate test addresses reach Kit.
 
 Audio demonstrations are deferred until real recordings are available. The
-rejected generated examples, players, session download, and related walkthrough
+earlier example tracks, players, session download, and related walkthrough
 have been removed.
 
 ## License
