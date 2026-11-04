@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Home
-og_title: "Dusk Audio — a 24-track portastudio for your computer"
-description: "Dusk Studio is a 24-track desktop portastudio for recording, mixing, and mastering. Dusk Audio also makes free instruments and effects for Linux, macOS, and Windows."
+og_title: "Dusk Audio — a 24-track DAW laid out like a mixing console"
+description: "Dusk Studio is a 24-track DAW for recording, mixing, and mastering, laid out like a mixing console. Dusk Audio also makes free instruments and effects for Linux, macOS, and Windows."
 body_class: showcase-page home-page
 ---
 
@@ -10,7 +10,7 @@ body_class: showcase-page home-page
   <div class="container">
     <div class="hero-intro">
       <div>
-        <h1 id="home-title">A 24-track portastudio for your computer</h1>
+        <h1 id="home-title">A 24-track DAW laid out like a mixing console</h1>
         <p class="hero-description">Dusk Studio records, mixes, and masters songs on Linux, macOS, and Windows.</p>
         <p>Made for bands and songwriters, with MIDI tools for electronic music too.</p>
         <div class="cta-row">
@@ -19,7 +19,7 @@ body_class: showcase-page home-page
         </div>
       </div>
     </div>
-    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio playing a multitrack mix with active channel, bus, and stereo master meters' eager=true width=2560 height=1080 %}
+    {% include console-figure.html %}
   </div>
 </section>
 
@@ -32,6 +32,17 @@ body_class: showcase-page home-page
       <a class="text-link" href="{{ '/dusk-studio/' | relative_url }}#takes">How takes and comping work</a>
     </div>
     {% include screenshot.html src='/assets/images/studio/takes.webp' alt='Three colored take lanes with selected sections combined into a performance in the audio editor' width=1294 height=1030 %}
+  </div>
+</section>
+
+<section class="showcase-section" aria-labelledby="instruments-title">
+  <div class="container feature-split feature-split--image-first">
+    {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching four free sample libraries for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' width=1112 height=772 %}
+    <div class="feature-copy">
+      <h2 id="instruments-title">Play SFZ instruments and SoundFonts</h2>
+      <p>Search four free sample libraries from inside Dusk Studio, including VSCO 2 Community Edition, or open your own .sfz and .sf2 files. The sampler is built in.</p>
+      <a class="text-link" href="{{ '/dusk-studio/' | relative_url }}#instruments">How instruments work</a>
+    </div>
   </div>
 </section>
 
@@ -69,8 +80,8 @@ body_class: showcase-page home-page
 <section class="showcase-section" aria-labelledby="workflow-title">
   <div class="container">
     <div class="section-intro">
-      <h2 id="workflow-title">Built like a hardware portastudio</h2>
-      <p>A console with a fixed signal chain on every channel, and the tools to take a song from recording to master.</p>
+      <h2 id="workflow-title">One stage at a time</h2>
+      <p>The stages come from hardware multitrack recorders: get the performance down, then mix, then master.</p>
     </div>
     <ol class="workflow-list">
       <li><h3>Record</h3><p>Capture audio and MIDI across 24 tracks.</p></li>

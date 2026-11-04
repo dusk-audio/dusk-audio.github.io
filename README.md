@@ -38,7 +38,7 @@ bundle exec jekyll serve
 │   ├── css/style.css    # Existing product-page styles
 │   ├── css/showcase.css # Shared studio design and responsive showcase layouts
 │   ├── js/showcase.js   # Navigation, accessible screenshot zoom, scrollable content
-│   ├── fonts/           # Saira Condensed 700, self-hosted (OFL)
+│   ├── fonts/           # Saira Condensed 700 and Saira, self-hosted (OFL)
 │   └── images/          # Images, screenshots, and link preview cards (social/)
 ├── builds-gate/         # Cloudflare Worker gating patron builds at builds.duskaudio.com
 ├── plugins/             # Plugins listing page
@@ -166,12 +166,17 @@ python3 .github/scripts/social-cards.py
 ## Icons and fonts
 
 - `favicon.ico` (16, 32, and 48 px) and `assets/images/apple-touch-icon.png` (180 px)
-  are resized from `assets/images/favicon.png`, the 1024 px original, which no page
-  loads.
-- The display font, Saira Condensed 700, is hosted in `assets/fonts/` with its SIL
-  Open Font License. These are the Latin and Latin Extended files Google Fonts
-  serves; no page requests Google Fonts. Only the 700 weight is used, for h1 and h2,
-  and the Latin file is preloaded because every page's h1 uses it.
+  are rendered from `assets/images/icon.svg` (a crescent moon and a cat).
+  - The 16 px frame keeps only the crescent.
+  - The 32 and 48 px frames leave out the star.
+  - The touch icon is the full drawing on a square background.
+  - `assets/images/favicon.png` is the earlier line-art icon. No page loads it.
+- Fonts: one family, hosted in `assets/fonts/` with its SIL Open Font License.
+  - Saira Condensed 700 is used for h1 and h2.
+  - Saira, a variable font covering weights 400 to 700, is used for all other text.
+  - These are the Latin and Latin Extended files Google Fonts serves; no page requests
+    Google Fonts.
+  - Both Latin files are preloaded, because every page uses both fonts.
 
 ## Validation
 

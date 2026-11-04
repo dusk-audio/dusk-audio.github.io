@@ -2,28 +2,28 @@
 layout: default
 title: Dusk Studio
 permalink: /dusk-studio/
-og_title: "Dusk Studio — a portastudio for the desktop"
-description: "A focused, 24-track desktop portastudio. Record, comp your takes, mix, and master, with online SFZ instrument libraries and mastering phase analysis."
+og_title: "Dusk Studio — a 24-track DAW laid out like a mixing console"
+description: "A 24-track DAW laid out like a mixing console. Record, comp your takes, mix, and master, with online SFZ instrument libraries and mastering phase analysis."
 body_class: showcase-page studio-page
 ---
 
 <section class="showcase-hero dark-surface" aria-labelledby="studio-title">
   <div class="container">
     <h1 id="studio-title">Dusk Studio</h1>
-    <p class="hero-description">A 24-track portastudio for your computer, with a hands-on console for recording, mixing, and mastering.</p>
+    <p class="hero-description">A 24-track DAW laid out like a mixing console, with separate stages for recording, mixing, and mastering.</p>
     <p>Built around rock and singer/songwriter sessions, with audio and MIDI tools for electronic producers, too.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#get">Get the beta</a>
       <a class="btn btn-secondary" href="#takes">How takes and comping work</a>
     </div>
     <p class="hero-meta">Version {% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta, for Linux, macOS, and Windows. Open source under GPL-3.0.</p>
-    {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio playing a multitrack mix with active channel, bus, and stereo master meters' eager=true width=2560 height=1080 %}
+    {% include console-figure.html %}
   </div>
 </section>
 
 <nav class="studio-navigation" aria-label="Dusk Studio sections">
   <div class="container">
-    <a href="#record">Record</a><a href="#takes">Takes &amp; comping</a><a href="#mix">Mix</a><a href="#master">Master</a><a href="#get">Get the beta</a>
+    <a href="#record">Record</a><a href="#instruments">Instruments</a><a href="#takes">Takes &amp; comping</a><a href="#mix">Mix</a><a href="#master">Master</a><a href="#get">Get the beta</a>
   </div>
 </nav>
 
@@ -34,19 +34,39 @@ body_class: showcase-page studio-page
       <p>Record audio and MIDI across 24 tracks. Loop and punch recording keep the focus on the performance. With MIDI Merge, each loop pass adds to the same region, and the piano roll shows the notes as you play.</p>
     </div>
     {% include screenshot.html src='/assets/images/studio/recording.webp' alt='Dusk Studio recording console with track inputs, record-arm controls, and channel strips' caption='The recording stage: inputs, record controls, and a familiar console.' width=2560 height=1080 %}
+  </div>
+</section>
+
+<section class="showcase-section instruments-section" id="instruments" aria-labelledby="instruments-title">
+  <div class="container">
+    <div class="section-intro">
+      <h2 id="instruments-title">Instruments</h2>
+      <p>Dusk Studio plays SFZ instruments and SF2 SoundFonts on any MIDI track through its built-in sfizz engine, so there is no separate sampler to set up. Sunset, a six-engine synth, is built in too.</p>
+    </div>
+    <div class="feature-split feature-split--image-first">
+      {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching all four repositories for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' caption='The SFZ Manager shows each pack’s license before you download it.' width=1112 height=772 %}
+      <div class="feature-copy">
+        <h3>Four free libraries, searchable in the app</h3>
+        <p>Search them all at once, or narrow the results by category: piano, drum kit, acoustic guitar, and more.</p>
+        <dl class="library-sources">
+          <dt>SFZ Instruments</dt><dd>Community-made SFZ instruments on GitHub</dd>
+          <dt>Musical Artifacts</dt><dd>An archive of free instruments and SoundFonts</dd>
+          <dt>FreePats</dt><dd>Creative Commons sampled instruments</dd>
+          <dt>Versilian Studios</dt><dd>VSCO 2 Community Edition and the Versilian Community Sample Library</dd>
+        </dl>
+      </div>
+    </div>
+    <ul class="workflow-list comp-steps">
+      <li><h3>Hear it before you download</h3><p>When a pack has a published demo, play it in your browser first.</p></li>
+      <li><h3>Your own SoundFonts</h3><p>Open .sfz, .sf2, and ARIA .bank.xml files from your disk. SoundFonts with many presets get a searchable preset picker.</p></li>
+      <li><h3>Sessions keep their sounds</h3><p>A session remembers the exact pack and version, so another computer with that pack installed plays the same sound.</p></li>
+    </ul>
     <div class="feature-split supporting-feature">
       <div class="feature-copy">
-        <h3>Instruments and effects included</h3>
+        <h3>Sunset synth and built-in effects</h3>
         <p>The built-in Sunset instrument brings six synth personalities into your session. Add tape, delay, and reverb using built-in units, or load your own plugins.</p>
       </div>
       {% include screenshot.html src='/assets/images/studio/instrument.webp' alt='The built-in Sunset synthesizer interface with oscillator, filter, envelope, and sequencer controls' width=1240 height=780 %}
-    </div>
-    <div class="feature-split feature-split--image-first supporting-feature">
-      {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching all four repositories for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' width=1112 height=772 %}
-      <div class="feature-copy">
-        <h3>Online SFZ libraries</h3>
-        <p>Browse SFZ Instruments, Musical Artifacts, FreePats, and Versilian Studios without leaving Dusk Studio. Each pack shows its license before you download it, and your sessions find the same pack on another computer.</p>
-      </div>
     </div>
   </div>
 </section>
