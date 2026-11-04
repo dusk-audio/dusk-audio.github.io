@@ -907,6 +907,14 @@ table th:not(:last-child) {
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Buttons sit on the card's bottom edge, so they line up whatever the text length. */
+.support-option .btn {
+  margin-top: auto;
 }
 
 .support-option h2 {
@@ -1278,7 +1286,7 @@ table th:not(:last-child) {
    Console / portastudio redesign: type, warm palette, motif
    ============================================================ */
 :root {
-  --font-display: "Saira Condensed", "Arial Narrow", var(--font-sans);
+  --font-display: var(--font-sans);
   --font-readout: "Space Mono", var(--font-mono);
 }
 

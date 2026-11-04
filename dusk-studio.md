@@ -2,21 +2,28 @@
 layout: default
 title: Dusk Studio
 permalink: /dusk-studio/
-og_title: "Dusk Studio — a 24-track DAW laid out like a mixing console"
-description: "A 24-track DAW laid out like a mixing console. Record, comp your takes, mix, and master, with online SFZ instrument libraries and mastering phase analysis."
+og_title: "Dusk Studio — a DAW that keeps you focused on the song"
+description: "A 24-track DAW with the limits of a hardware multitrack recorder: record, mix, and master, one stage at a time. Includes take comping, online SFZ instrument libraries, and mastering phase analysis."
 body_class: showcase-page studio-page
 ---
 
-<section class="showcase-hero dark-surface" aria-labelledby="studio-title">
+<section class="showcase-hero" aria-labelledby="studio-title">
   <div class="container">
-    <h1 id="studio-title">Dusk Studio</h1>
-    <p class="hero-description">A 24-track DAW laid out like a mixing console, with separate stages for recording, mixing, and mastering.</p>
-    <p>Great for all genres.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#get">Get the beta</a>
-      <a class="btn btn-secondary" href="#takes">How takes and comping work</a>
+    <div class="hero-intro">
+      <div>
+        <p class="product-name">Dusk Studio</p>
+        <h1 id="studio-title">A DAW that keeps you focused on the song</h1>
+      </div>
+      <div class="hero-access">
+        <p class="hero-description">24 tracks and the limits of a hardware multitrack recorder. Record, mix, and master, one stage at a time. Runs on Linux, macOS, and Windows.</p>
+        <p class="release-readout">{% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#get">Get the beta</a>
+          <a class="text-link" href="{{ '/plugins/' | relative_url }}">Free plugins</a>
+        </div>
+        <p class="access-terms">Official builds through Patreon from $5/month. Free to <a href="{{ site.data.studio.source_url }}">build from source</a> under GPL-3.0.</p>
+      </div>
     </div>
-    <p class="hero-meta">Version {% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta, for Linux, macOS, and Windows. Open source under GPL-3.0.</p>
     {% include console-figure.html %}
   </div>
 </section>
@@ -136,8 +143,10 @@ body_class: showcase-page studio-page
       <div>
         <h3>Official builds</h3>
         <p>Linux tarballs, a Windows installer, and a macOS disk image. Patreon membership gives you access to beta builds while subscribed.</p>
-        <a class="btn btn-primary" href="{{ site.data.studio.builds_url }}">Download for Patreon members</a>
-        <a class="text-link member-link" href="{{ site.patreon_membership_url }}">Not a member yet? Join on Patreon from $5/month</a>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="{{ site.patreon_membership_url }}">Join on Patreon from $5/month</a>
+          <a class="btn btn-secondary" href="{{ site.data.studio.builds_url }}">Download for members</a>
+        </div>
       </div>
       <div>
         <h3>Build from source</h3>

@@ -38,7 +38,7 @@ bundle exec jekyll serve
 │   ├── css/style.css    # Existing product-page styles
 │   ├── css/showcase.css # Shared studio design and responsive showcase layouts
 │   ├── js/showcase.js   # Navigation, accessible screenshot zoom, scrollable content
-│   ├── fonts/           # Saira Condensed 700 and Saira, self-hosted (OFL)
+│   ├── fonts/           # DejaVu Sans and IBM Plex Mono, self-hosted with licenses
 │   └── images/          # Images, screenshots, and link preview cards (social/)
 ├── builds-gate/         # Cloudflare Worker gating patron builds at builds.duskaudio.com
 ├── plugins/             # Plugins listing page
@@ -50,11 +50,26 @@ bundle exec jekyll serve
 
 ## Page themes
 
-Every page uses the same charcoal palette, warm white text, and amber accents
-defined in `assets/css/showcase.css`. Slightly lighter charcoal surfaces separate
-headers, product information, installation details, and footers. Shared components
-use the same color tokens so navigation, downloads, and newsletter forms remain
-consistent when moving between the DAW, plugins, and information pages.
+Every page uses the cream, dark ink, and burgundy palette defined in
+`assets/css/showcase.css`. Warm paper surfaces separate product information,
+installation details, and footers. DejaVu Sans follows the lettering on Dusk
+Studio’s native panels; IBM Plex Mono is reserved for versions and technical
+readouts. Shared navigation, downloads, and newsletter forms use the same tokens.
+
+The home and Studio heroes put beta access and its Patreon terms before the
+console. On desktop the console shows the full annotated capture. Below 640 px,
+CSS crops it to tracks 9–10, the buses, and master; “View full console” opens the
+untouched image. The redundant desktop console caption is hidden. The Tascam
+story follows the home hero, with its text beside Marc's own DP-24 photo on
+desktop and above it on phones. `assets/images/story/tascam-dp-24*.webp` contains
+720 px and 1440 px web exports of `~/Downloads/Tascam-DP-24.JPG`, provided by Marc
+on November 4, 2026. The original scene and 4:3 framing are preserved; exports are
+resized, converted to sRGB, and saved without camera/location metadata. The
+original photo remains unchanged.
+The home comping section puts text above a wide detail of the real take lanes;
+on phones it shows the full image. Both open the complete editor capture.
+Released current plugins use large image cards on a slightly darker cream section; legacy plugins retain compact rows. Product pages put
+downloads beside the gallery on desktop and immediately after it on mobile.
 
 ## Adding a New Plugin
 
@@ -174,12 +189,15 @@ python3 .github/scripts/social-cards.py
   - The 32 and 48 px frames leave out the star.
   - The touch icon is the full drawing on a square background.
   - `assets/images/favicon.png` is the earlier line-art icon. No page loads it.
-- Fonts: one family, hosted in `assets/fonts/` with its SIL Open Font License.
-  - Saira Condensed 700 is used for h1 and h2.
-  - Saira, a variable font covering weights 400 to 700, is used for all other text.
-  - These are the Latin and Latin Extended files Google Fonts serves; no page requests
-    Google Fonts.
-  - Both Latin files are preloaded, because every page uses both fonts.
+- Fonts are self-hosted in `assets/fonts/`; no page requests a font service.
+  - DejaVu Sans regular and bold match the native Dusk Studio panels. Both are
+    preloaded. The WOFF2 files are subsets of the installed DejaVu TTFs, covering
+    Latin, extended Latin, punctuation, currencies, and arrows. The original
+    license is included in `DEJAVU-LICENSE.txt`.
+  - IBM Plex Mono regular is from IBM's official `IBM/plex` repository, at
+    `packages/plex-mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2`.
+    Its SIL Open Font License is included in `IBM-PLEX-LICENSE.txt`.
+  - The earlier Saira font files and their license were removed; nothing loaded them.
 
 ## Validation
 
@@ -197,8 +215,12 @@ published site).
 
 ## Email signup
 
-“Get updates” stays visible outside the mobile menu. Contextual prompts open the
-same signup form in an accessible dialog; closing restores it to the footer.
+The wordmark keeps the established spaced capitals, “DUSK AUDIO”. On the home and
+Studio pages, the mobile header’s “Get the beta” appears when the hero action
+leaves view, or when the menu is open. Its reserved space prevents layout shifts,
+and a focused link is never hidden. Without observer support it remains visible.
+Other pages always show it. Email updates remain in the footer and contextual prompts. These open the same signup form in an accessible
+dialog; closing restores it to the footer.
 There is one form and one input, including after success. Field, spam-check and
 network failures show inline messages. No timed popup or email gate is used.
 

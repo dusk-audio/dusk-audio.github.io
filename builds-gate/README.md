@@ -93,7 +93,7 @@ Merges to `main` deploy the gate; don't deploy from a laptop.
 
 - **Before merge**: `main` is protected. A pull request can't merge until two checks pass:
   `gate-tests` (these unit tests) and `site-downloads` (the site is built and every
-  download link on it checked: the Dusk Studio main button opens `/latest`, every gate
+  download link on it checked: a Dusk Studio button opens `/latest`, every gate
   link is a page the gate serves, every plugin download answers 200). Both run on every
   pull request, whatever it changes.
 - **Deploy** (`.github/workflows/builds-gate.yml`, job `deploy`): on a push to `main` that

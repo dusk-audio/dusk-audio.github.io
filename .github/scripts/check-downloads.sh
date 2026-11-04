@@ -7,7 +7,8 @@
 #
 #   .github/scripts/check-downloads.sh [SITE_DIR]     (default _site, after `jekyll build`)
 #
-# 1. The Dusk Studio page's main button opens the build gate (members' download page).
+# 1. The Dusk Studio page has a button (btn-primary or btn-secondary) that opens the build
+#    gate (members' download page).
 # 2. Every builds.duskaudio.com link goes to a page the gate serves.
 # 3. Every plugin download and release-page link on GitHub answers 200 (a draft release
 #    or a version that was never published answers 404).
@@ -21,10 +22,10 @@ fail() { echo "FAIL $*"; failed=1; }
 page="$SITE/dusk-studio/index.html"
 if [ ! -f "$page" ]; then
   fail "$page is missing; build the site first"
-elif grep -qE "class=\"btn btn-primary\" href=\"${GATE//./\\.}/latest\"" "$page"; then
-  echo "ok   Dusk Studio page: main button opens $GATE/latest"
+elif grep -qE "class=\"btn btn-(primary|secondary)\" href=\"${GATE//./\\.}/latest\"" "$page"; then
+  echo "ok   Dusk Studio page: members' download button opens $GATE/latest"
 else
-  fail "Dusk Studio page: the main (btn-primary) button must link to $GATE/latest, where members download"
+  fail "Dusk Studio page: a btn-primary or btn-secondary button must link to $GATE/latest, where members download"
 fi
 
 links() { grep -rhoE "$1" "$SITE" --include='*.html' | sort -u; }
