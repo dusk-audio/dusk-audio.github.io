@@ -31,10 +31,13 @@
   }
   var toggle = document.querySelector('.nav-toggle');
   var navigation = document.querySelector('.nav-links');
+  // Set below to re-place the header action whenever the menu opens or closes.
+  var onMenuChange = function () {};
   function closeNavigation() {
     if (!toggle || !navigation) return;
     toggle.setAttribute('aria-expanded', 'false');
     navigation.classList.remove('open');
+    onMenuChange();
   }
   if (toggle && navigation) {
     document.documentElement.classList.add('navigation-ready');
@@ -42,6 +45,7 @@
       var open = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(open));
       navigation.classList.toggle('open', open);
+      onMenuChange();
     });
     navigation.addEventListener('click', function (event) {
       if (event.target.closest('a')) closeNavigation();
@@ -78,6 +82,9 @@
       updateHeaderAction();
     }
     observeHeroAction();
+    // The menu changes the header's height, so re-measure it too; this doesn't rely on
+    // ResizeObserver or on the IntersectionObserver firing.
+    onMenuChange = observeHeroAction;
     headerAction.addEventListener('blur', updateHeaderAction);
     if ('ResizeObserver' in window) new ResizeObserver(observeHeroAction).observe(header);
     else window.addEventListener('resize', observeHeroAction);
