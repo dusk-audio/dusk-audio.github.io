@@ -31,7 +31,7 @@ body_class: showcase-page studio-page
   <div class="container">
     <div class="section-intro">
       <h2 id="record-title">Record</h2>
-      <p>Record audio and MIDI on 24 tracks, with loop and punch recording. With MIDI Merge on, each pass of a loop adds its notes to the same region, and the piano roll shows them as you play. Turn on PRINT to record a track through its EQ, compressor, and insert, or leave it off to keep them adjustable.</p>
+      <p>Record audio and MIDI on 24 tracks, with loop and punch recording. With MIDI Merge on, each pass of a loop adds its notes to the same region, and the piano roll shows them as you play. On an empty audio track, turn on PRINT to record through its EQ, compressor, and insert, or leave it off to keep them adjustable. MIDI tracks, and audio tracks that already have a take, show FREEZE instead.</p>
     </div>
     {% comment %} The top left of the recording stage at full size. Labels are percentages of the
        801 × 169 px crop; measure again if the image changes. {% endcomment %}
@@ -39,7 +39,7 @@ body_class: showcase-page studio-page
       <p class="console-callouts console-callouts--above" aria-hidden="true">
         <span style="--from: 21.3%; --to: 35.7%">Record, loop, punch</span>
       </p>
-      {% include screenshot.html src='/assets/images/studio/recording-detail.webp' alt='The top left of the recording stage: the transport with its record, loop, and punch buttons, markers for the verse and chorus, and channel strips 1 to 5, each with its input and IN, ARM, and PRINT buttons, with track 1 armed' width=801 height=169 %}
+      {% include screenshot.html src='/assets/images/studio/recording-detail.webp' alt='The top left of the recording stage: the transport with its record, loop, and punch buttons, markers for the verse and chorus, and channel strips 1 to 5, each with its input and IN, ARM, and PRINT buttons, with track 1 armed and showing FREEZE because it already has a take' width=801 height=169 %}
       <p class="side-callouts" aria-hidden="true">
         <span style="--from: 30.2%; --to: 40.2%">Markers</span>
         <span style="--from: 66.9%; --to: 76.9%">Input</span>
