@@ -61,8 +61,7 @@ initial redesign rather than the superseding theme revision.
 Source visual truth: the selected art-direction mockup (option 1).
 
 Implementation: `http://127.0.0.1:4000/`, captured using local headless Google
-Chrome through Playwright. The in-app browser was unavailable; Marc explicitly
-approved this fallback. No personal browser profile was used.
+Chrome through Playwright. No personal browser profile was used.
 
 Source pixels: 1122 × 1402, normalized to 1440 × 1800 for comparison.
 Implementation pixels and CSS viewport: 1440 × 1800, deviceScaleFactor 1.
