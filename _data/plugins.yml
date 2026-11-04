@@ -164,6 +164,18 @@
   status: in-dev
   featured: false
   version: 1.0.0
+- name: Multi-Comp 2
+  slug: multi-comp-2
+  generation: current
+  display_order: 7
+  category: Dynamics
+  summary: Eight compression modes on hardware-style faces.
+  tagline: Multi-mode compressor with hardware-style faces
+  description: Opto, FET and VCA modes on hardware-style faceplates, each measured
+    against a reference unit, plus Bus, Studio FET, Studio VCA, Digital, and 4-band
+    Multiband modes. Ships alongside the original Multi-Comp.
+  status: in-dev
+  featured: false
 - name: Sunset Circuits
   slug: sunset-circuits
   generation: current
