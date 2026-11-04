@@ -1,0 +1,17 @@
+{% assign product = include.product %}
+{% assign page_url = '/plugins/' | append: product.slug | append: '/' | relative_url %}
+{% assign shot_path = '/assets/images/plugins/' | append: product.slug | append: '-screenshot.webp' %}
+{% assign shot = site.data.plugin_screenshots[product.slug].images | where: 'path', shot_path | first %}
+<li class="plugin-row">
+  <a class="plugin-row-shot" href="{{ page_url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ shot_path | relative_url }}" alt="" loading="lazy" decoding="async"{% if shot %} width="{{ shot.width }}" height="{{ shot.height }}"{% endif %}>
+  </a>
+  <div class="plugin-row-copy">
+    <h3><a href="{{ page_url }}">{{ product.name }}</a></h3>
+    <p>{{ product.summary | default: product.tagline }}</p>
+  </div>
+  <p class="plugin-row-download">
+    <a class="text-link" href="{{ site.releases_url }}/tag/{{ product.slug }}-v{{ product.version }}">Download<span class="visually-hidden"> {{ product.name }}</span></a>
+    <span>Version {{ product.version }}</span>
+  </p>
+</li>
