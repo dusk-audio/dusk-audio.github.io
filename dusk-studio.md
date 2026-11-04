@@ -11,7 +11,7 @@ body_class: showcase-page studio-page
   <div class="container">
     <h1 id="studio-title">Dusk Studio</h1>
     <p class="hero-description">A 24-track DAW laid out like a mixing console, with separate stages for recording, mixing, and mastering.</p>
-    <p>Built around rock and singer/songwriter sessions, with audio and MIDI tools for electronic producers, too.</p>
+    <p>Great for all genres.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#get">Get the beta</a>
       <a class="btn btn-secondary" href="#takes">How takes and comping work</a>
