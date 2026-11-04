@@ -10,14 +10,13 @@ layout: default
       <div class="plugin-header-content">
         <h1>{{ page.title }}</h1>
         <p class="plugin-tagline">{{ page.tagline }}</p>
-        {% if plugin_data.status == "released" %}
-        <span class="status-badge released">Available Now</span>
-        {% elsif plugin_data.status == "pre-release" %}
+        {% comment %} Released plugins need no badge: the Download button says it. {% endcomment %}
+        {% if plugin_data.status == "pre-release" %}
         <span class="status-badge pre-release">Pre-release</span>
         {% elsif plugin_data.status == "coming-soon" %}
-        <span class="status-badge coming-soon">Coming Soon</span>
-        {% else %}
-        <span class="status-badge in-dev">In Development</span>
+        <span class="status-badge coming-soon">Coming soon</span>
+        {% elsif plugin_data.status != "released" %}
+        <span class="status-badge in-dev">In development</span>
         {% endif %}
         <div class="cta-row">
           {% if plugin_data.status == 'released' or plugin_data.status == 'pre-release' %}<a class="btn btn-primary" href="#plugin-downloads">Download free</a>{% endif %}
@@ -29,9 +28,9 @@ layout: default
         <p><strong>Legacy collection.</strong> Bug fixes continue. New features and interface development focus on the current generation.</p>
         {% if plugin_data.successor %}
         {% assign successor = site.data.plugins | where: 'slug', plugin_data.successor | first %}
-        <a class="text-link" href="{{ '/plugins/' | append: successor.slug | append: '/' | relative_url }}">Explore {{ successor.name }}</a>
+        <a class="text-link" href="{{ '/plugins/' | append: successor.slug | append: '/' | relative_url }}">Current version: {{ successor.name }}</a>
         {% else %}
-        <a class="text-link" href="{{ '/plugins/' | relative_url }}">Explore current plugins</a>
+        <a class="text-link" href="{{ '/plugins/' | relative_url }}">Current plugins</a>
         {% endif %}
       </div>
       {% endif %}
@@ -138,7 +137,7 @@ layout: default
           <a href="{{ macos_download }}" class="btn btn-download">Download for macOS</a>
         </div>
 
-        <a href="{{ plugin_release_url }}" class="btn btn-secondary btn-full">All Downloads on GitHub</a>
+        <a href="{{ plugin_release_url }}" class="btn btn-secondary btn-full">All downloads on GitHub</a>
         <p class="download-follow">Hear about new versions: <a href="{{ site.patreon_url }}">follow Dusk Audio free on Patreon</a>.</p>
       </div>
 
@@ -150,13 +149,13 @@ layout: default
       <div class="info-box">
         <h3>Documentation</h3>
         <a href="{{ '/assets/manuals/' | append: page.slug | append: '-manual.pdf' | relative_url }}"
-           class="btn btn-download btn-full">User Manual (PDF)</a>
+           class="btn btn-download btn-full">User manual (PDF)</a>
         <a href="{{ '/assets/manuals/dusk-audio-manual.pdf' | relative_url }}"
-           class="btn btn-secondary btn-full">All Plugins Manual</a>
+           class="btn btn-secondary btn-full">Manual for all plugins</a>
       </div>
       {% else %}
       <div class="download-box coming-soon-box">
-        <h3>Coming Soon</h3>
+        <h3>Coming soon</h3>
         <p>This plugin is currently in development. Follow us for updates!</p>
         <a href="{{ site.patreon_url }}" class="btn btn-primary btn-full">Follow on Patreon</a>
       </div>
@@ -164,7 +163,7 @@ layout: default
 
       {% if page.requirements %}
       <div class="info-box">
-        <h3>System Requirements</h3>
+        <h3>System requirements</h3>
         <ul>
           {% for req in page.requirements %}
           <li>{{ req }}</li>
