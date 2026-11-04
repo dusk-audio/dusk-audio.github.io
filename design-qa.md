@@ -406,3 +406,23 @@ This is the second pass with the frontend-design skill. The first changed only w
   - No internal link or anchor is broken.
 
 Limitations: tested in Chromium only. The icon is a draft until Marc approves it.
+
+## Instrument counts — November 3, 2026
+
+The Instruments copy says "more than 100 free instruments". The count follows Dusk Studio 0.16's browse rules in `src/engine/sfz/SfzProvider.cpp`:
+
+- **SFZ Instruments:** 73. The org has 76 public repositories, minus three that the app can't download:
+  - `sfzinstruments.github.io` (the website);
+  - `sfztemplates`;
+  - `mappings` (SFZ files without samples).
+
+  Each of the 73 has `.sfz` files and audio samples in its git tree.
+- **FreePats:** 41. These are the repositories with a CC0 or CC BY licence, the only kinds the app offers. Of the user's 45, two GPL repositories and two without a licence are excluded.
+- **Versilian Studios:** 2 collections, VSCO 2 Community Edition and VCSL. The app installs their SFZ releases.
+- **Musical Artifacts:** not counted. Its API answered 403 to a scripted request. The 0.16 live validation (Dusk Studio, `docs/validation/0.16-sfz-live.json`) saw 6 eligible packs on its first page.
+
+That makes 116 downloadable packs from three sources, before Musical Artifacts. Most packs are one instrument; the Versilian collections hold dozens each. So "more than 100" understates the total.
+
+To refresh the count:
+- `gh api --paginate '/orgs/sfzinstruments/repos?type=public&per_page=100'`
+- `gh api --paginate '/users/freepats/repos?type=owner&per_page=100'`, filtered on `license.spdx_id`.

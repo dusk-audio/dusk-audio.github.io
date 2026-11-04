@@ -40,7 +40,7 @@ body_class: showcase-page home-page
     {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching four free sample libraries for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' width=1112 height=772 %}
     <div class="feature-copy">
       <h2 id="instruments-title">Play SFZ instruments and SoundFonts</h2>
-      <p>Search four free sample libraries from inside Dusk Studio, including VSCO 2 Community Edition, or open your own .sfz and .sf2 files. The sampler is built in.</p>
+      <p>Search more than 100 free instruments in four libraries from inside Dusk Studio, from the Salamander Grand Piano to the VSCO 2 chamber orchestra, or open your own .sfz and .sf2 files. The sampler is built in.</p>
       <a class="text-link" href="{{ '/dusk-studio/' | relative_url }}#instruments">How instruments work</a>
     </div>
   </div>
