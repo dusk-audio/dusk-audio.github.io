@@ -340,3 +340,36 @@ large pack download to look populated.
     broken internal links or anchors, and every image has a width and height.
 
 Limitations: Chromium only. How each social site displays the new cards was not tested.
+
+## Plainer headings and labels — November 3, 2026
+
+This pass follows Anthropic's frontend-design skill, now in `.claude/skills/frontend-design/`. The skill names these as the commonest signs of a generated page: all-caps labels, a label above every heading, "A · B · C" meta strings, and copy that sells instead of describing.
+
+- Labels:
+  - The tracked all-caps label above most headings is gone. Before this pass there were 9 on Home, 6 on Dusk Studio and 16 on Plugins.
+  - Two labels stay, in sentence case, because they carry information:
+    - each plugin card's category;
+    - the Dusk Studio release that has takes: "Available in the Dusk Studio 0.16.0 beta", or "Coming in Dusk Studio <version>" while that release is upcoming.
+  - The Dusk Studio page shows its release label only while a release is upcoming.
+  - Removed badges:
+    - "Available now" on released plugin pages;
+    - the per-row "In development" badge on the Plugins page, whose section heading already says it.
+  - Now in sentence case: status badges, footer headings, platform headings in the download box, table headers, and the "Live sound" category.
+- Middle-dot strings are now sentences. The home hero's side note is gone, and its platform list moved into the hero text.
+- Headings:
+  - Headings are plain statements, not two-part slogans, and have no closing full stop.
+  - The Dusk Studio sections are named as in its section menu: Record, Takes and comping, Mix, Master, Get the beta.
+  - The new headings are working drafts.
+- Links:
+  - No link says "Explore X".
+  - Plugin cards link from the plugin's name and image, and keep their Download link.
+  - Other links say where they go, for example "How takes and comping work", "All plugins" and "Current version: TapeMachine 2".
+  - The sidebar buttons are in sentence case.
+- Headings use `text-wrap: balance` in place of hand-placed line breaks.
+- Checked against the previous build at 1440 and 390 pixels, on Home, Dusk Studio, Plugins, Sunset Circuits and TapeMachine:
+  - Nothing overflows horizontally.
+  - The pages are shorter. Home at 1440 px went from 6,786 px to 6,539 px.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass.
+  - No internal link or anchor is broken. There are 17 fewer internal links, all of them "Explore X" card links.
+
+Limitations: tested in Chromium only, and only the five pages above were captured. The About page, the Support page and plugin body copy are unchanged.

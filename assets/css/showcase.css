@@ -66,10 +66,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .home-page .takes-preview h2 { font-size: clamp(2.5rem, 3.8vw, 3.5rem); }
 .home-page .takes-preview .feature-split { grid-template-columns: 1fr 1fr; align-items: start; }
 .hero-intro { display: flex; align-items: center; justify-content: space-between; gap: 40px; margin-bottom: 16px; }
-.showcase-hero h1 { font-size: clamp(3.4rem, 7.2vw, 6.5rem); line-height: .96; letter-spacing: -.025em; margin: 0 0 14px; }
+.showcase-hero h1 { font-size: clamp(3.4rem, 7.2vw, 6.5rem); line-height: .96; letter-spacing: -.025em; margin: 0 0 14px; text-wrap: balance; }
 .home-page .hero-description { margin-bottom: 10px; }
 .hero-description { font-size: clamp(1.08rem, 2vw, 1.5rem); line-height: 1.45; max-width: 46ch; color: var(--color-text-light); }
-.hero-aside { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--color-primary); line-height: 2; padding-right: 26px; }
 .cta-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 20px; margin-bottom: 0; }
 .btn { font-family: var(--font-sans); font-size: .95rem; font-weight: 600; text-transform: none; letter-spacing: 0; padding: 12px 22px; border-radius: 3px; box-shadow: none; line-height: 1.5; }
 .btn-primary, .btn-download { background: #e0b576; color: #171816; border-color: #e0b576; }
@@ -77,13 +76,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .btn-secondary { color: var(--color-text); background: transparent; border: 1px solid var(--color-text-muted); }
 .btn-secondary:hover { background: var(--color-bg-alt); color: var(--color-text); border-color: var(--color-text); transform: none; }
 .hero-meta { color: var(--color-text-light); font-size: .87rem; margin: 24px 0; }
-.eyebrow { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--color-primary); margin-bottom: 14px; }
+/* Short labels that carry information (a plugin's category, which Dusk Studio release has a
+   feature), in sentence case. */
+.eyebrow { font-family: var(--font-sans); font-size: .9rem; font-weight: 600; color: var(--color-primary); margin-bottom: 14px; }
 .product-figure { margin: 0; min-width: 0; }
 .product-figure img { width: 100%; height: auto; border-radius: 5px; }
 .product-figure figcaption { margin-top: 12px; color: var(--color-text-muted); font-size: .8rem; }
 .screenshot-link { display: block; cursor: zoom-in; border-radius: 5px; }
 .showcase-section { padding-block: clamp(52px, 6vw, 88px); }
-.showcase-section h2 { font-size: clamp(2.5rem, 4.1vw, 3.8rem); line-height: 1.06; letter-spacing: -.018em; margin-bottom: 22px; }
+.showcase-section h2 { font-size: clamp(2.5rem, 4.1vw, 3.8rem); line-height: 1.06; letter-spacing: -.018em; margin-bottom: 22px; text-wrap: balance; }
 .feature-split { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: clamp(30px, 5vw, 76px); }
 .feature-split--image-first { grid-template-columns: 1.35fr .85fr; }
 .feature-copy { min-width: 0; }
@@ -103,7 +104,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .product-card-shot { display: flex; align-items: center; justify-content: center; padding: 20px; background: #20211e; border-radius: 5px; aspect-ratio: 1.8; }
 .product-card-shot img { width: 100%; height: 100%; object-fit: contain; }
 .product-card-copy { padding-top: 22px; display: flex; flex-direction: column; flex: 1; }
-.product-card-copy .eyebrow { margin-bottom: 7px; font-size: .7rem; }
+.product-card-copy .eyebrow { margin-bottom: 7px; font-size: .85rem; }
 .product-card-copy h3 { margin-bottom: 8px; font-size: 1.65rem; }
 .product-card-copy h3 a { color: var(--color-text); }
 .product-card-copy > p:not(.eyebrow) { color: var(--color-text-light); max-width: 50ch; }
@@ -148,7 +149,9 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
 .development-list li { display: grid; grid-template-columns: 180px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-top: 1px solid var(--color-border); }
 .development-list h3 { font-size: 1.05rem; margin: 0; }
 .development-list p { margin: 0; font-size: .95rem; color: var(--color-text-light); }
-.status-badge { font-family: var(--font-sans); font-size: .68rem; letter-spacing: .04em; }
+/* style.css sets these labels in tracked capitals; here they stay in sentence case. */
+.status-badge { font-family: var(--font-sans); font-size: .8rem; letter-spacing: 0; text-transform: none; }
+.download-section h4, main th { letter-spacing: 0; text-transform: none; }
 .status-badge.in-dev { color: var(--color-text-muted); background: var(--color-bg-dark); }
 .status-badge.released { color: #b4d9b9; background: #24362b; }
 .status-badge.pre-release { color: #edc590; background: #352d20; }
@@ -206,7 +209,7 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
 .site-footer { background: var(--color-bg-alt); color: var(--color-text); border-top: 1px solid var(--color-border); padding-block: 50px 24px; }
 .footer-brand p, .footer-bottom, .footer-column a { color: var(--color-text-light); }
 .footer-logo { font-family: var(--font-sans); font-weight: 700; font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase; }
-.footer-column h2 { font-family: var(--font-sans); font-size: .75rem; font-weight: 600; letter-spacing: .08em; }
+.footer-column h2 { font-family: var(--font-sans); font-size: .9rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
 .footer-bottom { border-color: var(--color-border); }
 .screenshot-dialog { background: #171816; border: 1px solid #72746b; border-radius: 5px; padding: 18px; width: min(96vw, 1800px); max-width: 96vw; max-height: 94vh; color: #faf8f3; }
 .screenshot-dialog::backdrop { background: rgba(0, 0, 0, .88); }
@@ -216,7 +219,6 @@ summary { cursor: pointer; font-weight: 600; padding: 20px 0; }
 .screenshot-dialog img { max-height: calc(94vh - 110px); width: 100%; height: auto; object-fit: contain; }
 @media (min-width: 1600px) { .showcase-hero h1 { font-size: 6.5rem; } }
 @media (max-width: 1000px) {
-  .hero-aside { display: none; }
   .feature-split, .feature-split--image-first { gap: 30px; }
   .legacy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

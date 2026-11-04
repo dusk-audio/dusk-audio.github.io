@@ -9,15 +9,14 @@ body_class: showcase-page studio-page
 
 <section class="showcase-hero dark-surface" aria-labelledby="studio-title">
   <div class="container">
-    <p class="eyebrow">Dusk Studio · Desktop portastudio</p>
-    <h1 id="studio-title">Your music.<br>Your whole studio.</h1>
-    <p class="hero-description">24 tracks. A hands-on console. Recording, mixing,<br class="desktop-break"> and mastering in one focused place.</p>
+    <h1 id="studio-title">Dusk Studio</h1>
+    <p class="hero-description">A 24-track portastudio for your computer, with a hands-on console for recording, mixing, and mastering.</p>
     <p>Built around rock and singer/songwriter sessions, with audio and MIDI tools for electronic producers, too.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#get">Get Dusk Studio beta</a>
-      <a class="btn btn-secondary" href="#takes">Explore takes and comping</a>
+      <a class="btn btn-primary" href="#get">Get the beta</a>
+      <a class="btn btn-secondary" href="#takes">How takes and comping work</a>
     </div>
-    <p class="hero-meta">Linux · macOS · Windows &nbsp; / &nbsp; Open source &nbsp; / &nbsp; {% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta</p>
+    <p class="hero-meta">Version {% if site.data.studio.release_status == 'released' %}{{ site.data.studio.version }}{% else %}{{ site.data.studio.published_version }}{% endif %} beta, for Linux, macOS, and Windows. Open source under GPL-3.0.</p>
     {% include screenshot.html src='/assets/images/studio/console.webp' alt='Dusk Studio playing a multitrack mix with active channel, bus, and stereo master meters' eager=true width=2560 height=1080 %}
   </div>
 </section>
@@ -31,14 +30,13 @@ body_class: showcase-page studio-page
 <section class="showcase-section" id="record" aria-labelledby="record-title">
   <div class="container">
     <div class="section-intro">
-      <p class="eyebrow">01 / Record</p>
-      <h2 id="record-title">Give your ideas a home.</h2>
+      <h2 id="record-title">Record</h2>
       <p>Record audio and MIDI across 24 tracks. Loop and punch recording keep the focus on the performance. With MIDI Merge, each loop pass adds to the same region, and the piano roll shows the notes as you play.</p>
     </div>
     {% include screenshot.html src='/assets/images/studio/recording.webp' alt='Dusk Studio recording console with track inputs, record-arm controls, and channel strips' caption='The recording stage: inputs, record controls, and a familiar console.' width=2560 height=1080 %}
     <div class="feature-split supporting-feature">
       <div class="feature-copy">
-        <h3>Start with a sound.</h3>
+        <h3>Instruments and effects included</h3>
         <p>The built-in Sunset instrument brings six synth personalities into your session. Add tape, delay, and reverb using built-in units, or load your own plugins.</p>
       </div>
       {% include screenshot.html src='/assets/images/studio/instrument.webp' alt='The built-in Sunset synthesizer interface with oscillator, filter, envelope, and sequencer controls' width=1240 height=780 %}
@@ -46,7 +44,7 @@ body_class: showcase-page studio-page
     <div class="feature-split feature-split--image-first supporting-feature">
       {% include screenshot.html src='/assets/images/studio/sfz-online.webp' alt='The SFZ Manager searching all four repositories for orchestra, with VSCO 2 Community Edition selected and its CC0 license shown' width=1112 height=772 %}
       <div class="feature-copy">
-        <h3>Find free instruments.</h3>
+        <h3>Online SFZ libraries</h3>
         <p>Browse SFZ Instruments, Musical Artifacts, FreePats, and Versilian Studios without leaving Dusk Studio. Each pack shows its license before you download it, and your sessions find the same pack on another computer.</p>
       </div>
     </div>
@@ -56,8 +54,8 @@ body_class: showcase-page studio-page
 <section class="showcase-section dark-surface" id="takes" aria-labelledby="comp-title">
   <div class="container">
     <div class="section-intro">
-      <p class="eyebrow">02 / Refine · {% include studio-release-label.html %}</p>
-      <h2 id="comp-title">Keep every take.<br>Build your best performance.</h2>
+      {% if site.data.studio.release_status != 'released' %}<p class="eyebrow">{% include studio-release-label.html %}</p>{% endif %}
+      <h2 id="comp-title">Takes and comping</h2>
       <p>Every recording pass stays whole on its track. Open the take lanes, audition a performance, and choose the sections that feel right. Hear edits as you make them, while playback continues.</p>
     </div>
     {% include screenshot.html src='/assets/images/studio/takes.webp' alt='The audio editor showing three colored take lanes and a performance assembled from sections of all three' caption='Selected sections stay bright. Each take remains available beneath your comp.' width=1294 height=1030 %}
@@ -73,8 +71,7 @@ body_class: showcase-page studio-page
 <section class="showcase-section" id="mix" aria-labelledby="mix-title">
   <div class="container feature-split">
     <div class="feature-copy">
-      <p class="eyebrow">03 / Mix</p>
-      <h2 id="mix-title">A console you<br>can settle into.</h2>
+      <h2 id="mix-title">Mix</h2>
       <p>EQ, compression, sends, and faders where you expect them. A fixed signal chain and one insert per channel keep the workflow purposeful. Bring your own VST3, LV2, AU, or CLAP plugins on supported platforms.</p>
       <p>Use three banks of eight with a control surface, and shape the mix through the buses and master channel.</p>
     </div>
@@ -85,8 +82,7 @@ body_class: showcase-page studio-page
 <section class="showcase-section dark-surface" id="master" aria-labelledby="master-title">
   <div class="container">
     <div class="section-intro">
-      <p class="eyebrow">04 / Master</p>
-      <h2 id="master-title">Finish the song.<br>Stay in the studio.</h2>
+      <h2 id="master-title">Master</h2>
       <p>Move straight from your mix to a dedicated mastering stage. Shape the balance with EQ, control dynamics with multiband compression, and finish with true-peak limiting and loudness metering. Phase analysis checks mono compatibility band by band, and the Mono monitor lets you hear the fold-down while exports stay stereo.</p>
     </div>
     {% include screenshot.html src='/assets/images/studio/mastering.webp' alt='Dusk Studio mastering stage with waveform, five-band EQ, multiband compressor, true-peak limiter, loudness metering, and phase analysis' caption='Mastering EQ, multiband dynamics, limiting, and phase analysis in a single stage.' width=1424 height=1120 %}
@@ -97,8 +93,7 @@ body_class: showcase-page studio-page
   <div class="container">
     {% include signup-prompt.html %}
     <div class="section-intro">
-      <p class="eyebrow">Start making music</p>
-      <h2 id="get-title">Get Dusk Studio beta.</h2>
+      <h2 id="get-title">Get the beta</h2>
       <p>Official beta builds are available through Patreon from $5/month. The source is open under GPL-3.0 and free to build yourself.</p>
     </div>
     <div class="beta-options">
@@ -110,7 +105,7 @@ body_class: showcase-page studio-page
       </div>
       <div>
         <h3>Build from source</h3>
-        <p>Explore the code, build the application, and help shape its development. The source remains available for free.</p>
+        <p>Read the code, build it yourself, and contribute on GitHub. The source remains available for free.</p>
         <a class="btn btn-secondary" href="{{ site.data.studio.source_url }}">Source on GitHub</a>
         <a class="text-link member-link" href="{{ site.data.studio.manual_url }}">Read the user manual</a>
       </div>
@@ -121,7 +116,7 @@ body_class: showcase-page studio-page
 
 <section class="showcase-section studio-details" aria-labelledby="details-title">
   <div class="container reading-width">
-    <h2 id="details-title">Before you get started.</h2>
+    <h2 id="details-title">Before you install</h2>
     <details id="requirements">
       <summary>System requirements</summary>
       <div class="details-body">

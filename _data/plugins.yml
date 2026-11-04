@@ -209,7 +209,7 @@
   slug: ring-out
   generation: current
   display_order: 7
-  category: Live Sound
+  category: Live sound
   summary: Feedback eliminator for live audio, from wedges and in-ears to the PA.
   tagline: Feedback eliminator for live audio
   description: Finds the frequencies that ring and notches them out. Arm SETUP
