@@ -260,3 +260,11 @@ ring-out:
     width: 960
     height: 600
     sha256: 91e1b78e61e8777df2984a9543c3119c2b62cd9a0fcbc10617e3cae5813fa7d4
+multi-comp-2:
+  # In development: a pre-release capture, not a published binary. Add version,
+  # captured, platform, format and release when Multi-Comp 2 ships.
+  images:
+  - path: /assets/images/plugins/multi-comp-2-screenshot.webp
+    width: 2240
+    height: 760
+    sha256: 1fd7cfc4e265c03dc7621705b1a85561e439a4bde179ac8e0a8caa725c35837c
