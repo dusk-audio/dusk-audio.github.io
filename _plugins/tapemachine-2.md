@@ -2,7 +2,7 @@
 layout: plugin
 title: TapeMachine 2
 slug: tapemachine-2
-tagline: Two-Machine Analog Tape Emulation
+tagline: Two-machine analog tape emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.11"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.webp

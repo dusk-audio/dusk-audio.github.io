@@ -2,7 +2,7 @@
 layout: plugin
 title: DuskVerb
 slug: duskverb
-tagline: Professional Algorithmic Reverb
+tagline: Algorithmic reverb with 12 engines
 description: "Algorithmic reverb with twelve selectable DSP engines: Plate, Vintage Plate, Smooth Plate, Chamber, Spring, Gated, Shimmer, Reverse, Hall, Tiled Room, Dense Hall, and Parallel Hall. Tone, Character, and Duck macro shapers, 20 hardware-inspired factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS."
 version: "0.7.3"
 screenshot: /assets/images/plugins/DuskVerb-Shimmer.webp

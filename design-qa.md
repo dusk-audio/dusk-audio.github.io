@@ -425,3 +425,45 @@ That makes 116 downloadable packs from three sources, before Musical Artifacts. 
 To refresh the count:
 - `gh api --paginate '/orgs/sfzinstruments/repos?type=public&per_page=100'`
 - `gh api --paginate '/users/freepats/repos?type=owner&per_page=100'`, filtered on `license.spdx_id`.
+
+## Fewer template patterns — November 4, 2026
+
+Below the hero the site still read as a template. Labels were fixed on November 3; what
+remained was structural: every section built the same way (heading, grey paragraph, amber
+link, screenshot swapping sides), rows of equal feature columns, a grid of identical plugin
+cards, a signup prompt three times per page, and the Studio page showing the console twice in
+a row.
+
+- Footer: only the copyright line remains. About: one section removed at Marc's request.
+- Home:
+  - The mid-page signup band and the four-column "One stage at a time" row are gone. The
+    stages are now a sentence in the DP-24 story, where the idea comes from.
+  - The Sunset Circuits spotlight and the card grid became one plugin list: thumbnail, name,
+    one line, download link and version. Sunset Circuits no longer appears twice.
+- Dusk Studio:
+  - Record shows a full-size crop of the recording stage (`recording-detail.webp`) labelled
+    "Record, loop, punch", "Markers", "Input" and "Monitor, arm, print", instead of a second
+    full console.
+  - Mix shows the channel strip at its real 155 px, instead of stretched to 240 px, labelled
+    down its side with the manual's names for its parts. Its copy names the parts and the insert
+    slot's plugin formats, and starts at the top of the strip.
+  - The three-column rows under Instruments and Takes became sentences in the section text.
+  - The signup band above "Get the beta" became one inline link in that section's text.
+  - "Before you install" lines up with the other sections instead of centering.
+- Plugins:
+  - The current and legacy collections use the same list; legacy rows are compact.
+  - Plugin pages keep their feature lists, which carry most of the detail on Ring Out and
+    DuskVerb 2, as plain bullets instead of check marks.
+  - Taglines are in sentence case, without "Professional". Four summaries now give facts
+    from the plugins' descriptions instead of "character and movement" and the like.
+- Copy: removed "keep the workflow purposeful", "a familiar console", "The constraints are
+  intentional", "Always free. No trials, accounts, or feature locks." and "Follow us for
+  updates!". About and 404 no longer say "portastudio-style".
+- Checked at 1440, 390 and 320 px on Home, Dusk Studio, Plugins and Ring Out:
+  - Nothing overflows horizontally. The side labels hide below 640 px on the Record crop and
+    below 340 px on the channel strip.
+  - The strict build, `git diff --check` and `check-downloads.sh` pass.
+  - No internal link or anchor is broken.
+
+Limitations: tested in Chromium only. The home story and the new section text are drafts for
+Marc to rewrite.

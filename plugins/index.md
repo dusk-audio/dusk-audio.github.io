@@ -9,7 +9,7 @@ body_class: showcase-page plugins-page
 <section class="showcase-hero collection-hero">
   <div class="container">
     <h1>Free plugins</h1>
-    <p class="hero-description">Instruments and effects for Linux, macOS, and Windows.<br>Always free. No trials, accounts, or feature locks.</p>
+    <p class="hero-description">Instruments and effects for Linux, macOS, and Windows, free and open source.</p>
     <nav class="collection-nav" aria-label="Plugin collections">
       <a href="#current">Current plugins</a>
       <a href="#legacy">Legacy collection</a>
@@ -24,13 +24,13 @@ body_class: showcase-page plugins-page
       <h2 id="current-title">Current plugins</h2>
       <p>The newest Dusk Audio plugins, built on the Dusk Audio Framework (DAF). They get new features as well as bug fixes.</p>
     </div>
-    <div class="product-grid">
+    <ul class="plugin-list">
       {% assign released = site.data.plugins | where: 'status', 'released' %}
       {% assign prerelease = site.data.plugins | where: 'status', 'pre-release' %}
       {% assign available = released | concat: prerelease %}
       {% assign current = available | where: 'generation', 'current' | sort: 'display_order' %}
-      {% for product in current %}{% include product-card.html product=product %}{% endfor %}
-    </div>
+      {% for product in current %}{% include plugin-row.html product=product %}{% endfor %}
+    </ul>
   </div>
 </section>
 
@@ -41,10 +41,10 @@ body_class: showcase-page plugins-page
       <p>The original JUCE-based Dusk Audio plugins remain free to download. Bug fixes continue; new features and interface development focus on the current generation.</p>
       <p class="fine-print">For existing projects, keep the version they were created with. Successor plugins are separate products; preset and session compatibility varies by plugin.</p>
     </div>
-    <div class="product-grid legacy-grid">
+    <ul class="plugin-list plugin-list--compact">
       {% assign legacy = available | where: 'generation', 'legacy' | sort: 'display_order' %}
-      {% for product in legacy %}{% include product-card.html product=product %}{% endfor %}
-    </div>
+      {% for product in legacy %}{% include plugin-row.html product=product %}{% endfor %}
+    </ul>
   </div>
 </section>
 

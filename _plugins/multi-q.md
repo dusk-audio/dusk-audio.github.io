@@ -2,7 +2,7 @@
 layout: plugin
 title: Multi-Q
 slug: multi-q
-tagline: "Universal EQ: Digital, British Console, and Tube"
+tagline: Digital, British console, and tube EQ in one plugin
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
 version: "0.10.9"
 screenshot: /assets/images/plugins/multi-q-digital.webp

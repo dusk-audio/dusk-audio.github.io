@@ -98,7 +98,7 @@ The website uses real application captures, converted to lossless WebP in
 | Website asset | Dusk Studio capture |
 | --- | --- |
 | `console.webp` | `full-mix-playing.png` |
-| `recording.webp` | `qg-04-record-rolling.png` |
+| `recording-detail.webp` | `qg-04-record-rolling.png`, top left at full size |
 | `takes.webp` | `docs/images/ed-06-take-lanes.png` |
 | `mastering.webp` | `np-08-mastering-view.png` |
 | `instrument.webp` | `bi-05-sunset.png` |
@@ -106,7 +106,10 @@ The website uses real application captures, converted to lossless WebP in
 | `sfz-online.webp` | SFZ Manager, Online tab, captured by hand |
 
 Console, recording, instrument, and channel images were recaptured from the 0.15
-development binary. The takes image is the documentation capture from the 0.16.0
+development binary. `recording-detail.webp` is the top left (x 6–807, y 42–211) of that
+2560×1080 recording-stage capture, shown at its real size with labels. The full capture was
+retired on November 4, 2026: the hero already shows the whole console, and the capture had a
+tooltip in its menu row. The takes image is the documentation capture from the 0.16.0
 tag, chosen for its readable portrait layout.
 
 The mastering and SFZ Manager images come from the official 0.16.0 Linux x86_64
