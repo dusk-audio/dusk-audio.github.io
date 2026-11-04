@@ -55,6 +55,34 @@
     window.matchMedia('(min-width: 769px)').addEventListener('change', closeNavigation);
   }
 
+  // On phones, the sticky action takes over once the hero action leaves view.
+  // Visibility preserves the header's layout; without observer support both links remain.
+  var heroAction = document.querySelector('.hero-access .btn-primary');
+  var headerAction = document.querySelector('.beta-nav');
+  var header = document.querySelector('.site-header');
+  if (heroAction && headerAction && header && 'IntersectionObserver' in window) {
+    var actionObserver;
+    function updateHeaderAction() {
+      var bounds = heroAction.getBoundingClientRect();
+      var heroVisible = bounds.bottom > header.getBoundingClientRect().bottom && bounds.top < window.innerHeight;
+      var menuOpen = toggle && toggle.getAttribute('aria-expanded') === 'true';
+      // Never hide a focused link or the menu's primary action.
+      headerAction.classList.toggle('hero-action-visible', heroVisible && !menuOpen && document.activeElement !== headerAction);
+    }
+    function observeHeroAction() {
+      if (actionObserver) actionObserver.disconnect();
+      actionObserver = new IntersectionObserver(updateHeaderAction, {
+        rootMargin: '-' + Math.ceil(header.getBoundingClientRect().height) + 'px 0px 0px 0px'
+      });
+      actionObserver.observe(heroAction);
+      updateHeaderAction();
+    }
+    observeHeroAction();
+    headerAction.addEventListener('blur', updateHeaderAction);
+    if ('ResizeObserver' in window) new ResizeObserver(observeHeroAction).observe(header);
+    else window.addEventListener('resize', observeHeroAction);
+  }
+
   document.querySelectorAll('.plugin-main table, main pre').forEach(function (element) {
     element.tabIndex = 0;
   });
@@ -80,7 +108,8 @@
       event.preventDefault();
       lastTrigger = link;
       enlarged.src = link.href;
-      enlarged.alt = link.querySelector('img').alt;
+      var image = link.querySelector('img');
+      enlarged.alt = image ? image.alt : link.getAttribute('data-screenshot-alt') || '';
       dialog.showModal();
     });
   });

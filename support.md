@@ -18,7 +18,7 @@ If these plugins help your music, consider giving back!
   </div>
   <div class="support-option">
     <h2>Ko-fi</h2>
-    <p>Can't commit monthly? Leave a one-time tip. Every bit helps, though builds and credits come with a Patreon membership.</p>
+    <p>Can't commit monthly? Leave a one&#8209;time tip. Every bit helps, though builds and credits come with a Patreon membership.</p>
     <a href="{{ site.kofi_url }}" class="btn btn-secondary btn-lg">Tip on Ko-fi</a>
   </div>
 </div>

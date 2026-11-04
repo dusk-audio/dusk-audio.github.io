@@ -24,7 +24,7 @@ body_class: showcase-page plugins-page
       <h2 id="current-title">Current plugins</h2>
       <p>The newest Dusk Audio plugins, built on the Dusk Audio Framework (DAF). They get new features as well as bug fixes.</p>
     </div>
-    <ul class="plugin-list">
+    <ul class="plugin-list plugin-list--showcase">
       {% assign released = site.data.plugins | where: 'status', 'released' %}
       {% assign prerelease = site.data.plugins | where: 'status', 'pre-release' %}
       {% assign available = released | concat: prerelease %}
