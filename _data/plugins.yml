@@ -171,9 +171,10 @@
   category: Dynamics
   summary: Eight compression modes on hardware-style faces.
   tagline: Multi-mode compressor with hardware-style faces
-  description: Opto, FET and VCA modes on hardware-style faceplates, each measured
-    against a reference unit, plus Bus, Studio FET, Studio VCA, Digital, and 4-band
-    Multiband modes. Ships alongside the original Multi-Comp.
+  description: Eight compression modes, each with its own face. Opto, FET Black,
+    FET Blue, VCA, Bus, and Studio VCA are matched to measurements of reference
+    units; Digital and 4-band Multiband are our own designs. Ships alongside the
+    original Multi-Comp. Completely free.
   status: in-dev
   featured: false
 - name: Sunset Circuits
