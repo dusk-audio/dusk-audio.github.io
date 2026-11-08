@@ -164,6 +164,7 @@
   status: released
   featured: true
   version: 1.0.1
+  released: "2026-11-22"
 - name: Multi-Comp 2
   slug: multi-comp-2
   generation: current
