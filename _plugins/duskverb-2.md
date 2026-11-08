@@ -3,29 +3,29 @@ layout: plugin
 title: DuskVerb 2
 slug: duskverb-2
 published: false
-tagline: Algorithmic reverb with a redesigned interface
-description: The original DuskVerb reverb engines in a redesigned, resizable interface, with A/B comparison, user presets, import of original DuskVerb presets, and mono, mono-to-stereo, and stereo routing. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
+tagline: Algorithmic reverb with 24 factory sounds
+description: DuskVerb reverb engines, a nonlinear burst engine and updated voicing in a redesigned, resizable interface, with A/B comparison, user presets, import of original DuskVerb presets, and mono, mono-to-stereo, and stereo routing. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
 version: "1.0.0"
 screenshot: /assets/images/plugins/duskverb-2-screenshot.webp
 
 features:
-  - The original DuskVerb reverb engines, selectable from the Engine menu
-  - 20 factory presets covering plates, halls, chambers, rooms, gated, reverse, and shimmer spaces
-  - Sound matches the original DuskVerb preset for preset
-  - Central Decay and Size controls with an output history display
+  - DuskVerb reverb engines plus a nonlinear burst engine, selectable from the Engine menu
+  - 24 factory presets covering plates, halls, chambers, rooms, gated, reverse, shimmer and nonlinear sounds
+  - Updated early reflections, spectral shaping and stereo voicing
+  - Graphite faceplate with an amber engine, decay and output-history display
   - Pre-delay with host tempo sync
   - "Filter section: Low Cut, High Cut, and Mono Below for the low end"
   - "Damping across three bands with two adjustable crossovers"
   - Early reflections with level, size, and diffusion
   - Modulation depth and rate
   - "Tone, Character, and Duck macros"
-  - Freeze, plus a Gate switch on the gated engine
-  - Bus mode for a fully wet return
+  - Freeze on supported engines, plus a Gate switch on the gated engine
+  - Bus mode for a fully wet return; Mix Lock preserves routing while auditioning presets
   - A/B comparison with copy between slots
   - User presets, and import of original DuskVerb preset files
   - "Mono, mono-to-stereo, and stereo operation"
   - Input and output level meters
-  - Typed value entry on every control
+  - Typed value entry on knobs and numeric readouts
   - Resizable interface
   - Full automation support
 
@@ -44,11 +44,12 @@ requirements:
 
 changelog:
   - version: "1.0.0"
-    date: "2026-10-05"
+    date: "2026-11-08"
     changes:
       - "First release of DuskVerb 2: the DuskVerb reverb engines in a redesigned, resizable interface"
-      - "All 20 factory presets and 92 parameters carried over; the sound matches DuskVerb 0.7.3"
+      - "24 factory presets, 92 parameters, a nonlinear engine and updated DuskVerb 2 voicing"
       - "Imports presets saved from the original DuskVerb"
+      - "Consistent VST3 identity across systems and host tail reporting that follows Freeze"
       - "Mono, mono-to-stereo and stereo layouts"
       - "AU, VST3, CLAP and LV2 for Linux (x64, arm64), Windows and macOS (universal)"
 ---
