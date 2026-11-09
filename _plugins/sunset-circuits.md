@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.8"
+version: "1.0.9"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.webp
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.webp
@@ -59,6 +59,18 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.9"
+    date: "2026-11-09"
+    changes:
+      - "Held notes keep sounding when the arpeggiator or step sequencer is switched on or off, or the engine changes: keys and pedal-held notes carry over, and Mono takes the last key pressed"
+      - "Legato fixed: a note ties only to one still held, glides only when it ties, and at full gate the arpeggiator's steps tie in every engine"
+      - "The arpeggiator plays again when switched back on over a held key, and keeps playing when a unison change takes its voice"
+      - "A note-off for a key that was not held no longer adds a note under the sustain pedal"
+      - "Latency is 13 samples at every oversampling setting, and switching oversampling is a short fade with no click"
+      - "Hardware controller pages for CLAP hosts such as Bitwig Studio: ten pages laid out for playing, with Mode and Oversampling kept off the knobs"
+      - "In VST3 the arpeggiator keeps time in 7/8 and other odd bar lengths, and very short bars such as 3/16 no longer crash the host"
+      - "Cosmos uses about a third less CPU, with exactly the same sound"
+      - "Filter and envelope graphs no longer overlap the Cosmos panel titles"
   - version: "1.0.8"
     date: "2026-11-08"
     changes:
