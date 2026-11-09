@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  // Reuse one MailerLite form: duplicate embed IDs and callbacks break subscription state.
+  // Reuse one signup form: a second copy would duplicate its ids and its Turnstile widget.
   var newsletter = document.querySelector('.newsletter-dialog');
   var newsletterContent = document.getElementById('newsletter-content');
   if (newsletter && newsletterContent && typeof newsletter.showModal === 'function') {
@@ -12,8 +12,9 @@
         event.preventDefault();
         signupTrigger = link;
         newsletter.querySelector('#newsletter-dialog-slot').appendChild(newsletterContent);
-        if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
         newsletter.showModal();
+        // After showModal: the widget sizes itself to the open dialog.
+        if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
         var success = newsletterContent.querySelector('.row-success');
         if (success.style.display === 'block') success.focus();
         else newsletterContent.querySelector('input[type="email"]').focus();
@@ -22,15 +23,7 @@
     newsletter.addEventListener('click', function (event) {
       if (event.target === newsletter) newsletter.close();
     });
-    document.addEventListener('keydown', function (event) {
-      // A modal dialog closes on Escape by itself; the non-modal fallback does not.
-      if (event.key === 'Escape' && newsletter.open && !newsletter.matches(':modal')) newsletter.close();
-    });
     newsletter.addEventListener('close', function () {
-      // email-capture.html reopens the dialog non-modally when a reCAPTCHA challenge appears; the
-      // close event of that switch arrives once the dialog is already open again.
-      if (newsletter.open) return;
-      newsletter.classList.remove('is-floating');
       newsletterHome.appendChild(newsletterContent);
       if (window.duskNewsletterCaptcha) window.duskNewsletterCaptcha.rerender();
       if (signupTrigger) signupTrigger.focus();
@@ -38,10 +31,13 @@
   }
   var toggle = document.querySelector('.nav-toggle');
   var navigation = document.querySelector('.nav-links');
+  // Set below to re-place the header action whenever the menu opens or closes.
+  var onMenuChange = function () {};
   function closeNavigation() {
     if (!toggle || !navigation) return;
     toggle.setAttribute('aria-expanded', 'false');
     navigation.classList.remove('open');
+    onMenuChange();
   }
   if (toggle && navigation) {
     document.documentElement.classList.add('navigation-ready');
@@ -49,6 +45,7 @@
       var open = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(open));
       navigation.classList.toggle('open', open);
+      onMenuChange();
     });
     navigation.addEventListener('click', function (event) {
       if (event.target.closest('a')) closeNavigation();
@@ -60,6 +57,37 @@
       }
     });
     window.matchMedia('(min-width: 769px)').addEventListener('change', closeNavigation);
+  }
+
+  // On phones, the sticky action takes over once the hero action leaves view.
+  // Visibility preserves the header's layout; without observer support both links remain.
+  var heroAction = document.querySelector('.hero-access .btn-primary');
+  var headerAction = document.querySelector('.beta-nav');
+  var header = document.querySelector('.site-header');
+  if (heroAction && headerAction && header && 'IntersectionObserver' in window) {
+    var actionObserver;
+    function updateHeaderAction() {
+      var bounds = heroAction.getBoundingClientRect();
+      var heroVisible = bounds.bottom > header.getBoundingClientRect().bottom && bounds.top < window.innerHeight;
+      var menuOpen = toggle && toggle.getAttribute('aria-expanded') === 'true';
+      // Never hide a focused link or the menu's primary action.
+      headerAction.classList.toggle('hero-action-visible', heroVisible && !menuOpen && document.activeElement !== headerAction);
+    }
+    function observeHeroAction() {
+      if (actionObserver) actionObserver.disconnect();
+      actionObserver = new IntersectionObserver(updateHeaderAction, {
+        rootMargin: '-' + Math.ceil(header.getBoundingClientRect().height) + 'px 0px 0px 0px'
+      });
+      actionObserver.observe(heroAction);
+      updateHeaderAction();
+    }
+    observeHeroAction();
+    // The menu changes the header's height, so re-measure it too; this doesn't rely on
+    // ResizeObserver or on the IntersectionObserver firing.
+    onMenuChange = observeHeroAction;
+    headerAction.addEventListener('blur', updateHeaderAction);
+    if ('ResizeObserver' in window) new ResizeObserver(observeHeroAction).observe(header);
+    else window.addEventListener('resize', observeHeroAction);
   }
 
   document.querySelectorAll('.plugin-main table, main pre').forEach(function (element) {
@@ -87,7 +115,8 @@
       event.preventDefault();
       lastTrigger = link;
       enlarged.src = link.href;
-      enlarged.alt = link.querySelector('img').alt;
+      var image = link.querySelector('img');
+      enlarged.alt = image ? image.alt : link.getAttribute('data-screenshot-alt') || '';
       dialog.showModal();
     });
   });

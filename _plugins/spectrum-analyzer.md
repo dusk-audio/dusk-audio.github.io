@@ -2,10 +2,10 @@
 layout: plugin
 title: Spectrum Analyzer
 slug: spectrum-analyzer
-tagline: Professional FFT spectrum analyzer with LUFS metering
+tagline: FFT spectrum analyzer with LUFS metering
 description: Real-time FFT spectrum analyzer with LUFS loudness metering, true peak detection, stereo correlation, and K-System support. Free VST3, LV2, and AU plugin.
 version: "1.0.2"
-screenshot: /assets/images/plugins/spectrum-analyzer-screenshot.png
+screenshot: /assets/images/plugins/spectrum-analyzer-screenshot.webp
 
 features:
   - Real-time FFT spectrum display (2048/4096/8192 resolution)

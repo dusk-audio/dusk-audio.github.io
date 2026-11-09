@@ -4,28 +4,28 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.7"
-screenshot: /assets/images/plugins/sunset-circuits-cosmos.png
+version: "1.0.9"
+screenshot: /assets/images/plugins/sunset-circuits-cosmos.webp
 gallery:
-  - src: /assets/images/plugins/sunset-circuits-cosmos.png
+  - src: /assets/images/plugins/sunset-circuits-cosmos.webp
     alt: "Sunset Circuits Cosmos panel, a six-voice DCO poly synth with the bucket-brigade chorus section"
     caption: "Cosmos: six-voice DCO poly with the bucket-brigade chorus"
-  - src: /assets/images/plugins/sunset-circuits-oracle.png
+  - src: /assets/images/plugins/sunset-circuits-oracle.webp
     alt: "Sunset Circuits Oracle panel, a five-voice analog poly synth with poly-modulation routing"
     caption: "Oracle: five-voice analog poly with poly-modulation routing"
-  - src: /assets/images/plugins/sunset-circuits-mono.png
+  - src: /assets/images/plugins/sunset-circuits-mono.webp
     alt: "Sunset Circuits Mono panel, a two-oscillator lead voice with ring modulation and hard sync"
     caption: "Mono: aggressive two-oscillator lead voice with ring mod and hard sync"
-  - src: /assets/images/plugins/sunset-circuits-modular.png
+  - src: /assets/images/plugins/sunset-circuits-modular.webp
     alt: "Sunset Circuits Modular panel, a semi-modular with three oscillators, ladder filter, sample and hold, and spring tank"
     caption: "Modular: three oscillators, ladder filter, sample and hold, spring tank"
-  - src: /assets/images/plugins/sunset-circuits-prism.png
+  - src: /assets/images/plugins/sunset-circuits-prism.webp
     alt: "Sunset Circuits Prism panel, a four-operator FM engine with eight algorithms and per-operator envelopes"
     caption: "Prism: four-operator FM with eight algorithms and per-operator envelopes"
-  - src: /assets/images/plugins/sunset-circuits-acid.png
+  - src: /assets/images/plugins/sunset-circuits-acid.webp
     alt: "Sunset Circuits Acid panel, a single-oscillator bass box with a sixteen-step pattern sequencer"
     caption: "Acid: single-oscillator bass box with a sixteen-step pattern sequencer"
-  - src: /assets/images/plugins/sunset-circuits-browser.png
+  - src: /assets/images/plugins/sunset-circuits-browser.webp
     alt: "Sunset Circuits preset browser, showing search, mode chips, and bank filters"
     caption: "The preset browser, with search, mode chips, and bank filters"
 
@@ -59,6 +59,27 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.9"
+    date: "2026-11-09"
+    changes:
+      - "Held notes keep sounding when the arpeggiator or step sequencer is switched on or off, or the engine changes: keys and pedal-held notes carry over, and Mono takes the last key pressed"
+      - "Legato fixed: a note ties only to one still held, glides only when it ties, and at full gate the arpeggiator's steps tie in every engine"
+      - "The arpeggiator plays again when switched back on over a held key, and keeps playing when a unison change takes its voice"
+      - "A note-off for a key that was not held no longer adds a note under the sustain pedal"
+      - "Latency is 13 samples at every oversampling setting, and switching oversampling is a short fade with no click"
+      - "Hardware controller pages for CLAP hosts such as Bitwig Studio: ten pages laid out for playing, with Mode and Oversampling kept off the knobs"
+      - "In VST3 the arpeggiator keeps time in 7/8 and other odd bar lengths, and very short bars such as 3/16 no longer crash the host"
+      - "Cosmos uses about a third less CPU, with exactly the same sound"
+      - "Filter and envelope graphs no longer overlap the Cosmos panel titles"
+  - version: "1.0.8"
+    date: "2026-11-08"
+    changes:
+      - "Cosmos mode recalibrated: oscillator mix, sub oscillator tracking, white noise, resonant filter and stereo chorus"
+      - "Cosmos mode has its own color scheme"
+      - "FM depth sounds the same at every sample rate"
+      - "Synced sample-and-hold starts fresh on each new note instead of holding an old value"
+      - "Editor fields and sequencer controls line up at every editor size"
+      - "Reopening the editor no longer undoes edits made after a MIDI program change"
   - version: "1.0.7"
     date: "2026-09-06"
     changes:

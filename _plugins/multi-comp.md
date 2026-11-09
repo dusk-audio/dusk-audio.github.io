@@ -5,7 +5,7 @@ slug: multi-comp
 tagline: Multi-mode dynamics compressor
 description: Professional multi-mode compressor with 7 compression styles plus 4-band multiband compression. Free VST3, LV2, and AU plugin for Linux, Windows, and macOS.
 version: "1.3.9"
-screenshot: /assets/images/plugins/multi-comp-screenshot.png
+screenshot: /assets/images/plugins/multi-comp-screenshot.webp
 
 features:
   - 8 compression modes (Vintage Opto, Vintage FET, Classic VCA, Bus, Studio FET, Studio VCA, Digital, Multiband)
@@ -151,7 +151,7 @@ From smooth optical compression to aggressive FET limiting, and from precise dig
 
 ### Vintage Opto
 
-![Vintage Opto mode](/assets/images/plugins/multi-comp/vintage-opto.png)
+![Vintage Opto mode](/assets/images/plugins/multi-comp/vintage-opto.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Classic 1960s tube optical leveling amplifier. This design defined the sound of smooth, musical compression and remains a studio standard for vocals and bass.
 
@@ -163,7 +163,7 @@ Classic 1960s tube optical leveling amplifier. This design defined the sound of 
 
 ### Vintage FET
 
-![Vintage FET mode](/assets/images/plugins/multi-comp/vintage-fet.png)
+![Vintage FET mode](/assets/images/plugins/multi-comp/vintage-fet.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Classic late-1960s FET limiting amplifier. All-discrete Class A design known for its aggressive, punchy character and ultra-fast response.
 
@@ -174,7 +174,7 @@ Classic late-1960s FET limiting amplifier. All-discrete Class A design known for
 
 ### Classic VCA
 
-![Classic VCA mode](/assets/images/plugins/multi-comp/classic-vca.png)
+![Classic VCA mode](/assets/images/plugins/multi-comp/classic-vca.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Punchy, aggressive 1970s VCA compressor with soft-knee compression. A studio workhorse for drums and percussive sources.
 
@@ -185,7 +185,7 @@ Punchy, aggressive 1970s VCA compressor with soft-knee compression. A studio wor
 
 ### Bus Compressor
 
-![Bus Compressor mode](/assets/images/plugins/multi-comp/bus-compressor.png)
+![Bus Compressor mode](/assets/images/plugins/multi-comp/bus-compressor.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 The quintessential British console bus compressor. Found on virtually every major mixing console, it's the secret weapon for mix bus "glue."
 
@@ -196,7 +196,7 @@ The quintessential British console bus compressor. Found on virtually every majo
 
 ### Studio FET
 
-![Studio FET mode](/assets/images/plugins/multi-comp/studio-fet.png)
+![Studio FET mode](/assets/images/plugins/multi-comp/studio-fet.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Later revision FET limiter, offering a cleaner, more refined sound while retaining the fast FET response.
 
@@ -207,7 +207,7 @@ Later revision FET limiter, offering a cleaner, more refined sound while retaini
 
 ### Studio VCA
 
-![Studio VCA mode](/assets/images/plugins/multi-comp/studio-vca.png)
+![Studio VCA mode](/assets/images/plugins/multi-comp/studio-vca.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Modern British dual VCA compressor known for its clean, musical compression. A favorite for vocals and mix bus applications where transparency is key.
 
@@ -218,7 +218,7 @@ Modern British dual VCA compressor known for its clean, musical compression. A f
 
 ### Digital
 
-![Digital mode](/assets/images/plugins/multi-comp/digital.png)
+![Digital mode](/assets/images/plugins/multi-comp/digital.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Transparent, mathematically precise digital compression with zero coloration. When you need surgical dynamics control without any hardware character.
 
@@ -229,7 +229,7 @@ Transparent, mathematically precise digital compression with zero coloration. Wh
 
 ### Multiband
 
-![Multiband mode](/assets/images/plugins/multi-comp/multiband.png)
+![Multiband mode](/assets/images/plugins/multi-comp/multiband.webp){: width="1419" height="947" loading="lazy" decoding="async"}
 
 Professional 4-band multiband compressor with Linkwitz-Riley crossovers for phase-coherent band splitting.
 

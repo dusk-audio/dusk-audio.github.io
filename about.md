@@ -24,9 +24,20 @@ While all plugins are cross-platform, Dusk Audio is built with the **Linux audio
 
 Linux users have long been underserved by plugin developers. Many commercial plugins don't support Linux at all, and even some free plugins skip the platform. Every Dusk Audio plugin ships with Linux builds (VST3 and LV2) alongside Windows and macOS versions.
 
-## Dusk Studio
+## Why I built Dusk Studio
+{: #dusk-studio-story}
 
-Alongside the plugins, I'm building [Dusk Studio]({{ '/dusk-studio/' | relative_url }}): a deliberately constrained, portastudio-style DAW with 24 tracks, a fixed signal chain, and mastering built in. It runs on the same DSP heritage as the plugins, so what you learn in one carries over to the other.
+In December 2025, my Tascam DP-24 died.
+
+That machine helped me get things done. Not because it was powerful, but because it wasn't. No infinite plugin chains, no unlimited tracks, no menus buried inside menus (well, a few). Just the basics to record, mix, and master a song. Those limitations made me actually finish songs instead of tweaking them forever.
+
+When I sit in front of a modern DAW, I often record a guitar track, then play with plugins for an hour and get nothing accomplished. If you're like me and struggle with option paralysis, or have ADHD, I'm sure you can relate.
+
+When the DP-24 gave out, I went looking for software that felt the same way. Nothing did. Every DAW out there wants to be everything at once. So I started building the one I actually wanted: [Dusk Studio]({{ '/dusk-studio/' | relative_url }}), a portastudio styled DAW with modern DSP and functionality.
+
+The whole thing comes down to one question: will this keep me focused and force me to finish a song? If the answer is no, it doesn't get built. That's why every track has the same fixed channel strip with a single insert slot, and why recording, mixing, and mastering each get their own stage.
+
+Dusk Studio runs on the same DSP heritage as the plugins, so what you learn in one carries over to the other.
 
 Dusk Studio is open source under GPL-3.0 and currently in beta. Official beta builds are available through Patreon; you can also build from source for free. A purchase option is planned for 1.0, with pricing and release timing to be announced. The plugins will remain free.
 

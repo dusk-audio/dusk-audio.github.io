@@ -1,4 +1,6 @@
 # Native captures of the published release binaries. Update alongside product releases.
+# The files are lossless WebP, pixel-identical to the PNG captures; sha256 is of the WebP file.
+# Templates read each image's width and height from here.
 tapemachine-2:
   version: 1.0.11
   captured: '2026-10-05'
@@ -6,14 +8,14 @@ tapemachine-2:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/tapemachine-2-v1.0.11
   images:
-  - path: /assets/images/plugins/tapemachine-2-screenshot.png
+  - path: /assets/images/plugins/tapemachine-2-screenshot.webp
     width: 1200
     height: 705
-    sha256: f3848da1b129fe5887137f6e318124faf17c9b491a3bdeefc410f723cb429845
-  - path: /assets/images/plugins/tapemachine-2-calibration.png
+    sha256: 9bdabd8ae977f9281e942f89a3727e365de6a174394c7ee1516010a1267c6d20
+  - path: /assets/images/plugins/tapemachine-2-calibration.webp
     width: 1200
     height: 705
-    sha256: 7bfec753ebd3fcff05033c6d6aef81fa1bc0f08322b29e75823bc3e9775c7933
+    sha256: 240e51239c70021790e9f8b064df5187f576afb6829ce1894e290654a4c98c84
 4k-eq-2:
   version: 1.0.5
   captured: '2026-10-05'
@@ -21,10 +23,10 @@ tapemachine-2:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/4k-eq-2-v1.0.5
   images:
-  - path: /assets/images/plugins/4k-eq-2-screenshot.png
+  - path: /assets/images/plugins/4k-eq-2-screenshot.webp
     width: 1440
     height: 960
-    sha256: 9a55e06c438b6cb221a906d725ae3725c7e3bf2816d442476f8cccb46e41082a
+    sha256: 20435d80d4d0beaa4ef0149a821154f47ba39ecb5c1fd30ed263460927b16555
 sunset-circuits:
   version: 1.0.7
   captured: '2026-10-05'
@@ -32,38 +34,38 @@ sunset-circuits:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/sunset-circuits-v1.0.7
   images:
-  - path: /assets/images/plugins/sunset-circuits-screenshot.png
+  - path: /assets/images/plugins/sunset-circuits-screenshot.webp
     width: 1240
     height: 780
-    sha256: 5899d7f103d6e305f592aa88fd570c51a8892955af80bf4088d90cfda1fc9571
-  - path: /assets/images/plugins/sunset-circuits-cosmos.png
+    sha256: 4c57c5beb5b7651f4f2b596d0e3d01603f523bb44efa97a0055e60c4a2070b46
+  - path: /assets/images/plugins/sunset-circuits-cosmos.webp
     width: 1240
     height: 780
-    sha256: 5899d7f103d6e305f592aa88fd570c51a8892955af80bf4088d90cfda1fc9571
-  - path: /assets/images/plugins/sunset-circuits-oracle.png
+    sha256: 4c57c5beb5b7651f4f2b596d0e3d01603f523bb44efa97a0055e60c4a2070b46
+  - path: /assets/images/plugins/sunset-circuits-oracle.webp
     width: 1240
     height: 780
-    sha256: da48eb2ed7903c7e9d93bed9345fb20fde3eb76a8c9823798a5f2fa1b3320299
-  - path: /assets/images/plugins/sunset-circuits-mono.png
+    sha256: 66a540a1f3af20c5cd1e0e88e4013654cc89a4b91b5cc5165f0edbdb1ceec691
+  - path: /assets/images/plugins/sunset-circuits-mono.webp
     width: 1240
     height: 780
-    sha256: 52ebdbaadd0351e15016f8998e7fe322ca6f028b1f38fd337f6d4f4b043254cb
-  - path: /assets/images/plugins/sunset-circuits-modular.png
+    sha256: 502ad4aa223d240118f18edb64d6f2cecca904df7fd59379b952a5182dc87186
+  - path: /assets/images/plugins/sunset-circuits-modular.webp
     width: 1240
     height: 780
-    sha256: 181c96b1845fb5e33fe22a258c9e073304f0790926a0b14b861614d0ef0e6503
-  - path: /assets/images/plugins/sunset-circuits-prism.png
+    sha256: fa743f98fd54f734e6bdcb52162d832762e8e5edfd58e7bd1abb3d9ca99aef66
+  - path: /assets/images/plugins/sunset-circuits-prism.webp
     width: 1240
     height: 780
-    sha256: 3d84fc8d6682408f67711af586dea1a62790b0d0933e2158e38a1701920bd330
-  - path: /assets/images/plugins/sunset-circuits-acid.png
+    sha256: 46ba2e72bf95ffc5211d53f094afecb16605219ce7e6522c3578c5e04fe1f694
+  - path: /assets/images/plugins/sunset-circuits-acid.webp
     width: 1240
     height: 780
-    sha256: 4b0b900eebfd7c40871708a2324f57351c795f82c7e778a39e201c45fdbc78ee
-  - path: /assets/images/plugins/sunset-circuits-browser.png
+    sha256: 4114e3ba2d0fb60467fc15e27e8738c2ecf2b6dd11f9d638d46eba24899d4cde
+  - path: /assets/images/plugins/sunset-circuits-browser.webp
     width: 1240
     height: 780
-    sha256: a1a6c09bb6ce24e083337cc4958274b1425d20f05d5e5d61044510a8c67b2e61
+    sha256: 441ac39172b3edcb2d8be053b7b0122712a6d5ad237946faf6d53d5223cd06ce
 tape-echo-2:
   version: 1.0.7
   captured: '2026-10-05'
@@ -71,10 +73,10 @@ tape-echo-2:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/tape-echo-2-v1.0.7
   images:
-  - path: /assets/images/plugins/tape-echo-2-screenshot.png
+  - path: /assets/images/plugins/tape-echo-2-screenshot.webp
     width: 1350
     height: 510
-    sha256: 454f3449f55d30a259133640f70eeaa32567f979e1d43e62bf988ae8a05c7851
+    sha256: 41b54c0ac6c0e0850ad384164f9feca118f885fee2419baeca7f293e255ce90a
 4k-eq:
   version: 1.0.12
   captured: '2026-10-05'
@@ -82,10 +84,10 @@ tape-echo-2:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/4k-eq-v1.0.12
   images:
-  - path: /assets/images/plugins/4k-eq-screenshot.png
+  - path: /assets/images/plugins/4k-eq-screenshot.webp
     width: 1494
     height: 993
-    sha256: ef5abf49702a1217631bfd0ceeba3cf257da75301ca6858654faf023a52f0a26
+    sha256: eccbc5ebc723e023aff8859bef35182e62b5d91f19076c36020513255833f1a3
 multi-comp:
   version: 1.3.8
   captured: '2026-10-05'
@@ -93,42 +95,42 @@ multi-comp:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/multi-comp-v1.3.8
   images:
-  - path: /assets/images/plugins/multi-comp-screenshot.png
+  - path: /assets/images/plugins/multi-comp-screenshot.webp
     width: 1419
     height: 947
-    sha256: 9aa20ef93a5ca55bb84e94f22a712f865d5dd82b2923d0220fd6d4ac288fbe5f
-  - path: /assets/images/plugins/multi-comp/vintage-opto.png
+    sha256: c5551f8aee61ff95e9ce6d5663c8f894867548afd60dbdd6ad14b9f2cd86d7ad
+  - path: /assets/images/plugins/multi-comp/vintage-opto.webp
     width: 1419
     height: 947
-    sha256: 08bdf740993203022c28d7a47a94cfbba55d5541808259e6b3d9422e07024fdf
-  - path: /assets/images/plugins/multi-comp/vintage-fet.png
+    sha256: 5e326ba49d4fd2f38bf0585ee191bfd3f5097d8703b07d178bd66f63cec687d1
+  - path: /assets/images/plugins/multi-comp/vintage-fet.webp
     width: 1419
     height: 947
-    sha256: b6e47160f4708295beee9f9b6081e93ae9c5e39d4dc5ee2b1dff8eee3a6a35ce
-  - path: /assets/images/plugins/multi-comp/classic-vca.png
+    sha256: 8911a32228539bc0c37dc311b3826954cf26c995a022f0a99252791238a98fae
+  - path: /assets/images/plugins/multi-comp/classic-vca.webp
     width: 1419
     height: 947
-    sha256: 3c320e8dfe9769740ae8cda2cf5d1f7581e0ad6cccbe67f08c70de2897a80c14
-  - path: /assets/images/plugins/multi-comp/bus-compressor.png
+    sha256: 10597e9e3e1f747b021b7ccd8c2a725a2e81b88712192b2891f846893371db64
+  - path: /assets/images/plugins/multi-comp/bus-compressor.webp
     width: 1419
     height: 947
-    sha256: 2dd2ec3c58fb7c0e24a8a34616e45f3f48124c17a759acb7cf68a8e113910d6a
-  - path: /assets/images/plugins/multi-comp/studio-fet.png
+    sha256: 11c6f0f9675f341870b674b73bf60461271b1f3f50b3db82a2c00b0132f6299c
+  - path: /assets/images/plugins/multi-comp/studio-fet.webp
     width: 1419
     height: 947
-    sha256: dd70ba54d4b48e410ec3d95964277cfba40b877eec3e23d8ad8dfdf853889a5b
-  - path: /assets/images/plugins/multi-comp/studio-vca.png
+    sha256: 71be41248d83cdb374238d20d0084caf9bd5e49b2c7886fef55d2245a48163cf
+  - path: /assets/images/plugins/multi-comp/studio-vca.webp
     width: 1419
     height: 947
-    sha256: 4602ca56f3114ce665a06b73fa6d9a1755740c94ca94984d392a064646c06427
-  - path: /assets/images/plugins/multi-comp/digital.png
+    sha256: 81b4d098b3e4eb3b720228424f538429b9ce9771c1485ed270373023b2492763
+  - path: /assets/images/plugins/multi-comp/digital.webp
     width: 1419
     height: 947
-    sha256: de95308d36d7b2950ced9517c40375c0ae268ea06859a26e86fc4d4013809550
-  - path: /assets/images/plugins/multi-comp/multiband.png
+    sha256: 57b1f33c12ae49fb7bc4eeac200f983dae991e97869b28623a8925915da919e6
+  - path: /assets/images/plugins/multi-comp/multiband.webp
     width: 1419
     height: 947
-    sha256: c95eeaa986d6610eaf66ac81af8f8c4f9fbded733a0c227221d12e84732319df
+    sha256: ecfcc17d11ac07d4ad828c9d8942a7f7ff8c677d8cfd575fc7d8a90c124b48a1
 spectrum-analyzer:
   version: 1.0.2
   captured: '2026-10-05'
@@ -136,10 +138,10 @@ spectrum-analyzer:
   format: LV2
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/spectrum-analyzer-v1.0.2
   images:
-  - path: /assets/images/plugins/spectrum-analyzer-screenshot.png
+  - path: /assets/images/plugins/spectrum-analyzer-screenshot.webp
     width: 1637
     height: 933
-    sha256: 47a25ca84d9982f1491860e43a37e2b561c27f8a9dd52adb0798532e828135a2
+    sha256: 99248b0d4d3cc06b104880f2a609563389999a8fe2822fb852fb4814ad02db46
 chord-analyzer:
   version: 1.3.0
   captured: '2026-10-05'
@@ -147,10 +149,10 @@ chord-analyzer:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/chord-analyzer-v1.3.0
   images:
-  - path: /assets/images/plugins/chord-analyzer-screenshot.png
+  - path: /assets/images/plugins/chord-analyzer-screenshot.webp
     width: 1200
     height: 870
-    sha256: f8537cf9cdc496de8299dfacb166a200519294136a2e3469a9024d9551fadaa1
+    sha256: f38b84512e99e269ece9750f3e6790647830597fb441416295031f9d5452fa26
 tapemachine:
   version: 1.0.10
   captured: '2026-10-05'
@@ -158,10 +160,10 @@ tapemachine:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/tapemachine-v1.0.10
   images:
-  - path: /assets/images/plugins/tapemachine-screenshot.png
+  - path: /assets/images/plugins/tapemachine-screenshot.webp
     width: 1200
     height: 870
-    sha256: 4edd123d60069b925aa6a809ca335bf8530211a9bff37c66f2c586c07b70dab4
+    sha256: f45b4d96e97644843fdff70524b8b77934bbf1b0de513ccff50b940633563619
 multi-q:
   version: 0.10.9
   captured: '2026-10-05'
@@ -169,22 +171,22 @@ multi-q:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/multi-q-v0.10.9
   images:
-  - path: /assets/images/plugins/multi-q-screenshot.png
+  - path: /assets/images/plugins/multi-q-screenshot.webp
     width: 1575
     height: 1125
-    sha256: 39890f92fc9a01e24205840934f05da20376f759ba47957e64edb21527f05a93
-  - path: /assets/images/plugins/multi-q-digital.png
+    sha256: 3410bd5b45cc354bbc1857accad33b6f0383a15fa1c1ca1c3b8cda4a74f87da5
+  - path: /assets/images/plugins/multi-q-digital.webp
     width: 1575
     height: 1125
-    sha256: 39890f92fc9a01e24205840934f05da20376f759ba47957e64edb21527f05a93
-  - path: /assets/images/plugins/multi-q-british.png
+    sha256: 3410bd5b45cc354bbc1857accad33b6f0383a15fa1c1ca1c3b8cda4a74f87da5
+  - path: /assets/images/plugins/multi-q-british.webp
     width: 1575
     height: 1125
-    sha256: 4b192868153b74077957add6211a76370ff3b1c99bb12de206c80dcd16919d79
-  - path: /assets/images/plugins/multi-q-tube.png
+    sha256: ce122555c364c3c6cd3dc163f80d5efad6b4640cd79dddfce222b1007221d164
+  - path: /assets/images/plugins/multi-q-tube.webp
     width: 1575
     height: 1125
-    sha256: 889a2260498103d4f0a181f3468cf73e23a299bc01b6ced015743dd8e0da89a1
+    sha256: 814ab97e4ab88153d15e6e5d11d026e6b51b20ee3c993866aba790a710c12f59
 duskverb:
   version: 0.7.3
   captured: '2026-10-05'
@@ -192,58 +194,58 @@ duskverb:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/duskverb-v0.7.3
   images:
-  - path: /assets/images/plugins/duskverb-screenshot.png
+  - path: /assets/images/plugins/duskverb-screenshot.webp
     width: 1470
     height: 798
-    sha256: f993cc4f07e383435dbc289eeabe3ace3aa2af4d9afdd5501cff6d014a2930c1
-  - path: /assets/images/plugins/DuskVerb-Plate.png
+    sha256: aed19d76a434a025ba8d3f78421fd980babf9758865867f81ec055ebd59948aa
+  - path: /assets/images/plugins/DuskVerb-Plate.webp
     width: 1470
     height: 798
-    sha256: 409ca94a7c61f881f612325bb198d907fc16eb5db5c85abc430ca8176070d1aa
-  - path: /assets/images/plugins/DuskVerb-VintagePlate.png
+    sha256: 7c1ddcc95392818e947767b2aaf105a82450a8f3352267becf9cab9fb1ec1505
+  - path: /assets/images/plugins/DuskVerb-VintagePlate.webp
     width: 1470
     height: 798
-    sha256: 98263dc6061a8f23b1dc619771b99f322c5622dce9c4a12701cc97f73faf8b8c
-  - path: /assets/images/plugins/DuskVerb-SmoothPlate.png
+    sha256: b88a2ec5bbd898cca488db8ddf13d378b32a12fc025af5e594a63d98d38dafc5
+  - path: /assets/images/plugins/DuskVerb-SmoothPlate.webp
     width: 1470
     height: 798
-    sha256: 5e95e6766ae7ba390597e33bed5159bc569bf9ab8bb14d2c983c9c2de1514410
-  - path: /assets/images/plugins/DuskVerb-Chamber.png
+    sha256: 792b2a617b814209cd4203f138edc6915ca1a2e276511aaa52bc85ddde1b7edf
+  - path: /assets/images/plugins/DuskVerb-Chamber.webp
     width: 1470
     height: 798
-    sha256: 97a2d19843552f737cd724321055925eff04c9379a00388e0e28616fe95f0527
-  - path: /assets/images/plugins/DuskVerb-Spring.png
+    sha256: 82ac7b5c32e7d6360d3fec3a9e019a3d687e0c9673baceaf502a8c359be32c59
+  - path: /assets/images/plugins/DuskVerb-Spring.webp
     width: 1470
     height: 798
-    sha256: 98f10203393780af8d589a3a29db450276b79280c5f9fd2e6089325981ffdaf2
-  - path: /assets/images/plugins/DuskVerb-Gated.png
+    sha256: 098348d10b08a9d28e245f50698691c124afcadeab57ba092d227de7bd260ab2
+  - path: /assets/images/plugins/DuskVerb-Gated.webp
     width: 1470
     height: 798
-    sha256: b877d6a85aa33701d6a52660d90f2fa91f5e482ec409218ac676432bdb1211f5
-  - path: /assets/images/plugins/DuskVerb-Shimmer.png
+    sha256: 482cc5bfc70928bceca04c0eac41582128fb3661b0a6a072a9be5ad92e2377ee
+  - path: /assets/images/plugins/DuskVerb-Shimmer.webp
     width: 1470
     height: 798
-    sha256: f993cc4f07e383435dbc289eeabe3ace3aa2af4d9afdd5501cff6d014a2930c1
-  - path: /assets/images/plugins/DuskVerb-Reverse.png
+    sha256: aed19d76a434a025ba8d3f78421fd980babf9758865867f81ec055ebd59948aa
+  - path: /assets/images/plugins/DuskVerb-Reverse.webp
     width: 1470
     height: 798
-    sha256: 1530975e226d18815d307eb6c6bea896c122a374abfb70c077a8b085ae5d19e1
-  - path: /assets/images/plugins/DuskVerb-Hall.png
+    sha256: d0a12a46fdb257aded1e45fd64c1bdcae1d47fca5ce24118dc81d697c7c4e62c
+  - path: /assets/images/plugins/DuskVerb-Hall.webp
     width: 1470
     height: 798
-    sha256: e0b8ad32b0f2beeabd3a7972267999ec9f8d86e0a86c95a0244632fc3badd1b6
-  - path: /assets/images/plugins/DuskVerb-TiledRoom.png
+    sha256: 80d8b8495dae11f05424b74ec75ad93fb56e4bf441b83fa0e53f13f56460d447
+  - path: /assets/images/plugins/DuskVerb-TiledRoom.webp
     width: 1470
     height: 798
-    sha256: c0956eb79397bcba10b261f95b310aba98ef4bf9fe663bdff3b2ae1f0294d6c4
-  - path: /assets/images/plugins/DuskVerb-DenseHall.png
+    sha256: 23f49a71abcb646047e54b25801e03cec1599ba4bbf79554dfc0dcdfba513670
+  - path: /assets/images/plugins/DuskVerb-DenseHall.webp
     width: 1470
     height: 798
-    sha256: cf1c8a1e3d47cf5f99b0ee99585889c427fcd0f0e6d5fcf1797b9ba8b2a3bbe1
-  - path: /assets/images/plugins/DuskVerb-ParallelHall.png
+    sha256: 5e67ff99de4390c9980fd954ce7fd3ab501ca6ea6a0f58752aea3868f1c08df3
+  - path: /assets/images/plugins/DuskVerb-ParallelHall.webp
     width: 1470
     height: 798
-    sha256: 0e2a3a4799a9c49c19e5e98df5c7619bdb71eacc70924f265528f96ade1afcce
+    sha256: 00a9c77b6b1ce9013780afa7a75b63546023a25ee1d3d1fa6bd5be9a429df28a
 ring-out:
   # Captured before the release from a local build of the v1.0.0 source (same
   # commit the tag builds), not the published binary. Replace with a capture of
@@ -254,7 +256,15 @@ ring-out:
   format: CLAP
   release: https://github.com/dusk-audio/dusk-audio-plugins/releases/tag/ring-out-v1.0.0
   images:
-  - path: /assets/images/plugins/ring-out-screenshot.png
+  - path: /assets/images/plugins/ring-out-screenshot.webp
     width: 960
     height: 600
-    sha256: 61c0d08fcdb575b2b18de9b6443ceaaeed0c57d6d1cf9cb15387c6b7fce8a57d
+    sha256: 91e1b78e61e8777df2984a9543c3119c2b62cd9a0fcbc10617e3cae5813fa7d4
+multi-comp-2:
+  # In development: a pre-release capture, not a published binary. Add version,
+  # captured, platform, format and release when Multi-Comp 2 ships.
+  images:
+  - path: /assets/images/plugins/multi-comp-2-screenshot.webp
+    width: 2240
+    height: 760
+    sha256: b03997e7f319162bc70aae946914eff67fd83e907991966d19489fbbe7a06ee4

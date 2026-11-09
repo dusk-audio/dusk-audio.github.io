@@ -2,46 +2,46 @@
 layout: plugin
 title: DuskVerb
 slug: duskverb
-tagline: Professional Algorithmic Reverb
+tagline: Algorithmic reverb with 12 engines
 description: "Algorithmic reverb with twelve selectable DSP engines: Plate, Vintage Plate, Smooth Plate, Chamber, Spring, Gated, Shimmer, Reverse, Hall, Tiled Room, Dense Hall, and Parallel Hall. Tone, Character, and Duck macro shapers, 20 hardware-inspired factory presets, random-walk modulation, freeze. Free VST3, LV2, AU, and CLAP plugin for Linux, Windows, and macOS."
 version: "0.7.3"
-screenshot: /assets/images/plugins/DuskVerb-Shimmer.png
+screenshot: /assets/images/plugins/DuskVerb-Shimmer.webp
 
 gallery:
-  - src: /assets/images/plugins/DuskVerb-Shimmer.png
+  - src: /assets/images/plugins/DuskVerb-Shimmer.webp
     alt: "DuskVerb Shimmer engine, an 8-channel Hadamard FDN with an in-loop granular pitch shifter"
     caption: "Shimmer: 8-channel Hadamard FDN with an in-loop granular pitch shifter for octave-up shimmer reverbs. Overhauled in 0.6.0 with a post-loop HF air voice and down-octave lows (Deep Blue Day, Black Hole)."
-  - src: /assets/images/plugins/DuskVerb-Hall.png
+  - src: /assets/images/plugins/DuskVerb-Hall.webp
     alt: "DuskVerb Hall engine, a feedback delay network with a per-octave graphic EQ in the loop"
     caption: "Hall: Feedback delay network with a per-octave GEQ in the loop for honest, independent per-band RT60 and smooth, non-metallic tails."
-  - src: /assets/images/plugins/DuskVerb-DenseHall.png
+  - src: /assets/images/plugins/DuskVerb-DenseHall.webp
     alt: "DuskVerb Dense Hall engine, a heavily diffused 8-line FDN for thick concert tails"
     caption: "Dense Hall: Heavily diffused 8-line FDN for a thick, smooth, lush concert tail. Powers the factory hall presets (Bright Hall, Cathedral Large Hall, Blade Runner 224)."
-  - src: /assets/images/plugins/DuskVerb-TiledRoom.png
+  - src: /assets/images/plugins/DuskVerb-TiledRoom.webp
     alt: "DuskVerb Tiled Room engine, a sparse tapped early-reflection front into a short dark FDN tail"
     caption: "Tiled Room: Sparse tapped early-reflection front welded to a short, dark FDN tail. Tight ceramic room character."
-  - src: /assets/images/plugins/DuskVerb-Reverse.png
+  - src: /assets/images/plugins/DuskVerb-Reverse.webp
     alt: "DuskVerb Reverse engine, a rising-gain early-reflection onset into a dark modulated FDN tail"
     caption: "Reverse: Rising-gain early-reflection onset into a dark modulated FDN tail. Swells up into the transient for risers and vintage reverse effects."
-  - src: /assets/images/plugins/DuskVerb-Plate.png
+  - src: /assets/images/plugins/DuskVerb-Plate.webp
     alt: "DuskVerb Plate engine, a 2-allpass cross-coupled plate on the Dattorro topology"
     caption: "Plate: 2-AP cross-coupled plate on the Dattorro topology. Bright, dense, smooth. The classic vocal-plate sound."
-  - src: /assets/images/plugins/DuskVerb-VintagePlate.png
+  - src: /assets/images/plugins/DuskVerb-VintagePlate.webp
     alt: "DuskVerb Vintage Plate engine, the plate tank with a fixed post-EQ voicing"
     caption: "Vintage Plate: The plate tank with a fixed post-EQ voicing for warmer vintage-hardware character."
-  - src: /assets/images/plugins/DuskVerb-SmoothPlate.png
+  - src: /assets/images/plugins/DuskVerb-SmoothPlate.webp
     alt: "DuskVerb Smooth Plate engine, a 6-allpass density cascade for lush dense ambience"
     caption: "Smooth Plate: 6-allpass density cascade. Fast diffusion for lush, dense ambience and smooth pads."
-  - src: /assets/images/plugins/DuskVerb-Chamber.png
+  - src: /assets/images/plugins/DuskVerb-Chamber.webp
     alt: "DuskVerb Chamber engine, four cross-coupled tanks with 48 taps"
     caption: "Chamber: Four cross-coupled tanks with 48 taps. Realistic chambers and rooms with strong early reflections."
-  - src: /assets/images/plugins/DuskVerb-Spring.png
+  - src: /assets/images/plugins/DuskVerb-Spring.webp
     alt: "DuskVerb Spring engine, a 3-spring tank with dispersion allpass chirp"
     caption: "Spring: 3-spring tank with dispersion allpass chirp, inspired by the Fender 6G15. Boingy surf and amp textures."
-  - src: /assets/images/plugins/DuskVerb-Gated.png
+  - src: /assets/images/plugins/DuskVerb-Gated.webp
     alt: "DuskVerb Gated engine, a 64-tap feed-forward delay line with envelope shaping"
     caption: "Gated: 64-tap feed-forward delay line with envelope shaping, the iconic gated-snare sound in the spirit of the AMS RMX16."
-  - src: /assets/images/plugins/DuskVerb-ParallelHall.png
+  - src: /assets/images/plugins/DuskVerb-ParallelHall.webp
     alt: "DuskVerb Parallel Hall engine with independent reverb tanks for six frequency bands"
     caption: "Parallel Hall: Six complementary frequency bands with independent reverb tanks and decay, used by Vocal Hall"
 
@@ -198,51 +198,51 @@ New in v0.6.0: a Tone, Character, and Duck macro row for quick global moves, two
 
 **Plate** is a 2-allpass cross-coupled tank built on the Dattorro 1997 plate topology. Bright, dense, smooth. The classic studio vocal plate sound. Use it on snares, vocals, the mix bus. Presets: Vocal Plate, Drum Plate.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Plate.png' | relative_url }}" alt="DuskVerb Plate">
+<img src="{{ '/assets/images/plugins/DuskVerb-Plate.webp' | relative_url }}" alt="DuskVerb Plate" width="1470" height="798" loading="lazy" decoding="async">
 
 **Vintage Plate** is the same plate tank with a fixed post-EQ voicing dialed in for warmer, vintage-hardware character. Presets: Vintage Vocal Plate, Vintage Gold Plate.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-VintagePlate.png' | relative_url }}" alt="DuskVerb Vintage Plate">
+<img src="{{ '/assets/images/plugins/DuskVerb-VintagePlate.webp' | relative_url }}" alt="DuskVerb Vintage Plate" width="1470" height="798" loading="lazy" decoding="async">
 
 **Smooth Plate** is a 6-allpass density cascade tank. It diffuses the input fast and produces lush, dense ambience and smooth pads. Lower size settings give you intimate spaces; higher settings open up to larger, denser tails.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-SmoothPlate.png' | relative_url }}" alt="DuskVerb Smooth Plate">
+<img src="{{ '/assets/images/plugins/DuskVerb-SmoothPlate.webp' | relative_url }}" alt="DuskVerb Smooth Plate" width="1470" height="798" loading="lazy" decoding="async">
 
 **Chamber** uses four cross-coupled tanks with 48 total taps. Designed for realistic chambers and rooms with strong early reflections and clean late decay. Great for drums, dialog, and anything where you want a sense of physical space without a long tail. Presets: 79 Vocal Chamber, Large Chamber.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Chamber.png' | relative_url }}" alt="DuskVerb Chamber">
+<img src="{{ '/assets/images/plugins/DuskVerb-Chamber.webp' | relative_url }}" alt="DuskVerb Chamber" width="1470" height="798" loading="lazy" decoding="async">
 
 **Spring** is a 3-spring tank with a dispersion allpass chirp, inspired by the Fender 6G15. Boingy, characterful, perfect for guitar amps, surf textures, and anywhere a hardware spring's "drip" character is the sound. Preset: Surf '63 Spring.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Spring.png' | relative_url }}" alt="DuskVerb Spring">
+<img src="{{ '/assets/images/plugins/DuskVerb-Spring.webp' | relative_url }}" alt="DuskVerb Spring" width="1470" height="798" loading="lazy" decoding="async">
 
 **Gated** is a 64-tap feed-forward delay line with envelope shaping, in the spirit of the AMS RMX16 non-linear programs. Big-room reverb shaped by the dry signal's transients, the room blooms in for the snare hit, then cuts off cleanly. The iconic Phil Collins / Hugh Padgham gated-snare sound. Preset: 1981 Gated Snare.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Gated.png' | relative_url }}" alt="DuskVerb Gated">
+<img src="{{ '/assets/images/plugins/DuskVerb-Gated.webp' | relative_url }}" alt="DuskVerb Gated" width="1470" height="798" loading="lazy" decoding="async">
 
 **Shimmer** is an 8-channel Hadamard FDN with a granular pitch shifter in the feedback loop, in the spirit of Brian Eno and Daniel Lanois's 1980s outboard rig and Valhalla Shimmer. Octave-up shimmer reverbs for ambient pads, sustained guitars, drone work. Overhauled in v0.6.0 with a post-loop HF air voice and down-octave lows. Presets: Black Hole, Deep Blue Day.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Shimmer.png' | relative_url }}" alt="DuskVerb Shimmer">
+<img src="{{ '/assets/images/plugins/DuskVerb-Shimmer.webp' | relative_url }}" alt="DuskVerb Shimmer" width="1470" height="798" loading="lazy" decoding="async">
 
 **Reverse** is a causal rising-gain early-reflection onset feeding a dark modulated FDN tail, in the spirit of the Lexicon PCM Room reverse programs. The tail swells up into the transient instead of decaying away from it. Use it for risers, pads, vocal throws, and vintage tape-reverse effects. Preset: Reverse Taps.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Reverse.png' | relative_url }}" alt="DuskVerb Reverse">
+<img src="{{ '/assets/images/plugins/DuskVerb-Reverse.webp' | relative_url }}" alt="DuskVerb Reverse" width="1470" height="798" loading="lazy" decoding="async">
 
 **Hall** is a feedback delay network with a per-octave graphic EQ in the feedback loop, giving independent per-band RT60 for honest decay and smooth, non-metallic tails. New in v0.6.0. Select it on any preset when you want the most truthful per-band decay control.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-Hall.png' | relative_url }}" alt="DuskVerb Hall">
+<img src="{{ '/assets/images/plugins/DuskVerb-Hall.webp' | relative_url }}" alt="DuskVerb Hall" width="1470" height="798" loading="lazy" decoding="async">
 
 **Tiled Room** front-loads a sparse tapped-delay early-reflection field welded to a short, dark FDN tail. New in v0.6.0, it nails the tight, bright-then-dark character of a ceramic tiled room that a single-tank FDN cannot express. Preset: Tiled Room.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-TiledRoom.png' | relative_url }}" alt="DuskVerb Tiled Room">
+<img src="{{ '/assets/images/plugins/DuskVerb-TiledRoom.webp' | relative_url }}" alt="DuskVerb Tiled Room" width="1470" height="798" loading="lazy" decoding="async">
 
 **Dense Hall** is a heavily diffused 8-line FDN with allpass diffusion and modulation at every stage, giving a dense, smooth tail that the standard hall FDN structurally cannot reach. New in v0.6.0, for thick, lush concert spaces. It powers three factory hall presets: Bright Hall, Cathedral Large Hall, Blade Runner 224.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-DenseHall.png' | relative_url }}" alt="DuskVerb Dense Hall">
+<img src="{{ '/assets/images/plugins/DuskVerb-DenseHall.webp' | relative_url }}" alt="DuskVerb Dense Hall" width="1470" height="798" loading="lazy" decoding="async">
 
 **Parallel Hall** splits the sound into six complementary frequency bands, each with its own reverb tank and independent decay, level, and width. It powers the Vocal Hall factory preset.
 
-<img src="{{ '/assets/images/plugins/DuskVerb-ParallelHall.png' | relative_url }}" alt="DuskVerb Parallel Hall">
+<img src="{{ '/assets/images/plugins/DuskVerb-ParallelHall.webp' | relative_url }}" alt="DuskVerb Parallel Hall" width="1470" height="798" loading="lazy" decoding="async">
 
 ## Macros
 
