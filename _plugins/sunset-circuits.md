@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.7"
+version: "1.0.8"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.webp
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.webp
@@ -59,6 +59,15 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.8"
+    date: "2026-11-08"
+    changes:
+      - "Cosmos mode recalibrated: oscillator mix, sub oscillator tracking, white noise, resonant filter and stereo chorus"
+      - "Cosmos mode has its own color scheme"
+      - "FM depth sounds the same at every sample rate"
+      - "Synced sample-and-hold starts fresh on each new note instead of holding an old value"
+      - "Editor fields and sequencer controls line up at every editor size"
+      - "Reopening the editor no longer undoes edits made after a MIDI program change"
   - version: "1.0.7"
     date: "2026-09-06"
     changes:
