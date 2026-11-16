@@ -4,7 +4,7 @@ title: Tape Echo 2
 slug: tape-echo-2
 tagline: Three-head tape delay with spring reverb
 description: A three-head tape echo and spring reverb modeled end to end, with 12 echo modes, mechanical head timing, tape age, splice dropout, and regeneration that runs into self-oscillation. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.8"
+version: "1.0.9"
 screenshot: /assets/images/plugins/tape-echo-2-screenshot.webp
 
 features:
@@ -38,6 +38,18 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.9"
+    date: "2026-11-15"
+    changes:
+      - "CLAP: the plugin now gives the host its version and website, which were blank before (#358)"
+      - "Turning Tempo Sync off, or loading a preset or session with it off, always hands the repeat speed back to the Repeat Rate knob; the echo could stay at the tempo-synced speed (#292)"
+      - "VST3: a project with bars shorter than a quarter note, such as 3/16 or 1/8, can no longer crash the host"
+      - "VST3 and CLAP hosts show parameter values without trailing zeros"
+      - "Confirming a knob's typed value unchanged no longer rounds it"
+      - "A click inside a knob's open value field stays in the field"
+      - "AU: the plugin answers the host's question about its latency (it has none) instead of refusing it"
+      - "LV2: generic host views now show the legacy Dry Level and Sync Division parameters, as VST3, CLAP and AU hosts already did"
+      - "Special Thanks panel: supporters are listed under the current Patreon tiers"
   - version: "1.0.8"
     date: "2026-10-05"
     changes:

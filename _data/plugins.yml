@@ -216,7 +216,7 @@
     panning. Completely free.
   status: released
   featured: true
-  version: 1.0.8
+  version: 1.0.9
   released: "2026-08-04"
 - name: Ring Out
   slug: ring-out
