@@ -103,7 +103,7 @@
     the hardware units' classic settings. Completely free.
   status: released
   featured: true
-  version: 1.0.11
+  version: 1.0.12
   released: "2026-07-15"
 - name: Groovemind
   slug: groovemind
