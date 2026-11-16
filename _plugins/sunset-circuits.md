@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.10"
+version: "1.1.0"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.webp
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.webp
@@ -59,6 +59,15 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.1.0"
+    date: "2026-11-16"
+    changes:
+      - "Mod matrix: two new destinations, LFO1 Depth and LFO2 Depth, so the mod wheel or any other source can bring an LFO in and out. For wheel vibrato, route LFO 1 to Osc1 Pitch and Osc2 Pitch at a small amount and Mod Whl to LFO1 Depth at +100 % (#303)"
+      - "While any slot targets an LFO's depth, that LFO is scaled by the sum of those slots, held between 0 and 100 %, so a depth slot at 0 % holds the LFO at zero. With no depth slot the LFO runs at full depth, as before. Adding the first depth slot or removing the last while notes sound is faded, not stepped"
+      - "The mod wheel's tooltip says how to route it"
+      - "Presets, Init and saved projects sound as before, apart from automation of the Mod Dest parameters (below). Acid mode does not use the mod matrix, so the depth destinations do nothing there"
+      - "Automation of the eight Mod Dest parameters (Mod 1 Dest to Mod 8 Dest): each list grew from 13 to 15 choices, so a host that stores a lane as a position, as VST3 hosts do, now plays a different destination for most recorded values. Re-record such lanes, and check these lanes in other formats too; the manual has the table. Saved projects and presets keep their destinations in every format"
+      - "A project or preset that uses the new destinations plays those slots as Uni Det in 1.0.10 and earlier"
   - version: "1.0.10"
     date: "2026-11-15"
     changes:
