@@ -4,7 +4,7 @@ title: Multi-Q
 slug: multi-q
 tagline: Digital, British console, and tube EQ in one plugin
 description: Three professional EQs in one plugin. Modern parametric with dynamics, classic British console, and vintage passive tube EQ. Free VST3, LV2, and AU plugin.
-version: "0.10.9"
+version: "0.10.10"
 screenshot: /assets/images/plugins/multi-q-digital.webp
 gallery:
   - src: /assets/images/plugins/multi-q-digital.webp
@@ -43,6 +43,15 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "0.10.10"
+    date: "2026-11-15"
+    changes:
+      - "A value typed into a band's knob goes to that band when you select another band before pressing Enter; it used to land in the band you selected"
+      - "Typing nan into a band strip value is refused and the label shows the current value again; before, it could reach the band's parameter"
+      - "Digital mode: after a band's frequency, gain or Q changes, the band settles exactly on its new setting; it could stop short and play a different curve, most of all for a band at a low frequency at high sample rates or with oversampling"
+      - "Auto Gain releases its correction when the EQ is set back to flat; it used to hold the last correction"
+      - "Special Thanks panel: supporters are listed under the current Patreon tiers, and the list scrolls when it is taller than the panel"
+      - "When the host makes the window smaller than the editor's minimum size, the editor takes the window's size instead of hanging over its edges (#240)"
   - version: "0.10.9"
     date: "2026-08-31"
     changes:
