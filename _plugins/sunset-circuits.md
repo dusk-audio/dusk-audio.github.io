@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.9"
+version: "1.0.10"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.webp
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.webp
@@ -59,6 +59,10 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.0.10"
+    date: "2026-11-15"
+    changes:
+      - "A click inside the open value field of a filter frequency, envelope time, rate, LFO fade, delay time, reverb decay or pre-delay, slide time or FM ratio knob stays in the field instead of closing it and starting a drag (#337)"
   - version: "1.0.9"
     date: "2026-11-09"
     changes:
