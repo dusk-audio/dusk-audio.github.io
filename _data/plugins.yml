@@ -192,7 +192,7 @@
     presets and a user preset library. Completely free.
   status: released
   featured: true
-  version: 1.0.10
+  version: 1.1.0
   released: "2026-07-26"
 - name: Convolution Reverb
   slug: convolution-reverb
