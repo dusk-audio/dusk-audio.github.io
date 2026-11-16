@@ -4,7 +4,7 @@ title: Sunset Circuits
 slug: sunset-circuits
 tagline: Six vintage synth circuits in one instrument
 description: "Six classic synthesizers in one instrument: a stable-tuned DCO poly, a self-oscillating analog five-voice with poly-mod, an aggressive mono, a patchable semi-modular with spring reverb, a four-operator FM engine with eight algorithms, and a screaming acid bass box with a step sequencer. 54 factory presets. Free VST3, CLAP, LV2, and AU plugin for Linux, Windows, and macOS."
-version: "1.0.7"
+version: "1.1.0"
 screenshot: /assets/images/plugins/sunset-circuits-cosmos.webp
 gallery:
   - src: /assets/images/plugins/sunset-circuits-cosmos.webp
@@ -59,6 +59,40 @@ requirements:
   - "Sample rates: 44.1kHz to 192kHz"
 
 changelog:
+  - version: "1.1.0"
+    date: "2026-11-16"
+    changes:
+      - "Mod matrix: two new destinations, LFO1 Depth and LFO2 Depth, so the mod wheel or any other source can bring an LFO in and out. For wheel vibrato, route LFO 1 to Osc1 Pitch and Osc2 Pitch at a small amount and Mod Whl to LFO1 Depth at +100 % (#303)"
+      - "While any slot targets an LFO's depth, that LFO is scaled by the sum of those slots, held between 0 and 100 %, so a depth slot at 0 % holds the LFO at zero. With no depth slot the LFO runs at full depth, as before. Adding the first depth slot or removing the last while notes sound is faded, not stepped"
+      - "The mod wheel's tooltip says how to route it"
+      - "Presets, Init and saved projects sound as before, apart from automation of the Mod Dest parameters (below). Acid mode does not use the mod matrix, so the depth destinations do nothing there"
+      - "Automation of the eight Mod Dest parameters (Mod 1 Dest to Mod 8 Dest): each list grew from 13 to 15 choices, so a host that stores a lane as a position, as VST3 hosts do, now plays a different destination for most recorded values. Re-record such lanes, and check these lanes in other formats too; the manual has the table. Saved projects and presets keep their destinations in every format"
+      - "A project or preset that uses the new destinations plays those slots as Uni Det in 1.0.10 and earlier"
+  - version: "1.0.10"
+    date: "2026-11-15"
+    changes:
+      - "A click inside the open value field of a filter frequency, envelope time, rate, LFO fade, delay time, reverb decay or pre-delay, slide time or FM ratio knob stays in the field instead of closing it and starting a drag (#337)"
+  - version: "1.0.9"
+    date: "2026-11-09"
+    changes:
+      - "Held notes keep sounding when the arpeggiator or step sequencer is switched on or off, or the engine changes: keys and pedal-held notes carry over, and Mono takes the last key pressed"
+      - "Legato fixed: a note ties only to one still held, glides only when it ties, and at full gate the arpeggiator's steps tie in every engine"
+      - "The arpeggiator plays again when switched back on over a held key, and keeps playing when a unison change takes its voice"
+      - "A note-off for a key that was not held no longer adds a note under the sustain pedal"
+      - "Latency is 13 samples at every oversampling setting, and switching oversampling is a short fade with no click"
+      - "Hardware controller pages for CLAP hosts such as Bitwig Studio: ten pages laid out for playing, with Mode and Oversampling kept off the knobs"
+      - "In VST3 the arpeggiator keeps time in 7/8 and other odd bar lengths, and very short bars such as 3/16 no longer crash the host"
+      - "Cosmos uses about a third less CPU, with exactly the same sound"
+      - "Filter and envelope graphs no longer overlap the Cosmos panel titles"
+  - version: "1.0.8"
+    date: "2026-11-08"
+    changes:
+      - "Cosmos mode recalibrated: oscillator mix, sub oscillator tracking, white noise, resonant filter and stereo chorus"
+      - "Cosmos mode has its own color scheme"
+      - "FM depth sounds the same at every sample rate"
+      - "Synced sample-and-hold starts fresh on each new note instead of holding an old value"
+      - "Editor fields and sequencer controls line up at every editor size"
+      - "Reopening the editor no longer undoes edits made after a MIDI program change"
   - version: "1.0.7"
     date: "2026-09-06"
     changes:

@@ -4,7 +4,7 @@ title: TapeMachine 2
 slug: tapemachine-2
 tagline: Two-machine analog tape emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.11"
+version: "1.0.12"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.webp
 gallery:
   - src: /assets/images/plugins/tapemachine-2-screenshot.webp
@@ -48,6 +48,19 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.12"
+    date: "2026-11-15"
+    changes:
+      - "CLAP: the plugin now gives the host its version and website, which were blank before (#358)"
+      - "VST3 and CLAP hosts show parameter values without trailing zeros, for example 100 % instead of 100.000000 %, and CLAP values carry their unit"
+      - "Seven internal preset correction values and the Oversampling setting, which the editor does not show, are now marked hidden in VST3 and CLAP, so hosts can leave them out of parameter lists; projects keep their values"
+      - "A click on a knob without dragging it no longer moves its value, and confirming a typed value unchanged no longer rounds it"
+      - "A click inside a knob's open value field stays in the field; text that is not a number keeps the field open, and Escape always cancels"
+      - "AU: the plugin now tells the host when bypass changes its latency, so delay compensation can follow without reopening the project"
+      - "VST3: a pause in processing from the host, which some hosts send when playback stops, no longer resets the tape processing"
+      - "Parameter values that are not finite numbers, from automation or a damaged project, are ignored"
+      - "User presets are saved through a temporary file, so an interrupted save cannot leave a damaged preset"
+      - "Special Thanks panel: supporters are listed under the current Patreon tiers"
   - version: "1.0.11"
     date: "2026-09-06"
     changes:

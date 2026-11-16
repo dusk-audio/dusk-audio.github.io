@@ -4,7 +4,7 @@ title: Ring Out
 slug: ring-out
 tagline: Feedback eliminator for live audio
 description: Ring Out finds the frequencies that feed back and notches them out, with a one-minute LEARN to ring out a system, CATCH to catch a ring during the show, and up to twenty notches you can drag on the graph or pull on their own faders. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.1.0"
+version: "1.1.1"
 screenshot: /assets/images/plugins/ring-out-screenshot.webp
 
 features:
@@ -39,6 +39,15 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.1.1"
+    date: "2026-11-15"
+    changes:
+      - "CLAP: the plugin now gives the host its version and website, which were blank before (#358)"
+      - "VST3 and CLAP hosts show parameter values without trailing zeros, and CLAP values carry their unit"
+      - "Confirming a knob's typed value unchanged no longer rounds it"
+      - "A click inside a knob's open value field stays in the field"
+      - "AU: the plugin answers the host's question about its latency (it has none) instead of refusing it"
+      - "Special Thanks panel: supporters are listed under the current Patreon tiers"
   - version: "1.1.0"
     date: "2026-10-12"
     changes:
