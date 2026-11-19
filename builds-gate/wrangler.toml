@@ -6,6 +6,7 @@ compatibility_date = "2024-11-01"
 [vars]
 RELEASES_REPO     = "dusk-audio/dusk-studio-releases"       # private repo holding the binaries
 EARLY_REPO        = "dusk-audio/dusk-plugins-early"         # private repo holding early-access plugin releases (/early)
+PATREON_URL       = "https://www.patreon.com/cw/DuskAudio"                # where /go/patreon sends a visitor
 PATREON_JOIN_URL  = "https://www.patreon.com/cw/DuskAudio/membership"
 DUSK_CAMPAIGN_ID  = "14880404"                              # Dusk Audio's Patreon campaign id; only this campaign's $1+ members pass
 DUSK_CREATOR_USER_ID = "187471121"                          # the campaign owner's Patreon user id; passes without a pledge so the creator can test /latest
@@ -18,6 +19,16 @@ SUPPORT_EMAIL     = "marc@duskaudio.com"                    # shown to a visitor
 # only in a live `wrangler tail`, so a patron's report can be checked after the fact.
 [observability]
 enabled = true
+
+# Click counts for the /go links. Optional: without it /go still redirects and logs each
+# click instead of counting it. To turn counting on, create the database, load the table
+# and put the id the first command prints here, then uncomment:
+#   npx wrangler d1 create dusk-go
+#   npx wrangler d1 execute dusk-go --remote --file=go-schema.sql
+# [[d1_databases]]
+# binding = "GO_DB"
+# database_name = "dusk-go"
+# database_id = "<id from `wrangler d1 create dusk-go`>"
 
 # Secrets: set with `wrangler secret put NAME`, NEVER put values here:
 #   wrangler secret put PATREON_CLIENT_ID      # from the Patreon OAuth client

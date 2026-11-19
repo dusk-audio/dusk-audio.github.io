@@ -34,6 +34,57 @@ the visitor isn't a member. We never store Patreon tokens. The
 membership check happens once at login and the access/refresh tokens are discarded;
 only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 
+## Link counter (`/go`)
+
+The site's Patreon links go through the gate so their clicks can be counted. The site adds
+`rel="noreferrer"` to every outside link, so Patreon sees those visits without a referrer
+and files them all under "Direct"; this is the only place that can tell them apart.
+
+```
+/go/patreon?at=<link>&from=<campaign>   count, then 302 to PATREON_URL
+/go/join?at=<link>&from=<campaign>      count, then 302 to PATREON_JOIN_URL
+/go/hit?page=<page>&from=<campaign>     count a visit that reached the site with ?from=<campaign>; 204
+```
+
+- `at` names the link on the site (`footer`, `plugin-download`, `studio-page`, ...). The
+  templates set it: `{{ site.go_url }}/patreon?at=<link>`.
+- `from` names the announcement that brought the visitor. Give the link in a forum post or
+  a newsletter a label, `https://duskaudio.com/plugins/ring-out/?from=kvr`, and the script
+  at the end of `_layouts/default.html` counts the arrival (`/go/hit`) and carries the label
+  to the Patreon links and to the site's other pages.
+- Labels are lowercase letters, digits and dashes, 32 at most; anything else is dropped.
+- The two targets are fixed, so `/go` can't be used to redirect anywhere else.
+- Crawlers, link previews, prefetches, `curl` and HEAD requests are redirected but not counted.
+- Kept per click: the UTC day and the three labels. No address, user agent or cookie.
+- Anyone can call these URLs, so the counts are a measure, not a ledger.
+
+Counts live in a D1 database bound as `GO_DB` (table in `go-schema.sql`). The binding is
+optional: without it, or if a write fails, the visitor is still redirected and the click
+goes to the Workers logs as `{"go":true,"stored":false,...}`.
+
+Set it up once, from `builds-gate/`:
+
+```
+npx wrangler d1 create dusk-go
+npx wrangler d1 execute dusk-go --remote --file=go-schema.sql
+```
+
+Put the id the first command prints into the `[[d1_databases]]` block in `wrangler.toml`,
+uncomment the block, and merge. If the deploy then fails on permissions, the CI token
+needs D1 edit access as well (the "Edit Cloudflare Workers" template may not include it).
+
+Read the counts:
+
+```
+# Patreon clicks by link and campaign, last 30 days
+npx wrangler d1 execute dusk-go --remote --command \
+  "SELECT dest, place, campaign, SUM(n) AS clicks FROM go_counts WHERE day >= date('now','-30 days') GROUP BY dest, place, campaign ORDER BY clicks DESC"
+
+# One campaign: arrivals on the site against Patreon clicks
+npx wrangler d1 execute dusk-go --remote --command \
+  "SELECT campaign, SUM(CASE WHEN dest = 'site' THEN n ELSE 0 END) AS arrivals, SUM(CASE WHEN dest <> 'site' THEN n ELSE 0 END) AS patreon_clicks FROM go_counts WHERE campaign <> '' GROUP BY campaign ORDER BY arrivals DESC"
+```
+
 ## One-time setup
 
 1. **GitHub PAT**: fine-grained token, **read-only `Contents` on `dusk-audio/dusk-studio-releases`
@@ -45,7 +96,7 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
    (`GET /api/oauth2/v2/identity?include=memberships,memberships.campaign` while logged in as
    the creator, or `GET /api/oauth2/v2/campaigns`). Put it in `wrangler.toml` → `DUSK_CAMPAIGN_ID`.
 4. **Session secret**: `openssl rand -hex 32`.
-5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `EARLY_REPO`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`, `DUSK_CREATOR_USER_ID`,
+5. **Config** in `wrangler.toml [vars]`: `RELEASES_REPO`, `EARLY_REPO`, `PATREON_URL`, `PATREON_JOIN_URL`, `DUSK_CAMPAIGN_ID`, `DUSK_CREATOR_USER_ID`,
    `OAUTH_REDIRECT_URI`, `SESSION_TTL_HOURS`, `FREE_DOWNLOADS="0"`.
 6. **Secrets** (never committed):
    ```
@@ -82,9 +133,12 @@ only a signed `{exp}` lives in the cookie. `/manual` stays public (no login).
 - **Cancellation**: cancel the pledge; after `SESSION_TTL_HOURS`, `/latest` re-auths and blocks.
 - `curl -s https://builds.duskaudio.com/latest` (no cookie) → the sign-in page, not the file list.
 - `/manual` loads the PDF with no login.
+- `curl -sI "https://builds.duskaudio.com/go/patreon?at=test"` → 302 to the Patreon page
+  (not counted: `curl` is on the crawler list). Opened in a browser, it adds one to
+  today's `patreon` / `test` row.
 - `node --test` runs the unit tests, including the whole sign-in against a stubbed Patreon.
 - `builds-gate/smoke.sh` checks the live gate from outside (`/health`, sign-in pages, the
-  OAuth redirect, `/manual`, a download link); with `HEALTH_TOKEN` set, also that every
+  OAuth redirect, `/manual`, a download link, the `/go` redirects); with `HEALTH_TOKEN` set, also that every
   member file downloads. CI runs it after each deploy and every 30 minutes.
 
 ## Deploys, and what stops a change from breaking downloads
@@ -94,7 +148,7 @@ Merges to `main` deploy the gate; don't deploy from a laptop.
 - **Before merge**: `main` is protected. A pull request can't merge until two checks pass:
   `gate-tests` (these unit tests) and `site-downloads` (the site is built and every
   download link on it checked: a Dusk Studio button opens `/latest`, every gate
-  link is a page the gate serves, every plugin download answers 200). Both run on every
+  link is a page the gate serves or a `/go` link, every plugin download answers 200). Both run on every
   pull request, whatever it changes.
 - **Deploy** (`.github/workflows/builds-gate.yml`, job `deploy`): on a push to `main` that
   changes `builds-gate/`, the tests run again, `wrangler deploy` ships the Worker, and

@@ -3,7 +3,8 @@
 # .github/workflows/builds-gate.yml after every deploy (a failure rolls the deploy back)
 # and every 30 minutes (a failure emails the repo owner). It can't sign in to Patreon, so
 # it checks everything up to Patreon's door: the config and GitHub access (/health), the
-# sign-in pages, the OAuth redirect and a download link. With HEALTH_TOKEN set it also
+# sign-in pages, the OAuth redirect, a download link and the /go redirects the site's
+# Patreon links use. With HEALTH_TOKEN set it also
 # runs the deep /health check: every file of the newest Dusk Studio release and of the
 # early-access listing downloads, and Patreon knows the client id.
 #
@@ -40,6 +41,9 @@ check "OAuth redirect to Patreon" "/auth/login?next=%2Flatest" 302 \
   "^https://www\.patreon\.com/oauth2/authorize\?.*client_id=[^&]+.*redirect_uri=$CALLBACK"
 check "public manual" /manual 200
 check "download link asks to sign in" /dl/1 403 'Sign in with Patreon'
+# The site's Patreon links go through /go. curl is never counted as a click.
+check "Patreon link redirect" "/go/patreon?at=smoke" 302 '^https://www\.patreon\.com/'
+check "membership link redirect" "/go/join?at=smoke" 302 '^https://www\.patreon\.com/.*membership'
 
 if [ -n "${HEALTH_TOKEN:-}" ]; then
   deep=$(curl -sS --max-time 60 -H "Authorization: Bearer $HEALTH_TOKEN" "$BASE/health")

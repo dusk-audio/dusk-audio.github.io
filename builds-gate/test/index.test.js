@@ -1,6 +1,8 @@
 import { test, beforeEach, afterEach } from "node:test";
 import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { DatabaseSync } from "node:sqlite";
 import worker from "../src/index.js";
 
 // The gate against a fake GitHub API: EARLY_REPO's releases come from `releases`,
@@ -543,4 +545,181 @@ test("deep /health fails when Patreon doesn't know the client id", async () => {
   const { status, text } = await deepHealth();
   assert.equal(status, 503);
   assert.equal(JSON.parse(text).checks.patreon_client_id, false);
+});
+
+/* ---------- link counter (/go) ---------- */
+
+// GO_DB over a real SQLite table built from go-schema.sql, so the Worker's SQL runs
+// against the schema it ships with. `failing` makes every write throw.
+function goDb({ failing = false } = {}) {
+  const db = new DatabaseSync(":memory:");
+  db.exec(readFileSync(new URL("../go-schema.sql", import.meta.url), "utf8"));
+  const binding = {
+    prepare: (sql) => ({
+      bind: (...values) => ({
+        run: async () => {
+          if (failing) throw new Error("D1_ERROR: unavailable");
+          db.prepare(sql).run(...values);
+          return { success: true };
+        },
+      }),
+    }),
+  };
+  const rows = () =>
+    db.prepare("SELECT dest, place, campaign, n FROM go_counts ORDER BY dest, place, campaign").all().map((r) => ({ ...r }));
+  const days = () => db.prepare("SELECT DISTINCT day FROM go_counts").all().map((r) => r.day);
+  return { binding, rows, days };
+}
+
+const BROWSER = "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
+
+// A /go request the way a browser sends it. `waited` collects what the Worker hands to
+// ctx.waitUntil, so a test can let the count finish.
+async function goGet(path, e, { agent = BROWSER, method = "GET", headers = {}, ctx = true } = {}) {
+  const waited = [];
+  const h = { ...headers };
+  if (agent) h["User-Agent"] = agent;
+  const r = await worker.fetch(
+    new Request(`https://builds.example${path}`, { method, headers: h, redirect: "manual" }),
+    e,
+    ctx ? { waitUntil: (p) => waited.push(p) } : undefined
+  );
+  await Promise.all(waited);
+  return { status: r.status, location: r.headers.get("Location"), cache: r.headers.get("Cache-Control"), waited: waited.length };
+}
+
+test("/go/patreon and /go/join send the visitor to the configured Patreon pages", async () => {
+  const db = goDb();
+  const e = { ...env, GO_DB: db.binding, PATREON_URL: "https://patreon.example/dusk", PATREON_JOIN_URL: "https://patreon.example/dusk/membership" };
+  const a = await goGet("/go/patreon?at=footer", e);
+  assert.equal(a.status, 302);
+  assert.equal(a.location, "https://patreon.example/dusk");
+  assert.equal(a.cache, "no-store");
+  const b = await goGet("/go/join?at=studio-page", e);
+  assert.equal(b.location, "https://patreon.example/dusk/membership");
+  assert.deepEqual(db.rows(), [
+    { dest: "join", place: "studio-page", campaign: "", n: 1 },
+    { dest: "patreon", place: "footer", campaign: "", n: 1 },
+  ]);
+});
+
+test("/go falls back to the real Patreon pages when the vars are unset", async () => {
+  const e = { ...env, GO_DB: goDb().binding };
+  assert.equal((await goGet("/go/patreon", e)).location, "https://www.patreon.com/cw/DuskAudio");
+  assert.equal((await goGet("/go/join", e)).location, "https://www.patreon.com/cw/DuskAudio/membership");
+});
+
+test("/go counts per day, link and campaign, adding to an existing row", async () => {
+  const db = goDb();
+  const e = { ...env, GO_DB: db.binding };
+  for (let i = 0; i < 3; i++) await goGet("/go/patreon?at=plugin-download&from=kvr", e);
+  await goGet("/go/patreon?at=plugin-download&from=reddit", e);
+  await goGet("/go/patreon?at=plugin-download", e);
+  assert.deepEqual(db.rows(), [
+    { dest: "patreon", place: "plugin-download", campaign: "", n: 1 },
+    { dest: "patreon", place: "plugin-download", campaign: "kvr", n: 3 },
+    { dest: "patreon", place: "plugin-download", campaign: "reddit", n: 1 },
+  ]);
+  assert.deepEqual(db.days(), [new Date().toISOString().slice(0, 10)]);
+});
+
+test("/go never redirects anywhere but its two fixed targets", async () => {
+  const db = goDb();
+  const e = { ...env, GO_DB: db.binding };
+  for (const path of ["/go/", "/go/elsewhere", "/go/constructor", "/go/__proto__", "/go/patreon/extra", "/go/https://evil.example"]) {
+    const r = await goGet(path, e);
+    assert.equal(r.status, 404, path);
+    assert.equal(r.location, null, path);
+  }
+  // A URL in a parameter is ignored: the target never comes from the request.
+  const r = await goGet("/go/patreon?at=footer&to=https://evil.example&next=https://evil.example", e);
+  assert.equal(r.location, "https://www.patreon.com/cw/DuskAudio");
+  assert.deepEqual(db.rows(), [{ dest: "patreon", place: "footer", campaign: "", n: 1 }]);
+});
+
+test("/go keeps only well-formed labels", async () => {
+  const db = goDb();
+  const e = { ...env, GO_DB: db.binding };
+  const long = "a".repeat(33);
+  for (const bad of ["KVR", "kvr forum", "-kvr", "kvr%27%3B+DROP+TABLE+go_counts%3B--", long, "%3Cscript%3E"]) {
+    assert.equal((await goGet(`/go/patreon?at=${bad}&from=${bad}`, e)).status, 302, bad);
+  }
+  await goGet(`/go/patreon?at=${"a".repeat(32)}&from=linux-musicians-2`, e);
+  assert.deepEqual(db.rows(), [
+    { dest: "patreon", place: "", campaign: "", n: 6 },
+    { dest: "patreon", place: "a".repeat(32), campaign: "linux-musicians-2", n: 1 },
+  ]);
+});
+
+test("/go redirects crawlers, previews and prefetches without counting them", async () => {
+  const db = goDb();
+  const e = { ...env, GO_DB: db.binding };
+  const agents = [
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)",
+    "facebookexternalhit/1.1",
+    "Slackbot-LinkExpanding 1.0",
+    "curl/8.5.0",
+    "",
+  ];
+  for (const agent of agents) {
+    const r = await goGet("/go/patreon?at=footer", e, { agent });
+    assert.equal(r.status, 302, agent);
+    assert.equal(r.waited, 0, agent);
+  }
+  assert.equal((await goGet("/go/patreon?at=footer", e, { headers: { "Sec-Purpose": "prefetch;prerender" } })).status, 302);
+  assert.equal((await goGet("/go/patreon?at=footer", e, { headers: { Purpose: "prefetch" } })).status, 302);
+  assert.equal((await goGet("/go/patreon?at=footer", e, { method: "HEAD" })).status, 302);
+  assert.deepEqual(db.rows(), []);
+});
+
+test("/go answers 405 to anything but GET and HEAD", async () => {
+  const db = goDb();
+  const r = await goGet("/go/patreon?at=footer", { ...env, GO_DB: db.binding }, { method: "POST" });
+  assert.equal(r.status, 405);
+  assert.equal(r.location, null);
+  assert.deepEqual(db.rows(), []);
+});
+
+test("/go/hit counts a visit that carries a campaign label, and nothing else", async () => {
+  const db = goDb();
+  const e = { ...env, GO_DB: db.binding };
+  const r = await goGet("/go/hit?page=plugins-ring-out&from=kvr", e);
+  assert.equal(r.status, 204);
+  assert.equal(r.location, null);
+  assert.equal(r.cache, "no-store");
+  await goGet("/go/hit?page=plugins-ring-out&from=kvr", e);
+  assert.equal((await goGet("/go/hit?page=plugins-ring-out", e)).status, 204); // no campaign
+  assert.equal((await goGet("/go/hit?page=plugins-ring-out&from=Bad+Label", e)).status, 204);
+  assert.deepEqual(db.rows(), [{ dest: "site", place: "plugins-ring-out", campaign: "kvr", n: 2 }]);
+});
+
+test("/go still redirects when the database is missing or failing", async () => {
+  const logged = [];
+  const realLog = console.log;
+  console.log = (line) => logged.push(JSON.parse(line));
+  try {
+    const none = await goGet("/go/patreon?at=footer&from=kvr", env);
+    assert.equal(none.status, 302);
+    const failing = await goGet("/go/join?at=studio-page", { ...env, GO_DB: goDb({ failing: true }).binding });
+    assert.equal(failing.status, 302);
+    assert.equal(failing.location, "https://www.patreon.com/cw/DuskAudio/membership");
+  } finally {
+    console.log = realLog;
+  }
+  assert.equal(logged.length, 2);
+  assert.deepEqual(
+    logged.map((l) => [l.go, l.stored, l.why, l.dest, l.place, l.campaign]),
+    [
+      [true, false, "no_db", "patreon", "footer", "kvr"],
+      [true, false, "D1_ERROR: unavailable", "join", "studio-page", ""],
+    ]
+  );
+});
+
+test("/go counts before answering when the runtime gives no ctx", async () => {
+  const db = goDb();
+  const r = await goGet("/go/patreon?at=footer", { ...env, GO_DB: db.binding }, { ctx: false });
+  assert.equal(r.status, 302);
+  assert.deepEqual(db.rows(), [{ dest: "patreon", place: "footer", campaign: "", n: 1 }]);
 });

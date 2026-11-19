@@ -12,7 +12,7 @@
 //
 // Secrets (wrangler secret put): PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, SESSION_SECRET, GH_PAT,
 //                                HEALTH_TOKEN (optional; unlocks the deep /health check)
-// Vars (wrangler.toml [vars]): RELEASES_REPO, EARLY_REPO, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
+// Vars (wrangler.toml [vars]): RELEASES_REPO, EARLY_REPO, PATREON_URL, PATREON_JOIN_URL, DUSK_CAMPAIGN_ID,
 //                              DUSK_CREATOR_USER_ID, OAUTH_REDIRECT_URI, SESSION_TTL_HOURS, FREE_DOWNLOADS,
 //                              SUPPORT_EMAIL
 // FREE_DOWNLOADS opens only the Dusk Studio builds (/latest, /dl); early access always
@@ -20,9 +20,12 @@
 // Every sign-in logs one "gate" line (admitted, refused with Patreon's reason, or failed)
 // to the Workers logs, so a patron's report can be matched to what Patreon told us.
 // /health reports whether the config and GitHub access work; the smoke check polls it.
+//
+// /go counts clicks on the site's Patreon links, per link and per campaign label, and
+// sends the visitor on (see "link counter" below). Optional D1 binding: GO_DB.
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const p = url.pathname;
     // `return await` keeps a rejected handler inside this try.
@@ -36,6 +39,7 @@ export default {
       if (p === "/early") return await earlyPage(env, request);
       if (p.startsWith("/dl/")) return await download(env, request, decodeURIComponent(p.slice(4)), env.RELEASES_REPO, sessionOk, "/latest");
       if (p.startsWith("/edl/")) return await download(env, request, decodeURIComponent(p.slice(5)), env.EARLY_REPO, memberSession, "/early");
+      if (p.startsWith("/go/")) return await go(env, request, url, ctx);
       return new Response("Not found", { status: 404 });
     } catch (e) {
       console.error(e); // still visible in `wrangler tail` and the Workers logs
@@ -543,6 +547,98 @@ async function errorCode(resp) {
   } catch (_e) {
     return null;
   }
+}
+
+/* ---------- link counter (/go) ---------- */
+
+// The site's Patreon links point here instead of at Patreon, because the site strips the
+// referrer from outside links and Patreon then files every one of those visits under
+// "Direct". Each click adds one to a daily count and the visitor is sent on:
+//
+//   /go/patreon?at=<link>&from=<campaign>   -> the Patreon page
+//   /go/join?at=<link>&from=<campaign>      -> the Patreon membership page
+//   /go/hit?page=<page>&from=<campaign>     -> 204; a visit that reached the site through
+//                                              a link carrying ?from=<campaign>
+//
+// `at` says which link on the site was clicked and `from` which announcement brought the
+// visitor (a forum thread, a newsletter). Both are labels the site chooses. Only the four
+// labels and the day are kept: no address, no user agent, no cookie.
+//
+// Counts go to the D1 database bound as GO_DB (table in go-schema.sql). Without the
+// binding, or when a write fails, the visitor is still sent on and the click is logged.
+
+// Where /go/<name> sends someone. A fixed list: never an open redirect.
+function goTarget(env, name) {
+  if (name === "patreon") return env.PATREON_URL || "https://www.patreon.com/cw/DuskAudio";
+  if (name === "join") return env.PATREON_JOIN_URL || "https://www.patreon.com/cw/DuskAudio/membership";
+  return null;
+}
+
+// Lowercase letters, digits and dashes. Anything else counts as no label.
+const GO_LABEL = /^[a-z0-9][a-z0-9-]{0,31}$/;
+
+function goLabel(value) {
+  return value && GO_LABEL.test(value) ? value : "";
+}
+
+// Link previews, crawlers and uptime checks follow links nobody clicked.
+const GO_BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|curl|wget|python|headless|monitor/i;
+
+function goHuman(request) {
+  if (request.method !== "GET") return false;
+  const agent = request.headers.get("User-Agent") || "";
+  if (!agent || GO_BOT.test(agent)) return false;
+  // A browser fetching the link ahead of a click that may never come.
+  return !/prefetch|prerender/i.test(request.headers.get("Sec-Purpose") || request.headers.get("Purpose") || "");
+}
+
+const GO_UPSERT =
+  "INSERT INTO go_counts (day, dest, place, campaign, n) VALUES (?1, ?2, ?3, ?4, 1) " +
+  "ON CONFLICT (day, dest, place, campaign) DO UPDATE SET n = n + 1";
+
+// Adds one to today's count (UTC day). Never throws: a lost count must not cost a visit.
+async function goCount(env, dest, place, campaign) {
+  const day = new Date().toISOString().slice(0, 10);
+  if (!env.GO_DB) {
+    console.log(JSON.stringify({ go: true, stored: false, why: "no_db", day, dest, place, campaign }));
+    return;
+  }
+  try {
+    await env.GO_DB.prepare(GO_UPSERT).bind(day, dest, place, campaign).run();
+  } catch (e) {
+    console.log(JSON.stringify({ go: true, stored: false, why: String((e && e.message) || e).slice(0, 120), day, dest, place, campaign }));
+  }
+}
+
+async function go(env, request, url, ctx) {
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return new Response("Method not allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
+  }
+  const name = url.pathname.slice(4);
+  const campaign = goLabel(url.searchParams.get("from"));
+  let response, dest, place, counted;
+  if (name === "hit") {
+    // Only a visit that carries a campaign label says anything.
+    dest = "site";
+    place = goLabel(url.searchParams.get("page"));
+    counted = !!campaign;
+    response = new Response(null, { status: 204, headers: { "Cache-Control": "no-store" } });
+  } else {
+    const target = goTarget(env, name);
+    if (!target) return new Response("Not found", { status: 404 });
+    dest = name;
+    place = goLabel(url.searchParams.get("at"));
+    counted = true;
+    response = new Response(null, { status: 302, headers: { Location: target, "Cache-Control": "no-store" } });
+  }
+  if (counted && goHuman(request)) {
+    const write = goCount(env, dest, place, campaign);
+    // After the response where the runtime allows it, so a slow database can't hold up
+    // the redirect.
+    if (ctx && typeof ctx.waitUntil === "function") ctx.waitUntil(write);
+    else await write;
+  }
+  return response;
 }
 
 /* ---------- signed session (HMAC-SHA256 via WebCrypto) ---------- */
