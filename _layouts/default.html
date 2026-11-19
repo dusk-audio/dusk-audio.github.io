@@ -64,6 +64,41 @@
   </dialog>
 
   <script>
+    // A visitor who arrives through a link carrying ?from=<label> (a forum thread, a
+    // newsletter) is counted once, and the label is passed on to the Patreon links and to
+    // the site's own page links, so the click counter (builds-gate /go) can show which
+    // announcement led to Patreon. Nothing is stored in the browser.
+    (function () {
+      var go = {{ site.go_url | jsonify }};
+      var m = /[?&]from=([a-z0-9][a-z0-9-]{0,31})(?:&|$)/.exec(location.search);
+      if (!go || !m || !window.URL || !window.fetch) return;
+      var label = m[1];
+
+      // Count the arrival, not the pages read after it: those come from this site.
+      var arrived = true;
+      try { arrived = !document.referrer || new URL(document.referrer).origin !== location.origin; } catch (e) {}
+      if (arrived) {
+        var page = location.pathname.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 32) || 'home';
+        fetch(go + '/hit?page=' + page + '&from=' + label, { mode: 'no-cors', credentials: 'omit', keepalive: true })
+          .catch(function () {});
+      }
+
+      var links = document.querySelectorAll('a[href]');
+      for (var i = 0; i < links.length; i++) {
+        var a = links[i];
+        var counted = a.href.indexOf(go + '/') === 0;
+        // This site's pages, not its files (manual PDFs, images) or in-page anchors.
+        var ownPage = a.origin === location.origin && a.getAttribute('href').charAt(0) !== '#' &&
+          !/\.[a-z0-9]+$/i.test(a.pathname);
+        if (!counted && !ownPage) continue;
+        try {
+          var u = new URL(a.href);
+          u.searchParams.set('from', label);
+          a.href = u.toString();
+        } catch (e) {}
+      }
+    })();
+
     // Normalize external links sitewide: open in a new tab + rel="noopener noreferrer".
     (function () {
       var links = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');

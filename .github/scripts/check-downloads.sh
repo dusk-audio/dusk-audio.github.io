@@ -9,7 +9,8 @@
 #
 # 1. The Dusk Studio page has a button (btn-primary or btn-secondary) that opens the build
 #    gate (members' download page).
-# 2. Every builds.duskaudio.com link goes to a page the gate serves.
+# 2. Every builds.duskaudio.com link goes to a page the gate serves, or to one of its
+#    counted Patreon links (/go/patreon?at=..., /go/join?at=...).
 # 3. Every plugin download and release-page link on GitHub answers 200 (a draft release
 #    or a version that was never published answers 404).
 set -uo pipefail
@@ -30,9 +31,10 @@ fi
 
 links() { grep -rhoE "$1" "$SITE" --include='*.html' | sort -u; }
 
-bad=$(links "${GATE//./\\.}[^\"' <>]*" | grep -vE "^${GATE//./\\.}/(latest|early|manual)?$")
+# "$GATE/go" alone is the counter's address in the page script (_layouts/default.html).
+bad=$(links "${GATE//./\\.}[^\"' <>]*" | grep -vE "^${GATE//./\\.}/((latest|early|manual)?|go|go/(patreon|join)\?at=[a-z0-9-]+)$")
 if [ -n "$bad" ]; then
-  fail "links to gate pages that don't exist (the gate serves /latest, /early, /manual):"
+  fail "links to gate pages that don't exist (the gate serves /latest, /early, /manual, /go/patreon?at=<link> and /go/join?at=<link>):"
   sed 's/^/       /' <<<"$bad"
 else
   echo "ok   every $GATE link goes to a page the gate serves"

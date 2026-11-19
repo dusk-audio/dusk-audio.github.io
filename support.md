@@ -14,7 +14,7 @@ If these plugins help your music, consider giving back!
   <div class="support-option primary">
     <h2>Patreon</h2>
     <p>Monthly support helps fund ongoing development and new plugins. Get updates on what's coming next!</p>
-    <a href="{{ site.patreon_url }}" class="btn btn-primary btn-lg">Support on Patreon</a>
+    <a href="{{ site.go_url }}/patreon?at=support-page-top" class="btn btn-primary btn-lg">Support on Patreon</a>
   </div>
   <div class="support-option">
     <h2>Ko-fi</h2>
@@ -60,5 +60,5 @@ I believe great audio tools should be accessible to everyone, regardless of budg
 Your support, whether financial or through spreading the word, makes this possible. Thank you!
 
 <div style="text-align: center; margin-top: var(--spacing-2xl);">
-  <a href="{{ site.patreon_url }}" class="btn btn-primary btn-lg">Support on Patreon</a>
+  <a href="{{ site.go_url }}/patreon?at=support-page-bottom" class="btn btn-primary btn-lg">Support on Patreon</a>
 </div>

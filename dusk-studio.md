@@ -144,7 +144,7 @@ body_class: showcase-page studio-page
         <h3>Official builds</h3>
         <p>Linux tarballs, a Windows installer, and a macOS disk image. Patreon membership gives you access to beta builds while subscribed.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="{{ site.patreon_membership_url }}">Join on Patreon from $5/month</a>
+          <a class="btn btn-primary" href="{{ site.go_url }}/join?at=studio-page">Join on Patreon from $5/month</a>
           <a class="btn btn-secondary" href="{{ site.data.studio.builds_url }}">Download for members</a>
         </div>
       </div>
