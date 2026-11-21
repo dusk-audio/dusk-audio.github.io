@@ -4,7 +4,7 @@ title: TapeMachine 2
 slug: tapemachine-2
 tagline: Two-machine analog tape emulation
 description: The next-generation Dusk Audio tape engine with two modeled machines, Swiss and American, featuring anti-aliased saturation, per-speed head bump and HF response, wow & flutter, repro EQ, and machine-authentic front-panel toggles. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.12"
+version: "1.0.13"
 screenshot: /assets/images/plugins/tapemachine-2-screenshot.webp
 gallery:
   - src: /assets/images/plugins/tapemachine-2-screenshot.webp
@@ -48,6 +48,16 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.13"
+    date: "2026-11-20"
+    changes:
+      - "Switching the machine, the speed or the calibration is now a morph of about 60 ms from the old setting to the new one, as on the tape machines this plugin models, with no gap and no burst; with Gain Link on, dropping Input by more than 6 dB at once morphs the same way"
+      - "Loading a preset no longer bursts: a preset-sized change starts the tape path from a clean state, and the way back from bypass or Thru no longer plays out the audio from before it"
+      - "Gain Link is now the exact inverse of Input and no longer keeps matching levels, so a held bass note keeps its head bump and loud bass no longer pulls down the rest of the mix"
+      - "Less aliasing on hot presets: the saturation stages no longer mix in their own oversampling image (the worst spur on Old Tape is about 10 dB lower); the latency goes from 56 to 62 samples"
+      - "Lower CPU use"
+      - "Special Thanks panel: larger text, and the click that closes it no longer reaches a control underneath"
+      - "Manual: the entries on preset changes and Gain Link describe the new behaviour"
   - version: "1.0.12"
     date: "2026-11-15"
     changes:
