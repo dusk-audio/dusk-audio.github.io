@@ -5,7 +5,7 @@ slug: duskverb-2
 published: true
 tagline: Algorithmic reverb with 24 factory sounds
 description: DuskVerb reverb engines, a nonlinear burst engine and updated voicing in a redesigned, resizable interface, with A/B comparison, user presets, import of original DuskVerb presets, and mono, mono-to-stereo, and stereo routing. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.1"
+version: "1.0.2"
 screenshot: /assets/images/plugins/duskverb-2-screenshot.webp
 
 features:
@@ -43,6 +43,13 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.2"
+    date: "2026-11-22"
+    changes:
+      - "Nonlinear engine: Decay now lengthens the burst up to 2.5 s (1.0.1 stopped at 783 ms)"
+      - "Retuned Vocal Plate, Vintage Vocal Plate, Medium Drum Room, Vocal Hall and Deep Blue Day"
+      - "Lower CPU on Reverse Taps, 79 Vocal Chamber, Medium Drum Room and Vocal Hall"
+      - "The supporters window closes on any click and has larger text"
   - version: "1.0.1"
     date: "2026-11-08"
     changes:
