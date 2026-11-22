@@ -28,7 +28,7 @@
     AU, VST3, CLAP and LV2.
   status: released
   featured: true
-  version: 1.0.5
+  version: 1.0.6
   released: "2026-08-16"
 - name: Multi-Comp
   slug: multi-comp
@@ -103,7 +103,7 @@
     the hardware units' classic settings. Completely free.
   status: released
   featured: true
-  version: 1.0.12
+  version: 1.0.13
   released: "2026-07-15"
 - name: Groovemind
   slug: groovemind
