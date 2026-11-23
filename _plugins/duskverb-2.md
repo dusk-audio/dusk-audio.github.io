@@ -5,7 +5,7 @@ slug: duskverb-2
 published: true
 tagline: Algorithmic reverb with 24 factory sounds
 description: DuskVerb reverb engines, a nonlinear burst engine and updated voicing in a redesigned, resizable interface, with A/B comparison, user presets, import of original DuskVerb presets, and mono, mono-to-stereo, and stereo routing. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.2"
+version: "1.0.3"
 screenshot: /assets/images/plugins/duskverb-2-screenshot.webp
 
 features:
@@ -43,6 +43,12 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.0.3"
+    date: "2026-11-23"
+    changes:
+      - "Windows VST3: a project saved with 1.0.0 finds DuskVerb 2 again in hosts that read VST3 compatibility information, such as REAPER"
+      - "The VST3 class ID does not change: projects saved with 1.0.1 or 1.0.2 load as before"
+      - "No changes to the sound or the presets"
   - version: "1.0.2"
     date: "2026-11-22"
     changes:
