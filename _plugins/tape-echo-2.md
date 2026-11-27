@@ -4,7 +4,7 @@ title: Tape Echo 2
 slug: tape-echo-2
 tagline: Three-head tape delay with spring reverb
 description: A three-head tape echo and spring reverb modeled end to end, with 12 echo modes, mechanical head timing, tape age, splice dropout, and regeneration that runs into self-oscillation. Free AU, VST3, CLAP, and LV2 plugin for Linux, Windows, and macOS.
-version: "1.0.9"
+version: "1.1.0"
 screenshot: /assets/images/plugins/tape-echo-2-screenshot.webp
 
 features:
@@ -38,6 +38,18 @@ requirements:
   - "Sample rates: 44.1 kHz to 192 kHz"
 
 changelog:
+  - version: "1.1.0"
+    date: "2026-11-27"
+    changes:
+      - "Sessions saved with 1.0.9 open with the same settings, but the echo, the tape and the spring reverb sound different: this release refits them to measurements of the original unit"
+      - "Spring reverb rebuilt: its tone, level and the timing of its build-up are closer to the original unit"
+      - "Repeat times and the spacing of the three heads are refit. Head 2 no longer wobbles in pitch more than heads 1 and 3, and combining heads no longer adds a ringing comb tone"
+      - "Slow tape drift is now random and grows with Tape Age. Flutter is refit across tape speed and age. The splice comes round at the right interval for the tape speed and lasts longer at slow speeds"
+      - "High Intensity settings: hot feedback loops no longer produce harsh inharmonic tones from aliasing, and a self-oscillating loop gets louder as Intensity rises"
+      - "A loud input now also turns down the repeats it feeds, as on the original unit"
+      - "Lower CPU: roughly a third of what 1.0.9 needed, or less, measured on the development machine"
+      - "The head timings printed on the panel and in the manual are corrected (head 2: 336 to 130 ms, head 3: 487 to 189 ms)"
+      - "Special Thanks panel: the click that closes it, or a double-click, no longer reaches the control underneath, and its text is larger"
   - version: "1.0.9"
     date: "2026-11-15"
     changes:
